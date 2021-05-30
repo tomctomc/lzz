@@ -1,0 +1,18 @@
+CC=/usr/local/mingw/bin/i386-mingw32-gcc
+CXX=/usr/local/mingw/bin/i386-mingw32-g++
+AR=/usr/local/mingw/bin/i386-mingw32-ar
+STRIP=/usr/local/mingw/bin/i386-mingw32-strip
+ifeq ($(DEBUG),)
+  DEBUG=-O3
+endif
+ifeq ($(COMPILERFLAGS),)
+  COMPILERFLAGS = -Wreturn-type -Wunused -Wno-deprecated
+endif
+DEPENDFLAGS=-MM
+INCFLAGS=-I$(GENCODEDIR) -I$(INCDIR)
+DEFFLAGS=-DWIN32
+ifneq ($(STATIC_BUILD),)
+LINKOPTIONS=-static
+endif
+
+
