@@ -23,7 +23,7 @@ namespace smtc
     // print initializer if static const integral obj
     if (isObjStaticConstIntegral (obj))
     {
-      printer.with_init = true;
+      //TOMCXXX printer.with_init = true;
     }
     printer.print (file, DECLARATION_SECTION, obj);
   }

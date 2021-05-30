@@ -31,7 +31,7 @@ namespace smtc
       PrintObjDecl printer (qual_name);
       printer.not_static = true;
       // if const integral then initializer with declaration
-      if (! isObjConstIntegral (obj))
+      if (! isObjConstIntegral (obj) || true ) //TOMCXXX added "|| true"
       {
         printer.with_init = true;
       }

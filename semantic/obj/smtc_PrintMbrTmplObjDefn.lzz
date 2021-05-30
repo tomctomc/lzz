@@ -51,7 +51,7 @@ namespace smtc
       PrintTmplObjDefn printer (qual_name);
       printer.not_static = true;
       // if const integral then initializer with declaration
-      printer.with_init = ! isObjConstIntegral (obj);
+      //TOMCXXX printer.with_init = ! isObjConstIntegral (obj);
       printer.print (file, BODY_SECTION, obj, tmpl_spec_set, ns);
     }
   }
