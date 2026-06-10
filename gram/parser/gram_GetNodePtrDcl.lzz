@@ -21,6 +21,7 @@ $src
 #include "smtc_GetCvType.h"
 #include "smtc_GetMbrPtrType.h"
 #include "smtc_GetPtrType.h"
+#include "smtc_GetRRefType.h"
 #include "smtc_GetRefType.h"
 $end
 
@@ -44,6 +45,12 @@ namespace
     void visit (PtrOper2Node & node) const
     {
       cv_type = smtc::getCvType (smtc::getRefType (cv_type), smtc::getCv (false, false));
+    }
+
+    // ptr-oper -> AND (rvalue reference, C++11)
+    void visit (PtrOper4Node & node) const
+    {
+      cv_type = smtc::getCvType (smtc::getRRefType (cv_type), smtc::getCv (false, false));
     }
 
     // ptr-oper -> obj-name DCOLON TIMES cv-spec-seq-opt

@@ -1,0 +1,21 @@
+#hdr
+#include <string>
+#include <utility>
+#include <vector>
+#end
+class RR
+{
+public:
+  void take (std::string && s);
+  void unnamed (std::vector<int> &&);
+  RR (RR && other) noexcept;            // move ctor
+  RR & operator = (RR && other) noexcept;
+  RR () = default;
+  RR (RR const &) = delete;
+private:
+  std::string s_;
+};
+void RR::take (std::string && s) { s_ = std::move (s); }
+void RR::unnamed (std::vector<int> &&) {}
+RR::RR (RR && other) noexcept : s_ (std::move (other.s_)) {}
+RR & RR::operator = (RR && other) noexcept { s_ = std::move (other.s_); return * this; }

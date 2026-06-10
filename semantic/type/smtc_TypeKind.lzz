@@ -73,6 +73,9 @@ namespace smtc
     // reference
     REF_TYPE,
 
+    // rvalue reference (C++11)
+    RREF_TYPE,
+
     // function
     FUNC_TYPE,
 

@@ -1,0 +1,23 @@
+// smtc_GetRRefType.lzz
+//
+
+$hdr
+// semantic
+#include "smtc_TypePtr.h"
+#include "smtc_CvType.h"
+$end
+
+$src
+// semantic
+#include "smtc_RRefType.h"
+$end
+
+// semantic
+namespace smtc
+{
+  // get rvalue ref type (C++11)
+  TypePtr getRRefType (CvType const & to_cv_type)
+  {
+    return new RRefType (to_cv_type);
+  }
+}

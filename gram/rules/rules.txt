@@ -932,6 +932,10 @@ ptr-oper -> TIMES_TOKEN cv-spec-seq-opt
 [PtrOper2Node]
 ptr-oper -> BITAND_TOKEN
 
+# rvalue reference (C++11)
+[PtrOper4Node]
+ptr-oper -> AND_TOKEN
+
 [PtrOper3Node]
 ptr-oper -> obj-name DCOLON_TOKEN TIMES_TOKEN cv-spec-seq-opt
          

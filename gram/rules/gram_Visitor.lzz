@@ -56,6 +56,7 @@ namespace gram
   class DirectDcl4Node;
   class PtrOper1Node;
   class PtrOper2Node;
+  class PtrOper4Node;
   class PtrOper3Node;
   class IdNode;
   class ParamDeclBody1Node;
@@ -363,6 +364,11 @@ namespace gram
 
     // ptr-oper -> BITAND_TOKEN
     virtual void visit (gram::PtrOper2Node & node) const
+    {
+    }
+
+    // ptr-oper -> AND_TOKEN
+    virtual void visit (gram::PtrOper4Node & node) const
     {
     }
 
