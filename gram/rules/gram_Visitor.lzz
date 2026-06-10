@@ -66,6 +66,7 @@ namespace gram
   class ParamDecl2Node;
   class Decl2Node;
   class Decl1Node;
+  class NoexceptSpecNode;
   class TypeIdNode;
   class NamespaceDefNode;
   class NamespaceHead1Node;
@@ -413,6 +414,11 @@ namespace gram
 
     // ctor-decl -> pure-ctor-dcl
     virtual void visit (gram::Decl1Node & node) const
+    {
+    }
+
+    // noexcept-spec -> NOEXCEPT_TOKEN
+    virtual void visit (gram::NoexceptSpecNode & node) const
     {
     }
 

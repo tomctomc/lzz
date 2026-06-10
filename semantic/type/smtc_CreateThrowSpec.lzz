@@ -20,4 +20,10 @@ namespace smtc
   {
     return new ThrowSpec (cv_type_set);
   }
+
+  // create noexcept spec (C++11)
+  ThrowSpecPtr createNoexceptSpec ()
+  {
+    return new ThrowSpec ();
+  }
 }

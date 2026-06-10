@@ -52,6 +52,31 @@ namespace
   // using gram
   using namespace gram;
 
+  // IsNoexceptSpec, true if the node is a noexcept spec (a throw spec is a
+  // seq node, whose walk passes through here without effect)
+  struct IsNoexceptSpec (bool & is_noexcept) : Visitor
+  {
+    // noexcept-spec -> NOEXCEPT_TOKEN
+    void visit (NoexceptSpecNode & node) const
+    {
+      is_noexcept = true;
+    }
+  }
+
+  // get throw spec (or noexcept spec) from a set throw-spec-opt node
+  smtc::ThrowSpecPtr getNodeThrowSpec (basl::Nonterm & nonterm)
+  {
+    bool is_noexcept = false;
+    nonterm.accept (IsNoexceptSpec (is_noexcept));
+    if (is_noexcept)
+    {
+      return smtc::createNoexceptSpec ();
+    }
+    smtc::CvTypeVector cv_type_set;
+    getNodeTypeIdSet (nonterm, cv_type_set);
+    return smtc::createThrowSpec (cv_type_set);
+  }
+
   // GetNodePure, the alternatives after '=' on a function declarator
   struct GetNodePure (SpecSel & dcl_spec_sel) : Visitor
   {
@@ -161,9 +186,7 @@ namespace
       basl::Nonterm & throw_spec_node = node.getThrowSpecOpt ();
       if (throw_spec_node.isSet ())
       {
-        smtc::CvTypeVector cv_type_set;
-        getNodeTypeIdSet (node.getThrowSpecOpt (), cv_type_set);
-        throw_spec = smtc::createThrowSpec (cv_type_set);
+        throw_spec = getNodeThrowSpec (throw_spec_node);
       }
       dcl_cv_type = smtc::getFuncType (dcl_cv_type, param_set, vararg, cv, throw_spec);
       node.getObjBDirectDcl ().accept (* this);
@@ -180,9 +203,7 @@ namespace
       basl::Nonterm & throw_spec_node = node.getThrowSpecOpt ();
       if (throw_spec_node.isSet ())
       {
-        smtc::CvTypeVector cv_type_set;
-        getNodeTypeIdSet (node.getThrowSpecOpt (), cv_type_set);
-        throw_spec = smtc::createThrowSpec (cv_type_set);
+        throw_spec = getNodeThrowSpec (throw_spec_node);
       }
       dcl_cv_type = smtc::getFuncType (dcl_cv_type, param_set, vararg, cv, throw_spec);
       node.getVdfObjBDirectDcl ().accept (* this);
@@ -244,9 +265,7 @@ namespace
       basl::Nonterm & throw_spec_node = node.getThrowSpecOpt ();
       if (throw_spec_node.isSet ())
       {
-        smtc::CvTypeVector cv_type_set;
-        getNodeTypeIdSet (node.getThrowSpecOpt (), cv_type_set);
-        throw_spec = smtc::createThrowSpec (cv_type_set);
+        throw_spec = getNodeThrowSpec (throw_spec_node);
       }
       node.getObjDclId ().accept (* this);
     }
@@ -267,9 +286,7 @@ namespace
       basl::Nonterm & throw_spec_node = node.getThrowSpecOpt ();
       if (throw_spec_node.isSet ())
       {
-        smtc::CvTypeVector cv_type_set;
-        getNodeTypeIdSet (node.getThrowSpecOpt (), cv_type_set);
-        throw_spec = smtc::createThrowSpec (cv_type_set);
+        throw_spec = getNodeThrowSpec (throw_spec_node);
       }
       node.getObjDclId ().accept (* this);
     }

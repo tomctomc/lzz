@@ -1,0 +1,20 @@
+class NX
+{
+public:
+  void plain () noexcept;
+  int  combo (int x) const noexcept;
+  virtual void v () noexcept;
+  ~ NX () noexcept;
+  void legacy () throw ();
+};
+class DX : public NX
+{
+public:
+  void v () noexcept override;
+};
+void NX::plain () noexcept {}
+int  NX::combo (int x) const noexcept { return x; }
+void NX::v () noexcept {}
+NX::~ NX () noexcept {}
+void NX::legacy () throw () {}
+void DX::v () noexcept {}

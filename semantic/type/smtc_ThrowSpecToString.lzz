@@ -24,6 +24,10 @@ namespace smtc
   // throw spec to string
   util::String throwSpecToString (ThrowSpecPtr const & throw_spec)
   {
+    if (throw_spec->isNoexcept ())
+    {
+      return util::String ("noexcept");
+    }
     util::String str = "throw";
     util::appendWithSpace (str, '(');
     str += cvTypeSetToString (throw_spec->getCvTypeSet ());

@@ -1237,11 +1237,16 @@ func-decl -> FEVS-decl-spec-seq pure-func-dcl
 
 # throw spec opt
 throw-spec-opt -> throw-spec
+throw-spec-opt -> noexcept-spec
 throw-spec-opt ->
 
 # throw spec
 [(SeqNode)]
 throw-spec -> THROW_TOKEN LPAREN_TOKEN type-id-list-opt RPAREN_TOKEN
+
+# noexcept spec (C++11, simple non-conditional form only)
+[NoexceptSpecNode]
+noexcept-spec -> NOEXCEPT_TOKEN
 
 #
 # type id

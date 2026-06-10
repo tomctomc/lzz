@@ -15,14 +15,29 @@ namespace smtc
   // ThrowSpec
   class ThrowSpec
   {
+    // true if noexcept (C++11) rather than a throw () spec
+    bool m_noexcept;
+
     // type set
     CvTypeVector m_cv_type_set;
 
   public:
     // constructor
     ThrowSpec (CvTypeVector const & cv_type_set)
-      : m_cv_type_set (cv_type_set)
+      : m_noexcept (false), m_cv_type_set (cv_type_set)
     {
+    }
+
+    // noexcept constructor
+    ThrowSpec ()
+      : m_noexcept (true)
+    {
+    }
+
+    // true if noexcept
+    inline bool isNoexcept () const
+    {
+      return m_noexcept;
     }
 
     // destructor

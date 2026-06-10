@@ -60,6 +60,7 @@ namespace
         { "mutable",    MUTABLE_TOKEN },
         { "namespace",  NAMESPACE_TOKEN },
         { "new",        NEW_TOKEN },
+        { "noexcept",   NOEXCEPT_TOKEN },
         { "operator",   OPERATOR_TOKEN },
         { "private",    PRIVATE_TOKEN },
         { "protected",  PROTECTED_TOKEN },
