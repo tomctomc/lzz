@@ -417,14 +417,15 @@ namespace
     }
 
     // using-decl * -> USING IDENT > ASSIGN type-id SEMI (C++11 alias
-    // declaration, same semantics as a typedef)
+    // declaration, same semantics as a typedef; under a template head it is
+    // an alias template, emitted in alias form)
     void visit (AliasDeclNode & node) const
     {
       smtc::CvType cv_type;
       getNodeAbstractDcl (TypeIdNode (node.getTypeId ()).getAbstractDecl (), cv_type);
       basl::Token & token = node.getIDENT_TOKEN ();
       smtc::NamePtr name = smtc::createNonTmplName (smtc::createIdentBaseName (token.getLoc (), token.getLexeme ()));
-      smtc::declareTdef (cs, cv_type, name);
+      smtc::declareTdef (cs, cv_type, name, true);
     }
 
     // using-dir -> USING NAMESPACE obj-name SEMI

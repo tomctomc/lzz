@@ -1,0 +1,51 @@
+// smtc_TmplTdef.lzz
+//
+// C++11 alias template: template <class T> using V = std::vector <T>;
+//
+
+#hdr
+// semantic
+#include "smtc_TdefPtr.h"
+#include "smtc_TmplSpecPtrVector.h"
+#end
+
+#src
+#end
+
+// semantic
+namespace smtc
+{
+  // TmplTdef
+  class TmplTdef
+  {
+    // template specs
+    TmplSpecPtrVector m_tmpl_spec_set;
+
+    // the alias (name and type)
+    TdefPtr m_tdef;
+
+  public:
+    // constructor
+    TmplTdef (TmplSpecPtrVector const & tmpl_spec_set, TdefPtr const & tdef)
+      : m_tmpl_spec_set (tmpl_spec_set), m_tdef (tdef)
+    {
+    }
+
+    // destructor
+    ~ TmplTdef ()
+    {
+    }
+
+    // get tmpl spec set
+    inline TmplSpecPtrVector const & getTmplSpecSet () const
+    {
+      return m_tmpl_spec_set;
+    }
+
+    // get tdef
+    inline TdefPtr const & getTdef () const
+    {
+      return m_tdef;
+    }
+  }
+}

@@ -1497,6 +1497,9 @@ tmpl-spec-decl -> class-decl
 tmpl-spec-decl -> friend-class-decl
 tmpl-spec-decl -> func-def
 tmpl-spec-decl -> tmpl-decl
+# C++11 alias template (only the alias form is valid under a template head,
+# 'template <...> typedef' is rejected in the semantic layer)
+tmpl-spec-decl -> using-decl
 tmpl-spec-decl -> lazy-ctor
 tmpl-spec-decl -> functor-def
 tmpl-spec-decl -> simple-functor-decl

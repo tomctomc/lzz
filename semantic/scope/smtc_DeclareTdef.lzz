@@ -1,6 +1,6 @@
 // smtc_DeclareTdef.lzz
 //
-// declare typedef
+// declare typedef (and C++11 alias, including alias templates)
 //
 
 $hdr
@@ -16,6 +16,8 @@ $src
 #include "smtc_ClassScope.h"
 #include "smtc_CreateTdef.h"
 #include "smtc_CreateTdefEntity.h"
+#include "smtc_CreateTmplTdef.h"
+#include "smtc_CreateTmplTdefEntity.h"
 #include "smtc_GetNameIfIdent.h"
 #include "smtc_GetNameLoc.h"
 #include "smtc_IsNameQual.h"
@@ -24,6 +26,8 @@ $src
 #include "smtc_Ns.h"
 #include "smtc_NsScope.h"
 #include "smtc_ScopeVisitor.h"
+#include "smtc_TmplSpecPtrVector.h"
+#include "smtc_TmplSpecScope.h"
 $end
 
 // private namespace
@@ -33,7 +37,8 @@ namespace
   using namespace smtc;
 
   // declare typdef
-  struct DeclareTdef (Linkage const & linkage, CvType const & cv_type, NamePtr const & name)
+  struct DeclareTdef (bool is_alias, TmplSpecPtrVector & tmpl_spec_set, Linkage const & linkage,
+      CvType const & cv_type, NamePtr const & name)
     : ScopeVisitor
   {
     // namespace scope
@@ -75,7 +80,7 @@ namespace
       else
       {
         Linkage const & linkage = scope.getLinkage ();
-        scope.getParent ()->accept (DeclareTdef (linkage, cv_type, name));
+        scope.getParent ()->accept (DeclareTdef (is_alias, tmpl_spec_set, linkage, cv_type, name));
       }
     }
 
@@ -92,8 +97,17 @@ namespace
     // tmpl spec scope
     void visit (TmplSpecScope const & scope) const
     {
-      // cannot declare a template typedef
-      msg::templateTdef (getNameLoc (name));
+      if (is_alias)
+      {
+        // alias template (C++11)
+        tmpl_spec_set.push_back (scope.getTmplSpec ());
+        scope.getParent ()->accept (DeclareTdef (is_alias, tmpl_spec_set, linkage, cv_type, name));
+      }
+      else
+      {
+        // cannot declare a template typedef
+        msg::templateTdef (getNameLoc (name));
+      }
     }
 
     // tmpl inst scope
@@ -107,6 +121,10 @@ namespace
     EntityPtr buildEntity () const
     {
       TdefPtr tdef = createTdef (linkage, cv_type, name);
+      if (! tmpl_spec_set.empty ())
+      {
+        return createTmplTdefEntity (createTmplTdef (tmpl_spec_set, tdef));
+      }
       return createTdefEntity (tdef);
     }
   }
@@ -115,10 +133,12 @@ namespace
 // semantic
 namespace smtc
 {
-  // declare typedef
-  void declareTdef (ScopePtr const & scope, CvType const & cv_type, NamePtr const & name)
+  // declare typedef (is_alias true for the C++11 'using X = Y' form, which
+  // alone is valid under a template head)
+  void declareTdef (ScopePtr const & scope, CvType const & cv_type, NamePtr const & name, bool is_alias = false)
   {
     Linkage linkage;
-    scope->accept (DeclareTdef (linkage, cv_type, name));
+    TmplSpecPtrVector tmpl_spec_set;
+    scope->accept (DeclareTdef (is_alias, tmpl_spec_set, linkage, cv_type, name));
   }
 }

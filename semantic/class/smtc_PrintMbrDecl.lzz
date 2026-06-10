@@ -31,6 +31,7 @@ $src
 #include "smtc_PrintMbrObjDecl.h"
 #include "smtc_PrintMbrTdef.h"
 #include "smtc_PrintMbrTmplClassDecl.h"
+#include "smtc_PrintTmplTdef.h"
 #include "smtc_PrintMbrTmplClassDefn.h"
 #include "smtc_PrintMbrTmplFuncDecl.h"
 #include "smtc_PrintMbrTmplLazyClass.h"
@@ -53,6 +54,7 @@ $src
 #include "smtc_ObjEntity.h"
 #include "smtc_TdefEntity.h"
 #include "smtc_TmplClassDeclEntity.h"
+#include "smtc_TmplTdefEntity.h"
 #include "smtc_TmplClassDefnEntity.h"
 #include "smtc_TmplFuncDeclEntity.h"
 #include "smtc_TmplFuncDefnEntity.h"
@@ -80,6 +82,12 @@ namespace
     void visit (TdefEntity const & entity) const
     {
       printMbrTdef (file, entity.getTdef ());
+    }
+
+    // alias template (C++11)
+    void visit (TmplTdefEntity const & entity) const
+    {
+      printMbrTmplTdef (file, entity.getTmplTdef ());
     }
 
     // obj

@@ -1,0 +1,63 @@
+// smtc_PrintTmplTdef.lzz
+//
+// print C++11 alias template, ns and member scope; always emitted in alias
+// form (an alias template has no typedef equivalent):
+//   template <class T>
+//   using V = std::vector <T>;
+//
+
+$hdr
+#include "smtc_FilePtr.h"
+#include "smtc_NsPtr.h"
+#include "smtc_TmplTdefPtr.h"
+$end
+
+$src
+#include "smtc_GetNameLoc.h"
+#include "smtc_NameToString.h"
+#include "smtc_Output.h"
+#include "smtc_PrintCode.h"
+#include "smtc_PrintNsClose.h"
+#include "smtc_PrintNsOpen.h"
+#include "smtc_PrintTmplSpecSet.h"
+#include "smtc_Tdef.h"
+#include "smtc_TmplTdef.h"
+
+#include "util_AppendWithSpace.h"
+$end
+
+namespace smtc
+{
+  using namespace util;
+
+  // types
+  class Output;
+
+  // print in ns (hdr file, declaration section)
+  void printNsTmplTdef (Output & out, TmplTdefPtr const & tmpl_tdef, NsPtr const & ns)
+  {
+    FilePtr file = out.getHdrFile ();
+    int ns_depth = printNsOpen (file, DECLARATION_SECTION, ns);
+    printTmplTdef (file, tmpl_tdef);
+    printNsClose (file, DECLARATION_SECTION, ns_depth);
+  }
+
+  // print as member
+  void printMbrTmplTdef (FilePtr const & file, TmplTdefPtr const & tmpl_tdef)
+  {
+    printTmplTdef (file, tmpl_tdef);
+  }
+
+  // print alias template
+  void printTmplTdef (FilePtr const & file, TmplTdefPtr const & tmpl_tdef)
+  {
+    printTmplSpecSet (file, DECLARATION_SECTION, tmpl_tdef->getTmplSpecSet (), true);
+    TdefPtr const & tdef = tmpl_tdef->getTdef ();
+    String str = "using";
+    appendWithSpace (str, nameToString (tdef->getName ()));
+    appendWithSpace (str, '=');
+    appendWithSpace (str, tdef->getCvType ().toString (String ()));
+    str += ';';
+    printLine (file, DECLARATION_SECTION, getNameLoc (tdef->getName ()), str);
+  }
+}

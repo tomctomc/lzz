@@ -1,0 +1,39 @@
+// smtc_TmplTdefEntity.lzz
+//
+
+$hdr
+#include "smtc_Entity.h"
+#include "smtc_TmplTdefPtr.h"
+$end
+
+$src
+#include "smtc_EntityVisitor.h"
+$end
+
+namespace smtc
+{
+  class TmplTdefEntity : public Entity
+  {
+    TmplTdefPtr m_tmpl_tdef;
+
+  public:
+    TmplTdefEntity (TmplTdefPtr const & tmpl_tdef)
+      : m_tmpl_tdef (tmpl_tdef)
+    {
+    }
+
+    ~ TmplTdefEntity ()
+    {
+    }
+
+    void accept (EntityVisitor const & visitor) const
+    {
+      visitor.visit (* this);
+    }
+
+    inline TmplTdefPtr const & getTmplTdef () const
+    {
+      return m_tmpl_tdef;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+// smtc_CreateTmplTdef.lzz
+//
+
+$hdr
+// semantic
+#include "smtc_TdefPtr.h"
+#include "smtc_TmplSpecPtrVector.h"
+#include "smtc_TmplTdefPtr.h"
+$end
+
+$src
+// semantic
+#include "smtc_TmplTdef.h"
+$end
+
+// semantic
+namespace smtc
+{
+  // create tmpl tdef (alias template)
+  TmplTdefPtr createTmplTdef (TmplSpecPtrVector const & tmpl_spec_set, TdefPtr const & tdef)
+  {
+    return new TmplTdef (tmpl_spec_set, tdef);
+  }
+}

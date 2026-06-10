@@ -27,6 +27,7 @@ namespace smtc
   class FuncDefnEntity;
   class FrndClassDeclEntity;
   class TdefEntity;
+  class TmplTdefEntity;
   class FrndFuncDefnEntity;
   class FrndFuncDeclEntity;
   class TmplClassDeclEntity;
@@ -89,6 +90,11 @@ namespace smtc
 
     // typedef entity
     virtual void visit (TdefEntity const & entity) const
+    {
+    }
+
+    // alias template entity (C++11)
+    virtual void visit (TmplTdefEntity const & entity) const
     {
     }
 

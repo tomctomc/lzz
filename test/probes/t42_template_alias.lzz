@@ -1,0 +1,32 @@
+// C++11 alias templates at namespace and member scope, emitted in alias form
+// in the .h (an alias template has no typedef equivalent); a member alias
+// template registers as a nested type name, so unqualified uses in return
+// types qualify in the .cpp ('Holder::Ptr <int> Holder::p ()')
+#hdr
+#include <map>
+#include <vector>
+#end
+namespace probe
+{
+  template <class T>
+  using Vec = std::vector <T>;
+
+  template <class K, class V>
+  using Table = std::map <K, V>;
+
+  class Holder
+  {
+  public:
+    template <class T>
+    using Ptr = T *;
+
+    Vec <int> vals ()
+    {
+      return Vec <int> ();
+    }
+    Ptr <int> p ()
+    {
+      return 0;
+    }
+  };
+}

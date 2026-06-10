@@ -28,6 +28,7 @@ $src
 #include "smtc_PrintNsObjDefn.h"
 #include "smtc_PrintNsTdef.h"
 #include "smtc_PrintNsTmplClassDecl.h"
+#include "smtc_PrintTmplTdef.h"
 #include "smtc_PrintNsTmplClassDefn.h"
 #include "smtc_PrintNsTmplFuncDecl.h"
 #include "smtc_PrintNsTmplFuncDefn.h"
@@ -51,6 +52,7 @@ $src
 #include "smtc_ObjEntity.h"
 #include "smtc_TdefEntity.h"
 #include "smtc_TmplClassDeclEntity.h"
+#include "smtc_TmplTdefEntity.h"
 #include "smtc_TmplClassDefnEntity.h"
 #include "smtc_TmplFuncDeclEntity.h"
 #include "smtc_TmplFuncDefnEntity.h"
@@ -81,6 +83,12 @@ namespace
     void visit (TdefEntity const & entity) const
     {
       printNsTdef (out, entity.getTdef (), ns);
+    }
+
+    // alias template (C++11)
+    void visit (TmplTdefEntity const & entity) const
+    {
+      printNsTmplTdef (out, entity.getTmplTdef (), ns);
     }
 
     // obj
