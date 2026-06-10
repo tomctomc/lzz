@@ -2,3 +2,4 @@ gcc.opt/
 gcc.debug/
 gcc.selfhost/
 mingw.opt/
+build/

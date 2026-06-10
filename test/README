@@ -18,8 +18,13 @@ Workflow for a feature patch:
   5. self-host: rebuild lzz with the new binary; generated code must be
      identical and the result must pass 3 and 4 again
 
-Build notes (Linux, gcc):
-  - bootstrap needs an lzz binary (e.g. /usr/local/bin/lzz)
+Building: just type `make` at the repo root (drives tools/build.sh; produces
+build/lzz and build/lzz-static and runs the probes).  `make install` puts the
+static binary in /usr/local/bin/lzz.  `make cleanall && make install` is the
+fresh-install-on-any-machine recipe.  The notes below document what build.sh
+does and why:
+  - bootstrap needs an lzz binary (PATH, /usr/local/bin/lzz, then
+    /usr/local/bin/lzz.OLD are tried; override with LZZ=...)
   - BUILD ON LOCAL DISK.  Building inside an NFS-mounted tree (especially a
     soft mount) intermittently produces empty .o files: the compiler can read
     a just-generated .cpp before its data is visible.  Set CONFIGDIR (and

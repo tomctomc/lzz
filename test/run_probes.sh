@@ -4,6 +4,9 @@
 # Exit 0 iff every probe matches its expected PASS/FAIL.
 set -u
 LZZBIN=${1:-lzz}
+case "$LZZBIN" in
+    */*) LZZBIN=$(readlink -f "$LZZBIN");;   # make path absolute, we cd below
+esac
 HERE=$(cd "$(dirname "$0")" && pwd)
 TMP=$(mktemp -d /tmp/lzz-probes.XXXXXX)
 trap 'rm -rf "$TMP"' EXIT
