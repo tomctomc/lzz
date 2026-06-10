@@ -1,0 +1,34 @@
+// C++11 constexpr: definitions must live in the header (unconditionally, not
+// behind LZZ_ENABLE_INLINE).  Functions/members/ctors emit decl in class or
+// hdr plus the definition in the hdr; constexpr objects and static members
+// keep their initializer with the in-header declaration and emit no .cpp
+// definition (inline variables under C++17)
+namespace probe
+{
+  constexpr int square (int x)
+  {
+    return x * x;
+  }
+  constexpr double PI = 3.14159;
+  constexpr int LIMIT { 64 };
+  class Geo
+  {
+  public:
+    static constexpr int sides = 4;
+    static constexpr double ratio { 1.5 };
+    constexpr int area (int w, int h) const
+    {
+      return w * h;
+    }
+    constexpr Geo (int s)
+      : scale (s)
+    {
+    }
+    int scale;
+  };
+  // plain inline must be unaffected
+  inline int twice (int x)
+  {
+    return 2 * x;
+  }
+}

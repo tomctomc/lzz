@@ -18,6 +18,11 @@ namespace gram
     char const * str = 0;
     switch (flag)
     {
+      case CONSTEXPR_SPEC:
+      {
+        str = "constexpr";
+        break;
+      }
       case INLINE_SPEC:
       {
         str = "inline";

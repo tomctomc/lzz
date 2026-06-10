@@ -69,7 +69,13 @@ namespace smtc
       {
         printer.printDecl (out.getHdrFile ());
       }
-      if (func_defn->isInline ())
+      if (func_defn->isConstexpr ())
+      {
+        // constexpr definitions must live in the header, unconditionally
+        // (not behind LZZ_ENABLE_INLINE)
+        printer.printDefn (out.getHdrFile ());
+      }
+      else if (func_defn->isInline ())
       {
         if (conf::getOptionValue (conf::opt_inl_inl))
         {

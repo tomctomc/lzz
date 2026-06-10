@@ -215,6 +215,11 @@ namespace
       int flag = 0;
       switch (node.getFtorToken ().getNumber ())
       {
+        case CONSTEXPR_TOKEN:
+        {
+          flag = CONSTEXPR_SPEC;
+          break;
+        }
         case INLINE_TOKEN:
         {
           flag = INLINE_SPEC;

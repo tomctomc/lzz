@@ -47,6 +47,7 @@ namespace
         { "char",       CHAR_TOKEN },
         { "class",      CLASS_TOKEN },
         { "const",      CONST_TOKEN },
+        { "constexpr",  CONSTEXPR_TOKEN },
         { "delete",     DELETE_TOKEN },
         { "double",     DOUBLE_TOKEN },
         { "enum",       ENUM_TOKEN },

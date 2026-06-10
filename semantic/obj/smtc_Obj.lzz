@@ -89,6 +89,12 @@ namespace smtc
       return hasFlag (m_flags, EXTERN_SPEC);
     }
 
+    // true if constexpr (C++11)
+    bool isConstexpr () const
+    {
+      return hasFlag (m_flags, CONSTEXPR_SPEC);
+    }
+
     // true if has init
     bool hasInit () const
     {

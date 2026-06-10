@@ -22,8 +22,9 @@ namespace smtc
     PrintObjDecl printer;
     // a non static member initializer (C++11 default member initializer)
     // belongs to the declaration; a static member's initializer prints with
-    // its definition in the source file
-    printer.with_init = ! obj->isStatic ();
+    // its definition in the source file -- EXCEPT constexpr statics, which
+    // are inline variables initialized in class (no out-of-class definition)
+    printer.with_init = ! obj->isStatic () || obj->isConstexpr ();
     printer.print (file, DECLARATION_SECTION, obj);
   }
 }

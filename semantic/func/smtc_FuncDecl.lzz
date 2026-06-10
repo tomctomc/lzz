@@ -121,6 +121,12 @@ namespace smtc
       return util::hasFlag (m_flags, TRAILING_RET_SPEC);
     }
 
+    // true if constexpr (C++11)
+    bool isConstexpr () const
+    {
+      return util::hasFlag (m_flags, CONSTEXPR_SPEC);
+    }
+
     // true if static
     bool isStatic () const
     {

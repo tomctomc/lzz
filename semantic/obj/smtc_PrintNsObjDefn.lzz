@@ -28,6 +28,15 @@ namespace smtc
   // print ns obj defn
   void printNsObjDefn (Output & out, ObjPtr const & obj, NsPtr const & ns)
   {
+    // constexpr objects are compile-time constants: the whole definition
+    // (with initializer) must live in the header
+    if (obj->isConstexpr () && ! isNsEnclUnmd (ns))
+    {
+      PrintObjDefn printer;
+      printer.print (out.getHdrFile (), DECLARATION_SECTION, obj, ns);
+      return;
+    }
+
     // assume has_decl (in header) and has_defn (in source)
     bool has_decl = true;
     bool has_defn = true;

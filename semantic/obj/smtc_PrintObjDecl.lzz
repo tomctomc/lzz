@@ -81,6 +81,10 @@ namespace smtc
       {
         appendWithSpace (str, "static");
       }
+      if (hasFlag (flags, CONSTEXPR_SPEC))
+      {
+        appendWithSpace (str, "constexpr");
+      }
       if (hasFlag (flags, MUTABLE_SPEC))
       {
         appendWithSpace (str, "mutable");

@@ -60,5 +60,8 @@ namespace gram
     // trailing return type (C++11, auto f () -> T); the return type itself
     // is carried in the decl, this flag only selects the emission form
     TRAILING_RET_SPEC = 1 << 14,
+
+    // constexpr (C++11); definitions must live in the header
+    CONSTEXPR_SPEC = 1 << 15,
   }
 }

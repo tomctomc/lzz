@@ -59,5 +59,8 @@ namespace smtc
 
     // trailing return type (C++11, auto f () -> T)
     TRAILING_RET_SPEC = gram::TRAILING_RET_SPEC,
+
+    // constexpr (C++11)
+    CONSTEXPR_SPEC = gram::CONSTEXPR_SPEC,
   }
 }

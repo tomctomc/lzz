@@ -50,7 +50,13 @@ namespace smtc
   void printMbrFuncDefn (Output & out, FuncDefnPtr const & func_defn, NsPtr const & ns, NamePtr const & qual_name)
   {
     Printer printer (func_defn, ns, qual_name);
-    if (! func_defn->isInline () || isNsEnclUnmd (ns))
+    if (func_defn->isConstexpr () && ! isNsEnclUnmd (ns))
+    {
+      // constexpr definitions must live in the header, unconditionally
+      // (not behind LZZ_ENABLE_INLINE)
+      printer.printDefn (out.getHdrFile ());
+    }
+    else if (! func_defn->isInline () || isNsEnclUnmd (ns))
     {
       printer.printDefn (out.getSrcFile ());
     }

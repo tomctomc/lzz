@@ -258,6 +258,7 @@ cv-spec-seq-opt ->
 ftor-spec -> ftor-token
 
 # ftor token
+ftor-token -> CONSTEXPR_TOKEN
 ftor-token -> INLINE_TOKEN
 ftor-token -> VIRTUAL_TOKEN
 ftor-token -> EXPLICIT_TOKEN

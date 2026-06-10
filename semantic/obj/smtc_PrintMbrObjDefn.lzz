@@ -24,8 +24,9 @@ namespace smtc
   // print mbr obj defn
   void printMbrObjDefn (Output & out, ObjPtr const & obj, NsPtr const & ns, NamePtr const & qual_name)
   {
-    // has definition only if static 
-    if (obj->isStatic ())
+    // has definition only if static; constexpr statics are inline variables
+    // initialized in class, no out-of-class definition
+    if (obj->isStatic () && ! obj->isConstexpr ())
     {
       PrintObjDecl printer (qual_name);
       printer.not_static = true;

@@ -101,6 +101,11 @@ namespace smtc
       {
         appendWithSpace (str, "LZZ_INLINE");
       }
+      // constexpr appears on declaration AND definition, never suppressed
+      if (hasFlag (flags, CONSTEXPR_SPEC))
+      {
+        appendWithSpace (str, "constexpr");
+      }
       if (! not_virtual && hasFlag (flags, VIRTUAL_SPEC))
       {
         appendWithSpace (str, "virtual");

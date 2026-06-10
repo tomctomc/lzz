@@ -11,7 +11,7 @@ PASS t07_digitsep.lzz
 PASS t08_stdfunction_member.lzz
 PASS t09_final.lzz
 PASS t10_nested_template_close.lzz
-FAIL t11_constexpr.lzz
+PASS t11_constexpr.lzz
 PASS t12_rvalue_ref.lzz
 PASS t13_member_enum_class.lzz
 PASS t14_uniqueptr_member.lzz
@@ -43,3 +43,4 @@ PASS t39_trailing_return_forms.lzz
 PASS t40_ctor_init_brace.lzz
 PASS t41_trailing_semi.lzz
 PASS t42_template_alias.lzz
+PASS t43_constexpr_forms.lzz
