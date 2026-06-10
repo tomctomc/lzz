@@ -1,0 +1,20 @@
+#hdr
+#include <vector>
+#include <map>
+#include <string>
+#end
+struct NT
+{
+  std::vector<std::vector<int>> vv;
+  std::map<std::string, std::vector<int>> msv;
+  std::vector<std::map<int, std::vector<std::string>>> deep;
+};
+class WithFn
+{
+public:
+  std::vector<std::vector<double>> get ();
+};
+std::vector<std::vector<double>> WithFn::get ()
+{
+  return std::vector<std::vector<double>> ();
+}

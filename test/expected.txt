@@ -10,7 +10,7 @@ FAIL t06_noexcept.lzz
 PASS t07_digitsep.lzz
 PASS t08_stdfunction_member.lzz
 FAIL t09_final.lzz
-FAIL t10_nested_template_close.lzz
+PASS t10_nested_template_close.lzz
 FAIL t11_constexpr.lzz
 FAIL t12_rvalue_ref.lzz
 FAIL t13_member_enum_class.lzz
@@ -26,3 +26,4 @@ PASS t22_digitsep_forms.lzz
 PASS t23_char_literals_still_work.lzz
 PASS t24_nsdmi_struct.lzz
 PASS t25_lazy_class_init.lzz
+PASS t26_nested_template_forms.lzz

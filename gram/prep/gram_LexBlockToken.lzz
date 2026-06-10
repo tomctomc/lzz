@@ -132,6 +132,13 @@ namespace
     // true if end token, number is token kind
     virtual bool isEndToken (int number) = 0;
 
+    // true if block is a template argument context, where C++11 treats >>
+    // as two closing angle brackets rather than a right shift
+    virtual bool gtClosesTemplate () const
+    {
+      return false;
+    }
+
     // token scan
     bool tokenLex (basl::Token & res_token)
     {
@@ -365,8 +372,10 @@ namespace
             case '>':
             case '<':
             {
-              // make sure the token isn't left or right shift
-              if (lexer.peekChar (next_ch, 1) && next_ch == ch)
+              // make sure the token isn't left or right shift; in a template
+              // argument context >> is two closing angle brackets (C++11)
+              if (lexer.peekChar (next_ch, 1) && next_ch == ch
+                  && ! (ch == '>' && gtClosesTemplate ()))
               {
                 lexer.readChar (ch);
                 block.append (ch);
@@ -483,6 +492,12 @@ namespace
 
     // tmpl nest
     int tmpl_nest = 0;
+
+    // template argument context
+    bool gtClosesTemplate () const
+    {
+      return true;
+    }
 
     // true if end char
     bool isEndToken (int number)
@@ -619,11 +634,18 @@ namespace
     }
   }
 
-  // block 8: tmpl param default arg 
+  // block 8: tmpl param default arg
   struct LexBlock8 (Prep & prep, int gt = GT_TOKEN) : LexBlock (prep)
   {
     // expr nesting
     int expr_nest = 0;
+
+    // template argument context when the block ends at > (not when reused
+    // with another end token, like block 9)
+    bool gtClosesTemplate () const
+    {
+      return gt == GT_TOKEN;
+    }
 
     // true if end token
     bool isEndToken (int number)
