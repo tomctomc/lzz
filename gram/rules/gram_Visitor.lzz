@@ -102,6 +102,7 @@ namespace gram
   class EnumtorDecl1Node;
   class EnumtorDecl2Node;
   class UsingDeclNode;
+  class AliasDeclNode;
   class UsingDirNode;
   class LinkageSpecNode;
   class LinkageBlockBeginNode;
@@ -590,6 +591,11 @@ namespace gram
 
     // using-decl * -> USING_TOKEN obj-name SEMI_TOKEN
     virtual void visit (gram::UsingDeclNode & node) const
+    {
+    }
+
+    // using-decl * -> USING_TOKEN IDENT_TOKEN > ASSIGN_TOKEN type-id SEMI_TOKEN
+    virtual void visit (gram::AliasDeclNode & node) const
     {
     }
 

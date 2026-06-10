@@ -1,0 +1,24 @@
+#hdr
+#include <vector>
+#include <string>
+#include <functional>
+#include <cstdint>
+#end
+using MyInt = int;
+using IntVec = std::vector<int>;
+namespace zz
+{
+  using Name = std::string;
+  using Callback = std::function<void(int64_t, const std::string &)>;
+  class Holder
+  {
+  public:
+    using Old = int;          // member alias
+    typedef int Older;        // typedef still fine
+    using Ptr = Holder *;
+    Old get () const;
+  private:
+    Old v_ = 0;
+  };
+  zz::Holder::Old Holder::get () const { return v_; }
+}

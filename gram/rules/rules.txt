@@ -1611,6 +1611,12 @@ enumtor-decl < * -> obj-name ASSIGN_TOKEN BLOCK_TOKEN 9
 [UsingDeclNode]
 using-decl * -> USING_TOKEN obj-name SEMI_TOKEN
 
+# alias declaration (C++11, using X = type; same semantics as typedef)
+# shift priority on IDENT: try the alias parse first, the very next token
+# (ASSIGN or not) decides it, else backtrack to the using declaration
+[AliasDeclNode]
+using-decl * -> USING_TOKEN IDENT_TOKEN > ASSIGN_TOKEN type-id SEMI_TOKEN
+
 # using directive
 [UsingDirNode]
 using-dir * -> USING_TOKEN NAMESPACE_TOKEN obj-name SEMI_TOKEN

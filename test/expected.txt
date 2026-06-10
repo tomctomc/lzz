@@ -4,7 +4,7 @@
 PASS t01_override.lzz
 PASS t02_default_delete.lzz
 PASS t03_nsdmi.lzz
-FAIL t04_using_alias.lzz
+PASS t04_using_alias.lzz
 FAIL t05_enum_class.lzz
 FAIL t06_noexcept.lzz
 PASS t07_digitsep.lzz
@@ -29,3 +29,4 @@ PASS t25_lazy_class_init.lzz
 PASS t26_nested_template_forms.lzz
 PASS t27_virt_spec_forms.lzz
 PASS t28_default_delete_forms.lzz
+PASS t29_using_alias_forms.lzz

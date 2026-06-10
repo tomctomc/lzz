@@ -38,6 +38,9 @@ $src
 
 // semantic
 #include "smtc_CreateCtorInit.h"
+#include "smtc_CreateIdentBaseName.h"
+#include "smtc_CreateNonTmplName.h"
+#include "smtc_DeclareTdef.h"
 #include "smtc_CreateDirectInit.h"
 #include "smtc_CreateThrowSpec.h" 
 #include "smtc_CreateTryBlock.h"
@@ -382,6 +385,17 @@ namespace
     {
       smtc::NamePtr name = getNodeName (node.getObjName ());
       smtc::declareUsing (cs, name);
+    }
+
+    // using-decl * -> USING IDENT > ASSIGN type-id SEMI (C++11 alias
+    // declaration, same semantics as a typedef)
+    void visit (AliasDeclNode & node) const
+    {
+      smtc::CvType cv_type;
+      getNodeAbstractDcl (TypeIdNode (node.getTypeId ()).getAbstractDecl (), cv_type);
+      basl::Token & token = node.getIDENT_TOKEN ();
+      smtc::NamePtr name = smtc::createNonTmplName (smtc::createIdentBaseName (token.getLoc (), token.getLexeme ()));
+      smtc::declareTdef (cs, cv_type, name);
     }
 
     // using-dir -> USING NAMESPACE obj-name SEMI
