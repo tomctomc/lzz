@@ -9,7 +9,6 @@ $end
 
 $src
 // semantic
-#include "smtc_IsObjStaticConstIntegral.h"
 #include "smtc_PrintObjDecl.h"
 #end
 
@@ -20,11 +19,9 @@ namespace smtc
   void printMbrObjDecl (FilePtr const & file, ObjPtr const & obj)
   {
     PrintObjDecl printer;
-    // print initializer if static const integral obj
-    if (isObjStaticConstIntegral (obj))
-    {
-      printer.with_init = true;
-    }
+    // the initializer of a static member prints with its definition in the
+    // source file, not with the declaration; the value then stays out of
+    // the header whether or not the member is const integral
     printer.print (file, DECLARATION_SECTION, obj);
   }
 }

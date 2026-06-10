@@ -10,7 +10,6 @@ $end
 
 $src
 // semantic
-#include "smtc_IsObjStaticConstIntegral.h"
 #include "smtc_Obj.h"
 #include "smtc_Output.h"
 #include "smtc_PrintObjDecl.h"
@@ -30,11 +29,8 @@ namespace smtc
     {
       PrintObjDecl printer (qual_name);
       printer.not_static = true;
-      // if const integral then initializer with declaration
-      if (! isObjConstIntegral (obj))
-      {
-        printer.with_init = true;
-      }
+      // initializer (if any) prints with the definition
+      printer.with_init = true;
       printer.print (out.getSrcFile (), BODY_SECTION, obj, ns);
     }
   }
