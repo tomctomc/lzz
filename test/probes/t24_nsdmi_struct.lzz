@@ -1,0 +1,29 @@
+#hdr
+#include <string>
+#include <functional>
+#include <cstdint>
+#end
+// realistic config/aggregate struct like sdt's RingReaderSegment
+namespace zaudio
+{
+  struct Segment
+  {
+    std::string audio_path;
+    int64_t     start_ns    = 0;
+    int64_t     end_ns      = 0;
+    int         word_count  = 0;
+    double      rate        = 48'000.0;
+    void *      user        = nullptr;
+    std::function<void(int)> cb;
+  };
+  class Pipeline
+  {
+  public:
+    int  threads = 4;
+    bool verbose = false;
+    static const int MAX = 16;
+    mutable int hits = 0;
+    void run ();
+  };
+  void Pipeline::run () {}
+}

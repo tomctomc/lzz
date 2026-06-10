@@ -96,12 +96,8 @@ namespace
       // check name and flags
       checkClassNameAndFlags ();
 
-      // non static obj can't have initializer
-      int flags = spec_sel.getFlags ();
-      if (init.isSet () && ! util::hasFlag (flags, STATIC_SPEC))
-      {
-        msg::nonStaticClassObjWithInit (init->getLoc ());
-      }
+      // non static obj may have an initializer (C++11 default member
+      // initializer), printed with the declaration
 
       // add entity to class
       scope.getClassDefn ()->addEntity (buildEntity ());
@@ -113,15 +109,21 @@ namespace
       // check name and flags
       checkClassNameAndFlags ();
 
-      // non-static obj can have initializer
+      // non-static obj can have initializer, it becomes a constructor
+      // member initializer, so the entity must not keep it (otherwise it
+      // would also print as a default member initializer in the decl)
       int flags = spec_sel.getFlags ();
       if (init.isSet () && ! util::hasFlag (flags, STATIC_SPEC))
       {
         scope.getLazyClass ()->addMbrInit (createMbrInit (name, init->toString ()));
+        ObjPtr obj = createObj (linkage, flags, cv_type, name, InitPtr ());
+        scope.getLazyClass ()->addEntity (createObjEntity (obj));
       }
-      
-      // add entity
-      scope.getLazyClass ()->addEntity (buildEntity ());
+      else
+      {
+        // add entity
+        scope.getLazyClass ()->addEntity (buildEntity ());
+      }
     }
 
     // nav class scope

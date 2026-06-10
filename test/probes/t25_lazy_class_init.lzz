@@ -1,0 +1,8 @@
+// lazy class with member initializers: init becomes a ctor member init and
+// must NOT also print as a default member initializer in the declaration
+struct Counter (int start = 0)
+{
+  int count = start;
+  int step  = 1;
+  void bump () { count += step; }
+}

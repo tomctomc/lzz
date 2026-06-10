@@ -9,6 +9,7 @@ $end
 
 $src
 // semantic
+#include "smtc_Obj.h"
 #include "smtc_PrintObjDecl.h"
 #end
 
@@ -19,9 +20,10 @@ namespace smtc
   void printMbrObjDecl (FilePtr const & file, ObjPtr const & obj)
   {
     PrintObjDecl printer;
-    // the initializer of a static member prints with its definition in the
-    // source file, not with the declaration; the value then stays out of
-    // the header whether or not the member is const integral
+    // a non static member initializer (C++11 default member initializer)
+    // belongs to the declaration; a static member's initializer prints with
+    // its definition in the source file
+    printer.with_init = ! obj->isStatic ();
     printer.print (file, DECLARATION_SECTION, obj);
   }
 }

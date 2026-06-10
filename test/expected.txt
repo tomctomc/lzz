@@ -3,7 +3,7 @@
 # here in the same commit that implements the feature.
 FAIL t01_override.lzz
 FAIL t02_default_delete.lzz
-FAIL t03_nsdmi.lzz
+PASS t03_nsdmi.lzz
 FAIL t04_using_alias.lzz
 FAIL t05_enum_class.lzz
 FAIL t06_noexcept.lzz
@@ -24,3 +24,5 @@ PASS t20_static_const_init.lzz
 PASS t21_digitsep_decl.lzz
 PASS t22_digitsep_forms.lzz
 PASS t23_char_literals_still_work.lzz
+PASS t24_nsdmi_struct.lzz
+PASS t25_lazy_class_init.lzz
