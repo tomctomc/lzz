@@ -50,5 +50,11 @@ namespace gram
 
     // final virt specifier (C++11)
     FINAL_SPEC     = 1 << 11,
+
+    // defaulted function (C++11, = default)
+    DEFAULTED_SPEC = 1 << 12,
+
+    // deleted function (C++11, = delete)
+    DELETED_SPEC   = 1 << 13,
   }
 }

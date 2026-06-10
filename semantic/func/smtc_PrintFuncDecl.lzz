@@ -160,6 +160,16 @@ namespace smtc
       {
         appendWithSpace (str, "= 0");
       }
+      // defaulted/deleted functions have no separate definition; the
+      // specifier always belongs to the declaration
+      if (func_decl->isDefaulted ())
+      {
+        appendWithSpace (str, "= default");
+      }
+      if (func_decl->isDeleted ())
+      {
+        appendWithSpace (str, "= delete");
+      }
       return str;
     }
   }

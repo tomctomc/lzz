@@ -50,5 +50,11 @@ namespace smtc
 
     // final virt specifier (C++11)
     FINAL_SPEC     = gram::FINAL_SPEC,
+
+    // defaulted function (C++11, = default)
+    DEFAULTED_SPEC = gram::DEFAULTED_SPEC,
+
+    // deleted function (C++11, = delete)
+    DELETED_SPEC   = gram::DELETED_SPEC,
   }
 }

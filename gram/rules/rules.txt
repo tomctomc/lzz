@@ -808,6 +808,15 @@ pure-opt ->
 [PureNode]
 pure -> ASSIGN_TOKEN ZERO_TOKEN
 
+# defaulted function (C++11, '= default'; 'default' is not an lzz keyword so
+# it arrives as an identifier, validated when the node is visited)
+[DefaultedNode]
+pure -> ASSIGN_TOKEN IDENT_TOKEN
+
+# deleted function (C++11, '= delete')
+[DeletedNode]
+pure -> ASSIGN_TOKEN DELETE_TOKEN
+
 # func dcl
 [(DclNode)]
 func-dcl -> ptr-oper func-dcl

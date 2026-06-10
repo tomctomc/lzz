@@ -52,6 +52,36 @@ namespace
   // using gram
   using namespace gram;
 
+  // GetNodePure, the alternatives after '=' on a function declarator
+  struct GetNodePure (SpecSel & dcl_spec_sel) : Visitor
+  {
+    // pure -> ASSIGN_TOKEN ZERO_TOKEN
+    void visit (PureNode & node) const
+    {
+      dcl_spec_sel.addSpec (PURE_SPEC, node.getASSIGN_TOKEN ().getLoc ());
+    }
+
+    // pure -> ASSIGN_TOKEN IDENT_TOKEN ('default' is a contextual identifier)
+    void visit (DefaultedNode & node) const
+    {
+      basl::Token & token = node.getIDENT_TOKEN ();
+      if (strcmp (token.getLexeme ().c_str (), "default") == 0)
+      {
+        dcl_spec_sel.addSpec (DEFAULTED_SPEC, node.getASSIGN_TOKEN ().getLoc ());
+      }
+      else
+      {
+        msg::invalidPureSpecifier (token.getLoc (), token.getLexeme ().c_str ());
+      }
+    }
+
+    // pure -> ASSIGN_TOKEN DELETE_TOKEN
+    void visit (DeletedNode & node) const
+    {
+      dcl_spec_sel.addSpec (DELETED_SPEC, node.getASSIGN_TOKEN ().getLoc ());
+    }
+  }
+
   // GetNodeVirtSpecSeq, override and final are contextual identifiers
   struct GetNodeVirtSpecSeq (SpecSel & dcl_spec_sel) : Visitor
   {
@@ -108,7 +138,7 @@ namespace
       basl::Nonterm & pure_node = node.getPureOpt ();
       if (pure_node.isSet ())
       {
-        dcl_spec_sel.addSpec (PURE_SPEC, PureNode (pure_node).getASSIGN_TOKEN ().getLoc ());
+        pure_node.accept (GetNodePure (dcl_spec_sel));
       }
       node.getFuncDcl ().accept (* this);
     }

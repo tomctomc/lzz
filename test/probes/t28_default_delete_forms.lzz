@@ -1,0 +1,25 @@
+#hdr
+#include <string>
+#end
+class NoCopy
+{
+public:
+  NoCopy () = default;
+  ~ NoCopy () = default;
+  NoCopy (NoCopy const & other) = delete;
+  NoCopy & operator = (NoCopy const & other) = delete;
+  void run ();
+};
+class Mix
+{
+public:
+  Mix () = default;
+  explicit Mix (int v);
+  virtual ~ Mix () = default;
+  int get () const;
+private:
+  int v_ = 0;
+};
+void NoCopy::run () {}
+Mix::Mix (int v) : v_ (v) {}
+int Mix::get () const { return v_; }

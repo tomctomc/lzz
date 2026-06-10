@@ -355,6 +355,8 @@ namespace
     { "pure-opt -> pure", 1, 0 },
     { "pure-opt ->", 0, 0 },
     { "pure -> ASSIGN_TOKEN ZERO_TOKEN", 2, & gram::PureNode::info },
+    { "pure -> ASSIGN_TOKEN IDENT_TOKEN", 2, & gram::DefaultedNode::info },
+    { "pure -> ASSIGN_TOKEN DELETE_TOKEN", 2, & gram::DeletedNode::info },
     { "func-dcl -> ptr-oper func-dcl", 2, & gram::DclNode::info },
     { "func-dcl -> func-a-direct-dcl", 1, 0 },
     { "func-a-direct-dcl -> obj-dcl-id param-decl-1-body > RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt", 5, & gram::DirectDcl4Node::info },
@@ -921,7 +923,7 @@ namespace
   };
   int const action_38 [] =
   {
-    basl::LR_REDUCE, 399, 229
+    basl::LR_REDUCE, 401, 229
   };
   int const action_39 [] =
   {
@@ -941,7 +943,7 @@ namespace
   };
   int const action_43 [] =
   {
-    basl::LR_ACCEPT, 581, 279
+    basl::LR_ACCEPT, 583, 279
   };
   int const action_44 [] =
   {
@@ -1005,7 +1007,7 @@ namespace
   };
   int const action_59 [] =
   {
-    basl::LR_ACCEPT, 624, 292
+    basl::LR_ACCEPT, 626, 292
   };
   int const action_60 [] =
   {
@@ -1065,7 +1067,7 @@ namespace
   };
   int const action_74 [] =
   {
-    basl::LR_ACCEPT, 498, 238
+    basl::LR_ACCEPT, 500, 238
   };
   int const action_75 [] =
   {
@@ -1193,7 +1195,7 @@ namespace
   };
   int const action_106 [] =
   {
-    basl::LR_REDUCE, 542, 259
+    basl::LR_REDUCE, 544, 259
   };
   int const action_107 [] =
   {
@@ -1205,7 +1207,7 @@ namespace
   };
   int const action_109 [] =
   {
-    basl::LR_REDUCE, 454, 37
+    basl::LR_REDUCE, 456, 37
   };
   int const action_110 [] =
   {
@@ -1225,7 +1227,7 @@ namespace
   };
   int const action_114 [] =
   {
-    basl::LR_REDUCE, 377, 220
+    basl::LR_REDUCE, 379, 220
   };
   int const action_115 [] =
   {
@@ -1241,7 +1243,7 @@ namespace
   };
   int const action_118 [] =
   {
-    basl::LR_REDUCE, 383, 222
+    basl::LR_REDUCE, 385, 222
   };
   int const action_119 [] =
   {
@@ -1281,7 +1283,7 @@ namespace
   };
   int const action_128 [] =
   {
-    basl::LR_REDUCE, 502, 127
+    basl::LR_REDUCE, 504, 127
   };
   int const action_129 [] =
   {
@@ -1341,11 +1343,11 @@ namespace
   };
   int const action_143 [] =
   {
-    basl::LR_REDUCE, 375, 198
+    basl::LR_REDUCE, 377, 198
   };
   int const action_144 [] =
   {
-    basl::LR_REDUCE, 381, 209
+    basl::LR_REDUCE, 383, 209
   };
   int const action_145 [] =
   {
@@ -1369,7 +1371,7 @@ namespace
   };
   int const action_150 [] =
   {
-    basl::LR_REDUCE, 588, 282
+    basl::LR_REDUCE, 590, 282
   };
   int const action_151 [] =
   {
@@ -1377,11 +1379,11 @@ namespace
   };
   int const action_152 [] =
   {
-    basl::LR_REDUCE, 642, 6
+    basl::LR_REDUCE, 644, 6
   };
   int const action_153 [] =
   {
-    basl::LR_REDUCE, 643, 6
+    basl::LR_REDUCE, 645, 6
   };
   int const action_154 [] =
   {
@@ -1401,7 +1403,7 @@ namespace
   };
   int const action_158 [] =
   {
-    basl::LR_REDUCE, 401, 230
+    basl::LR_REDUCE, 403, 230
   };
   int const action_159 [] =
   {
@@ -1409,7 +1411,7 @@ namespace
   };
   int const action_160 [] =
   {
-    basl::LR_REDUCE, 403, 224
+    basl::LR_REDUCE, 405, 224
   };
   int const action_161 [] =
   {
@@ -1417,11 +1419,11 @@ namespace
   };
   int const action_162 [] =
   {
-    basl::LR_REDUCE, 398, 229
+    basl::LR_REDUCE, 400, 229
   };
   int const action_163 [] =
   {
-    basl::LR_ACCEPT, 404, 226
+    basl::LR_ACCEPT, 406, 226
   };
   int const action_164 [] =
   {
@@ -1457,7 +1459,7 @@ namespace
   };
   int const action_172 [] =
   {
-    basl::LR_REDUCE, 559, 273
+    basl::LR_REDUCE, 561, 273
   };
   int const action_173 [] =
   {
@@ -1473,15 +1475,15 @@ namespace
   };
   int const action_176 [] =
   {
-    basl::LR_ACCEPT, 638, 299
+    basl::LR_ACCEPT, 640, 299
   };
   int const action_177 [] =
   {
-    basl::LR_ACCEPT, 639, 300
+    basl::LR_ACCEPT, 641, 300
   };
   int const action_178 [] =
   {
-    basl::LR_ACCEPT, 623, 292
+    basl::LR_ACCEPT, 625, 292
   };
   int const action_179 [] =
   {
@@ -1497,7 +1499,7 @@ namespace
   };
   int const action_182 [] =
   {
-    basl::LR_ACCEPT, 497, 238
+    basl::LR_ACCEPT, 499, 238
   };
   int const action_183 [] =
   {
@@ -1509,7 +1511,7 @@ namespace
   };
   int const action_185 [] =
   {
-    basl::LR_ACCEPT, 689, 317
+    basl::LR_ACCEPT, 691, 317
   };
   int const action_186 [] =
   {
@@ -1557,7 +1559,7 @@ namespace
   };
   int const action_197 [] =
   {
-    basl::LR_REDUCE, 541, 259
+    basl::LR_REDUCE, 543, 259
   };
   int const action_198 [] =
   {
@@ -1565,7 +1567,7 @@ namespace
   };
   int const action_199 [] =
   {
-    basl::LR_REDUCE, 544, 260
+    basl::LR_REDUCE, 546, 260
   };
   int const action_200 [] =
   {
@@ -1609,7 +1611,7 @@ namespace
   };
   int const action_210 [] =
   {
-    basl::LR_REDUCE, 501, 127
+    basl::LR_REDUCE, 503, 127
   };
   int const action_211 [] =
   {
@@ -1641,7 +1643,7 @@ namespace
   };
   int const action_218 [] =
   {
-    basl::LR_REDUCE, 455, 37
+    basl::LR_REDUCE, 457, 37
   };
   int const action_219 [] =
   {
@@ -1705,7 +1707,7 @@ namespace
   };
   int const action_234 [] =
   {
-    basl::LR_REDUCE, 373, 194
+    basl::LR_REDUCE, 375, 194
   };
   int const action_235 [] =
   {
@@ -1713,15 +1715,15 @@ namespace
   };
   int const action_236 [] =
   {
-    basl::LR_REDUCE, 426, 31
+    basl::LR_REDUCE, 428, 31
   };
   int const action_237 [] =
   {
-    basl::LR_REDUCE, 446, 33
+    basl::LR_REDUCE, 448, 33
   };
   int const action_238 [] =
   {
-    basl::LR_REDUCE, 458, 35
+    basl::LR_REDUCE, 460, 35
   };
   int const action_239 [] =
   {
@@ -1729,7 +1731,7 @@ namespace
   };
   int const action_240 [] =
   {
-    basl::LR_REDUCE, 380, 221
+    basl::LR_REDUCE, 382, 221
   };
   int const action_241 [] =
   {
@@ -1781,15 +1783,15 @@ namespace
   };
   int const action_253 [] =
   {
-    basl::LR_REDUCE, 342, 201
+    basl::LR_REDUCE, 344, 201
   };
   int const action_254 [] =
   {
-    basl::LR_REDUCE, 378, 32
+    basl::LR_REDUCE, 380, 32
   };
   int const action_255 [] =
   {
-    basl::LR_REDUCE, 608, 291
+    basl::LR_REDUCE, 610, 291
   };
   int const action_256 [] =
   {
@@ -1805,19 +1807,19 @@ namespace
   };
   int const action_259 [] =
   {
-    basl::LR_REDUCE, 603, 289
+    basl::LR_REDUCE, 605, 289
   };
   int const action_260 [] =
   {
-    basl::LR_REDUCE, 427, 31
+    basl::LR_REDUCE, 429, 31
   };
   int const action_261 [] =
   {
-    basl::LR_REDUCE, 447, 33
+    basl::LR_REDUCE, 449, 33
   };
   int const action_262 [] =
   {
-    basl::LR_REDUCE, 459, 35
+    basl::LR_REDUCE, 461, 35
   };
   int const action_263 [] =
   {
@@ -1841,19 +1843,19 @@ namespace
   };
   int const action_268 [] =
   {
-    basl::LR_REDUCE, 609, 291
+    basl::LR_REDUCE, 611, 291
   };
   int const action_269 [] =
   {
-    basl::LR_REDUCE, 428, 31
+    basl::LR_REDUCE, 430, 31
   };
   int const action_270 [] =
   {
-    basl::LR_REDUCE, 448, 33
+    basl::LR_REDUCE, 450, 33
   };
   int const action_271 [] =
   {
-    basl::LR_REDUCE, 460, 35
+    basl::LR_REDUCE, 462, 35
   };
   int const action_272 [] =
   {
@@ -1877,19 +1879,19 @@ namespace
   };
   int const action_277 [] =
   {
-    basl::LR_REDUCE, 610, 291
+    basl::LR_REDUCE, 612, 291
   };
   int const action_278 [] =
   {
-    basl::LR_REDUCE, 429, 31
+    basl::LR_REDUCE, 431, 31
   };
   int const action_279 [] =
   {
-    basl::LR_REDUCE, 449, 33
+    basl::LR_REDUCE, 451, 33
   };
   int const action_280 [] =
   {
-    basl::LR_REDUCE, 461, 35
+    basl::LR_REDUCE, 463, 35
   };
   int const action_281 [] =
   {
@@ -1913,19 +1915,19 @@ namespace
   };
   int const action_286 [] =
   {
-    basl::LR_REDUCE, 611, 291
+    basl::LR_REDUCE, 613, 291
   };
   int const action_287 [] =
   {
-    basl::LR_REDUCE, 430, 31
+    basl::LR_REDUCE, 432, 31
   };
   int const action_288 [] =
   {
-    basl::LR_REDUCE, 450, 33
+    basl::LR_REDUCE, 452, 33
   };
   int const action_289 [] =
   {
-    basl::LR_REDUCE, 462, 35
+    basl::LR_REDUCE, 464, 35
   };
   int const action_290 [] =
   {
@@ -1945,19 +1947,19 @@ namespace
   };
   int const action_294 [] =
   {
-    basl::LR_REDUCE, 612, 291
+    basl::LR_REDUCE, 614, 291
   };
   int const action_295 [] =
   {
-    basl::LR_REDUCE, 431, 31
+    basl::LR_REDUCE, 433, 31
   };
   int const action_296 [] =
   {
-    basl::LR_REDUCE, 451, 33
+    basl::LR_REDUCE, 453, 33
   };
   int const action_297 [] =
   {
-    basl::LR_REDUCE, 463, 35
+    basl::LR_REDUCE, 465, 35
   };
   int const action_298 [] =
   {
@@ -1977,19 +1979,19 @@ namespace
   };
   int const action_302 [] =
   {
-    basl::LR_REDUCE, 613, 291
+    basl::LR_REDUCE, 615, 291
   };
   int const action_303 [] =
   {
-    basl::LR_REDUCE, 432, 31
+    basl::LR_REDUCE, 434, 31
   };
   int const action_304 [] =
   {
-    basl::LR_REDUCE, 452, 33
+    basl::LR_REDUCE, 454, 33
   };
   int const action_305 [] =
   {
-    basl::LR_REDUCE, 464, 35
+    basl::LR_REDUCE, 466, 35
   };
   int const action_306 [] =
   {
@@ -2005,19 +2007,19 @@ namespace
   };
   int const action_309 [] =
   {
-    basl::LR_REDUCE, 614, 291
+    basl::LR_REDUCE, 616, 291
   };
   int const action_310 [] =
   {
-    basl::LR_REDUCE, 433, 31
+    basl::LR_REDUCE, 435, 31
   };
   int const action_311 [] =
   {
-    basl::LR_REDUCE, 453, 33
+    basl::LR_REDUCE, 455, 33
   };
   int const action_312 [] =
   {
-    basl::LR_REDUCE, 465, 35
+    basl::LR_REDUCE, 467, 35
   };
   int const action_313 [] =
   {
@@ -2033,19 +2035,19 @@ namespace
   };
   int const action_316 [] =
   {
-    basl::LR_REDUCE, 615, 291
+    basl::LR_REDUCE, 617, 291
   };
   int const action_317 [] =
   {
-    basl::LR_REDUCE, 537, 10
+    basl::LR_REDUCE, 539, 10
   };
   int const action_318 [] =
   {
-    basl::LR_REDUCE, 434, 31
+    basl::LR_REDUCE, 436, 31
   };
   int const action_319 [] =
   {
-    basl::LR_REDUCE, 466, 35
+    basl::LR_REDUCE, 468, 35
   };
   int const action_320 [] =
   {
@@ -2065,15 +2067,15 @@ namespace
   };
   int const action_324 [] =
   {
-    basl::LR_REDUCE, 616, 291
+    basl::LR_REDUCE, 618, 291
   };
   int const action_325 [] =
   {
-    basl::LR_REDUCE, 435, 31
+    basl::LR_REDUCE, 437, 31
   };
   int const action_326 [] =
   {
-    basl::LR_REDUCE, 467, 35
+    basl::LR_REDUCE, 469, 35
   };
   int const action_327 [] =
   {
@@ -2093,15 +2095,15 @@ namespace
   };
   int const action_331 [] =
   {
-    basl::LR_REDUCE, 617, 291
+    basl::LR_REDUCE, 619, 291
   };
   int const action_332 [] =
   {
-    basl::LR_REDUCE, 436, 31
+    basl::LR_REDUCE, 438, 31
   };
   int const action_333 [] =
   {
-    basl::LR_REDUCE, 468, 35
+    basl::LR_REDUCE, 470, 35
   };
   int const action_334 [] =
   {
@@ -2117,15 +2119,15 @@ namespace
   };
   int const action_337 [] =
   {
-    basl::LR_REDUCE, 618, 291
+    basl::LR_REDUCE, 620, 291
   };
   int const action_338 [] =
   {
-    basl::LR_REDUCE, 437, 31
+    basl::LR_REDUCE, 439, 31
   };
   int const action_339 [] =
   {
-    basl::LR_REDUCE, 469, 35
+    basl::LR_REDUCE, 471, 35
   };
   int const action_340 [] =
   {
@@ -2141,7 +2143,7 @@ namespace
   };
   int const action_343 [] =
   {
-    basl::LR_REDUCE, 619, 291
+    basl::LR_REDUCE, 621, 291
   };
   int const action_344 [] =
   {
@@ -2209,11 +2211,11 @@ namespace
   };
   int const action_360 [] =
   {
-    basl::LR_REDUCE, 438, 31
+    basl::LR_REDUCE, 440, 31
   };
   int const action_361 [] =
   {
-    basl::LR_REDUCE, 470, 35
+    basl::LR_REDUCE, 472, 35
   };
   int const action_362 [] =
   {
@@ -2229,11 +2231,11 @@ namespace
   };
   int const action_365 [] =
   {
-    basl::LR_REDUCE, 439, 31
+    basl::LR_REDUCE, 441, 31
   };
   int const action_366 [] =
   {
-    basl::LR_REDUCE, 471, 35
+    basl::LR_REDUCE, 473, 35
   };
   int const action_367 [] =
   {
@@ -2249,7 +2251,7 @@ namespace
   };
   int const action_370 [] =
   {
-    basl::LR_REDUCE, 440, 31
+    basl::LR_REDUCE, 442, 31
   };
   int const action_371 [] =
   {
@@ -2265,7 +2267,7 @@ namespace
   };
   int const action_374 [] =
   {
-    basl::LR_REDUCE, 441, 31
+    basl::LR_REDUCE, 443, 31
   };
   int const action_375 [] =
   {
@@ -2281,11 +2283,11 @@ namespace
   };
   int const action_378 [] =
   {
-    basl::LR_REDUCE, 442, 31
+    basl::LR_REDUCE, 444, 31
   };
   int const action_379 [] =
   {
-    basl::LR_REDUCE, 472, 35
+    basl::LR_REDUCE, 474, 35
   };
   int const action_380 [] =
   {
@@ -2293,11 +2295,11 @@ namespace
   };
   int const action_381 [] =
   {
-    basl::LR_REDUCE, 443, 31
+    basl::LR_REDUCE, 445, 31
   };
   int const action_382 [] =
   {
-    basl::LR_REDUCE, 473, 35
+    basl::LR_REDUCE, 475, 35
   };
   int const action_383 [] =
   {
@@ -2305,11 +2307,11 @@ namespace
   };
   int const action_384 [] =
   {
-    basl::LR_REDUCE, 444, 31
+    basl::LR_REDUCE, 446, 31
   };
   int const action_385 [] =
   {
-    basl::LR_REDUCE, 474, 35
+    basl::LR_REDUCE, 476, 35
   };
   int const action_386 [] =
   {
@@ -2317,11 +2319,11 @@ namespace
   };
   int const action_387 [] =
   {
-    basl::LR_REDUCE, 445, 31
+    basl::LR_REDUCE, 447, 31
   };
   int const action_388 [] =
   {
-    basl::LR_REDUCE, 475, 35
+    basl::LR_REDUCE, 477, 35
   };
   int const action_389 [] =
   {
@@ -2329,7 +2331,7 @@ namespace
   };
   int const action_390 [] =
   {
-    basl::LR_REDUCE, 457, 37
+    basl::LR_REDUCE, 459, 37
   };
   int const action_391 [] =
   {
@@ -2373,7 +2375,7 @@ namespace
   };
   int const action_401 [] =
   {
-    basl::LR_REDUCE, 456, 37
+    basl::LR_REDUCE, 458, 37
   };
   int const action_402 [] =
   {
@@ -2417,7 +2419,7 @@ namespace
   };
   int const action_412 [] =
   {
-    basl::LR_REDUCE, 476, 35
+    basl::LR_REDUCE, 478, 35
   };
   int const action_413 [] =
   {
@@ -2433,7 +2435,7 @@ namespace
   };
   int const action_416 [] =
   {
-    basl::LR_REDUCE, 477, 35
+    basl::LR_REDUCE, 479, 35
   };
   int const action_417 [] =
   {
@@ -2449,7 +2451,7 @@ namespace
   };
   int const action_420 [] =
   {
-    basl::LR_REDUCE, 478, 35
+    basl::LR_REDUCE, 480, 35
   };
   int const action_421 [] =
   {
@@ -2465,7 +2467,7 @@ namespace
   };
   int const action_424 [] =
   {
-    basl::LR_REDUCE, 479, 35
+    basl::LR_REDUCE, 481, 35
   };
   int const action_425 [] =
   {
@@ -2481,7 +2483,7 @@ namespace
   };
   int const action_428 [] =
   {
-    basl::LR_REDUCE, 480, 35
+    basl::LR_REDUCE, 482, 35
   };
   int const action_429 [] =
   {
@@ -2493,7 +2495,7 @@ namespace
   };
   int const action_431 [] =
   {
-    basl::LR_REDUCE, 481, 35
+    basl::LR_REDUCE, 483, 35
   };
   int const action_432 [] =
   {
@@ -2505,7 +2507,7 @@ namespace
   };
   int const action_434 [] =
   {
-    basl::LR_REDUCE, 482, 35
+    basl::LR_REDUCE, 484, 35
   };
   int const action_435 [] =
   {
@@ -2517,7 +2519,7 @@ namespace
   };
   int const action_437 [] =
   {
-    basl::LR_REDUCE, 483, 35
+    basl::LR_REDUCE, 485, 35
   };
   int const action_438 [] =
   {
@@ -2529,7 +2531,7 @@ namespace
   };
   int const action_440 [] =
   {
-    basl::LR_REDUCE, 484, 35
+    basl::LR_REDUCE, 486, 35
   };
   int const action_441 [] =
   {
@@ -2541,7 +2543,7 @@ namespace
   };
   int const action_443 [] =
   {
-    basl::LR_REDUCE, 485, 35
+    basl::LR_REDUCE, 487, 35
   };
   int const action_444 [] =
   {
@@ -2553,7 +2555,7 @@ namespace
   };
   int const action_446 [] =
   {
-    basl::LR_REDUCE, 486, 35
+    basl::LR_REDUCE, 488, 35
   };
   int const action_447 [] =
   {
@@ -2565,7 +2567,7 @@ namespace
   };
   int const action_449 [] =
   {
-    basl::LR_REDUCE, 487, 35
+    basl::LR_REDUCE, 489, 35
   };
   int const action_450 [] =
   {
@@ -2609,7 +2611,7 @@ namespace
   };
   int const action_460 [] =
   {
-    basl::LR_REDUCE, 521, 243
+    basl::LR_REDUCE, 523, 243
   };
   int const action_461 [] =
   {
@@ -2629,35 +2631,35 @@ namespace
   };
   int const action_465 [] =
   {
-    basl::LR_REDUCE, 571, 272
+    basl::LR_REDUCE, 573, 272
   };
   int const action_466 [] =
   {
-    basl::LR_REDUCE, 572, 272
+    basl::LR_REDUCE, 574, 272
   };
   int const action_467 [] =
   {
-    basl::LR_REDUCE, 573, 272
+    basl::LR_REDUCE, 575, 272
   };
   int const action_468 [] =
   {
-    basl::LR_REDUCE, 575, 272
+    basl::LR_REDUCE, 577, 272
   };
   int const action_469 [] =
   {
-    basl::LR_REDUCE, 576, 272
+    basl::LR_REDUCE, 578, 272
   };
   int const action_470 [] =
   {
-    basl::LR_REDUCE, 577, 272
+    basl::LR_REDUCE, 579, 272
   };
   int const action_471 [] =
   {
-    basl::LR_REDUCE, 578, 272
+    basl::LR_REDUCE, 580, 272
   };
   int const action_472 [] =
   {
-    basl::LR_REDUCE, 579, 272
+    basl::LR_REDUCE, 581, 272
   };
   int const action_473 [] =
   {
@@ -2665,23 +2667,23 @@ namespace
   };
   int const action_474 [] =
   {
-    basl::LR_REDUCE, 574, 272
+    basl::LR_REDUCE, 576, 272
   };
   int const action_475 [] =
   {
-    basl::LR_ACCEPT, 556, 12
+    basl::LR_ACCEPT, 558, 12
   };
   int const action_476 [] =
   {
-    basl::LR_REDUCE, 582, 280
+    basl::LR_REDUCE, 584, 280
   };
   int const action_477 [] =
   {
-    basl::LR_REDUCE, 583, 280
+    basl::LR_REDUCE, 585, 280
   };
   int const action_478 [] =
   {
-    basl::LR_ACCEPT, 580, 13
+    basl::LR_ACCEPT, 582, 13
   };
   int const action_479 [] =
   {
@@ -2693,23 +2695,23 @@ namespace
   };
   int const action_481 [] =
   {
-    basl::LR_REDUCE, 587, 282
+    basl::LR_REDUCE, 589, 282
   };
   int const action_482 [] =
   {
-    basl::LR_REDUCE, 641, 301
+    basl::LR_REDUCE, 643, 301
   };
   int const action_483 [] =
   {
-    basl::LR_REDUCE, 640, 301
+    basl::LR_REDUCE, 642, 301
   };
   int const action_484 [] =
   {
-    basl::LR_ACCEPT, 637, 20
+    basl::LR_ACCEPT, 639, 20
   };
   int const action_485 [] =
   {
-    basl::LR_REDUCE, 669, 306
+    basl::LR_REDUCE, 671, 306
   };
   int const action_486 [] =
   {
@@ -2721,7 +2723,7 @@ namespace
   };
   int const action_488 [] =
   {
-    basl::LR_REDUCE, 691, 318
+    basl::LR_REDUCE, 693, 318
   };
   int const action_489 [] =
   {
@@ -2729,15 +2731,15 @@ namespace
   };
   int const action_490 [] =
   {
-    basl::LR_REDUCE, 359, 213
+    basl::LR_REDUCE, 361, 213
   };
   int const action_491 [] =
   {
-    basl::LR_REDUCE, 414, 231
+    basl::LR_REDUCE, 416, 231
   };
   int const action_492 [] =
   {
-    basl::LR_REDUCE, 353, 211
+    basl::LR_REDUCE, 355, 211
   };
   int const action_493 [] =
   {
@@ -2745,63 +2747,63 @@ namespace
   };
   int const action_494 [] =
   {
-    basl::LR_REDUCE, 355, 212
+    basl::LR_REDUCE, 357, 212
   };
   int const action_495 [] =
   {
-    basl::LR_REDUCE, 358, 213
+    basl::LR_REDUCE, 360, 213
   };
   int const action_496 [] =
   {
-    basl::LR_REDUCE, 415, 231
+    basl::LR_REDUCE, 417, 231
   };
   int const action_497 [] =
   {
-    basl::LR_REDUCE, 416, 231
+    basl::LR_REDUCE, 418, 231
   };
   int const action_498 [] =
   {
-    basl::LR_REDUCE, 417, 231
+    basl::LR_REDUCE, 419, 231
   };
   int const action_499 [] =
   {
-    basl::LR_REDUCE, 418, 231
+    basl::LR_REDUCE, 420, 231
   };
   int const action_500 [] =
   {
-    basl::LR_REDUCE, 419, 231
+    basl::LR_REDUCE, 421, 231
   };
   int const action_501 [] =
   {
-    basl::LR_REDUCE, 420, 231
+    basl::LR_REDUCE, 422, 231
   };
   int const action_502 [] =
   {
-    basl::LR_REDUCE, 421, 231
+    basl::LR_REDUCE, 423, 231
   };
   int const action_503 [] =
   {
-    basl::LR_REDUCE, 422, 231
+    basl::LR_REDUCE, 424, 231
   };
   int const action_504 [] =
   {
-    basl::LR_REDUCE, 423, 231
+    basl::LR_REDUCE, 425, 231
   };
   int const action_505 [] =
   {
-    basl::LR_REDUCE, 424, 231
+    basl::LR_REDUCE, 426, 231
   };
   int const action_506 [] =
   {
-    basl::LR_REDUCE, 425, 231
+    basl::LR_REDUCE, 427, 231
   };
   int const action_507 [] =
   {
-    basl::LR_REDUCE, 402, 224
+    basl::LR_REDUCE, 404, 224
   };
   int const action_508 [] =
   {
-    basl::LR_REDUCE, 396, 3
+    basl::LR_REDUCE, 398, 3
   };
   int const action_509 [] =
   {
@@ -2817,15 +2819,15 @@ namespace
   };
   int const action_512 [] =
   {
-    basl::LR_REDUCE, 376, 198
+    basl::LR_REDUCE, 378, 198
   };
   int const action_513 [] =
   {
-    basl::LR_REDUCE, 382, 209
+    basl::LR_REDUCE, 384, 209
   };
   int const action_514 [] =
   {
-    basl::LR_REDUCE, 352, 210
+    basl::LR_REDUCE, 354, 210
   };
   int const action_515 [] =
   {
@@ -2833,15 +2835,15 @@ namespace
   };
   int const action_516 [] =
   {
-    basl::LR_REDUCE, 568, 278
+    basl::LR_REDUCE, 570, 278
   };
   int const action_517 [] =
   {
-    basl::LR_REDUCE, 567, 278
+    basl::LR_REDUCE, 569, 278
   };
   int const action_518 [] =
   {
-    basl::LR_ACCEPT, 406, 232
+    basl::LR_ACCEPT, 408, 232
   };
   int const action_519 [] =
   {
@@ -2849,7 +2851,7 @@ namespace
   };
   int const action_520 [] =
   {
-    basl::LR_REDUCE, 563, 275
+    basl::LR_REDUCE, 565, 275
   };
   int const action_521 [] =
   {
@@ -2861,23 +2863,23 @@ namespace
   };
   int const action_523 [] =
   {
-    basl::LR_REDUCE, 558, 273
+    basl::LR_REDUCE, 560, 273
   };
   int const action_524 [] =
   {
-    basl::LR_REDUCE, 561, 274
+    basl::LR_REDUCE, 563, 274
   };
   int const action_525 [] =
   {
-    basl::LR_REDUCE, 562, 275
+    basl::LR_REDUCE, 564, 275
   };
   int const action_526 [] =
   {
-    basl::LR_REDUCE, 564, 275
+    basl::LR_REDUCE, 566, 275
   };
   int const action_527 [] =
   {
-    basl::LR_REDUCE, 626, 293
+    basl::LR_REDUCE, 628, 293
   };
   int const action_528 [] =
   {
@@ -2885,7 +2887,7 @@ namespace
   };
   int const action_529 [] =
   {
-    basl::LR_ACCEPT, 634, 18
+    basl::LR_ACCEPT, 636, 18
   };
   int const action_530 [] =
   {
@@ -2893,7 +2895,7 @@ namespace
   };
   int const action_531 [] =
   {
-    basl::LR_REDUCE, 646, 308
+    basl::LR_REDUCE, 648, 308
   };
   int const action_532 [] =
   {
@@ -2901,55 +2903,55 @@ namespace
   };
   int const action_533 [] =
   {
-    basl::LR_REDUCE, 659, 309
+    basl::LR_REDUCE, 661, 309
   };
   int const action_534 [] =
   {
-    basl::LR_REDUCE, 647, 308
+    basl::LR_REDUCE, 649, 308
   };
   int const action_535 [] =
   {
-    basl::LR_REDUCE, 648, 308
+    basl::LR_REDUCE, 650, 308
   };
   int const action_536 [] =
   {
-    basl::LR_REDUCE, 649, 308
+    basl::LR_REDUCE, 651, 308
   };
   int const action_537 [] =
   {
-    basl::LR_REDUCE, 650, 308
+    basl::LR_REDUCE, 652, 308
   };
   int const action_538 [] =
   {
-    basl::LR_REDUCE, 651, 308
+    basl::LR_REDUCE, 653, 308
   };
   int const action_539 [] =
   {
-    basl::LR_REDUCE, 652, 308
+    basl::LR_REDUCE, 654, 308
   };
   int const action_540 [] =
   {
-    basl::LR_REDUCE, 653, 308
+    basl::LR_REDUCE, 655, 308
   };
   int const action_541 [] =
   {
-    basl::LR_REDUCE, 654, 308
+    basl::LR_REDUCE, 656, 308
   };
   int const action_542 [] =
   {
-    basl::LR_REDUCE, 655, 308
+    basl::LR_REDUCE, 657, 308
   };
   int const action_543 [] =
   {
-    basl::LR_REDUCE, 656, 308
+    basl::LR_REDUCE, 658, 308
   };
   int const action_544 [] =
   {
-    basl::LR_REDUCE, 657, 308
+    basl::LR_REDUCE, 659, 308
   };
   int const action_545 [] =
   {
-    basl::LR_ACCEPT, 645, 305
+    basl::LR_ACCEPT, 647, 305
   };
   int const action_546 [] =
   {
@@ -2981,7 +2983,7 @@ namespace
   };
   int const action_553 [] =
   {
-    basl::LR_REDUCE, 543, 260
+    basl::LR_REDUCE, 545, 260
   };
   int const action_554 [] =
   {
@@ -3177,7 +3179,7 @@ namespace
   };
   int const action_602 [] =
   {
-    basl::LR_REDUCE, 506, 245
+    basl::LR_REDUCE, 508, 245
   };
   int const action_603 [] =
   {
@@ -3213,7 +3215,7 @@ namespace
   };
   int const action_611 [] =
   {
-    basl::LR_REDUCE, 372, 194
+    basl::LR_REDUCE, 374, 194
   };
   int const action_612 [] =
   {
@@ -3229,11 +3231,11 @@ namespace
   };
   int const action_615 [] =
   {
-    basl::LR_REDUCE, 341, 201
+    basl::LR_REDUCE, 343, 201
   };
   int const action_616 [] =
   {
-    basl::LR_REDUCE, 602, 289
+    basl::LR_REDUCE, 604, 289
   };
   int const action_617 [] =
   {
@@ -3269,59 +3271,59 @@ namespace
   };
   int const action_625 [] =
   {
-    basl::LR_REDUCE, 601, 288
+    basl::LR_SHIFT, 872
   };
   int const action_626 [] =
   {
-    basl::LR_REDUCE, 338, 203
+    basl::LR_SHIFT, 873
   };
   int const action_627 [] =
   {
-    basl::LR_SHIFT, 873
+    basl::LR_REDUCE, 603, 288
   };
   int const action_628 [] =
   {
-    basl::LR_REDUCE, 387, 199
+    basl::LR_REDUCE, 338, 203
   };
   int const action_629 [] =
   {
-    basl::LR_REDUCE, 386, 199
+    basl::LR_SHIFT, 875
   };
   int const action_630 [] =
   {
-    basl::LR_ACCEPT, 388, 223
+    basl::LR_REDUCE, 389, 199
   };
   int const action_631 [] =
   {
-    basl::LR_SHIFT, 877
+    basl::LR_REDUCE, 388, 199
   };
   int const action_632 [] =
   {
-    basl::LR_SHIFT, 879
+    basl::LR_ACCEPT, 390, 223
   };
   int const action_633 [] =
   {
-    basl::LR_REDUCE, 384, 199
+    basl::LR_SHIFT, 879
   };
   int const action_634 [] =
   {
-    basl::LR_REDUCE, 348, 36
+    basl::LR_SHIFT, 881
   };
   int const action_635 [] =
   {
-    basl::LR_REDUCE, 335, 204
+    basl::LR_REDUCE, 386, 199
   };
   int const action_636 [] =
   {
-    basl::LR_SHIFT, 883
+    basl::LR_REDUCE, 350, 36
   };
   int const action_637 [] =
   {
-    basl::LR_REDUCE, 515, 250
+    basl::LR_REDUCE, 335, 204
   };
   int const action_638 [] =
   {
-    basl::LR_REDUCE, 516, 250
+    basl::LR_SHIFT, 885
   };
   int const action_639 [] =
   {
@@ -3329,11 +3331,11 @@ namespace
   };
   int const action_640 [] =
   {
-    basl::LR_REDUCE, 525, 256
+    basl::LR_REDUCE, 518, 250
   };
   int const action_641 [] =
   {
-    basl::LR_REDUCE, 526, 256
+    basl::LR_REDUCE, 519, 250
   };
   int const action_642 [] =
   {
@@ -3341,19 +3343,19 @@ namespace
   };
   int const action_643 [] =
   {
-    basl::LR_SHIFT, 884
+    basl::LR_REDUCE, 528, 256
   };
   int const action_644 [] =
   {
-    basl::LR_REDUCE, 504, 244
+    basl::LR_REDUCE, 529, 256
   };
   int const action_645 [] =
   {
-    basl::LR_REDUCE, 530, 256
+    basl::LR_SHIFT, 886
   };
   int const action_646 [] =
   {
-    basl::LR_REDUCE, 531, 256
+    basl::LR_REDUCE, 506, 244
   };
   int const action_647 [] =
   {
@@ -3373,59 +3375,59 @@ namespace
   };
   int const action_651 [] =
   {
-    basl::LR_SHIFT, 886
+    basl::LR_REDUCE, 536, 256
   };
   int const action_652 [] =
   {
-    basl::LR_SHIFT, 887
+    basl::LR_REDUCE, 537, 256
   };
   int const action_653 [] =
   {
-    basl::LR_REDUCE, 520, 243
+    basl::LR_SHIFT, 888
   };
   int const action_654 [] =
   {
-    basl::LR_REDUCE, 523, 255
+    basl::LR_SHIFT, 889
   };
   int const action_655 [] =
   {
-    basl::LR_REDUCE, 524, 256
+    basl::LR_REDUCE, 522, 243
   };
   int const action_656 [] =
   {
-    basl::LR_REDUCE, 528, 256
+    basl::LR_REDUCE, 525, 255
   };
   int const action_657 [] =
   {
-    basl::LR_REDUCE, 538, 258
+    basl::LR_REDUCE, 526, 256
   };
   int const action_658 [] =
   {
-    basl::LR_SHIFT, 889
+    basl::LR_REDUCE, 530, 256
   };
   int const action_659 [] =
   {
-    basl::LR_REDUCE, 513, 249
+    basl::LR_REDUCE, 540, 258
   };
   int const action_660 [] =
   {
-    basl::LR_SHIFT, 892
+    basl::LR_SHIFT, 891
   };
   int const action_661 [] =
   {
-    basl::LR_ACCEPT, 510, 248
+    basl::LR_REDUCE, 515, 249
   };
   int const action_662 [] =
   {
-    basl::LR_REDUCE, 595, 285
+    basl::LR_SHIFT, 894
   };
   int const action_663 [] =
   {
-    basl::LR_SHIFT, 894
+    basl::LR_ACCEPT, 512, 248
   };
   int const action_664 [] =
   {
-    basl::LR_REDUCE, 519, 251
+    basl::LR_REDUCE, 597, 285
   };
   int const action_665 [] =
   {
@@ -3433,23 +3435,23 @@ namespace
   };
   int const action_666 [] =
   {
-    basl::LR_ACCEPT, 589, 283
+    basl::LR_REDUCE, 521, 251
   };
   int const action_667 [] =
   {
-    basl::LR_REDUCE, 591, 284
+    basl::LR_SHIFT, 898
   };
   int const action_668 [] =
   {
-    basl::LR_REDUCE, 621, 16
+    basl::LR_ACCEPT, 591, 283
   };
   int const action_669 [] =
   {
-    basl::LR_SHIFT, 897
+    basl::LR_REDUCE, 593, 284
   };
   int const action_670 [] =
   {
-    basl::LR_SHIFT, 898
+    basl::LR_REDUCE, 623, 16
   };
   int const action_671 [] =
   {
@@ -3457,11 +3459,11 @@ namespace
   };
   int const action_672 [] =
   {
-    basl::LR_REDUCE, 673, 313
+    basl::LR_SHIFT, 900
   };
   int const action_673 [] =
   {
-    basl::LR_REDUCE, 674, 313
+    basl::LR_SHIFT, 901
   };
   int const action_674 [] =
   {
@@ -3469,11 +3471,11 @@ namespace
   };
   int const action_675 [] =
   {
-    basl::LR_REDUCE, 677, 313
+    basl::LR_REDUCE, 676, 313
   };
   int const action_676 [] =
   {
-    basl::LR_REDUCE, 678, 313
+    basl::LR_REDUCE, 677, 313
   };
   int const action_677 [] =
   {
@@ -3497,71 +3499,71 @@ namespace
   };
   int const action_682 [] =
   {
-    basl::LR_SHIFT, 900
+    basl::LR_REDUCE, 684, 313
   };
   int const action_683 [] =
   {
-    basl::LR_REDUCE, 672, 313
+    basl::LR_REDUCE, 685, 313
   };
   int const action_684 [] =
   {
-    basl::LR_REDUCE, 676, 313
+    basl::LR_SHIFT, 902
   };
   int const action_685 [] =
   {
-    basl::LR_SHIFT, 901
+    basl::LR_REDUCE, 674, 313
   };
   int const action_686 [] =
   {
-    basl::LR_REDUCE, 668, 306
+    basl::LR_REDUCE, 678, 313
   };
   int const action_687 [] =
   {
-    basl::LR_REDUCE, 671, 312
+    basl::LR_SHIFT, 903
   };
   int const action_688 [] =
   {
-    basl::LR_REDUCE, 684, 313
+    basl::LR_REDUCE, 670, 306
   };
   int const action_689 [] =
   {
-    basl::LR_REDUCE, 685, 313
+    basl::LR_REDUCE, 673, 312
   };
   int const action_690 [] =
   {
-    basl::LR_SHIFT, 903
+    basl::LR_REDUCE, 686, 313
   };
   int const action_691 [] =
   {
-    basl::LR_REDUCE, 703, 326
+    basl::LR_REDUCE, 687, 313
   };
   int const action_692 [] =
   {
-    basl::LR_SHIFT, 908
+    basl::LR_SHIFT, 905
   };
   int const action_693 [] =
   {
-    basl::LR_SHIFT, 909
+    basl::LR_REDUCE, 705, 326
   };
   int const action_694 [] =
   {
-    basl::LR_SHIFT, 912
+    basl::LR_SHIFT, 910
   };
   int const action_695 [] =
   {
-    basl::LR_REDUCE, 690, 318
+    basl::LR_SHIFT, 911
   };
   int const action_696 [] =
   {
-    basl::LR_REDUCE, 692, 320
+    basl::LR_SHIFT, 914
   };
   int const action_697 [] =
   {
-    basl::LR_REDUCE, 694, 321
+    basl::LR_REDUCE, 692, 318
   };
   int const action_698 [] =
   {
-    basl::LR_REDUCE, 695, 321
+    basl::LR_REDUCE, 694, 320
   };
   int const action_699 [] =
   {
@@ -3573,103 +3575,103 @@ namespace
   };
   int const action_701 [] =
   {
-    basl::LR_SHIFT, 914
+    basl::LR_REDUCE, 698, 321
   };
   int const action_702 [] =
   {
-    basl::LR_SHIFT, 916
+    basl::LR_REDUCE, 699, 321
   };
   int const action_703 [] =
   {
-    basl::LR_REDUCE, 357, 214
+    basl::LR_SHIFT, 916
   };
   int const action_704 [] =
   {
-    basl::LR_REDUCE, 354, 212
+    basl::LR_SHIFT, 918
   };
   int const action_705 [] =
   {
-    basl::LR_SHIFT, 918
+    basl::LR_REDUCE, 359, 214
   };
   int const action_706 [] =
   {
-    basl::LR_REDUCE, 397, 3
+    basl::LR_REDUCE, 356, 212
   };
   int const action_707 [] =
   {
-    basl::LR_REDUCE, 400, 230
+    basl::LR_SHIFT, 920
   };
   int const action_708 [] =
   {
-    basl::LR_ACCEPT, 405, 226
+    basl::LR_REDUCE, 399, 3
   };
   int const action_709 [] =
   {
-    basl::LR_REDUCE, 42, 4
+    basl::LR_REDUCE, 402, 230
   };
   int const action_710 [] =
   {
-    basl::LR_SHIFT, 926
+    basl::LR_ACCEPT, 407, 226
   };
   int const action_711 [] =
   {
-    basl::LR_ACCEPT, 557, 271
+    basl::LR_REDUCE, 42, 4
   };
   int const action_712 [] =
   {
-    basl::LR_ACCEPT, 565, 276
+    basl::LR_SHIFT, 928
   };
   int const action_713 [] =
   {
-    basl::LR_SHIFT, 928
+    basl::LR_ACCEPT, 559, 271
   };
   int const action_714 [] =
   {
-    basl::LR_ACCEPT, 632, 297
+    basl::LR_ACCEPT, 567, 276
   };
   int const action_715 [] =
   {
-    basl::LR_SHIFT, 929
+    basl::LR_SHIFT, 930
   };
   int const action_716 [] =
   {
-    basl::LR_SHIFT, 930
+    basl::LR_ACCEPT, 634, 297
   };
   int const action_717 [] =
   {
-    basl::LR_REDUCE, 625, 293
+    basl::LR_SHIFT, 931
   };
   int const action_718 [] =
   {
-    basl::LR_SHIFT, 931
+    basl::LR_SHIFT, 932
   };
   int const action_719 [] =
   {
-    basl::LR_REDUCE, 629, 296
+    basl::LR_REDUCE, 627, 293
   };
   int const action_720 [] =
   {
-    basl::LR_REDUCE, 631, 295
+    basl::LR_SHIFT, 933
   };
   int const action_721 [] =
   {
-    basl::LR_ACCEPT, 635, 19
+    basl::LR_REDUCE, 631, 296
   };
   int const action_722 [] =
   {
-    basl::LR_SHIFT, 933
+    basl::LR_REDUCE, 633, 295
   };
   int const action_723 [] =
   {
-    basl::LR_REDUCE, 658, 309
+    basl::LR_ACCEPT, 637, 19
   };
   int const action_724 [] =
   {
-    basl::LR_SHIFT, 941
+    basl::LR_SHIFT, 935
   };
   int const action_725 [] =
   {
-    basl::LR_SHIFT, 942
+    basl::LR_REDUCE, 660, 309
   };
   int const action_726 [] =
   {
@@ -3677,299 +3679,299 @@ namespace
   };
   int const action_727 [] =
   {
-    basl::LR_REDUCE, 41, 44
+    basl::LR_SHIFT, 944
   };
   int const action_728 [] =
   {
-    basl::LR_SHIFT, 944
+    basl::LR_SHIFT, 945
   };
   int const action_729 [] =
   {
-    basl::LR_SHIFT, 945
+    basl::LR_REDUCE, 41, 44
   };
   int const action_730 [] =
   {
-    basl::LR_REDUCE, 545, 263
+    basl::LR_SHIFT, 946
   };
   int const action_731 [] =
   {
-    basl::LR_REDUCE, 547, 264
+    basl::LR_SHIFT, 947
   };
   int const action_732 [] =
   {
-    basl::LR_REDUCE, 331, 52
+    basl::LR_REDUCE, 547, 263
   };
   int const action_733 [] =
   {
-    basl::LR_SHIFT, 949
+    basl::LR_REDUCE, 549, 264
   };
   int const action_734 [] =
   {
-    basl::LR_REDUCE, 60, 62
+    basl::LR_REDUCE, 331, 52
   };
   int const action_735 [] =
   {
-    basl::LR_REDUCE, 75, 71
+    basl::LR_SHIFT, 951
   };
   int const action_736 [] =
   {
-    basl::LR_REDUCE, 69, 71
+    basl::LR_REDUCE, 60, 62
   };
   int const action_737 [] =
   {
-    basl::LR_SHIFT, 950
+    basl::LR_REDUCE, 75, 71
   };
   int const action_738 [] =
   {
-    basl::LR_REDUCE, 86, 71
+    basl::LR_REDUCE, 69, 71
   };
   int const action_739 [] =
   {
-    basl::LR_REDUCE, 81, 71
+    basl::LR_SHIFT, 952
   };
   int const action_740 [] =
   {
-    basl::LR_REDUCE, 72, 71
+    basl::LR_REDUCE, 86, 71
   };
   int const action_741 [] =
   {
-    basl::LR_SHIFT, 951
+    basl::LR_REDUCE, 81, 71
   };
   int const action_742 [] =
   {
-    basl::LR_SHIFT, 952
+    basl::LR_REDUCE, 72, 71
   };
   int const action_743 [] =
   {
-    basl::LR_REDUCE, 92, 71
+    basl::LR_SHIFT, 953
   };
   int const action_744 [] =
   {
-    basl::LR_SHIFT, 953
+    basl::LR_SHIFT, 954
   };
   int const action_745 [] =
   {
-    basl::LR_REDUCE, 77, 71
+    basl::LR_REDUCE, 92, 71
   };
   int const action_746 [] =
   {
-    basl::LR_REDUCE, 68, 71
+    basl::LR_SHIFT, 955
   };
   int const action_747 [] =
   {
-    basl::LR_REDUCE, 70, 71
+    basl::LR_REDUCE, 77, 71
   };
   int const action_748 [] =
   {
-    basl::LR_REDUCE, 71, 71
+    basl::LR_REDUCE, 68, 71
   };
   int const action_749 [] =
   {
-    basl::LR_REDUCE, 73, 71
+    basl::LR_REDUCE, 70, 71
   };
   int const action_750 [] =
   {
-    basl::LR_REDUCE, 74, 71
+    basl::LR_REDUCE, 71, 71
   };
   int const action_751 [] =
   {
-    basl::LR_REDUCE, 76, 71
+    basl::LR_REDUCE, 73, 71
   };
   int const action_752 [] =
   {
-    basl::LR_REDUCE, 78, 71
+    basl::LR_REDUCE, 74, 71
   };
   int const action_753 [] =
   {
-    basl::LR_REDUCE, 79, 71
+    basl::LR_REDUCE, 76, 71
   };
   int const action_754 [] =
   {
-    basl::LR_REDUCE, 80, 71
+    basl::LR_REDUCE, 78, 71
   };
   int const action_755 [] =
   {
-    basl::LR_REDUCE, 82, 71
+    basl::LR_REDUCE, 79, 71
   };
   int const action_756 [] =
   {
-    basl::LR_REDUCE, 83, 71
+    basl::LR_REDUCE, 80, 71
   };
   int const action_757 [] =
   {
-    basl::LR_REDUCE, 84, 71
+    basl::LR_REDUCE, 82, 71
   };
   int const action_758 [] =
   {
-    basl::LR_REDUCE, 85, 71
+    basl::LR_REDUCE, 83, 71
   };
   int const action_759 [] =
   {
-    basl::LR_REDUCE, 87, 71
+    basl::LR_REDUCE, 84, 71
   };
   int const action_760 [] =
   {
-    basl::LR_REDUCE, 88, 71
+    basl::LR_REDUCE, 85, 71
   };
   int const action_761 [] =
   {
-    basl::LR_REDUCE, 89, 71
+    basl::LR_REDUCE, 87, 71
   };
   int const action_762 [] =
   {
-    basl::LR_REDUCE, 90, 71
+    basl::LR_REDUCE, 88, 71
   };
   int const action_763 [] =
   {
-    basl::LR_REDUCE, 91, 71
+    basl::LR_REDUCE, 89, 71
   };
   int const action_764 [] =
   {
-    basl::LR_REDUCE, 93, 71
+    basl::LR_REDUCE, 90, 71
   };
   int const action_765 [] =
   {
-    basl::LR_REDUCE, 94, 71
+    basl::LR_REDUCE, 91, 71
   };
   int const action_766 [] =
   {
-    basl::LR_REDUCE, 95, 71
+    basl::LR_REDUCE, 93, 71
   };
   int const action_767 [] =
   {
-    basl::LR_REDUCE, 96, 71
+    basl::LR_REDUCE, 94, 71
   };
   int const action_768 [] =
   {
-    basl::LR_REDUCE, 97, 71
+    basl::LR_REDUCE, 95, 71
   };
   int const action_769 [] =
   {
-    basl::LR_REDUCE, 98, 71
+    basl::LR_REDUCE, 96, 71
   };
   int const action_770 [] =
   {
-    basl::LR_REDUCE, 99, 71
+    basl::LR_REDUCE, 97, 71
   };
   int const action_771 [] =
   {
-    basl::LR_REDUCE, 100, 71
+    basl::LR_REDUCE, 98, 71
   };
   int const action_772 [] =
   {
-    basl::LR_REDUCE, 101, 71
+    basl::LR_REDUCE, 99, 71
   };
   int const action_773 [] =
   {
-    basl::LR_REDUCE, 102, 71
+    basl::LR_REDUCE, 100, 71
   };
   int const action_774 [] =
   {
-    basl::LR_REDUCE, 103, 71
+    basl::LR_REDUCE, 101, 71
   };
   int const action_775 [] =
   {
-    basl::LR_REDUCE, 104, 71
+    basl::LR_REDUCE, 102, 71
   };
   int const action_776 [] =
   {
-    basl::LR_REDUCE, 105, 71
+    basl::LR_REDUCE, 103, 71
   };
   int const action_777 [] =
   {
-    basl::LR_REDUCE, 61, 62
+    basl::LR_REDUCE, 104, 71
   };
   int const action_778 [] =
   {
-    basl::LR_REDUCE, 62, 62
+    basl::LR_REDUCE, 105, 71
   };
   int const action_779 [] =
   {
-    basl::LR_REDUCE, 67, 65
+    basl::LR_REDUCE, 61, 62
   };
   int const action_780 [] =
   {
-    basl::LR_SHIFT, 954
+    basl::LR_REDUCE, 62, 62
   };
   int const action_781 [] =
   {
-    basl::LR_REDUCE, 371, 219
+    basl::LR_REDUCE, 67, 65
   };
   int const action_782 [] =
   {
-    basl::LR_REDUCE, 369, 217
+    basl::LR_SHIFT, 956
   };
   int const action_783 [] =
   {
-    basl::LR_SHIFT, 966
+    basl::LR_REDUCE, 373, 219
   };
   int const action_784 [] =
   {
-    basl::LR_SHIFT, 967
+    basl::LR_REDUCE, 371, 217
   };
   int const action_785 [] =
   {
-    basl::LR_SHIFT, 972
+    basl::LR_SHIFT, 968
   };
   int const action_786 [] =
   {
-    basl::LR_ACCEPT, 500, 242
+    basl::LR_SHIFT, 969
   };
   int const action_787 [] =
   {
-    basl::LR_REDUCE, 505, 245
+    basl::LR_SHIFT, 974
   };
   int const action_788 [] =
   {
-    basl::LR_REDUCE, 379, 32
+    basl::LR_ACCEPT, 502, 242
   };
   int const action_789 [] =
   {
-    basl::LR_REDUCE, 323, 196
+    basl::LR_REDUCE, 507, 245
   };
   int const action_790 [] =
   {
-    basl::LR_REDUCE, 329, 197
+    basl::LR_REDUCE, 381, 32
   };
   int const action_791 [] =
   {
-    basl::LR_REDUCE, 347, 208
+    basl::LR_REDUCE, 323, 196
   };
   int const action_792 [] =
   {
-    basl::LR_REDUCE, 607, 290
+    basl::LR_REDUCE, 329, 197
   };
   int const action_793 [] =
   {
-    basl::LR_REDUCE, 111, 111
+    basl::LR_REDUCE, 349, 208
   };
   int const action_794 [] =
   {
-    basl::LR_SHIFT, 975
+    basl::LR_REDUCE, 609, 290
   };
   int const action_795 [] =
   {
-    basl::LR_SHIFT, 976
+    basl::LR_REDUCE, 111, 111
   };
   int const action_796 [] =
   {
-    basl::LR_SHIFT, 978
+    basl::LR_SHIFT, 977
   };
   int const action_797 [] =
   {
-    basl::LR_SHIFT, 979
+    basl::LR_SHIFT, 978
   };
   int const action_798 [] =
   {
-    basl::LR_SHIFT, 983
+    basl::LR_SHIFT, 980
   };
   int const action_799 [] =
   {
-    basl::LR_SHIFT, 984
+    basl::LR_SHIFT, 981
   };
   int const action_800 [] =
   {
-    basl::LR_REDUCE, 332, 34
+    basl::LR_SHIFT, 985
   };
   int const action_801 [] =
   {
@@ -3977,911 +3979,927 @@ namespace
   };
   int const action_802 [] =
   {
-    basl::LR_REDUCE, 340, 206
+    basl::LR_REDUCE, 332, 34
   };
   int const action_803 [] =
   {
-    basl::LR_SHIFT, 989
+    basl::LR_SHIFT, 988
   };
   int const action_804 [] =
   {
-    basl::LR_SHIFT, 991
+    basl::LR_REDUCE, 341, 206
   };
   int const action_805 [] =
   {
-    basl::LR_SHIFT, 992
+    basl::LR_REDUCE, 342, 206
   };
   int const action_806 [] =
   {
-    basl::LR_REDUCE, 489, 200
+    basl::LR_REDUCE, 340, 206
   };
   int const action_807 [] =
   {
-    basl::LR_REDUCE, 385, 199
+    basl::LR_SHIFT, 991
   };
   int const action_808 [] =
   {
-    basl::LR_REDUCE, 389, 223
+    basl::LR_SHIFT, 993
   };
   int const action_809 [] =
   {
-    basl::LR_ACCEPT, 496, 7
+    basl::LR_SHIFT, 994
   };
   int const action_810 [] =
   {
-    basl::LR_REDUCE, 503, 244
+    basl::LR_REDUCE, 491, 200
   };
   int const action_811 [] =
   {
-    basl::LR_REDUCE, 529, 256
+    basl::LR_REDUCE, 387, 199
   };
   int const action_812 [] =
   {
-    basl::LR_ACCEPT, 536, 257
+    basl::LR_REDUCE, 391, 223
   };
   int const action_813 [] =
   {
-    basl::LR_REDUCE, 522, 255
+    basl::LR_ACCEPT, 498, 7
   };
   int const action_814 [] =
   {
-    basl::LR_REDUCE, 514, 249
+    basl::LR_REDUCE, 505, 244
   };
   int const action_815 [] =
   {
-    basl::LR_REDUCE, 600, 266
+    basl::LR_REDUCE, 531, 256
   };
   int const action_816 [] =
   {
-    basl::LR_ACCEPT, 592, 285
+    basl::LR_ACCEPT, 538, 257
   };
   int const action_817 [] =
   {
-    basl::LR_REDUCE, 518, 251
+    basl::LR_REDUCE, 524, 255
   };
   int const action_818 [] =
   {
-    basl::LR_ACCEPT, 636, 20
+    basl::LR_REDUCE, 516, 249
   };
   int const action_819 [] =
   {
-    basl::LR_SHIFT, 1005
+    basl::LR_REDUCE, 602, 266
   };
   int const action_820 [] =
   {
-    basl::LR_ACCEPT, 644, 303
+    basl::LR_ACCEPT, 594, 285
   };
   int const action_821 [] =
   {
-    basl::LR_REDUCE, 670, 312
+    basl::LR_REDUCE, 520, 251
   };
   int const action_822 [] =
   {
-    basl::LR_ACCEPT, 710, 331
+    basl::LR_ACCEPT, 638, 20
   };
   int const action_823 [] =
   {
-    basl::LR_REDUCE, 702, 326
+    basl::LR_SHIFT, 1007
   };
   int const action_824 [] =
   {
-    basl::LR_ACCEPT, 711, 331
+    basl::LR_ACCEPT, 646, 303
   };
   int const action_825 [] =
   {
-    basl::LR_SHIFT, 1008
+    basl::LR_REDUCE, 672, 312
   };
   int const action_826 [] =
   {
-    basl::LR_ACCEPT, 699, 323
+    basl::LR_ACCEPT, 712, 331
   };
   int const action_827 [] =
   {
-    basl::LR_ACCEPT, 688, 304
+    basl::LR_REDUCE, 704, 326
   };
   int const action_828 [] =
   {
-    basl::LR_REDUCE, 693, 320
+    basl::LR_ACCEPT, 713, 331
   };
   int const action_829 [] =
   {
-    basl::LR_REDUCE, 715, 332
+    basl::LR_SHIFT, 1010
   };
   int const action_830 [] =
   {
-    basl::LR_REDUCE, 356, 214
+    basl::LR_ACCEPT, 701, 323
   };
   int const action_831 [] =
   {
-    basl::LR_REDUCE, 362, 215
+    basl::LR_ACCEPT, 690, 304
   };
   int const action_832 [] =
   {
-    basl::LR_SHIFT, 1029
+    basl::LR_REDUCE, 695, 320
   };
   int const action_833 [] =
   {
-    basl::LR_SHIFT, 1032
+    basl::LR_REDUCE, 717, 332
   };
   int const action_834 [] =
   {
-    basl::LR_ACCEPT, 407, 232
+    basl::LR_REDUCE, 358, 214
   };
   int const action_835 [] =
   {
-    basl::LR_REDUCE, 560, 274
+    basl::LR_REDUCE, 364, 215
   };
   int const action_836 [] =
   {
-    basl::LR_SHIFT, 1040
+    basl::LR_SHIFT, 1031
   };
   int const action_837 [] =
   {
-    basl::LR_REDUCE, 628, 296
+    basl::LR_SHIFT, 1034
   };
   int const action_838 [] =
   {
-    basl::LR_REDUCE, 627, 294
+    basl::LR_ACCEPT, 409, 232
   };
   int const action_839 [] =
   {
-    basl::LR_REDUCE, 663, 310
+    basl::LR_REDUCE, 562, 274
   };
   int const action_840 [] =
   {
-    basl::LR_REDUCE, 664, 311
+    basl::LR_SHIFT, 1042
   };
   int const action_841 [] =
   {
-    basl::LR_REDUCE, 665, 311
+    basl::LR_REDUCE, 630, 296
   };
   int const action_842 [] =
   {
-    basl::LR_REDUCE, 666, 311
+    basl::LR_REDUCE, 629, 294
   };
   int const action_843 [] =
   {
-    basl::LR_REDUCE, 667, 311
+    basl::LR_REDUCE, 665, 310
   };
   int const action_844 [] =
   {
-    basl::LR_SHIFT, 1043
+    basl::LR_REDUCE, 666, 311
   };
   int const action_845 [] =
   {
-    basl::LR_SHIFT, 1044
+    basl::LR_REDUCE, 667, 311
   };
   int const action_846 [] =
   {
-    basl::LR_REDUCE, 38, 38
+    basl::LR_REDUCE, 668, 311
   };
   int const action_847 [] =
   {
-    basl::LR_REDUCE, 40, 44
+    basl::LR_REDUCE, 669, 311
   };
   int const action_848 [] =
   {
-    basl::LR_SHIFT, 1048
+    basl::LR_SHIFT, 1045
   };
   int const action_849 [] =
   {
-    basl::LR_SHIFT, 1049
+    basl::LR_SHIFT, 1046
   };
   int const action_850 [] =
   {
-    basl::LR_SHIFT, 1050
+    basl::LR_REDUCE, 38, 38
   };
   int const action_851 [] =
   {
-    basl::LR_REDUCE, 50, 48
+    basl::LR_REDUCE, 40, 44
   };
   int const action_852 [] =
   {
-    basl::LR_REDUCE, 63, 65
+    basl::LR_SHIFT, 1050
   };
   int const action_853 [] =
   {
-    basl::LR_REDUCE, 64, 65
+    basl::LR_SHIFT, 1051
   };
   int const action_854 [] =
   {
-    basl::LR_SHIFT, 1051
+    basl::LR_SHIFT, 1052
   };
   int const action_855 [] =
   {
-    basl::LR_SHIFT, 1052
+    basl::LR_REDUCE, 50, 48
   };
   int const action_856 [] =
   {
-    basl::LR_REDUCE, 368, 217
+    basl::LR_REDUCE, 63, 65
   };
   int const action_857 [] =
   {
-    basl::LR_REDUCE, 408, 66
+    basl::LR_REDUCE, 64, 65
   };
   int const action_858 [] =
   {
-    basl::LR_REDUCE, 370, 219
+    basl::LR_SHIFT, 1053
   };
   int const action_859 [] =
   {
-    basl::LR_REDUCE, 364, 216
+    basl::LR_SHIFT, 1054
   };
   int const action_860 [] =
   {
-    basl::LR_SHIFT, 1057
+    basl::LR_REDUCE, 370, 217
   };
   int const action_861 [] =
   {
-    basl::LR_REDUCE, 409, 66
+    basl::LR_REDUCE, 410, 66
   };
   int const action_862 [] =
   {
-    basl::LR_REDUCE, 410, 66
+    basl::LR_REDUCE, 372, 219
   };
   int const action_863 [] =
   {
-    basl::LR_REDUCE, 411, 66
+    basl::LR_REDUCE, 366, 216
   };
   int const action_864 [] =
   {
-    basl::LR_REDUCE, 412, 66
+    basl::LR_SHIFT, 1059
   };
   int const action_865 [] =
   {
-    basl::LR_REDUCE, 413, 66
+    basl::LR_REDUCE, 411, 66
   };
   int const action_866 [] =
   {
-    basl::LR_REDUCE, 59, 61
+    basl::LR_REDUCE, 412, 66
   };
   int const action_867 [] =
   {
-    basl::LR_SHIFT, 1060
+    basl::LR_REDUCE, 413, 66
   };
   int const action_868 [] =
   {
-    basl::LR_REDUCE, 507, 246
+    basl::LR_REDUCE, 414, 66
   };
   int const action_869 [] =
   {
-    basl::LR_REDUCE, 509, 247
+    basl::LR_REDUCE, 415, 66
   };
   int const action_870 [] =
   {
-    basl::LR_SHIFT, 1063
+    basl::LR_REDUCE, 59, 61
   };
   int const action_871 [] =
   {
-    basl::LR_REDUCE, 374, 194
+    basl::LR_SHIFT, 1062
   };
   int const action_872 [] =
   {
-    basl::LR_SHIFT, 1064
+    basl::LR_REDUCE, 509, 246
   };
   int const action_873 [] =
   {
-    basl::LR_REDUCE, 328, 197
+    basl::LR_REDUCE, 511, 247
   };
   int const action_874 [] =
   {
-    basl::LR_SHIFT, 1066
+    basl::LR_SHIFT, 1065
   };
   int const action_875 [] =
   {
-    basl::LR_REDUCE, 393, 227
+    basl::LR_REDUCE, 376, 194
   };
   int const action_876 [] =
   {
-    basl::LR_REDUCE, 392, 227
+    basl::LR_SHIFT, 1066
   };
   int const action_877 [] =
   {
-    basl::LR_REDUCE, 394, 228
+    basl::LR_REDUCE, 328, 197
   };
   int const action_878 [] =
   {
-    basl::LR_SHIFT, 1069
+    basl::LR_SHIFT, 1068
   };
   int const action_879 [] =
   {
-    basl::LR_REDUCE, 390, 227
+    basl::LR_REDUCE, 395, 227
   };
   int const action_880 [] =
   {
-    basl::LR_REDUCE, 346, 208
+    basl::LR_REDUCE, 394, 227
   };
   int const action_881 [] =
   {
-    basl::LR_REDUCE, 606, 290
+    basl::LR_REDUCE, 396, 228
   };
   int const action_882 [] =
   {
-    basl::LR_SHIFT, 1074
+    basl::LR_SHIFT, 1071
   };
   int const action_883 [] =
   {
-    basl::LR_REDUCE, 349, 210
+    basl::LR_REDUCE, 392, 227
   };
   int const action_884 [] =
   {
-    basl::LR_REDUCE, 488, 200
+    basl::LR_REDUCE, 348, 208
   };
   int const action_885 [] =
   {
-    basl::LR_REDUCE, 350, 210
+    basl::LR_REDUCE, 608, 290
   };
   int const action_886 [] =
   {
-    basl::LR_REDUCE, 351, 210
+    basl::LR_SHIFT, 1076
   };
   int const action_887 [] =
   {
-    basl::LR_ACCEPT, 499, 9
+    basl::LR_REDUCE, 351, 210
   };
   int const action_888 [] =
   {
-    basl::LR_ACCEPT, 584, 14
+    basl::LR_REDUCE, 490, 200
   };
   int const action_889 [] =
   {
-    basl::LR_ACCEPT, 511, 248
+    basl::LR_REDUCE, 352, 210
   };
   int const action_890 [] =
   {
-    basl::LR_REDUCE, 599, 266
+    basl::LR_REDUCE, 353, 210
   };
   int const action_891 [] =
   {
-    basl::LR_SHIFT, 1076
+    basl::LR_ACCEPT, 501, 9
   };
   int const action_892 [] =
   {
-    basl::LR_ACCEPT, 512, 248
+    basl::LR_ACCEPT, 586, 14
   };
   int const action_893 [] =
   {
-    basl::LR_REDUCE, 590, 284
+    basl::LR_ACCEPT, 513, 248
   };
   int const action_894 [] =
   {
-    basl::LR_SHIFT, 1078
+    basl::LR_REDUCE, 601, 266
   };
   int const action_895 [] =
   {
-    basl::LR_ACCEPT, 687, 315
+    basl::LR_SHIFT, 1078
   };
   int const action_896 [] =
   {
-    basl::LR_SHIFT, 1079
+    basl::LR_ACCEPT, 514, 248
   };
   int const action_897 [] =
   {
-    basl::LR_SHIFT, 1080
+    basl::LR_REDUCE, 592, 284
   };
   int const action_898 [] =
   {
-    basl::LR_SHIFT, 1082
+    basl::LR_SHIFT, 1080
   };
   int const action_899 [] =
   {
-    basl::LR_REDUCE, 707, 327
+    basl::LR_ACCEPT, 689, 315
   };
   int const action_900 [] =
   {
-    basl::LR_SHIFT, 1086
+    basl::LR_SHIFT, 1081
   };
   int const action_901 [] =
   {
-    basl::LR_REDUCE, 713, 333
+    basl::LR_SHIFT, 1082
   };
   int const action_902 [] =
   {
-    basl::LR_REDUCE, 714, 332
+    basl::LR_SHIFT, 1084
   };
   int const action_903 [] =
   {
-    basl::LR_REDUCE, 716, 334
+    basl::LR_REDUCE, 709, 327
   };
   int const action_904 [] =
   {
-    basl::LR_SHIFT, 1107
+    basl::LR_SHIFT, 1088
   };
   int const action_905 [] =
   {
-    basl::LR_SHIFT, 1108
+    basl::LR_REDUCE, 715, 333
   };
   int const action_906 [] =
   {
-    basl::LR_SHIFT, 1109
+    basl::LR_REDUCE, 716, 332
   };
   int const action_907 [] =
   {
-    basl::LR_REDUCE, 721, 338
+    basl::LR_REDUCE, 718, 334
   };
   int const action_908 [] =
   {
-    basl::LR_REDUCE, 725, 337
+    basl::LR_SHIFT, 1109
   };
   int const action_909 [] =
   {
-    basl::LR_REDUCE, 361, 215
+    basl::LR_SHIFT, 1110
   };
   int const action_910 [] =
   {
-    basl::LR_SHIFT, 1114
+    basl::LR_SHIFT, 1111
   };
   int const action_911 [] =
   {
-    basl::LR_ACCEPT, 566, 276
+    basl::LR_REDUCE, 723, 338
   };
   int const action_912 [] =
   {
-    basl::LR_ACCEPT, 633, 297
+    basl::LR_REDUCE, 727, 337
   };
   int const action_913 [] =
   {
-    basl::LR_ACCEPT, 622, 17
+    basl::LR_REDUCE, 363, 215
   };
   int const action_914 [] =
   {
-    basl::LR_REDUCE, 630, 295
+    basl::LR_SHIFT, 1116
   };
   int const action_915 [] =
   {
-    basl::LR_REDUCE, 662, 310
+    basl::LR_ACCEPT, 568, 276
   };
   int const action_916 [] =
   {
-    basl::LR_SHIFT, 1119
+    basl::LR_ACCEPT, 635, 297
   };
   int const action_917 [] =
   {
-    basl::LR_REDUCE, 546, 264
+    basl::LR_ACCEPT, 624, 17
   };
   int const action_918 [] =
   {
-    basl::LR_SHIFT, 1120
+    basl::LR_REDUCE, 632, 295
   };
   int const action_919 [] =
   {
-    basl::LR_REDUCE, 550, 261
+    basl::LR_REDUCE, 664, 310
   };
   int const action_920 [] =
   {
-    basl::LR_REDUCE, 51, 48
+    basl::LR_SHIFT, 1121
   };
   int const action_921 [] =
   {
-    basl::LR_REDUCE, 65, 65
+    basl::LR_REDUCE, 548, 264
   };
   int const action_922 [] =
   {
-    basl::LR_REDUCE, 66, 65
+    basl::LR_SHIFT, 1122
   };
   int const action_923 [] =
   {
-    basl::LR_SHIFT, 1125
+    basl::LR_REDUCE, 552, 261
   };
   int const action_924 [] =
   {
-    basl::LR_REDUCE, 363, 216
+    basl::LR_REDUCE, 51, 48
   };
   int const action_925 [] =
   {
-    basl::LR_SHIFT, 1127
+    basl::LR_REDUCE, 65, 65
   };
   int const action_926 [] =
   {
-    basl::LR_ACCEPT, 585, 281
+    basl::LR_REDUCE, 66, 65
   };
   int const action_927 [] =
   {
-    basl::LR_REDUCE, 56, 59
+    basl::LR_SHIFT, 1127
   };
   int const action_928 [] =
   {
-    basl::LR_REDUCE, 327, 197
+    basl::LR_REDUCE, 365, 216
   };
   int const action_929 [] =
   {
-    basl::LR_REDUCE, 343, 208
+    basl::LR_SHIFT, 1129
   };
   int const action_930 [] =
   {
-    basl::LR_REDUCE, 391, 227
+    basl::LR_ACCEPT, 587, 281
   };
   int const action_931 [] =
   {
-    basl::LR_REDUCE, 395, 228
+    basl::LR_REDUCE, 56, 59
   };
   int const action_932 [] =
   {
-    basl::LR_REDUCE, 345, 208
+    basl::LR_REDUCE, 327, 197
   };
   int const action_933 [] =
   {
-    basl::LR_REDUCE, 344, 208
+    basl::LR_REDUCE, 345, 208
   };
   int const action_934 [] =
   {
-    basl::LR_REDUCE, 605, 290
+    basl::LR_REDUCE, 393, 227
   };
   int const action_935 [] =
   {
-    basl::LR_REDUCE, 491, 235
+    basl::LR_REDUCE, 397, 228
   };
   int const action_936 [] =
   {
-    basl::LR_ACCEPT, 593, 285
+    basl::LR_REDUCE, 347, 208
   };
   int const action_937 [] =
   {
-    basl::LR_REDUCE, 598, 286
+    basl::LR_REDUCE, 346, 208
   };
   int const action_938 [] =
   {
-    basl::LR_ACCEPT, 594, 285
+    basl::LR_REDUCE, 607, 290
   };
   int const action_939 [] =
   {
-    basl::LR_SHIFT, 1144
+    basl::LR_REDUCE, 493, 235
   };
   int const action_940 [] =
   {
-    basl::LR_REDUCE, 705, 328
+    basl::LR_ACCEPT, 595, 285
   };
   int const action_941 [] =
   {
-    basl::LR_SHIFT, 1145
+    basl::LR_REDUCE, 600, 286
   };
   int const action_942 [] =
   {
-    basl::LR_SHIFT, 1146
+    basl::LR_ACCEPT, 596, 285
   };
   int const action_943 [] =
   {
-    basl::LR_SHIFT, 1147
+    basl::LR_SHIFT, 1146
   };
   int const action_944 [] =
   {
-    basl::LR_REDUCE, 706, 327
+    basl::LR_REDUCE, 707, 328
   };
   int const action_945 [] =
   {
-    basl::LR_SHIFT, 1148
+    basl::LR_SHIFT, 1147
   };
   int const action_946 [] =
   {
-    basl::LR_REDUCE, 744, 343
+    basl::LR_SHIFT, 1148
   };
   int const action_947 [] =
   {
-    basl::LR_REDUCE, 726, 341
+    basl::LR_SHIFT, 1149
   };
   int const action_948 [] =
   {
-    basl::LR_REDUCE, 738, 340
+    basl::LR_REDUCE, 708, 327
   };
   int const action_949 [] =
   {
-    basl::LR_SHIFT, 1155
+    basl::LR_SHIFT, 1150
   };
   int const action_950 [] =
   {
-    basl::LR_REDUCE, 740, 342
+    basl::LR_REDUCE, 746, 343
   };
   int const action_951 [] =
   {
-    basl::LR_REDUCE, 743, 343
+    basl::LR_REDUCE, 728, 341
   };
   int const action_952 [] =
   {
-    basl::LR_SHIFT, 1156
+    basl::LR_REDUCE, 740, 340
   };
   int const action_953 [] =
   {
-    basl::LR_REDUCE, 727, 341
+    basl::LR_SHIFT, 1157
   };
   int const action_954 [] =
   {
-    basl::LR_REDUCE, 728, 341
+    basl::LR_REDUCE, 742, 342
   };
   int const action_955 [] =
   {
-    basl::LR_REDUCE, 729, 341
+    basl::LR_REDUCE, 745, 343
   };
   int const action_956 [] =
   {
-    basl::LR_REDUCE, 730, 341
+    basl::LR_SHIFT, 1158
   };
   int const action_957 [] =
   {
-    basl::LR_REDUCE, 731, 341
+    basl::LR_REDUCE, 729, 341
   };
   int const action_958 [] =
   {
-    basl::LR_REDUCE, 732, 341
+    basl::LR_REDUCE, 730, 341
   };
   int const action_959 [] =
   {
-    basl::LR_REDUCE, 733, 341
+    basl::LR_REDUCE, 731, 341
   };
   int const action_960 [] =
   {
-    basl::LR_REDUCE, 734, 341
+    basl::LR_REDUCE, 732, 341
   };
   int const action_961 [] =
   {
-    basl::LR_REDUCE, 735, 341
+    basl::LR_REDUCE, 733, 341
   };
   int const action_962 [] =
   {
-    basl::LR_REDUCE, 736, 341
+    basl::LR_REDUCE, 734, 341
   };
   int const action_963 [] =
   {
-    basl::LR_REDUCE, 737, 341
+    basl::LR_REDUCE, 735, 341
   };
   int const action_964 [] =
   {
-    basl::LR_REDUCE, 712, 333
+    basl::LR_REDUCE, 736, 341
   };
   int const action_965 [] =
   {
-    basl::LR_SHIFT, 1158
+    basl::LR_REDUCE, 737, 341
   };
   int const action_966 [] =
   {
-    basl::LR_REDUCE, 717, 334
+    basl::LR_REDUCE, 738, 341
   };
   int const action_967 [] =
   {
-    basl::LR_ACCEPT, 718, 335
+    basl::LR_REDUCE, 739, 341
   };
   int const action_968 [] =
   {
-    basl::LR_SHIFT, 1160
+    basl::LR_REDUCE, 714, 333
   };
   int const action_969 [] =
   {
-    basl::LR_REDUCE, 723, 339
+    basl::LR_SHIFT, 1160
   };
   int const action_970 [] =
   {
-    basl::LR_ACCEPT, 719, 336
+    basl::LR_REDUCE, 719, 334
   };
   int const action_971 [] =
   {
-    basl::LR_REDUCE, 720, 338
+    basl::LR_ACCEPT, 720, 335
   };
   int const action_972 [] =
   {
-    basl::LR_REDUCE, 360, 215
+    basl::LR_SHIFT, 1162
   };
   int const action_973 [] =
   {
-    basl::LR_SHIFT, 1162
+    basl::LR_REDUCE, 725, 339
   };
   int const action_974 [] =
   {
-    basl::LR_REDUCE, 661, 310
+    basl::LR_ACCEPT, 721, 336
   };
   int const action_975 [] =
   {
-    basl::LR_ACCEPT, 548, 265
+    basl::LR_REDUCE, 722, 338
   };
   int const action_976 [] =
   {
-    basl::LR_SHIFT, 1163
+    basl::LR_REDUCE, 362, 215
   };
   int const action_977 [] =
   {
-    basl::LR_ACCEPT, 539, 11
+    basl::LR_SHIFT, 1164
   };
   int const action_978 [] =
   {
-    basl::LR_REDUCE, 549, 261
+    basl::LR_REDUCE, 663, 310
   };
   int const action_979 [] =
   {
-    basl::LR_REDUCE, 552, 267
+    basl::LR_ACCEPT, 550, 265
   };
   int const action_980 [] =
   {
-    basl::LR_ACCEPT, 540, 11
+    basl::LR_SHIFT, 1165
   };
   int const action_981 [] =
   {
-    basl::LR_REDUCE, 367, 218
+    basl::LR_ACCEPT, 541, 11
   };
   int const action_982 [] =
   {
-    basl::LR_SHIFT, 1165
+    basl::LR_REDUCE, 551, 261
   };
   int const action_983 [] =
   {
-    basl::LR_REDUCE, 508, 247
+    basl::LR_REDUCE, 554, 267
   };
   int const action_984 [] =
   {
-    basl::LR_ACCEPT, 586, 281
+    basl::LR_ACCEPT, 542, 11
   };
   int const action_985 [] =
   {
-    basl::LR_REDUCE, 604, 290
+    basl::LR_REDUCE, 369, 218
   };
   int const action_986 [] =
   {
-    basl::LR_REDUCE, 495, 237
+    basl::LR_SHIFT, 1167
   };
   int const action_987 [] =
   {
-    basl::LR_SHIFT, 1168
+    basl::LR_REDUCE, 510, 247
   };
   int const action_988 [] =
   {
-    basl::LR_SHIFT, 1169
+    basl::LR_ACCEPT, 588, 281
   };
   int const action_989 [] =
   {
-    basl::LR_REDUCE, 492, 235
+    basl::LR_REDUCE, 606, 290
   };
   int const action_990 [] =
   {
-    basl::LR_REDUCE, 494, 236
+    basl::LR_REDUCE, 497, 237
   };
   int const action_991 [] =
   {
-    basl::LR_ACCEPT, 620, 15
+    basl::LR_SHIFT, 1170
   };
   int const action_992 [] =
   {
-    basl::LR_SHIFT, 1172
+    basl::LR_SHIFT, 1171
   };
   int const action_993 [] =
   {
-    basl::LR_ACCEPT, 700, 324
+    basl::LR_REDUCE, 494, 235
   };
   int const action_994 [] =
   {
-    basl::LR_ACCEPT, 701, 324
+    basl::LR_REDUCE, 496, 236
   };
   int const action_995 [] =
   {
-    basl::LR_SHIFT, 1176
+    basl::LR_ACCEPT, 622, 15
   };
   int const action_996 [] =
   {
-    basl::LR_REDUCE, 742, 344
+    basl::LR_SHIFT, 1174
   };
   int const action_997 [] =
   {
-    basl::LR_REDUCE, 739, 342
+    basl::LR_ACCEPT, 702, 324
   };
   int const action_998 [] =
   {
-    basl::LR_ACCEPT, 709, 325
+    basl::LR_ACCEPT, 703, 324
   };
   int const action_999 [] =
   {
-    basl::LR_REDUCE, 724, 337
+    basl::LR_SHIFT, 1178
   };
   int const action_1000 [] =
   {
-    basl::LR_REDUCE, 722, 339
+    basl::LR_REDUCE, 744, 344
   };
   int const action_1001 [] =
   {
-    basl::LR_ACCEPT, 569, 277
+    basl::LR_REDUCE, 741, 342
   };
   int const action_1002 [] =
   {
-    basl::LR_SHIFT, 1180
+    basl::LR_ACCEPT, 711, 325
   };
   int const action_1003 [] =
   {
-    basl::LR_REDUCE, 660, 310
+    basl::LR_REDUCE, 726, 337
   };
   int const action_1004 [] =
   {
-    basl::LR_SHIFT, 1181
+    basl::LR_REDUCE, 724, 339
   };
   int const action_1005 [] =
   {
-    basl::LR_REDUCE, 551, 267
+    basl::LR_ACCEPT, 571, 277
   };
   int const action_1006 [] =
   {
-    basl::LR_REDUCE, 366, 218
+    basl::LR_SHIFT, 1182
   };
   int const action_1007 [] =
   {
-    basl::LR_REDUCE, 490, 233
+    basl::LR_REDUCE, 662, 310
   };
   int const action_1008 [] =
   {
-    basl::LR_SHIFT, 1186
+    basl::LR_SHIFT, 1183
   };
   int const action_1009 [] =
   {
-    basl::LR_SHIFT, 1187
+    basl::LR_REDUCE, 553, 267
   };
   int const action_1010 [] =
   {
-    basl::LR_REDUCE, 708, 330
+    basl::LR_REDUCE, 368, 218
   };
   int const action_1011 [] =
   {
-    basl::LR_REDUCE, 741, 344
+    basl::LR_REDUCE, 492, 233
   };
   int const action_1012 [] =
   {
-    basl::LR_REDUCE, 747, 345
+    basl::LR_SHIFT, 1188
   };
   int const action_1013 [] =
   {
-    basl::LR_SHIFT, 1188
+    basl::LR_SHIFT, 1189
   };
   int const action_1014 [] =
   {
-    basl::LR_SHIFT, 1189
+    basl::LR_REDUCE, 710, 330
   };
   int const action_1015 [] =
   {
-    basl::LR_REDUCE, 555, 270
+    basl::LR_REDUCE, 743, 344
   };
   int const action_1016 [] =
   {
-    basl::LR_REDUCE, 554, 270
+    basl::LR_REDUCE, 749, 345
   };
   int const action_1017 [] =
   {
-    basl::LR_SHIFT, 1192
+    basl::LR_SHIFT, 1190
   };
   int const action_1018 [] =
   {
-    basl::LR_REDUCE, 365, 218
+    basl::LR_SHIFT, 1191
   };
   int const action_1019 [] =
   {
-    basl::LR_REDUCE, 493, 236
+    basl::LR_REDUCE, 557, 270
   };
   int const action_1020 [] =
   {
-    basl::LR_ACCEPT, 686, 314
+    basl::LR_REDUCE, 556, 270
   };
   int const action_1021 [] =
   {
-    basl::LR_REDUCE, 746, 345
+    basl::LR_SHIFT, 1194
   };
   int const action_1022 [] =
   {
-    basl::LR_REDUCE, 704, 329
+    basl::LR_REDUCE, 367, 218
   };
   int const action_1023 [] =
   {
-    basl::LR_REDUCE, 745, 345
+    basl::LR_REDUCE, 495, 236
   };
   int const action_1024 [] =
   {
-    basl::LR_ACCEPT, 570, 277
+    basl::LR_ACCEPT, 688, 314
   };
   int const action_1025 [] =
   {
-    basl::LR_SHIFT, 1194
+    basl::LR_REDUCE, 748, 345
   };
   int const action_1026 [] =
   {
-    basl::LR_ACCEPT, 698, 322
+    basl::LR_REDUCE, 706, 329
   };
   int const action_1027 [] =
   {
-    basl::LR_SHIFT, 1196
+    basl::LR_REDUCE, 747, 345
   };
   int const action_1028 [] =
   {
-    basl::LR_ACCEPT, 553, 268
+    basl::LR_ACCEPT, 572, 277
+  };
+  int const action_1029 [] =
+  {
+    basl::LR_SHIFT, 1196
+  };
+  int const action_1030 [] =
+  {
+    basl::LR_ACCEPT, 700, 322
+  };
+  int const action_1031 [] =
+  {
+    basl::LR_SHIFT, 1198
+  };
+  int const action_1032 [] =
+  {
+    basl::LR_ACCEPT, 555, 268
   };
 
   // action sequences
@@ -8341,8 +8359,6 @@ namespace
   basl::LRAction const action_seq_689 [] =
   {
     action_682,
-    action_113,
-    action_114,
     0,
   };
   basl::LRAction const action_seq_690 [] =
@@ -8353,6 +8369,8 @@ namespace
   basl::LRAction const action_seq_691 [] =
   {
     action_684,
+    action_113,
+    action_114,
     0,
   };
   basl::LRAction const action_seq_692 [] =
@@ -8833,28 +8851,28 @@ namespace
   basl::LRAction const action_seq_787 [] =
   {
     action_780,
-    action_781,
-    action_782,
     0,
   };
   basl::LRAction const action_seq_788 [] =
   {
-    action_782,
+    action_781,
     0,
   };
   basl::LRAction const action_seq_789 [] =
   {
-    action_781,
+    action_782,
+    action_783,
+    action_784,
     0,
   };
   basl::LRAction const action_seq_790 [] =
   {
-    action_783,
+    action_784,
     0,
   };
   basl::LRAction const action_seq_791 [] =
   {
-    action_784,
+    action_783,
     0,
   };
   basl::LRAction const action_seq_792 [] =
@@ -9214,44 +9232,44 @@ namespace
   };
   basl::LRAction const action_seq_863 [] =
   {
-    action_780,
-    action_781,
+    action_856,
     0,
   };
   basl::LRAction const action_seq_864 [] =
   {
-    action_856,
+    action_857,
     0,
   };
   basl::LRAction const action_seq_865 [] =
   {
-    action_857,
+    action_858,
     0,
   };
   basl::LRAction const action_seq_866 [] =
   {
-    action_858,
     action_859,
     0,
   };
   basl::LRAction const action_seq_867 [] =
   {
-    action_858,
+    action_782,
+    action_783,
     0,
   };
   basl::LRAction const action_seq_868 [] =
   {
-    action_859,
+    action_860,
     0,
   };
   basl::LRAction const action_seq_869 [] =
   {
-    action_860,
+    action_861,
     0,
   };
   basl::LRAction const action_seq_870 [] =
   {
-    action_861,
+    action_862,
+    action_863,
     0,
   };
   basl::LRAction const action_seq_871 [] =
@@ -9702,12 +9720,11 @@ namespace
   basl::LRAction const action_seq_960 [] =
   {
     action_951,
-    action_952,
     0,
   };
   basl::LRAction const action_seq_961 [] =
   {
-    action_951,
+    action_952,
     0,
   };
   basl::LRAction const action_seq_962 [] =
@@ -9723,11 +9740,12 @@ namespace
   basl::LRAction const action_seq_964 [] =
   {
     action_955,
+    action_956,
     0,
   };
   basl::LRAction const action_seq_965 [] =
   {
-    action_956,
+    action_955,
     0,
   };
   basl::LRAction const action_seq_966 [] =
@@ -9927,27 +9945,27 @@ namespace
   };
   basl::LRAction const action_seq_1005 [] =
   {
-    action_952,
+    action_996,
     0,
   };
   basl::LRAction const action_seq_1006 [] =
   {
-    action_996,
+    action_997,
     0,
   };
   basl::LRAction const action_seq_1007 [] =
   {
-    action_997,
+    action_998,
     0,
   };
   basl::LRAction const action_seq_1008 [] =
   {
-    action_998,
+    action_999,
     0,
   };
   basl::LRAction const action_seq_1009 [] =
   {
-    action_999,
+    action_956,
     0,
   };
   basl::LRAction const action_seq_1010 [] =
@@ -10093,6 +10111,26 @@ namespace
   basl::LRAction const action_seq_1038 [] =
   {
     action_1028,
+    0,
+  };
+  basl::LRAction const action_seq_1039 [] =
+  {
+    action_1029,
+    0,
+  };
+  basl::LRAction const action_seq_1040 [] =
+  {
+    action_1030,
+    0,
+  };
+  basl::LRAction const action_seq_1041 [] =
+  {
+    action_1031,
+    0,
+  };
+  basl::LRAction const action_seq_1042 [] =
+  {
+    action_1032,
     0,
   };
 
@@ -13658,21 +13696,23 @@ namespace
   };
   basl::LRMove const move_541 [] =
   {
-    { 1, action_seq_42},
-    { 207, action_seq_631},
+    { 3, action_seq_42},
+    { 56, action_seq_631},
+    { 70, action_seq_632},
+    { 207, action_seq_633},
   };
   basl::LRMove const move_542 [] =
   {
-    { 0, action_seq_632},
+    { 0, action_seq_634},
   };
   basl::LRMove const move_543 [] =
   {
-    { 0, action_seq_633},
+    { 0, action_seq_635},
   };
   basl::LRMove const move_544 [] =
   {
     { 1, action_seq_42},
-    { 43, action_seq_634},
+    { 43, action_seq_636},
   };
   basl::LRMove const move_545 [] =
   {
@@ -13693,24 +13733,24 @@ namespace
   basl::LRMove const move_548 [] =
   {
     { 1, action_seq_73},
-    { 43, action_seq_635},
+    { 43, action_seq_637},
   };
   basl::LRMove const move_549 [] =
   {
-    { 0, action_seq_636},
+    { 0, action_seq_638},
   };
   basl::LRMove const move_550 [] =
   {
     { 3, action_seq_42},
-    { 29, action_seq_637},
-    { 43, action_seq_637},
-    { 225, action_seq_637},
+    { 29, action_seq_639},
+    { 43, action_seq_639},
+    { 225, action_seq_639},
   };
   basl::LRMove const move_551 [] =
   {
     { 4, action_seq_42},
     { 29, action_seq_164},
-    { 39, action_seq_638},
+    { 39, action_seq_640},
     { 43, action_seq_164},
     { 225, action_seq_164},
   };
@@ -13745,24 +13785,24 @@ namespace
     { 143, action_seq_30},
     { 144, action_seq_31},
     { 145, action_seq_32},
-    { 225, action_seq_639},
+    { 225, action_seq_641},
   };
   basl::LRMove const move_553 [] =
   {
-    { 0, action_seq_640},
+    { 0, action_seq_642},
   };
   basl::LRMove const move_554 [] =
   {
-    { 0, action_seq_641},
+    { 0, action_seq_643},
   };
   basl::LRMove const move_555 [] =
   {
-    { 0, action_seq_642},
+    { 0, action_seq_644},
   };
   basl::LRMove const move_556 [] =
   {
     { 1, action_seq_42},
-    { 240, action_seq_643},
+    { 240, action_seq_645},
   };
   basl::LRMove const move_557 [] =
   {
@@ -13807,66 +13847,66 @@ namespace
   };
   basl::LRMove const move_558 [] =
   {
-    { 0, action_seq_644},
+    { 0, action_seq_646},
   };
   basl::LRMove const move_559 [] =
   {
-    { 0, action_seq_645},
+    { 0, action_seq_647},
   };
   basl::LRMove const move_560 [] =
   {
-    { 0, action_seq_646},
+    { 0, action_seq_648},
   };
   basl::LRMove const move_561 [] =
   {
-    { 0, action_seq_647},
+    { 0, action_seq_649},
   };
   basl::LRMove const move_562 [] =
   {
-    { 0, action_seq_648},
+    { 0, action_seq_650},
   };
   basl::LRMove const move_563 [] =
   {
-    { 0, action_seq_649},
+    { 0, action_seq_651},
   };
   basl::LRMove const move_564 [] =
   {
-    { 1, action_seq_651},
-    { 22, action_seq_650},
+    { 1, action_seq_653},
+    { 22, action_seq_652},
   };
   basl::LRMove const move_565 [] =
   {
-    { 0, action_seq_652},
+    { 0, action_seq_654},
   };
   basl::LRMove const move_566 [] =
   {
-    { 0, action_seq_653},
+    { 0, action_seq_655},
   };
   basl::LRMove const move_567 [] =
   {
-    { 0, action_seq_654},
+    { 0, action_seq_656},
   };
   basl::LRMove const move_568 [] =
   {
-    { 0, action_seq_655},
+    { 0, action_seq_657},
   };
   basl::LRMove const move_569 [] =
   {
-    { 0, action_seq_656},
+    { 0, action_seq_658},
   };
   basl::LRMove const move_570 [] =
   {
-    { 0, action_seq_657},
+    { 0, action_seq_659},
   };
   basl::LRMove const move_571 [] =
   {
     { 1, action_seq_42},
-    { 240, action_seq_658},
+    { 240, action_seq_660},
   };
   basl::LRMove const move_572 [] =
   {
     { 1, action_seq_42},
-    { 60, action_seq_659},
+    { 60, action_seq_661},
   };
   basl::LRMove const move_573 [] =
   {
@@ -13903,7 +13943,7 @@ namespace
     { 143, action_seq_30},
     { 144, action_seq_31},
     { 145, action_seq_32},
-    { 240, action_seq_660},
+    { 240, action_seq_662},
     { 252, action_seq_465},
     { 253, action_seq_466},
     { 254, action_seq_467},
@@ -13911,133 +13951,133 @@ namespace
   };
   basl::LRMove const move_574 [] =
   {
-    { 0, action_seq_661},
+    { 0, action_seq_663},
   };
   basl::LRMove const move_575 [] =
   {
-    { 0, action_seq_662},
+    { 0, action_seq_664},
   };
   basl::LRMove const move_576 [] =
   {
-    { 0, action_seq_663},
+    { 0, action_seq_665},
   };
   basl::LRMove const move_577 [] =
   {
-    { 0, action_seq_664},
+    { 0, action_seq_666},
   };
   basl::LRMove const move_578 [] =
   {
     { 1, action_seq_42},
-    { 240, action_seq_665},
+    { 240, action_seq_667},
   };
   basl::LRMove const move_579 [] =
   {
-    { 3, action_seq_666},
+    { 3, action_seq_668},
     { 252, action_seq_465},
     { 253, action_seq_466},
     { 254, action_seq_467},
   };
   basl::LRMove const move_580 [] =
   {
-    { 2, action_seq_668},
-    { 42, action_seq_667},
+    { 2, action_seq_670},
+    { 42, action_seq_669},
     { 47, action_seq_115},
   };
   basl::LRMove const move_581 [] =
   {
-    { 0, action_seq_669},
+    { 0, action_seq_671},
   };
   basl::LRMove const move_582 [] =
   {
-    { 1, action_seq_671},
-    { 116, action_seq_670},
+    { 1, action_seq_673},
+    { 116, action_seq_672},
   };
   basl::LRMove const move_583 [] =
   {
-    { 1, action_seq_673},
-    { 29, action_seq_672},
+    { 1, action_seq_675},
+    { 29, action_seq_674},
   };
   basl::LRMove const move_584 [] =
   {
-    { 0, action_seq_674},
+    { 0, action_seq_676},
   };
   basl::LRMove const move_585 [] =
   {
-    { 0, action_seq_675},
+    { 0, action_seq_677},
   };
   basl::LRMove const move_586 [] =
   {
     { 1, action_seq_42},
-    { 239, action_seq_676},
+    { 239, action_seq_678},
   };
   basl::LRMove const move_587 [] =
   {
     { 1, action_seq_42},
-    { 240, action_seq_677},
+    { 240, action_seq_679},
   };
   basl::LRMove const move_588 [] =
   {
     { 1, action_seq_42},
-    { 40, action_seq_678},
+    { 40, action_seq_680},
   };
   basl::LRMove const move_589 [] =
   {
-    { 0, action_seq_679},
+    { 0, action_seq_681},
   };
   basl::LRMove const move_590 [] =
   {
-    { 0, action_seq_680},
+    { 0, action_seq_682},
   };
   basl::LRMove const move_591 [] =
   {
-    { 0, action_seq_681},
+    { 0, action_seq_683},
   };
   basl::LRMove const move_592 [] =
   {
-    { 0, action_seq_682},
+    { 0, action_seq_684},
   };
   basl::LRMove const move_593 [] =
   {
-    { 0, action_seq_683},
+    { 0, action_seq_685},
   };
   basl::LRMove const move_594 [] =
   {
-    { 0, action_seq_684},
+    { 0, action_seq_686},
   };
   basl::LRMove const move_595 [] =
   {
-    { 0, action_seq_685},
+    { 0, action_seq_687},
   };
   basl::LRMove const move_596 [] =
   {
-    { 0, action_seq_686},
+    { 0, action_seq_688},
   };
   basl::LRMove const move_597 [] =
   {
-    { 0, action_seq_687},
+    { 0, action_seq_689},
   };
   basl::LRMove const move_598 [] =
   {
-    { 0, action_seq_688},
+    { 0, action_seq_690},
   };
   basl::LRMove const move_599 [] =
   {
     { 2, action_seq_116},
-    { 42, action_seq_689},
+    { 42, action_seq_691},
     { 47, action_seq_115},
   };
   basl::LRMove const move_600 [] =
   {
-    { 0, action_seq_690},
+    { 0, action_seq_692},
   };
   basl::LRMove const move_601 [] =
   {
-    { 0, action_seq_691},
+    { 0, action_seq_693},
   };
   basl::LRMove const move_602 [] =
   {
     { 1, action_seq_42},
-    { 240, action_seq_692},
+    { 240, action_seq_694},
   };
   basl::LRMove const move_603 [] =
   {
@@ -14074,7 +14114,7 @@ namespace
     { 143, action_seq_30},
     { 144, action_seq_31},
     { 145, action_seq_32},
-    { 240, action_seq_693},
+    { 240, action_seq_695},
     { 252, action_seq_465},
     { 253, action_seq_466},
     { 254, action_seq_467},
@@ -14083,20 +14123,20 @@ namespace
   };
   basl::LRMove const move_604 [] =
   {
-    { 0, action_seq_694},
+    { 0, action_seq_696},
   };
   basl::LRMove const move_605 [] =
   {
-    { 0, action_seq_695},
+    { 0, action_seq_697},
   };
   basl::LRMove const move_606 [] =
   {
-    { 0, action_seq_696},
+    { 0, action_seq_698},
   };
   basl::LRMove const move_607 [] =
   {
-    { 1, action_seq_698},
-    { 51, action_seq_697},
+    { 1, action_seq_700},
+    { 51, action_seq_699},
   };
   basl::LRMove const move_608 [] =
   {
@@ -14107,13 +14147,13 @@ namespace
   basl::LRMove const move_609 [] =
   {
     { 2, action_seq_42},
-    { 56, action_seq_699},
-    { 302, action_seq_700},
+    { 56, action_seq_701},
+    { 302, action_seq_702},
   };
   basl::LRMove const move_610 [] =
   {
     { 1, action_seq_42},
-    { 240, action_seq_701},
+    { 240, action_seq_703},
   };
   basl::LRMove const move_611 [] =
   {
@@ -14121,33 +14161,33 @@ namespace
     { 47, action_seq_2},
     { 54, action_seq_148},
     { 56, action_seq_491},
-    { 240, action_seq_702},
+    { 240, action_seq_704},
     { 302, action_seq_493},
   };
   basl::LRMove const move_612 [] =
   {
-    { 0, action_seq_703},
+    { 0, action_seq_705},
   };
   basl::LRMove const move_613 [] =
   {
-    { 0, action_seq_704},
+    { 0, action_seq_706},
   };
   basl::LRMove const move_614 [] =
   {
-    { 0, action_seq_705},
+    { 0, action_seq_707},
   };
   basl::LRMove const move_615 [] =
   {
-    { 0, action_seq_706},
+    { 0, action_seq_708},
   };
   basl::LRMove const move_616 [] =
   {
-    { 0, action_seq_707},
+    { 0, action_seq_709},
   };
   basl::LRMove const move_617 [] =
   {
     { 1, action_seq_42},
-    { 239, action_seq_708},
+    { 239, action_seq_710},
   };
   basl::LRMove const move_618 [] =
   {
@@ -14168,49 +14208,49 @@ namespace
   basl::LRMove const move_621 [] =
   {
     { 1, action_seq_42},
-    { 43, action_seq_709},
+    { 43, action_seq_711},
   };
   basl::LRMove const move_622 [] =
   {
     { 1, action_seq_499},
-    { 43, action_seq_710},
+    { 43, action_seq_712},
   };
   basl::LRMove const move_623 [] =
   {
-    { 0, action_seq_711},
+    { 0, action_seq_713},
   };
   basl::LRMove const move_624 [] =
   {
     { 1, action_seq_42},
-    { 43, action_seq_712},
+    { 43, action_seq_714},
   };
   basl::LRMove const move_625 [] =
   {
-    { 0, action_seq_713},
+    { 0, action_seq_715},
   };
   basl::LRMove const move_626 [] =
   {
-    { 0, action_seq_714},
+    { 0, action_seq_716},
   };
   basl::LRMove const move_627 [] =
   {
     { 3, action_seq_42},
-    { 0, action_seq_715},
-    { 29, action_seq_715},
-    { 225, action_seq_715},
+    { 0, action_seq_717},
+    { 29, action_seq_717},
+    { 225, action_seq_717},
   };
   basl::LRMove const move_628 [] =
   {
-    { 0, action_seq_716},
+    { 0, action_seq_718},
   };
   basl::LRMove const move_629 [] =
   {
     { 1, action_seq_42},
-    { 40, action_seq_717},
+    { 40, action_seq_719},
   };
   basl::LRMove const move_630 [] =
   {
-    { 0, action_seq_718},
+    { 0, action_seq_720},
   };
   basl::LRMove const move_631 [] =
   {
@@ -14248,40 +14288,40 @@ namespace
   basl::LRMove const move_632 [] =
   {
     { 4, action_seq_42},
-    { 29, action_seq_719},
-    { 39, action_seq_720},
+    { 29, action_seq_721},
+    { 39, action_seq_722},
     { 47, action_seq_115},
-    { 53, action_seq_719},
+    { 53, action_seq_721},
   };
   basl::LRMove const move_633 [] =
   {
     { 4, action_seq_42},
-    { 29, action_seq_721},
-    { 39, action_seq_722},
+    { 29, action_seq_723},
+    { 39, action_seq_724},
     { 47, action_seq_115},
-    { 240, action_seq_721},
+    { 240, action_seq_723},
   };
   basl::LRMove const move_634 [] =
   {
     { 1, action_seq_42},
-    { 240, action_seq_723},
+    { 240, action_seq_725},
   };
   basl::LRMove const move_635 [] =
   {
-    { 0, action_seq_724},
+    { 0, action_seq_726},
   };
   basl::LRMove const move_636 [] =
   {
-    { 1, action_seq_726},
-    { 29, action_seq_725},
+    { 1, action_seq_728},
+    { 29, action_seq_727},
   };
   basl::LRMove const move_637 [] =
   {
-    { 0, action_seq_727},
+    { 0, action_seq_729},
   };
   basl::LRMove const move_638 [] =
   {
-    { 0, action_seq_728},
+    { 0, action_seq_730},
   };
   basl::LRMove const move_639 [] =
   {
@@ -14292,11 +14332,11 @@ namespace
   basl::LRMove const move_640 [] =
   {
     { 1, action_seq_42},
-    { 43, action_seq_729},
+    { 43, action_seq_731},
   };
   basl::LRMove const move_641 [] =
   {
-    { 0, action_seq_730},
+    { 0, action_seq_732},
   };
   basl::LRMove const move_642 [] =
   {
@@ -14313,234 +14353,234 @@ namespace
   basl::LRMove const move_643 [] =
   {
     { 1, action_seq_42},
-    { 43, action_seq_731},
+    { 43, action_seq_733},
   };
   basl::LRMove const move_644 [] =
   {
     { 2, action_seq_42},
     { 29, action_seq_168},
-    { 43, action_seq_732},
+    { 43, action_seq_734},
   };
   basl::LRMove const move_645 [] =
   {
     { 1, action_seq_42},
-    { 43, action_seq_733},
+    { 43, action_seq_735},
   };
   basl::LRMove const move_646 [] =
   {
-    { 0, action_seq_734},
+    { 0, action_seq_736},
   };
   basl::LRMove const move_647 [] =
   {
     { 2, action_seq_42},
-    { 42, action_seq_735},
+    { 42, action_seq_737},
     { 47, action_seq_115},
   };
   basl::LRMove const move_648 [] =
   {
-    { 1, action_seq_737},
-    { 29, action_seq_736},
+    { 1, action_seq_739},
+    { 29, action_seq_738},
   };
   basl::LRMove const move_649 [] =
   {
-    { 0, action_seq_738},
+    { 0, action_seq_740},
   };
   basl::LRMove const move_650 [] =
   {
-    { 0, action_seq_739},
+    { 0, action_seq_741},
   };
   basl::LRMove const move_651 [] =
   {
     { 1, action_seq_42},
-    { 53, action_seq_740},
+    { 53, action_seq_742},
   };
   basl::LRMove const move_652 [] =
   {
-    { 0, action_seq_741},
+    { 0, action_seq_743},
   };
   basl::LRMove const move_653 [] =
   {
-    { 0, action_seq_742},
+    { 0, action_seq_744},
   };
   basl::LRMove const move_654 [] =
   {
-    { 0, action_seq_743},
+    { 0, action_seq_745},
   };
   basl::LRMove const move_655 [] =
   {
     { 1, action_seq_42},
-    { 43, action_seq_744},
+    { 43, action_seq_746},
   };
   basl::LRMove const move_656 [] =
   {
-    { 0, action_seq_745},
+    { 0, action_seq_747},
   };
   basl::LRMove const move_657 [] =
   {
-    { 0, action_seq_746},
+    { 0, action_seq_748},
   };
   basl::LRMove const move_658 [] =
   {
-    { 0, action_seq_747},
+    { 0, action_seq_749},
   };
   basl::LRMove const move_659 [] =
   {
     { 1, action_seq_42},
-    { 68, action_seq_748},
+    { 68, action_seq_750},
   };
   basl::LRMove const move_660 [] =
-  {
-    { 1, action_seq_750},
-    { 67, action_seq_749},
-  };
-  basl::LRMove const move_661 [] =
   {
     { 1, action_seq_752},
     { 67, action_seq_751},
   };
+  basl::LRMove const move_661 [] =
+  {
+    { 1, action_seq_754},
+    { 67, action_seq_753},
+  };
   basl::LRMove const move_662 [] =
-  {
-    { 0, action_seq_753},
-  };
-  basl::LRMove const move_663 [] =
-  {
-    { 0, action_seq_754},
-  };
-  basl::LRMove const move_664 [] =
   {
     { 0, action_seq_755},
   };
-  basl::LRMove const move_665 [] =
+  basl::LRMove const move_663 [] =
   {
     { 0, action_seq_756},
   };
-  basl::LRMove const move_666 [] =
+  basl::LRMove const move_664 [] =
   {
     { 0, action_seq_757},
   };
-  basl::LRMove const move_667 [] =
+  basl::LRMove const move_665 [] =
   {
     { 0, action_seq_758},
   };
-  basl::LRMove const move_668 [] =
+  basl::LRMove const move_666 [] =
   {
     { 0, action_seq_759},
   };
-  basl::LRMove const move_669 [] =
+  basl::LRMove const move_667 [] =
   {
     { 0, action_seq_760},
   };
-  basl::LRMove const move_670 [] =
+  basl::LRMove const move_668 [] =
   {
     { 0, action_seq_761},
   };
-  basl::LRMove const move_671 [] =
+  basl::LRMove const move_669 [] =
   {
     { 0, action_seq_762},
   };
-  basl::LRMove const move_672 [] =
+  basl::LRMove const move_670 [] =
   {
     { 0, action_seq_763},
   };
-  basl::LRMove const move_673 [] =
+  basl::LRMove const move_671 [] =
   {
     { 0, action_seq_764},
   };
-  basl::LRMove const move_674 [] =
+  basl::LRMove const move_672 [] =
   {
     { 0, action_seq_765},
   };
-  basl::LRMove const move_675 [] =
+  basl::LRMove const move_673 [] =
   {
     { 0, action_seq_766},
   };
-  basl::LRMove const move_676 [] =
+  basl::LRMove const move_674 [] =
   {
     { 0, action_seq_767},
   };
-  basl::LRMove const move_677 [] =
+  basl::LRMove const move_675 [] =
   {
     { 0, action_seq_768},
   };
-  basl::LRMove const move_678 [] =
+  basl::LRMove const move_676 [] =
   {
     { 0, action_seq_769},
   };
-  basl::LRMove const move_679 [] =
+  basl::LRMove const move_677 [] =
   {
     { 0, action_seq_770},
   };
-  basl::LRMove const move_680 [] =
+  basl::LRMove const move_678 [] =
   {
     { 0, action_seq_771},
   };
-  basl::LRMove const move_681 [] =
+  basl::LRMove const move_679 [] =
   {
     { 0, action_seq_772},
   };
-  basl::LRMove const move_682 [] =
+  basl::LRMove const move_680 [] =
   {
     { 0, action_seq_773},
   };
-  basl::LRMove const move_683 [] =
+  basl::LRMove const move_681 [] =
   {
     { 0, action_seq_774},
   };
-  basl::LRMove const move_684 [] =
+  basl::LRMove const move_682 [] =
   {
     { 0, action_seq_775},
   };
-  basl::LRMove const move_685 [] =
+  basl::LRMove const move_683 [] =
   {
     { 0, action_seq_776},
   };
-  basl::LRMove const move_686 [] =
+  basl::LRMove const move_684 [] =
   {
     { 0, action_seq_777},
   };
-  basl::LRMove const move_687 [] =
+  basl::LRMove const move_685 [] =
   {
     { 0, action_seq_778},
   };
-  basl::LRMove const move_688 [] =
+  basl::LRMove const move_686 [] =
   {
     { 0, action_seq_779},
   };
-  basl::LRMove const move_689 [] =
+  basl::LRMove const move_687 [] =
   {
     { 0, action_seq_780},
   };
-  basl::LRMove const move_690 [] =
+  basl::LRMove const move_688 [] =
   {
     { 0, action_seq_781},
   };
-  basl::LRMove const move_691 [] =
+  basl::LRMove const move_689 [] =
   {
     { 0, action_seq_782},
   };
-  basl::LRMove const move_692 [] =
+  basl::LRMove const move_690 [] =
   {
     { 0, action_seq_783},
   };
-  basl::LRMove const move_693 [] =
+  basl::LRMove const move_691 [] =
   {
     { 0, action_seq_784},
   };
-  basl::LRMove const move_694 [] =
+  basl::LRMove const move_692 [] =
   {
     { 0, action_seq_785},
   };
-  basl::LRMove const move_695 [] =
+  basl::LRMove const move_693 [] =
   {
     { 0, action_seq_786},
+  };
+  basl::LRMove const move_694 [] =
+  {
+    { 0, action_seq_787},
+  };
+  basl::LRMove const move_695 [] =
+  {
+    { 0, action_seq_788},
   };
   basl::LRMove const move_696 [] =
   {
     { 19, action_seq_37},
-    { 42, action_seq_787},
+    { 42, action_seq_789},
     { 47, action_seq_2},
-    { 51, action_seq_788},
-    { 67, action_seq_789},
+    { 51, action_seq_790},
+    { 67, action_seq_791},
     { 73, action_seq_134},
     { 99, action_seq_135},
     { 109, action_seq_6},
@@ -14560,10 +14600,10 @@ namespace
   basl::LRMove const move_697 [] =
   {
     { 8, action_seq_37},
-    { 42, action_seq_787},
+    { 42, action_seq_789},
     { 47, action_seq_2},
-    { 51, action_seq_788},
-    { 67, action_seq_789},
+    { 51, action_seq_790},
+    { 67, action_seq_791},
     { 73, action_seq_134},
     { 99, action_seq_135},
     { 109, action_seq_6},
@@ -14572,13 +14612,13 @@ namespace
   basl::LRMove const move_698 [] =
   {
     { 1, action_seq_42},
-    { 53, action_seq_790},
+    { 53, action_seq_792},
   };
   basl::LRMove const move_699 [] =
   {
     { 5, action_seq_37},
     { 47, action_seq_2},
-    { 116, action_seq_791},
+    { 116, action_seq_793},
     { 252, action_seq_465},
     { 253, action_seq_466},
     { 254, action_seq_467},
@@ -14586,16 +14626,16 @@ namespace
   basl::LRMove const move_700 [] =
   {
     { 1, action_seq_42},
-    { 43, action_seq_792},
+    { 43, action_seq_794},
   };
   basl::LRMove const move_701 [] =
   {
     { 1, action_seq_42},
-    { 239, action_seq_793},
+    { 239, action_seq_795},
   };
   basl::LRMove const move_702 [] =
   {
-    { 0, action_seq_794},
+    { 0, action_seq_796},
   };
   basl::LRMove const move_703 [] =
   {
@@ -14605,7 +14645,7 @@ namespace
   };
   basl::LRMove const move_704 [] =
   {
-    { 0, action_seq_795},
+    { 0, action_seq_797},
   };
   basl::LRMove const move_705 [] =
   {
@@ -14616,7 +14656,7 @@ namespace
   };
   basl::LRMove const move_706 [] =
   {
-    { 0, action_seq_796},
+    { 0, action_seq_798},
   };
   basl::LRMove const move_707 [] =
   {
@@ -14630,50 +14670,50 @@ namespace
   };
   basl::LRMove const move_709 [] =
   {
-    { 0, action_seq_797},
+    { 0, action_seq_799},
   };
   basl::LRMove const move_710 [] =
   {
-    { 0, action_seq_798},
+    { 0, action_seq_800},
   };
   basl::LRMove const move_711 [] =
   {
-    { 0, action_seq_799},
+    { 0, action_seq_801},
   };
   basl::LRMove const move_712 [] =
   {
-    { 0, action_seq_800},
+    { 0, action_seq_802},
   };
   basl::LRMove const move_713 [] =
   {
     { 1, action_seq_563},
-    { 60, action_seq_801},
+    { 60, action_seq_803},
   };
   basl::LRMove const move_714 [] =
   {
     { 1, action_seq_42},
-    { 68, action_seq_802},
+    { 68, action_seq_804},
   };
   basl::LRMove const move_715 [] =
   {
     { 2, action_seq_73},
-    { 22, action_seq_635},
-    { 43, action_seq_635},
+    { 22, action_seq_637},
+    { 43, action_seq_637},
   };
   basl::LRMove const move_716 [] =
   {
     { 4, action_seq_42},
-    { 22, action_seq_637},
-    { 29, action_seq_637},
-    { 43, action_seq_637},
-    { 225, action_seq_637},
+    { 22, action_seq_639},
+    { 29, action_seq_639},
+    { 43, action_seq_639},
+    { 225, action_seq_639},
   };
   basl::LRMove const move_717 [] =
   {
     { 5, action_seq_42},
     { 22, action_seq_164},
     { 29, action_seq_164},
-    { 39, action_seq_803},
+    { 39, action_seq_805},
     { 43, action_seq_164},
     { 225, action_seq_164},
   };
@@ -14707,154 +14747,162 @@ namespace
     { 141, action_seq_28},
     { 142, action_seq_29},
     { 143, action_seq_30},
-    { 144, action_seq_804},
+    { 144, action_seq_806},
     { 145, action_seq_32},
     { 225, action_seq_160},
   };
   basl::LRMove const move_719 [] =
   {
     { 1, action_seq_42},
-    { 43, action_seq_805},
+    { 43, action_seq_807},
   };
   basl::LRMove const move_720 [] =
   {
     { 2, action_seq_161},
-    { 29, action_seq_806},
+    { 29, action_seq_808},
     { 225, action_seq_160},
   };
   basl::LRMove const move_721 [] =
   {
-    { 0, action_seq_807},
+    { 0, action_seq_809},
   };
   basl::LRMove const move_722 [] =
   {
     { 1, action_seq_42},
-    { 68, action_seq_808},
+    { 68, action_seq_810},
   };
   basl::LRMove const move_723 [] =
   {
-    { 0, action_seq_809},
+    { 0, action_seq_811},
   };
   basl::LRMove const move_724 [] =
   {
-    { 1, action_seq_42},
-    { 68, action_seq_810},
+    { 0, action_seq_812},
   };
   basl::LRMove const move_725 [] =
   {
-    { 1, action_seq_254},
-    { 42, action_seq_141},
+    { 0, action_seq_813},
   };
   basl::LRMove const move_726 [] =
   {
     { 1, action_seq_42},
-    { 40, action_seq_811},
+    { 68, action_seq_814},
   };
   basl::LRMove const move_727 [] =
   {
-    { 1, action_seq_813},
-    { 234, action_seq_812},
+    { 1, action_seq_254},
+    { 42, action_seq_141},
   };
   basl::LRMove const move_728 [] =
   {
-    { 0, action_seq_814},
+    { 1, action_seq_42},
+    { 40, action_seq_815},
   };
   basl::LRMove const move_729 [] =
   {
-    { 0, action_seq_815},
+    { 1, action_seq_817},
+    { 234, action_seq_816},
   };
   basl::LRMove const move_730 [] =
   {
-    { 0, action_seq_816},
+    { 0, action_seq_818},
   };
   basl::LRMove const move_731 [] =
   {
-    { 0, action_seq_817},
+    { 0, action_seq_819},
   };
   basl::LRMove const move_732 [] =
   {
-    { 0, action_seq_818},
+    { 0, action_seq_820},
   };
   basl::LRMove const move_733 [] =
   {
-    { 0, action_seq_819},
+    { 0, action_seq_821},
   };
   basl::LRMove const move_734 [] =
   {
-    { 0, action_seq_820},
+    { 0, action_seq_822},
   };
   basl::LRMove const move_735 [] =
   {
-    { 0, action_seq_821},
+    { 0, action_seq_823},
   };
   basl::LRMove const move_736 [] =
   {
-    { 1, action_seq_822},
-    { 40, action_seq_41},
+    { 0, action_seq_824},
   };
   basl::LRMove const move_737 [] =
   {
-    { 0, action_seq_823},
+    { 0, action_seq_825},
   };
   basl::LRMove const move_738 [] =
   {
-    { 0, action_seq_824},
+    { 1, action_seq_826},
+    { 40, action_seq_41},
   };
   basl::LRMove const move_739 [] =
   {
-    { 0, action_seq_825},
+    { 0, action_seq_827},
   };
   basl::LRMove const move_740 [] =
   {
-    { 1, action_seq_42},
-    { 22, action_seq_826},
+    { 0, action_seq_828},
   };
   basl::LRMove const move_741 [] =
   {
-    { 0, action_seq_827},
+    { 0, action_seq_829},
   };
   basl::LRMove const move_742 [] =
   {
-    { 0, action_seq_828},
+    { 1, action_seq_42},
+    { 22, action_seq_830},
   };
   basl::LRMove const move_743 [] =
   {
-    { 1, action_seq_42},
-    { 239, action_seq_829},
+    { 0, action_seq_831},
   };
   basl::LRMove const move_744 [] =
   {
-    { 0, action_seq_830},
+    { 0, action_seq_832},
   };
   basl::LRMove const move_745 [] =
   {
     { 1, action_seq_42},
-    { 239, action_seq_831},
+    { 239, action_seq_833},
   };
   basl::LRMove const move_746 [] =
   {
-    { 1, action_seq_42},
-    { 43, action_seq_832},
+    { 0, action_seq_834},
   };
   basl::LRMove const move_747 [] =
+  {
+    { 1, action_seq_42},
+    { 239, action_seq_835},
+  };
+  basl::LRMove const move_748 [] =
+  {
+    { 1, action_seq_42},
+    { 43, action_seq_836},
+  };
+  basl::LRMove const move_749 [] =
   {
     { 2, action_seq_42},
     { 42, action_seq_141},
     { 47, action_seq_115},
   };
-  basl::LRMove const move_748 [] =
-  {
-    { 0, action_seq_833},
-  };
-  basl::LRMove const move_749 [] =
-  {
-    { 0, action_seq_834},
-  };
   basl::LRMove const move_750 [] =
   {
-    { 0, action_seq_835},
+    { 0, action_seq_837},
   };
   basl::LRMove const move_751 [] =
+  {
+    { 0, action_seq_838},
+  };
+  basl::LRMove const move_752 [] =
+  {
+    { 0, action_seq_839},
+  };
+  basl::LRMove const move_753 [] =
   {
     { 30, action_seq_37},
     { 47, action_seq_2},
@@ -14885,30 +14933,30 @@ namespace
     { 143, action_seq_30},
     { 144, action_seq_31},
     { 145, action_seq_32},
-    { 240, action_seq_836},
-    { 316, action_seq_836},
-  };
-  basl::LRMove const move_752 [] =
-  {
-    { 0, action_seq_837},
-  };
-  basl::LRMove const move_753 [] =
-  {
-    { 0, action_seq_838},
+    { 240, action_seq_840},
+    { 316, action_seq_840},
   };
   basl::LRMove const move_754 [] =
   {
-    { 1, action_seq_42},
-    { 68, action_seq_839},
+    { 0, action_seq_841},
   };
   basl::LRMove const move_755 [] =
   {
+    { 0, action_seq_842},
+  };
+  basl::LRMove const move_756 [] =
+  {
+    { 1, action_seq_42},
+    { 68, action_seq_843},
+  };
+  basl::LRMove const move_757 [] =
+  {
     { 20, action_seq_37},
-    { 42, action_seq_787},
-    { 43, action_seq_788},
+    { 42, action_seq_789},
+    { 43, action_seq_790},
     { 47, action_seq_2},
-    { 51, action_seq_788},
-    { 67, action_seq_789},
+    { 51, action_seq_790},
+    { 67, action_seq_791},
     { 73, action_seq_134},
     { 99, action_seq_135},
     { 109, action_seq_6},
@@ -14925,251 +14973,251 @@ namespace
     { 144, action_seq_31},
     { 145, action_seq_32},
   };
-  basl::LRMove const move_756 [] =
+  basl::LRMove const move_758 [] =
   {
     { 9, action_seq_37},
-    { 42, action_seq_787},
-    { 43, action_seq_788},
+    { 42, action_seq_789},
+    { 43, action_seq_790},
     { 47, action_seq_2},
-    { 51, action_seq_788},
-    { 67, action_seq_789},
+    { 51, action_seq_790},
+    { 67, action_seq_791},
     { 73, action_seq_134},
     { 99, action_seq_135},
     { 109, action_seq_6},
     { 110, action_seq_7},
   };
-  basl::LRMove const move_757 [] =
-  {
-    { 1, action_seq_42},
-    { 53, action_seq_840},
-  };
-  basl::LRMove const move_758 [] =
-  {
-    { 2, action_seq_42},
-    { 29, action_seq_841},
-    { 53, action_seq_841},
-  };
   basl::LRMove const move_759 [] =
   {
-    { 0, action_seq_842},
+    { 1, action_seq_42},
+    { 53, action_seq_844},
   };
   basl::LRMove const move_760 [] =
   {
-    { 1, action_seq_42},
-    { 40, action_seq_843},
+    { 2, action_seq_42},
+    { 29, action_seq_845},
+    { 53, action_seq_845},
   };
   basl::LRMove const move_761 [] =
   {
-    { 2, action_seq_37},
-    { 47, action_seq_2},
-    { 240, action_seq_844},
+    { 0, action_seq_846},
   };
   basl::LRMove const move_762 [] =
   {
-    { 0, action_seq_845},
+    { 1, action_seq_42},
+    { 40, action_seq_847},
   };
   basl::LRMove const move_763 [] =
   {
-    { 0, action_seq_846},
+    { 2, action_seq_37},
+    { 47, action_seq_2},
+    { 240, action_seq_848},
   };
   basl::LRMove const move_764 [] =
   {
-    { 2, action_seq_847},
-    { 109, action_seq_6},
-    { 110, action_seq_7},
+    { 0, action_seq_849},
   };
   basl::LRMove const move_765 [] =
   {
-    { 2, action_seq_848},
-    { 109, action_seq_6},
-    { 110, action_seq_7},
+    { 0, action_seq_850},
   };
   basl::LRMove const move_766 [] =
   {
-    { 2, action_seq_849},
+    { 2, action_seq_851},
     { 109, action_seq_6},
     { 110, action_seq_7},
   };
   basl::LRMove const move_767 [] =
   {
-    { 2, action_seq_850},
+    { 2, action_seq_852},
     { 109, action_seq_6},
     { 110, action_seq_7},
   };
   basl::LRMove const move_768 [] =
   {
-    { 1, action_seq_42},
-    { 43, action_seq_851},
+    { 2, action_seq_853},
+    { 109, action_seq_6},
+    { 110, action_seq_7},
   };
   basl::LRMove const move_769 [] =
   {
-    { 1, action_seq_42},
-    { 68, action_seq_852},
+    { 2, action_seq_854},
+    { 109, action_seq_6},
+    { 110, action_seq_7},
   };
   basl::LRMove const move_770 [] =
   {
-    { 0, action_seq_853},
+    { 1, action_seq_42},
+    { 43, action_seq_855},
   };
   basl::LRMove const move_771 [] =
   {
-    { 0, action_seq_854},
+    { 1, action_seq_42},
+    { 68, action_seq_856},
   };
   basl::LRMove const move_772 [] =
   {
-    { 1, action_seq_42},
-    { 240, action_seq_855},
+    { 0, action_seq_857},
   };
   basl::LRMove const move_773 [] =
   {
-    { 1, action_seq_42},
-    { 240, action_seq_856},
+    { 0, action_seq_858},
   };
   basl::LRMove const move_774 [] =
   {
     { 1, action_seq_42},
-    { 53, action_seq_857},
+    { 240, action_seq_859},
   };
   basl::LRMove const move_775 [] =
   {
-    { 0, action_seq_858},
+    { 1, action_seq_42},
+    { 240, action_seq_860},
   };
   basl::LRMove const move_776 [] =
   {
-    { 0, action_seq_859},
+    { 1, action_seq_42},
+    { 53, action_seq_861},
   };
   basl::LRMove const move_777 [] =
   {
-    { 0, action_seq_860},
+    { 0, action_seq_862},
   };
   basl::LRMove const move_778 [] =
   {
-    { 1, action_seq_42},
-    { 68, action_seq_861},
+    { 0, action_seq_863},
   };
   basl::LRMove const move_779 [] =
   {
-    { 1, action_seq_42},
-    { 68, action_seq_862},
+    { 0, action_seq_864},
   };
   basl::LRMove const move_780 [] =
   {
-    { 5, action_seq_37},
-    { 42, action_seq_863},
-    { 47, action_seq_2},
-    { 67, action_seq_789},
-    { 73, action_seq_134},
-    { 99, action_seq_135},
+    { 1, action_seq_42},
+    { 68, action_seq_865},
   };
   basl::LRMove const move_781 [] =
   {
     { 1, action_seq_42},
-    { 47, action_seq_241},
+    { 68, action_seq_866},
   };
   basl::LRMove const move_782 [] =
   {
-    { 6, action_seq_37},
-    { 42, action_seq_787},
+    { 5, action_seq_37},
+    { 42, action_seq_867},
     { 47, action_seq_2},
-    { 51, action_seq_788},
-    { 67, action_seq_789},
+    { 67, action_seq_791},
     { 73, action_seq_134},
     { 99, action_seq_135},
   };
   basl::LRMove const move_783 [] =
   {
-    { 0, action_seq_864},
+    { 1, action_seq_42},
+    { 47, action_seq_241},
   };
   basl::LRMove const move_784 [] =
   {
-    { 0, action_seq_865},
+    { 6, action_seq_37},
+    { 42, action_seq_789},
+    { 47, action_seq_2},
+    { 51, action_seq_790},
+    { 67, action_seq_791},
+    { 73, action_seq_134},
+    { 99, action_seq_135},
   };
   basl::LRMove const move_785 [] =
   {
-    { 2, action_seq_868},
-    { 42, action_seq_866},
-    { 67, action_seq_867},
+    { 0, action_seq_868},
   };
   basl::LRMove const move_786 [] =
   {
-    { 2, action_seq_42},
-    { 42, action_seq_141},
-    { 67, action_seq_869},
+    { 0, action_seq_869},
   };
   basl::LRMove const move_787 [] =
   {
-    { 0, action_seq_870},
+    { 2, action_seq_872},
+    { 42, action_seq_870},
+    { 67, action_seq_871},
   };
   basl::LRMove const move_788 [] =
   {
-    { 0, action_seq_871},
+    { 2, action_seq_42},
+    { 42, action_seq_141},
+    { 67, action_seq_873},
   };
   basl::LRMove const move_789 [] =
   {
-    { 0, action_seq_872},
+    { 0, action_seq_874},
   };
   basl::LRMove const move_790 [] =
   {
-    { 0, action_seq_873},
+    { 0, action_seq_875},
   };
   basl::LRMove const move_791 [] =
   {
-    { 0, action_seq_874},
+    { 0, action_seq_876},
   };
   basl::LRMove const move_792 [] =
   {
-    { 0, action_seq_875},
+    { 0, action_seq_877},
   };
   basl::LRMove const move_793 [] =
   {
-    { 1, action_seq_668},
-    { 47, action_seq_115},
+    { 0, action_seq_878},
   };
   basl::LRMove const move_794 [] =
   {
-    { 1, action_seq_877},
-    { 29, action_seq_876},
+    { 0, action_seq_879},
   };
   basl::LRMove const move_795 [] =
   {
-    { 0, action_seq_878},
+    { 1, action_seq_670},
+    { 47, action_seq_115},
   };
   basl::LRMove const move_796 [] =
   {
-    { 1, action_seq_42},
-    { 43, action_seq_879},
+    { 1, action_seq_881},
+    { 29, action_seq_880},
   };
   basl::LRMove const move_797 [] =
   {
-    { 0, action_seq_880},
+    { 0, action_seq_882},
   };
   basl::LRMove const move_798 [] =
   {
     { 1, action_seq_42},
-    { 40, action_seq_881},
+    { 43, action_seq_883},
   };
   basl::LRMove const move_799 [] =
   {
-    { 0, action_seq_882},
+    { 0, action_seq_884},
   };
   basl::LRMove const move_800 [] =
   {
     { 1, action_seq_42},
-    { 40, action_seq_883},
+    { 40, action_seq_885},
   };
   basl::LRMove const move_801 [] =
   {
-    { 1, action_seq_73},
-    { 43, action_seq_884},
+    { 0, action_seq_886},
   };
   basl::LRMove const move_802 [] =
   {
-    { 0, action_seq_885},
+    { 1, action_seq_42},
+    { 40, action_seq_887},
   };
   basl::LRMove const move_803 [] =
   {
-    { 0, action_seq_886},
+    { 1, action_seq_73},
+    { 43, action_seq_888},
   };
   basl::LRMove const move_804 [] =
+  {
+    { 0, action_seq_889},
+  };
+  basl::LRMove const move_805 [] =
+  {
+    { 0, action_seq_890},
+  };
+  basl::LRMove const move_806 [] =
   {
     { 29, action_seq_37},
     { 47, action_seq_2},
@@ -15200,116 +15248,116 @@ namespace
     { 143, action_seq_30},
     { 144, action_seq_31},
     { 145, action_seq_32},
-    { 225, action_seq_887},
-  };
-  basl::LRMove const move_805 [] =
-  {
-    { 0, action_seq_888},
-  };
-  basl::LRMove const move_806 [] =
-  {
-    { 0, action_seq_889},
+    { 225, action_seq_891},
   };
   basl::LRMove const move_807 [] =
   {
-    { 0, action_seq_890},
+    { 0, action_seq_892},
   };
   basl::LRMove const move_808 [] =
   {
-    { 3, action_seq_42},
-    { 29, action_seq_715},
-    { 43, action_seq_715},
-    { 225, action_seq_715},
+    { 0, action_seq_893},
   };
   basl::LRMove const move_809 [] =
   {
-    { 1, action_seq_42},
-    { 42, action_seq_891},
+    { 0, action_seq_894},
   };
   basl::LRMove const move_810 [] =
   {
-    { 0, action_seq_892},
+    { 3, action_seq_42},
+    { 29, action_seq_717},
+    { 43, action_seq_717},
+    { 225, action_seq_717},
   };
   basl::LRMove const move_811 [] =
   {
-    { 0, action_seq_893},
+    { 1, action_seq_42},
+    { 42, action_seq_895},
   };
   basl::LRMove const move_812 [] =
   {
-    { 0, action_seq_894},
+    { 0, action_seq_896},
   };
   basl::LRMove const move_813 [] =
   {
-    { 0, action_seq_895},
+    { 0, action_seq_897},
   };
   basl::LRMove const move_814 [] =
   {
-    { 0, action_seq_896},
+    { 0, action_seq_898},
   };
   basl::LRMove const move_815 [] =
   {
-    { 0, action_seq_897},
+    { 0, action_seq_899},
   };
   basl::LRMove const move_816 [] =
   {
-    { 2, action_seq_898},
-    { 42, action_seq_667},
-    { 47, action_seq_115},
+    { 0, action_seq_900},
   };
   basl::LRMove const move_817 [] =
   {
-    { 1, action_seq_899},
-    { 29, action_seq_168},
+    { 0, action_seq_901},
   };
   basl::LRMove const move_818 [] =
   {
-    { 1, action_seq_42},
-    { 43, action_seq_900},
+    { 2, action_seq_902},
+    { 42, action_seq_669},
+    { 47, action_seq_115},
   };
   basl::LRMove const move_819 [] =
   {
-    { 2, action_seq_901},
-    { 42, action_seq_667},
-    { 47, action_seq_115},
+    { 1, action_seq_903},
+    { 29, action_seq_168},
   };
   basl::LRMove const move_820 [] =
   {
-    { 0, action_seq_902},
+    { 1, action_seq_42},
+    { 43, action_seq_904},
   };
   basl::LRMove const move_821 [] =
   {
-    { 1, action_seq_42},
-    { 240, action_seq_903},
+    { 2, action_seq_905},
+    { 42, action_seq_669},
+    { 47, action_seq_115},
   };
   basl::LRMove const move_822 [] =
   {
-    { 0, action_seq_904},
+    { 0, action_seq_906},
   };
   basl::LRMove const move_823 [] =
   {
-    { 2, action_seq_42},
-    { 43, action_seq_905},
-    { 47, action_seq_115},
+    { 1, action_seq_42},
+    { 240, action_seq_907},
   };
   basl::LRMove const move_824 [] =
   {
-    { 1, action_seq_42},
-    { 53, action_seq_906},
+    { 0, action_seq_908},
   };
   basl::LRMove const move_825 [] =
+  {
+    { 2, action_seq_42},
+    { 43, action_seq_909},
+    { 47, action_seq_115},
+  };
+  basl::LRMove const move_826 [] =
+  {
+    { 1, action_seq_42},
+    { 53, action_seq_910},
+  };
+  basl::LRMove const move_827 [] =
   {
     { 1, action_seq_107},
     { 262, action_seq_108},
   };
-  basl::LRMove const move_826 [] =
+  basl::LRMove const move_828 [] =
   {
-    { 1, action_seq_908},
-    { 42, action_seq_907},
+    { 1, action_seq_912},
+    { 42, action_seq_911},
   };
-  basl::LRMove const move_827 [] =
+  basl::LRMove const move_829 [] =
   {
     { 26, action_seq_37},
-    { 42, action_seq_909},
+    { 42, action_seq_913},
     { 47, action_seq_2},
     { 73, action_seq_134},
     { 99, action_seq_135},
@@ -15336,10 +15384,10 @@ namespace
     { 144, action_seq_31},
     { 145, action_seq_32},
   };
-  basl::LRMove const move_828 [] =
+  basl::LRMove const move_830 [] =
   {
     { 15, action_seq_37},
-    { 42, action_seq_909},
+    { 42, action_seq_913},
     { 47, action_seq_2},
     { 73, action_seq_134},
     { 99, action_seq_135},
@@ -15355,12 +15403,12 @@ namespace
     { 122, action_seq_15},
     { 123, action_seq_16},
   };
-  basl::LRMove const move_829 [] =
+  basl::LRMove const move_831 [] =
   {
-    { 1, action_seq_910},
+    { 1, action_seq_914},
     { 316, action_seq_490},
   };
-  basl::LRMove const move_830 [] =
+  basl::LRMove const move_832 [] =
   {
     { 30, action_seq_37},
     { 47, action_seq_2},
@@ -15391,63 +15439,63 @@ namespace
     { 143, action_seq_30},
     { 144, action_seq_31},
     { 145, action_seq_32},
-    { 240, action_seq_911},
-    { 316, action_seq_911},
-  };
-  basl::LRMove const move_831 [] =
-  {
-    { 0, action_seq_912},
-  };
-  basl::LRMove const move_832 [] =
-  {
-    { 2, action_seq_42},
-    { 22, action_seq_913},
-    { 29, action_seq_914},
+    { 240, action_seq_915},
+    { 316, action_seq_915},
   };
   basl::LRMove const move_833 [] =
   {
-    { 2, action_seq_916},
-    { 39, action_seq_915},
-    { 42, action_seq_907},
+    { 0, action_seq_916},
   };
   basl::LRMove const move_834 [] =
   {
-    { 0, action_seq_917},
+    { 2, action_seq_42},
+    { 22, action_seq_917},
+    { 29, action_seq_918},
   };
   basl::LRMove const move_835 [] =
   {
-    { 0, action_seq_918},
+    { 2, action_seq_920},
+    { 39, action_seq_919},
+    { 42, action_seq_911},
   };
   basl::LRMove const move_836 [] =
   {
-    { 7, action_seq_37},
-    { 42, action_seq_787},
-    { 43, action_seq_788},
-    { 47, action_seq_2},
-    { 51, action_seq_788},
-    { 67, action_seq_789},
-    { 73, action_seq_134},
-    { 99, action_seq_135},
+    { 0, action_seq_921},
   };
   basl::LRMove const move_837 [] =
   {
-    { 1, action_seq_42},
-    { 130, action_seq_919},
+    { 0, action_seq_922},
   };
   basl::LRMove const move_838 [] =
   {
-    { 2, action_seq_42},
-    { 29, action_seq_920},
-    { 53, action_seq_920},
+    { 7, action_seq_37},
+    { 42, action_seq_789},
+    { 43, action_seq_790},
+    { 47, action_seq_2},
+    { 51, action_seq_790},
+    { 67, action_seq_791},
+    { 73, action_seq_134},
+    { 99, action_seq_135},
   };
   basl::LRMove const move_839 [] =
   {
+    { 1, action_seq_42},
+    { 130, action_seq_923},
+  };
+  basl::LRMove const move_840 [] =
+  {
+    { 2, action_seq_42},
+    { 29, action_seq_924},
+    { 53, action_seq_924},
+  };
+  basl::LRMove const move_841 [] =
+  {
     { 20, action_seq_37},
-    { 29, action_seq_788},
-    { 42, action_seq_863},
+    { 29, action_seq_790},
+    { 42, action_seq_867},
     { 47, action_seq_2},
-    { 53, action_seq_788},
-    { 67, action_seq_789},
+    { 53, action_seq_790},
+    { 67, action_seq_791},
     { 73, action_seq_134},
     { 99, action_seq_135},
     { 109, action_seq_6},
@@ -15464,141 +15512,141 @@ namespace
     { 144, action_seq_31},
     { 145, action_seq_32},
   };
-  basl::LRMove const move_840 [] =
+  basl::LRMove const move_842 [] =
   {
     { 9, action_seq_37},
-    { 29, action_seq_788},
-    { 42, action_seq_863},
+    { 29, action_seq_790},
+    { 42, action_seq_867},
     { 47, action_seq_2},
-    { 53, action_seq_788},
-    { 67, action_seq_789},
+    { 53, action_seq_790},
+    { 67, action_seq_791},
     { 73, action_seq_134},
     { 99, action_seq_135},
     { 109, action_seq_6},
     { 110, action_seq_7},
   };
-  basl::LRMove const move_841 [] =
-  {
-    { 2, action_seq_42},
-    { 29, action_seq_921},
-    { 240, action_seq_921},
-  };
-  basl::LRMove const move_842 [] =
-  {
-    { 0, action_seq_922},
-  };
   basl::LRMove const move_843 [] =
   {
-    { 0, action_seq_923},
+    { 2, action_seq_42},
+    { 29, action_seq_925},
+    { 240, action_seq_925},
   };
   basl::LRMove const move_844 [] =
   {
-    { 0, action_seq_924},
+    { 0, action_seq_926},
   };
   basl::LRMove const move_845 [] =
   {
-    { 1, action_seq_42},
-    { 43, action_seq_925},
+    { 0, action_seq_927},
   };
   basl::LRMove const move_846 [] =
   {
-    { 0, action_seq_926},
+    { 0, action_seq_928},
   };
   basl::LRMove const move_847 [] =
   {
-    { 1, action_seq_928},
-    { 269, action_seq_927},
+    { 1, action_seq_42},
+    { 43, action_seq_929},
   };
   basl::LRMove const move_848 [] =
   {
-    { 0, action_seq_929},
+    { 0, action_seq_930},
   };
   basl::LRMove const move_849 [] =
   {
-    { 0, action_seq_930},
+    { 1, action_seq_932},
+    { 269, action_seq_931},
   };
   basl::LRMove const move_850 [] =
   {
-    { 0, action_seq_931},
+    { 0, action_seq_933},
   };
   basl::LRMove const move_851 [] =
   {
-    { 6, action_seq_37},
-    { 42, action_seq_863},
-    { 43, action_seq_788},
-    { 47, action_seq_2},
-    { 67, action_seq_789},
-    { 73, action_seq_134},
-    { 99, action_seq_135},
+    { 0, action_seq_934},
   };
   basl::LRMove const move_852 [] =
   {
-    { 1, action_seq_42},
-    { 43, action_seq_932},
+    { 0, action_seq_935},
   };
   basl::LRMove const move_853 [] =
   {
-    { 1, action_seq_867},
-    { 43, action_seq_868},
+    { 6, action_seq_37},
+    { 42, action_seq_867},
+    { 43, action_seq_790},
+    { 47, action_seq_2},
+    { 67, action_seq_791},
+    { 73, action_seq_134},
+    { 99, action_seq_135},
   };
   basl::LRMove const move_854 [] =
   {
-    { 0, action_seq_933},
+    { 1, action_seq_42},
+    { 43, action_seq_936},
   };
   basl::LRMove const move_855 [] =
   {
-    { 1, action_seq_42},
-    { 43, action_seq_934},
+    { 1, action_seq_871},
+    { 43, action_seq_872},
   };
   basl::LRMove const move_856 [] =
   {
-    { 1, action_seq_42},
-    { 239, action_seq_935},
+    { 0, action_seq_937},
   };
   basl::LRMove const move_857 [] =
   {
-    { 0, action_seq_936},
+    { 1, action_seq_42},
+    { 43, action_seq_938},
   };
   basl::LRMove const move_858 [] =
   {
-    { 0, action_seq_937},
+    { 1, action_seq_42},
+    { 239, action_seq_939},
   };
   basl::LRMove const move_859 [] =
   {
-    { 4, action_seq_42},
-    { 22, action_seq_715},
-    { 29, action_seq_715},
-    { 43, action_seq_715},
-    { 225, action_seq_715},
+    { 0, action_seq_940},
   };
   basl::LRMove const move_860 [] =
   {
-    { 0, action_seq_938},
+    { 0, action_seq_941},
   };
   basl::LRMove const move_861 [] =
   {
-    { 0, action_seq_939},
+    { 4, action_seq_42},
+    { 22, action_seq_717},
+    { 29, action_seq_717},
+    { 43, action_seq_717},
+    { 225, action_seq_717},
   };
   basl::LRMove const move_862 [] =
   {
-    { 0, action_seq_940},
+    { 0, action_seq_942},
   };
   basl::LRMove const move_863 [] =
   {
-    { 0, action_seq_941},
+    { 0, action_seq_943},
   };
   basl::LRMove const move_864 [] =
   {
-    { 0, action_seq_942},
+    { 0, action_seq_944},
   };
   basl::LRMove const move_865 [] =
   {
-    { 0, action_seq_943},
+    { 0, action_seq_945},
   };
   basl::LRMove const move_866 [] =
   {
+    { 0, action_seq_946},
+  };
+  basl::LRMove const move_867 [] =
+  {
+    { 0, action_seq_947},
+  };
+  basl::LRMove const move_868 [] =
+  {
     { 20, action_seq_37},
-    { 43, action_seq_944},
+    { 43, action_seq_948},
     { 47, action_seq_2},
     { 109, action_seq_6},
     { 110, action_seq_7},
@@ -15619,261 +15667,261 @@ namespace
     { 144, action_seq_31},
     { 145, action_seq_32},
   };
-  basl::LRMove const move_867 [] =
-  {
-    { 0, action_seq_945},
-  };
-  basl::LRMove const move_868 [] =
-  {
-    { 0, action_seq_946},
-  };
   basl::LRMove const move_869 [] =
   {
-    { 0, action_seq_947},
+    { 0, action_seq_949},
   };
   basl::LRMove const move_870 [] =
   {
-    { 1, action_seq_42},
-    { 239, action_seq_948},
+    { 0, action_seq_950},
   };
   basl::LRMove const move_871 [] =
   {
-    { 0, action_seq_949},
+    { 0, action_seq_951},
   };
   basl::LRMove const move_872 [] =
   {
     { 1, action_seq_42},
-    { 239, action_seq_950},
+    { 239, action_seq_952},
   };
   basl::LRMove const move_873 [] =
   {
-    { 1, action_seq_42},
-    { 40, action_seq_951},
+    { 0, action_seq_953},
   };
   basl::LRMove const move_874 [] =
   {
     { 1, action_seq_42},
-    { 22, action_seq_952},
+    { 239, action_seq_954},
   };
   basl::LRMove const move_875 [] =
   {
-    { 0, action_seq_953},
+    { 1, action_seq_42},
+    { 40, action_seq_955},
   };
   basl::LRMove const move_876 [] =
   {
     { 1, action_seq_42},
-    { 22, action_seq_954},
+    { 22, action_seq_956},
   };
   basl::LRMove const move_877 [] =
   {
-    { 4, action_seq_37},
-    { 42, action_seq_909},
-    { 47, action_seq_2},
-    { 73, action_seq_134},
-    { 99, action_seq_135},
+    { 0, action_seq_957},
   };
   basl::LRMove const move_878 [] =
   {
-    { 0, action_seq_955},
+    { 1, action_seq_42},
+    { 22, action_seq_958},
   };
   basl::LRMove const move_879 [] =
   {
-    { 0, action_seq_956},
-  };
-  basl::LRMove const move_880 [] =
-  {
-    { 0, action_seq_957},
-  };
-  basl::LRMove const move_881 [] =
-  {
-    { 1, action_seq_959},
-    { 67, action_seq_958},
-  };
-  basl::LRMove const move_882 [] =
-  {
-    { 1, action_seq_961},
-    { 42, action_seq_960},
-  };
-  basl::LRMove const move_883 [] =
-  {
-    { 0, action_seq_962},
-  };
-  basl::LRMove const move_884 [] =
-  {
-    { 0, action_seq_963},
-  };
-  basl::LRMove const move_885 [] =
-  {
-    { 0, action_seq_964},
-  };
-  basl::LRMove const move_886 [] =
-  {
-    { 0, action_seq_965},
-  };
-  basl::LRMove const move_887 [] =
-  {
-    { 0, action_seq_966},
-  };
-  basl::LRMove const move_888 [] =
-  {
-    { 0, action_seq_967},
-  };
-  basl::LRMove const move_889 [] =
-  {
-    { 0, action_seq_968},
-  };
-  basl::LRMove const move_890 [] =
-  {
-    { 0, action_seq_969},
-  };
-  basl::LRMove const move_891 [] =
-  {
-    { 0, action_seq_970},
-  };
-  basl::LRMove const move_892 [] =
-  {
-    { 0, action_seq_971},
-  };
-  basl::LRMove const move_893 [] =
-  {
-    { 0, action_seq_972},
-  };
-  basl::LRMove const move_894 [] =
-  {
-    { 0, action_seq_973},
-  };
-  basl::LRMove const move_895 [] =
-  {
-    { 1, action_seq_42},
-    { 240, action_seq_974},
-  };
-  basl::LRMove const move_896 [] =
-  {
-    { 0, action_seq_975},
-  };
-  basl::LRMove const move_897 [] =
-  {
-    { 0, action_seq_976},
-  };
-  basl::LRMove const move_898 [] =
-  {
-    { 1, action_seq_42},
-    { 40, action_seq_977},
-  };
-  basl::LRMove const move_899 [] =
-  {
-    { 0, action_seq_978},
-  };
-  basl::LRMove const move_900 [] =
-  {
-    { 2, action_seq_42},
-    { 22, action_seq_979},
-    { 29, action_seq_979},
-  };
-  basl::LRMove const move_901 [] =
-  {
-    { 0, action_seq_980},
-  };
-  basl::LRMove const move_902 [] =
-  {
-    { 0, action_seq_981},
-  };
-  basl::LRMove const move_903 [] =
-  {
-    { 7, action_seq_37},
-    { 29, action_seq_788},
-    { 42, action_seq_863},
+    { 4, action_seq_37},
+    { 42, action_seq_913},
     { 47, action_seq_2},
-    { 53, action_seq_788},
-    { 67, action_seq_789},
     { 73, action_seq_134},
     { 99, action_seq_135},
   };
-  basl::LRMove const move_904 [] =
+  basl::LRMove const move_880 [] =
   {
-    { 2, action_seq_868},
-    { 42, action_seq_867},
-    { 67, action_seq_867},
+    { 0, action_seq_959},
   };
-  basl::LRMove const move_905 [] =
+  basl::LRMove const move_881 [] =
+  {
+    { 0, action_seq_960},
+  };
+  basl::LRMove const move_882 [] =
+  {
+    { 0, action_seq_961},
+  };
+  basl::LRMove const move_883 [] =
+  {
+    { 1, action_seq_963},
+    { 67, action_seq_962},
+  };
+  basl::LRMove const move_884 [] =
+  {
+    { 1, action_seq_965},
+    { 42, action_seq_964},
+  };
+  basl::LRMove const move_885 [] =
+  {
+    { 0, action_seq_966},
+  };
+  basl::LRMove const move_886 [] =
+  {
+    { 0, action_seq_967},
+  };
+  basl::LRMove const move_887 [] =
+  {
+    { 0, action_seq_968},
+  };
+  basl::LRMove const move_888 [] =
+  {
+    { 0, action_seq_969},
+  };
+  basl::LRMove const move_889 [] =
+  {
+    { 0, action_seq_970},
+  };
+  basl::LRMove const move_890 [] =
+  {
+    { 0, action_seq_971},
+  };
+  basl::LRMove const move_891 [] =
+  {
+    { 0, action_seq_972},
+  };
+  basl::LRMove const move_892 [] =
+  {
+    { 0, action_seq_973},
+  };
+  basl::LRMove const move_893 [] =
+  {
+    { 0, action_seq_974},
+  };
+  basl::LRMove const move_894 [] =
+  {
+    { 0, action_seq_975},
+  };
+  basl::LRMove const move_895 [] =
+  {
+    { 0, action_seq_976},
+  };
+  basl::LRMove const move_896 [] =
+  {
+    { 0, action_seq_977},
+  };
+  basl::LRMove const move_897 [] =
   {
     { 1, action_seq_42},
-    { 43, action_seq_982},
+    { 240, action_seq_978},
   };
-  basl::LRMove const move_906 [] =
+  basl::LRMove const move_898 [] =
   {
-    { 0, action_seq_983},
+    { 0, action_seq_979},
   };
-  basl::LRMove const move_907 [] =
+  basl::LRMove const move_899 [] =
+  {
+    { 0, action_seq_980},
+  };
+  basl::LRMove const move_900 [] =
+  {
+    { 1, action_seq_42},
+    { 40, action_seq_981},
+  };
+  basl::LRMove const move_901 [] =
+  {
+    { 0, action_seq_982},
+  };
+  basl::LRMove const move_902 [] =
+  {
+    { 2, action_seq_42},
+    { 22, action_seq_983},
+    { 29, action_seq_983},
+  };
+  basl::LRMove const move_903 [] =
   {
     { 0, action_seq_984},
   };
-  basl::LRMove const move_908 [] =
+  basl::LRMove const move_904 [] =
+  {
+    { 0, action_seq_985},
+  };
+  basl::LRMove const move_905 [] =
+  {
+    { 7, action_seq_37},
+    { 29, action_seq_790},
+    { 42, action_seq_867},
+    { 47, action_seq_2},
+    { 53, action_seq_790},
+    { 67, action_seq_791},
+    { 73, action_seq_134},
+    { 99, action_seq_135},
+  };
+  basl::LRMove const move_906 [] =
+  {
+    { 2, action_seq_872},
+    { 42, action_seq_871},
+    { 67, action_seq_871},
+  };
+  basl::LRMove const move_907 [] =
   {
     { 1, action_seq_42},
-    { 42, action_seq_985},
+    { 43, action_seq_986},
+  };
+  basl::LRMove const move_908 [] =
+  {
+    { 0, action_seq_987},
   };
   basl::LRMove const move_909 [] =
   {
-    { 0, action_seq_986},
+    { 0, action_seq_988},
   };
   basl::LRMove const move_910 [] =
   {
-    { 1, action_seq_987},
-    { 269, action_seq_927},
+    { 1, action_seq_42},
+    { 42, action_seq_989},
   };
   basl::LRMove const move_911 [] =
   {
-    { 0, action_seq_988},
+    { 0, action_seq_990},
   };
   basl::LRMove const move_912 [] =
   {
-    { 0, action_seq_989},
+    { 1, action_seq_991},
+    { 269, action_seq_931},
   };
   basl::LRMove const move_913 [] =
   {
-    { 0, action_seq_990},
+    { 0, action_seq_992},
   };
   basl::LRMove const move_914 [] =
   {
-    { 1, action_seq_42},
-    { 68, action_seq_991},
+    { 0, action_seq_993},
   };
   basl::LRMove const move_915 [] =
   {
-    { 1, action_seq_898},
-    { 47, action_seq_115},
+    { 0, action_seq_994},
   };
   basl::LRMove const move_916 [] =
   {
-    { 0, action_seq_992},
+    { 1, action_seq_42},
+    { 68, action_seq_995},
   };
   basl::LRMove const move_917 [] =
   {
-    { 1, action_seq_901},
+    { 1, action_seq_902},
     { 47, action_seq_115},
   };
   basl::LRMove const move_918 [] =
   {
-    { 1, action_seq_42},
-    { 239, action_seq_993},
+    { 0, action_seq_996},
   };
   basl::LRMove const move_919 [] =
   {
-    { 0, action_seq_994},
+    { 1, action_seq_905},
+    { 47, action_seq_115},
   };
   basl::LRMove const move_920 [] =
   {
-    { 0, action_seq_995},
+    { 1, action_seq_42},
+    { 239, action_seq_997},
   };
   basl::LRMove const move_921 [] =
   {
+    { 0, action_seq_998},
+  };
+  basl::LRMove const move_922 [] =
+  {
+    { 0, action_seq_999},
+  };
+  basl::LRMove const move_923 [] =
+  {
     { 20, action_seq_37},
-    { 29, action_seq_788},
-    { 42, action_seq_863},
-    { 43, action_seq_788},
+    { 29, action_seq_790},
+    { 42, action_seq_867},
+    { 43, action_seq_790},
     { 47, action_seq_2},
-    { 67, action_seq_789},
+    { 67, action_seq_791},
     { 73, action_seq_134},
     { 99, action_seq_135},
     { 109, action_seq_6},
@@ -15890,100 +15938,100 @@ namespace
     { 144, action_seq_31},
     { 145, action_seq_32},
   };
-  basl::LRMove const move_922 [] =
+  basl::LRMove const move_924 [] =
   {
     { 9, action_seq_37},
-    { 29, action_seq_788},
-    { 42, action_seq_863},
-    { 43, action_seq_788},
+    { 29, action_seq_790},
+    { 42, action_seq_867},
+    { 43, action_seq_790},
     { 47, action_seq_2},
-    { 67, action_seq_789},
+    { 67, action_seq_791},
     { 73, action_seq_134},
     { 99, action_seq_135},
     { 109, action_seq_6},
     { 110, action_seq_7},
   };
-  basl::LRMove const move_923 [] =
-  {
-    { 1, action_seq_42},
-    { 43, action_seq_996},
-  };
-  basl::LRMove const move_924 [] =
-  {
-    { 1, action_seq_998},
-    { 29, action_seq_997},
-  };
   basl::LRMove const move_925 [] =
   {
-    { 0, action_seq_999},
+    { 1, action_seq_42},
+    { 43, action_seq_1000},
   };
   basl::LRMove const move_926 [] =
   {
-    { 0, action_seq_1000},
+    { 1, action_seq_1002},
+    { 29, action_seq_1001},
   };
   basl::LRMove const move_927 [] =
   {
-    { 1, action_seq_42},
-    { 43, action_seq_1001},
+    { 0, action_seq_1003},
   };
   basl::LRMove const move_928 [] =
   {
-    { 0, action_seq_1002},
+    { 0, action_seq_1004},
   };
   basl::LRMove const move_929 [] =
   {
-    { 0, action_seq_1003},
+    { 1, action_seq_42},
+    { 43, action_seq_1005},
   };
   basl::LRMove const move_930 [] =
   {
-    { 1, action_seq_955},
-    { 43, action_seq_171},
+    { 0, action_seq_1006},
   };
   basl::LRMove const move_931 [] =
   {
-    { 1, action_seq_42},
-    { 67, action_seq_958},
+    { 0, action_seq_1007},
   };
   basl::LRMove const move_932 [] =
   {
-    { 1, action_seq_42},
-    { 43, action_seq_1004},
+    { 1, action_seq_959},
+    { 43, action_seq_171},
   };
   basl::LRMove const move_933 [] =
   {
-    { 2, action_seq_1006},
-    { 42, action_seq_1005},
-    { 67, action_seq_961},
+    { 1, action_seq_42},
+    { 67, action_seq_962},
   };
   basl::LRMove const move_934 [] =
   {
-    { 0, action_seq_1007},
+    { 1, action_seq_42},
+    { 43, action_seq_1008},
   };
   basl::LRMove const move_935 [] =
   {
-    { 0, action_seq_1008},
+    { 2, action_seq_1010},
+    { 42, action_seq_1009},
+    { 67, action_seq_965},
   };
   basl::LRMove const move_936 [] =
   {
-    { 0, action_seq_1009},
+    { 0, action_seq_1011},
   };
   basl::LRMove const move_937 [] =
   {
-    { 0, action_seq_1010},
+    { 0, action_seq_1012},
   };
   basl::LRMove const move_938 [] =
   {
-    { 4, action_seq_42},
-    { 29, action_seq_1011},
-    { 39, action_seq_1012},
-    { 47, action_seq_115},
-    { 53, action_seq_1011},
+    { 0, action_seq_1013},
   };
   basl::LRMove const move_939 [] =
   {
-    { 0, action_seq_1013},
+    { 0, action_seq_1014},
   };
   basl::LRMove const move_940 [] =
+  {
+    { 4, action_seq_42},
+    { 29, action_seq_1015},
+    { 39, action_seq_1016},
+    { 47, action_seq_115},
+    { 53, action_seq_1015},
+  };
+  basl::LRMove const move_941 [] =
+  {
+    { 0, action_seq_1017},
+  };
+  basl::LRMove const move_942 [] =
   {
     { 29, action_seq_37},
     { 47, action_seq_2},
@@ -16014,129 +16062,129 @@ namespace
     { 143, action_seq_30},
     { 144, action_seq_31},
     { 145, action_seq_32},
-    { 225, action_seq_1014},
-  };
-  basl::LRMove const move_941 [] =
-  {
-    { 0, action_seq_1015},
-  };
-  basl::LRMove const move_942 [] =
-  {
-    { 0, action_seq_1016},
+    { 225, action_seq_1018},
   };
   basl::LRMove const move_943 [] =
   {
-    { 7, action_seq_37},
-    { 29, action_seq_788},
-    { 42, action_seq_863},
-    { 43, action_seq_788},
-    { 47, action_seq_2},
-    { 67, action_seq_789},
-    { 73, action_seq_134},
-    { 99, action_seq_135},
+    { 0, action_seq_1019},
   };
   basl::LRMove const move_944 [] =
   {
-    { 0, action_seq_1017},
+    { 0, action_seq_1020},
   };
   basl::LRMove const move_945 [] =
   {
-    { 1, action_seq_42},
-    { 240, action_seq_1018},
+    { 7, action_seq_37},
+    { 29, action_seq_790},
+    { 42, action_seq_867},
+    { 43, action_seq_790},
+    { 47, action_seq_2},
+    { 67, action_seq_791},
+    { 73, action_seq_134},
+    { 99, action_seq_135},
   };
   basl::LRMove const move_946 [] =
   {
-    { 1, action_seq_42},
-    { 240, action_seq_1019},
+    { 0, action_seq_1021},
   };
   basl::LRMove const move_947 [] =
   {
-    { 0, action_seq_1020},
+    { 1, action_seq_42},
+    { 240, action_seq_1022},
   };
   basl::LRMove const move_948 [] =
   {
-    { 0, action_seq_1021},
+    { 1, action_seq_42},
+    { 240, action_seq_1023},
   };
   basl::LRMove const move_949 [] =
   {
-    { 1, action_seq_961},
-    { 42, action_seq_1005},
+    { 0, action_seq_1024},
   };
   basl::LRMove const move_950 [] =
   {
-    { 0, action_seq_1022},
+    { 0, action_seq_1025},
   };
   basl::LRMove const move_951 [] =
   {
-    { 1, action_seq_42},
-    { 68, action_seq_1023},
+    { 1, action_seq_965},
+    { 42, action_seq_1009},
   };
   basl::LRMove const move_952 [] =
   {
-    { 1, action_seq_42},
-    { 43, action_seq_1024},
+    { 0, action_seq_1026},
   };
   basl::LRMove const move_953 [] =
   {
-    { 0, action_seq_1025},
+    { 1, action_seq_42},
+    { 68, action_seq_1027},
   };
   basl::LRMove const move_954 [] =
   {
-    { 0, action_seq_1026},
+    { 1, action_seq_42},
+    { 43, action_seq_1028},
   };
   basl::LRMove const move_955 [] =
   {
-    { 1, action_seq_42},
-    { 43, action_seq_1027},
+    { 0, action_seq_1029},
   };
   basl::LRMove const move_956 [] =
   {
-    { 0, action_seq_1028},
+    { 0, action_seq_1030},
   };
   basl::LRMove const move_957 [] =
   {
-    { 0, action_seq_1029},
+    { 1, action_seq_42},
+    { 43, action_seq_1031},
   };
   basl::LRMove const move_958 [] =
   {
-    { 0, action_seq_1030},
+    { 0, action_seq_1032},
   };
   basl::LRMove const move_959 [] =
   {
-    { 0, action_seq_1031},
+    { 0, action_seq_1033},
   };
   basl::LRMove const move_960 [] =
   {
-    { 0, action_seq_1032},
+    { 0, action_seq_1034},
   };
   basl::LRMove const move_961 [] =
   {
-    { 0, action_seq_1033},
+    { 0, action_seq_1035},
   };
   basl::LRMove const move_962 [] =
   {
-    { 3, action_seq_42},
-    { 29, action_seq_1034},
-    { 47, action_seq_115},
-    { 53, action_seq_1034},
+    { 0, action_seq_1036},
   };
   basl::LRMove const move_963 [] =
   {
-    { 1, action_seq_42},
-    { 239, action_seq_1035},
+    { 0, action_seq_1037},
   };
   basl::LRMove const move_964 [] =
   {
-    { 0, action_seq_1036},
+    { 3, action_seq_42},
+    { 29, action_seq_1038},
+    { 47, action_seq_115},
+    { 53, action_seq_1038},
   };
   basl::LRMove const move_965 [] =
   {
     { 1, action_seq_42},
-    { 240, action_seq_1037},
+    { 239, action_seq_1039},
   };
   basl::LRMove const move_966 [] =
   {
-    { 0, action_seq_1038},
+    { 0, action_seq_1040},
+  };
+  basl::LRMove const move_967 [] =
+  {
+    { 1, action_seq_42},
+    { 240, action_seq_1041},
+  };
+  basl::LRMove const move_968 [] =
+  {
+    { 0, action_seq_1042},
   };
 
   // states
@@ -17015,228 +17063,228 @@ namespace
     { move_188, 0, 253 },
     { move_723, 0, 0 },
     { move_724, 0, 0 },
+    { move_725, 0, 0 },
+    { move_726, 0, 0 },
     { move_188, 0, 254 },
     { move_310, 0, 255 },
-    { move_725, 0, 148 },
+    { move_727, 0, 148 },
     { move_322, 0, 256 },
-    { move_726, 4, 0 },
-    { move_727, 0, 257 },
-    { move_728, 0, 0 },
-    { move_729, 0, 0 },
-    { move_727, 0, 258 },
-    { move_727, 0, 259 },
+    { move_728, 4, 0 },
+    { move_729, 0, 257 },
     { move_730, 0, 0 },
     { move_731, 0, 0 },
+    { move_729, 0, 258 },
+    { move_729, 0, 259 },
     { move_732, 0, 0 },
-    { move_564, 0, 260 },
     { move_733, 0, 0 },
     { move_734, 0, 0 },
+    { move_564, 0, 260 },
+    { move_735, 0, 0 },
+    { move_736, 0, 0 },
     { move_564, 0, 261 },
     { move_20, 0, 262 },
-    { move_735, 0, 0 },
-    { move_736, 4, 263 },
     { move_737, 0, 0 },
-    { move_738, 0, 0 },
+    { move_738, 4, 263 },
+    { move_739, 0, 0 },
+    { move_740, 0, 0 },
     { move_20, 0, 264 },
     { move_440, 0, 265 },
     { move_514, 7, 266 },
-    { move_739, 0, 0 },
-    { move_740, 0, 0 },
-    { move_20, 0, 267 },
     { move_741, 0, 0 },
     { move_742, 0, 0 },
-    { move_514, 1, 268 },
+    { move_20, 0, 267 },
     { move_743, 0, 0 },
     { move_744, 0, 0 },
+    { move_514, 1, 268 },
     { move_745, 0, 0 },
     { move_746, 0, 0 },
+    { move_747, 0, 0 },
+    { move_748, 0, 0 },
     { move_607, 0, 269 },
     { move_607, 0, 270 },
-    { move_747, 0, 222 },
-    { move_748, 0, 0 },
-    { move_749, 0, 0 },
+    { move_749, 0, 222 },
     { move_750, 0, 0 },
-    { move_751, 0, 271 },
+    { move_751, 0, 0 },
     { move_752, 0, 0 },
-    { move_753, 0, 0 },
+    { move_753, 0, 271 },
     { move_754, 0, 0 },
+    { move_755, 0, 0 },
+    { move_756, 0, 0 },
     { move_188, 0, 272 },
-    { move_755, 0, 273 },
-    { move_755, 0, 274 },
-    { move_756, 0, 275 },
-    { move_756, 0, 276 },
-    { move_756, 0, 277 },
-    { move_756, 0, 278 },
-    { move_757, 0, 0 },
-    { move_758, 0, 0 },
+    { move_757, 0, 273 },
+    { move_757, 0, 274 },
+    { move_758, 0, 275 },
+    { move_758, 0, 276 },
+    { move_758, 0, 277 },
+    { move_758, 0, 278 },
     { move_759, 0, 0 },
+    { move_760, 0, 0 },
+    { move_761, 0, 0 },
     { move_141, 0, 279 },
-    { move_760, 9, 0 },
+    { move_762, 9, 0 },
     { move_564, 0, 280 },
-    { move_761, 0, 281 },
-    { move_762, 0, 0 },
-    { move_763, 0, 0 },
+    { move_763, 0, 281 },
+    { move_764, 0, 0 },
+    { move_765, 0, 0 },
     { move_642, 0, 282 },
-    { move_764, 0, 283 },
-    { move_765, 0, 284 },
-    { move_766, 0, 285 },
-    { move_767, 0, 286 },
-    { move_768, 0, 0 },
-    { move_769, 0, 0 },
-    { move_188, 0, 287 },
+    { move_766, 0, 283 },
+    { move_767, 0, 284 },
+    { move_768, 0, 285 },
+    { move_769, 0, 286 },
     { move_770, 0, 0 },
     { move_771, 0, 0 },
-    { move_736, 4, 288 },
-    { move_20, 0, 289 },
+    { move_188, 0, 287 },
     { move_772, 0, 0 },
     { move_773, 0, 0 },
+    { move_738, 4, 288 },
+    { move_20, 0, 289 },
     { move_774, 0, 0 },
     { move_775, 0, 0 },
     { move_776, 0, 0 },
     { move_777, 0, 0 },
     { move_778, 0, 0 },
     { move_779, 0, 0 },
-    { move_780, 0, 290 },
+    { move_780, 0, 0 },
     { move_781, 0, 0 },
-    { move_782, 0, 291 },
+    { move_782, 0, 290 },
     { move_783, 0, 0 },
-    { move_784, 0, 0 },
+    { move_784, 0, 291 },
     { move_785, 0, 0 },
-    { move_786, 0, 292 },
+    { move_786, 0, 0 },
     { move_787, 0, 0 },
-    { move_788, 0, 0 },
+    { move_788, 0, 292 },
     { move_789, 0, 0 },
     { move_790, 0, 0 },
     { move_791, 0, 0 },
     { move_792, 0, 0 },
-    { move_579, 0, 293 },
     { move_793, 0, 0 },
     { move_794, 0, 0 },
+    { move_579, 0, 293 },
     { move_795, 0, 0 },
-    { move_582, 0, 294 },
-    { move_104, 0, 295 },
     { move_796, 0, 0 },
     { move_797, 0, 0 },
-    { move_798, 4, 0 },
+    { move_582, 0, 294 },
+    { move_104, 0, 295 },
+    { move_798, 0, 0 },
     { move_799, 0, 0 },
-    { move_727, 0, 296 },
     { move_800, 4, 0 },
     { move_801, 0, 0 },
-    { move_802, 0, 0 },
+    { move_729, 0, 296 },
+    { move_802, 4, 0 },
     { move_803, 0, 0 },
-    { move_727, 0, 297 },
-    { move_188, 0, 298 },
-    { move_804, 0, 299 },
+    { move_804, 0, 0 },
     { move_805, 0, 0 },
-    { move_806, 0, 0 },
-    { move_727, 0, 300 },
-    { move_727, 0, 301 },
+    { move_729, 0, 297 },
+    { move_188, 0, 298 },
+    { move_806, 0, 299 },
     { move_807, 0, 0 },
-    { move_727, 0, 302 },
     { move_808, 0, 0 },
+    { move_729, 0, 300 },
+    { move_729, 0, 301 },
     { move_809, 0, 0 },
+    { move_729, 0, 302 },
     { move_810, 0, 0 },
     { move_811, 0, 0 },
     { move_812, 0, 0 },
     { move_813, 0, 0 },
     { move_814, 0, 0 },
     { move_815, 0, 0 },
-    { move_816, 0, 303 },
+    { move_816, 0, 0 },
     { move_817, 0, 0 },
-    { move_818, 0, 0 },
-    { move_819, 0, 304 },
+    { move_818, 0, 303 },
+    { move_819, 0, 0 },
     { move_820, 0, 0 },
-    { move_821, 0, 0 },
+    { move_821, 0, 304 },
     { move_822, 0, 0 },
     { move_823, 0, 0 },
     { move_824, 0, 0 },
-    { move_825, 0, 305 },
-    { move_826, 0, 306 },
-    { move_826, 0, 307 },
-    { move_827, 0, 308 },
-    { move_827, 0, 309 },
-    { move_827, 0, 310 },
-    { move_827, 0, 311 },
-    { move_828, 0, 312 },
-    { move_828, 0, 313 },
-    { move_828, 0, 314 },
-    { move_828, 0, 315 },
-    { move_828, 0, 316 },
-    { move_828, 0, 317 },
-    { move_828, 0, 318 },
-    { move_828, 0, 319 },
-    { move_829, 0, 320 },
-    { move_830, 0, 321 },
-    { move_831, 0, 0 },
-    { move_832, 0, 0 },
-    { move_833, 0, 322 },
+    { move_825, 0, 0 },
+    { move_826, 0, 0 },
+    { move_827, 0, 305 },
+    { move_828, 0, 306 },
+    { move_828, 0, 307 },
+    { move_829, 0, 308 },
+    { move_829, 0, 309 },
+    { move_829, 0, 310 },
+    { move_829, 0, 311 },
+    { move_830, 0, 312 },
+    { move_830, 0, 313 },
+    { move_830, 0, 314 },
+    { move_830, 0, 315 },
+    { move_830, 0, 316 },
+    { move_830, 0, 317 },
+    { move_830, 0, 318 },
+    { move_830, 0, 319 },
+    { move_831, 0, 320 },
+    { move_832, 0, 321 },
+    { move_833, 0, 0 },
     { move_834, 0, 0 },
-    { move_835, 0, 0 },
-    { move_727, 0, 323 },
-    { move_836, 0, 324 },
+    { move_835, 0, 322 },
+    { move_836, 0, 0 },
     { move_837, 0, 0 },
-    { move_838, 0, 0 },
-    { move_839, 0, 325 },
-    { move_839, 0, 326 },
-    { move_840, 0, 327 },
-    { move_840, 0, 328 },
-    { move_840, 0, 329 },
-    { move_840, 0, 330 },
-    { move_841, 0, 0 },
-    { move_842, 0, 0 },
+    { move_729, 0, 323 },
+    { move_838, 0, 324 },
+    { move_839, 0, 0 },
+    { move_840, 0, 0 },
+    { move_841, 0, 325 },
+    { move_841, 0, 326 },
+    { move_842, 0, 327 },
+    { move_842, 0, 328 },
+    { move_842, 0, 329 },
+    { move_842, 0, 330 },
     { move_843, 0, 0 },
-    { move_96, 0, 331 },
     { move_844, 0, 0 },
-    { move_727, 0, 332 },
     { move_845, 0, 0 },
+    { move_96, 0, 331 },
     { move_846, 0, 0 },
-    { move_847, 0, 333 },
-    { move_847, 0, 334 },
+    { move_729, 0, 332 },
+    { move_847, 0, 0 },
     { move_848, 0, 0 },
-    { move_849, 0, 0 },
+    { move_849, 0, 333 },
+    { move_849, 0, 334 },
     { move_850, 0, 0 },
-    { move_851, 0, 335 },
+    { move_851, 0, 0 },
     { move_852, 0, 0 },
-    { move_853, 0, 0 },
+    { move_853, 0, 335 },
     { move_854, 0, 0 },
-    { move_514, 5, 336 },
     { move_855, 0, 0 },
+    { move_856, 0, 0 },
+    { move_514, 5, 336 },
+    { move_857, 0, 0 },
     { move_20, 0, 337 },
     { move_699, 0, 338 },
     { move_20, 0, 339 },
-    { move_856, 0, 0 },
-    { move_104, 0, 340 },
-    { move_857, 0, 0 },
     { move_858, 0, 0 },
+    { move_104, 0, 340 },
     { move_859, 0, 0 },
     { move_860, 0, 0 },
-    { move_727, 0, 341 },
     { move_861, 0, 0 },
     { move_862, 0, 0 },
+    { move_729, 0, 341 },
     { move_863, 0, 0 },
     { move_864, 0, 0 },
     { move_865, 0, 0 },
-    { move_866, 0, 342 },
+    { move_866, 0, 0 },
     { move_867, 0, 0 },
-    { move_868, 0, 0 },
+    { move_868, 0, 342 },
     { move_869, 0, 0 },
-    { move_847, 0, 343 },
     { move_870, 0, 0 },
     { move_871, 0, 0 },
+    { move_849, 0, 343 },
     { move_872, 0, 0 },
-    { move_873, 2, 0 },
+    { move_873, 0, 0 },
     { move_874, 0, 0 },
-    { move_875, 0, 0 },
+    { move_875, 2, 0 },
     { move_876, 0, 0 },
-    { move_877, 0, 344 },
-    { move_877, 0, 345 },
+    { move_877, 0, 0 },
     { move_878, 0, 0 },
-    { move_879, 0, 0 },
+    { move_879, 0, 344 },
+    { move_879, 0, 345 },
     { move_880, 0, 0 },
     { move_881, 0, 0 },
-    { move_882, 0, 346 },
+    { move_882, 0, 0 },
     { move_883, 0, 0 },
-    { move_884, 0, 0 },
+    { move_884, 0, 346 },
     { move_885, 0, 0 },
     { move_886, 0, 0 },
     { move_887, 0, 0 },
@@ -17250,95 +17298,97 @@ namespace
     { move_895, 0, 0 },
     { move_896, 0, 0 },
     { move_897, 0, 0 },
-    { move_877, 0, 347 },
-    { move_898, 3, 0 },
+    { move_898, 0, 0 },
     { move_899, 0, 0 },
-    { move_900, 0, 0 },
+    { move_879, 0, 347 },
+    { move_900, 3, 0 },
     { move_901, 0, 0 },
     { move_902, 0, 0 },
-    { move_20, 0, 348 },
-    { move_903, 0, 349 },
+    { move_903, 0, 0 },
     { move_904, 0, 0 },
-    { move_905, 0, 0 },
+    { move_20, 0, 348 },
+    { move_905, 0, 349 },
     { move_906, 0, 0 },
     { move_907, 0, 0 },
     { move_908, 0, 0 },
     { move_909, 0, 0 },
-    { move_910, 0, 350 },
+    { move_910, 0, 0 },
     { move_911, 0, 0 },
-    { move_912, 0, 0 },
+    { move_912, 0, 350 },
     { move_913, 0, 0 },
     { move_914, 0, 0 },
-    { move_188, 0, 351 },
     { move_915, 0, 0 },
     { move_916, 0, 0 },
+    { move_188, 0, 351 },
     { move_917, 0, 0 },
     { move_918, 0, 0 },
     { move_919, 0, 0 },
     { move_920, 0, 0 },
-    { move_921, 0, 352 },
-    { move_921, 0, 353 },
-    { move_922, 0, 354 },
-    { move_922, 0, 355 },
-    { move_922, 0, 356 },
-    { move_922, 0, 357 },
-    { move_923, 0, 0 },
-    { move_924, 0, 0 },
+    { move_921, 0, 0 },
+    { move_922, 0, 0 },
+    { move_923, 0, 352 },
+    { move_923, 0, 353 },
+    { move_924, 0, 354 },
+    { move_924, 0, 355 },
+    { move_924, 0, 356 },
+    { move_924, 0, 357 },
     { move_925, 0, 0 },
     { move_926, 0, 0 },
-    { move_514, 7, 358 },
-    { move_514, 7, 359 },
     { move_927, 0, 0 },
     { move_928, 0, 0 },
+    { move_514, 7, 358 },
+    { move_514, 7, 359 },
     { move_929, 0, 0 },
-    { move_877, 0, 360 },
     { move_930, 0, 0 },
     { move_931, 0, 0 },
+    { move_879, 0, 360 },
     { move_932, 0, 0 },
-    { move_933, 0, 346 },
+    { move_933, 0, 0 },
     { move_934, 0, 0 },
+    { move_935, 0, 346 },
+    { move_936, 0, 0 },
     { move_514, 5, 361 },
     { move_514, 2, 362 },
     { move_188, 0, 363 },
-    { move_935, 0, 0 },
-    { move_936, 0, 0 },
     { move_937, 0, 0 },
     { move_938, 0, 0 },
     { move_939, 0, 0 },
-    { move_940, 0, 364 },
+    { move_940, 0, 0 },
     { move_941, 0, 0 },
-    { move_942, 0, 0 },
-    { move_727, 0, 365 },
-    { move_943, 0, 366 },
+    { move_942, 0, 364 },
+    { move_943, 0, 0 },
     { move_944, 0, 0 },
-    { move_141, 0, 367 },
-    { move_945, 0, 0 },
+    { move_729, 0, 365 },
+    { move_945, 0, 366 },
     { move_946, 0, 0 },
+    { move_141, 0, 367 },
     { move_947, 0, 0 },
-    { move_877, 0, 368 },
     { move_948, 0, 0 },
-    { move_949, 0, 346 },
+    { move_949, 0, 0 },
+    { move_879, 0, 368 },
     { move_950, 0, 0 },
-    { move_951, 0, 0 },
+    { move_951, 0, 346 },
     { move_952, 0, 0 },
-    { move_727, 0, 369 },
-    { move_20, 0, 370 },
     { move_953, 0, 0 },
     { move_954, 0, 0 },
+    { move_729, 0, 369 },
+    { move_20, 0, 370 },
     { move_955, 0, 0 },
     { move_956, 0, 0 },
     { move_957, 0, 0 },
     { move_958, 0, 0 },
-    { move_847, 0, 371 },
     { move_959, 0, 0 },
     { move_960, 0, 0 },
+    { move_849, 0, 371 },
     { move_961, 0, 0 },
     { move_962, 0, 0 },
     { move_963, 0, 0 },
     { move_964, 0, 0 },
-    { move_514, 7, 372 },
     { move_965, 0, 0 },
     { move_966, 0, 0 },
+    { move_514, 7, 372 },
+    { move_967, 0, 0 },
+    { move_968, 0, 0 },
   };
 
   // gotos
@@ -17354,7 +17404,7 @@ namespace
   };
   basl::LRGoto const goto_2 [] =
   {
-    { 2, 1000 },
+    { 2, 1002 },
     { 3, 168 },
     { 190, 777 },
   };
@@ -17738,65 +17788,65 @@ namespace
     { 211, 145 },
     { 215, 68 },
     { 219, 725 },
-    { 223, 910 },
+    { 223, 912 },
     { 224, 735 },
     { 227, 145 },
     { 228, 145 },
     { 229, 145 },
     { 231, 145 },
     { 236, 145 },
-    { 237, 955 },
-    { 238, 955 },
-    { 239, 955 },
-    { 240, 955 },
-    { 241, 955 },
-    { 242, 955 },
-    { 243, 968 },
+    { 237, 957 },
+    { 238, 957 },
+    { 239, 957 },
+    { 240, 957 },
+    { 241, 957 },
+    { 242, 957 },
+    { 243, 970 },
     { 248, 145 },
     { 251, 145 },
-    { 262, 999 },
-    { 264, 1002 },
+    { 262, 1001 },
+    { 264, 1004 },
     { 265, 706 },
-    { 267, 1006 },
+    { 267, 1008 },
     { 271, 145 },
-    { 273, 955 },
-    { 274, 955 },
-    { 275, 955 },
-    { 276, 955 },
-    { 277, 955 },
-    { 278, 955 },
+    { 273, 957 },
+    { 274, 957 },
+    { 275, 957 },
+    { 276, 957 },
+    { 277, 957 },
+    { 278, 957 },
     { 279, 145 },
     { 281, 765 },
     { 282, 145 },
     { 289, 780 },
-    { 290, 955 },
-    { 291, 955 },
+    { 290, 957 },
+    { 291, 957 },
     { 299, 145 },
     { 321, 145 },
-    { 324, 955 },
-    { 325, 955 },
-    { 326, 955 },
-    { 327, 955 },
-    { 328, 955 },
-    { 329, 955 },
-    { 330, 955 },
-    { 335, 955 },
-    { 337, 1128 },
-    { 338, 968 },
-    { 339, 1130 },
+    { 324, 957 },
+    { 325, 957 },
+    { 326, 957 },
+    { 327, 957 },
+    { 328, 957 },
+    { 329, 957 },
+    { 330, 957 },
+    { 335, 957 },
+    { 337, 1130 },
+    { 338, 970 },
+    { 339, 1132 },
     { 342, 145 },
-    { 348, 1161 },
-    { 349, 955 },
-    { 352, 955 },
-    { 353, 955 },
-    { 354, 955 },
-    { 355, 955 },
-    { 356, 955 },
-    { 357, 955 },
+    { 348, 1163 },
+    { 349, 957 },
+    { 352, 957 },
+    { 353, 957 },
+    { 354, 957 },
+    { 355, 957 },
+    { 356, 957 },
+    { 357, 957 },
     { 364, 145 },
-    { 366, 955 },
+    { 366, 957 },
     { 367, 145 },
-    { 370, 1191 },
+    { 370, 1193 },
   };
   basl::LRGoto const goto_39 [] =
   {
@@ -17904,20 +17954,20 @@ namespace
     { 196, 839 },
     { 202, 857 },
     { 206, 868 },
-    { 207, 872 },
-    { 226, 917 },
-    { 232, 940 },
-    { 233, 946 },
-    { 234, 947 },
-    { 235, 948 },
-    { 266, 1004 },
-    { 268, 1007 },
-    { 336, 1126 },
-    { 358, 1170 },
-    { 359, 1171 },
-    { 361, 1177 },
-    { 362, 1178 },
-    { 372, 1195 },
+    { 207, 874 },
+    { 226, 919 },
+    { 232, 942 },
+    { 233, 948 },
+    { 234, 949 },
+    { 235, 950 },
+    { 266, 1006 },
+    { 268, 1009 },
+    { 336, 1128 },
+    { 358, 1172 },
+    { 359, 1173 },
+    { 361, 1179 },
+    { 362, 1180 },
+    { 372, 1197 },
   };
   basl::LRGoto const goto_42 [] =
   {
@@ -17950,9 +18000,9 @@ namespace
   basl::LRGoto const goto_48 [] =
   {
     { 3, 830 },
-    { 279, 1033 },
-    { 342, 1133 },
-    { 367, 1133 },
+    { 279, 1035 },
+    { 342, 1135 },
+    { 367, 1135 },
   };
   basl::LRGoto const goto_49 [] =
   {
@@ -18214,20 +18264,20 @@ namespace
   basl::LRGoto const goto_55 [] =
   {
     { 14, 644 },
-    { 210, 878 },
-    { 212, 881 },
-    { 213, 882 },
-    { 246, 974 },
-    { 247, 977 },
-    { 249, 982 },
-    { 252, 987 },
-    { 253, 988 },
-    { 254, 990 },
-    { 272, 1030 },
-    { 287, 1045 },
-    { 298, 1068 },
-    { 351, 1166 },
-    { 363, 1179 },
+    { 210, 880 },
+    { 212, 883 },
+    { 213, 884 },
+    { 246, 976 },
+    { 247, 979 },
+    { 249, 984 },
+    { 252, 989 },
+    { 253, 990 },
+    { 254, 992 },
+    { 272, 1032 },
+    { 287, 1047 },
+    { 298, 1070 },
+    { 351, 1168 },
+    { 363, 1181 },
   };
   basl::LRGoto const goto_56 [] =
   {
@@ -18505,7 +18555,7 @@ namespace
     { 215, 82 },
     { 219, 82 },
     { 227, 832 },
-    { 231, 934 },
+    { 231, 936 },
     { 279, 832 },
     { 342, 832 },
     { 367, 832 },
@@ -18562,12 +18612,12 @@ namespace
     { 195, 833 },
     { 215, 85 },
     { 219, 85 },
-    { 227, 919 },
-    { 271, 1011 },
-    { 279, 1034 },
-    { 321, 1011 },
-    { 342, 1134 },
-    { 367, 1134 },
+    { 227, 921 },
+    { 271, 1013 },
+    { 279, 1036 },
+    { 321, 1013 },
+    { 342, 1136 },
+    { 367, 1136 },
   };
   basl::LRGoto const goto_68 [] =
   {
@@ -18587,12 +18637,12 @@ namespace
     { 195, 834 },
     { 215, 86 },
     { 219, 86 },
-    { 227, 920 },
-    { 271, 1012 },
-    { 279, 1035 },
-    { 321, 1012 },
-    { 342, 1135 },
-    { 367, 1135 },
+    { 227, 922 },
+    { 271, 1014 },
+    { 279, 1037 },
+    { 321, 1014 },
+    { 342, 1137 },
+    { 367, 1137 },
   };
   basl::LRGoto const goto_69 [] =
   {
@@ -18611,8 +18661,8 @@ namespace
     { 176, 87 },
     { 215, 87 },
     { 219, 87 },
-    { 271, 1013 },
-    { 321, 1013 },
+    { 271, 1015 },
+    { 321, 1015 },
   };
   basl::LRGoto const goto_70 [] =
   {
@@ -18631,8 +18681,8 @@ namespace
     { 176, 88 },
     { 215, 88 },
     { 219, 88 },
-    { 271, 1014 },
-    { 321, 1014 },
+    { 271, 1016 },
+    { 321, 1016 },
   };
   basl::LRGoto const goto_71 [] =
   {
@@ -18654,13 +18704,13 @@ namespace
     { 215, 89 },
     { 219, 89 },
     { 224, 736 },
-    { 227, 921 },
-    { 231, 935 },
-    { 271, 1015 },
-    { 279, 1036 },
-    { 321, 1015 },
-    { 342, 1136 },
-    { 367, 1136 },
+    { 227, 923 },
+    { 231, 937 },
+    { 271, 1017 },
+    { 279, 1038 },
+    { 321, 1017 },
+    { 342, 1138 },
+    { 367, 1138 },
   };
   basl::LRGoto const goto_72 [] =
   {
@@ -18680,13 +18730,13 @@ namespace
     { 195, 836 },
     { 215, 90 },
     { 219, 90 },
-    { 227, 922 },
-    { 231, 936 },
-    { 271, 1016 },
-    { 279, 1037 },
-    { 321, 1016 },
-    { 342, 1137 },
-    { 367, 1137 },
+    { 227, 924 },
+    { 231, 938 },
+    { 271, 1018 },
+    { 279, 1039 },
+    { 321, 1018 },
+    { 342, 1139 },
+    { 367, 1139 },
   };
   basl::LRGoto const goto_73 [] =
   {
@@ -18705,8 +18755,8 @@ namespace
     { 176, 91 },
     { 215, 91 },
     { 219, 91 },
-    { 271, 1017 },
-    { 321, 1017 },
+    { 271, 1019 },
+    { 321, 1019 },
   };
   basl::LRGoto const goto_74 [] =
   {
@@ -18725,8 +18775,8 @@ namespace
     { 176, 92 },
     { 215, 92 },
     { 219, 92 },
-    { 271, 1018 },
-    { 321, 1018 },
+    { 271, 1020 },
+    { 321, 1020 },
   };
   basl::LRGoto const goto_75 [] =
   {
@@ -18746,13 +18796,13 @@ namespace
     { 195, 837 },
     { 215, 93 },
     { 219, 93 },
-    { 227, 923 },
-    { 231, 937 },
-    { 271, 1019 },
-    { 279, 1038 },
-    { 321, 1019 },
-    { 342, 1138 },
-    { 367, 1138 },
+    { 227, 925 },
+    { 231, 939 },
+    { 271, 1021 },
+    { 279, 1040 },
+    { 321, 1021 },
+    { 342, 1140 },
+    { 367, 1140 },
   };
   basl::LRGoto const goto_76 [] =
   {
@@ -18772,13 +18822,13 @@ namespace
     { 195, 838 },
     { 215, 94 },
     { 219, 94 },
-    { 227, 924 },
-    { 231, 938 },
-    { 271, 1020 },
-    { 279, 1039 },
-    { 321, 1020 },
-    { 342, 1139 },
-    { 367, 1139 },
+    { 227, 926 },
+    { 231, 940 },
+    { 271, 1022 },
+    { 279, 1041 },
+    { 321, 1022 },
+    { 342, 1141 },
+    { 367, 1141 },
   };
   basl::LRGoto const goto_77 [] =
   {
@@ -18797,8 +18847,8 @@ namespace
     { 176, 95 },
     { 215, 95 },
     { 219, 95 },
-    { 271, 1021 },
-    { 321, 1021 },
+    { 271, 1023 },
+    { 321, 1023 },
   };
   basl::LRGoto const goto_78 [] =
   {
@@ -18817,8 +18867,8 @@ namespace
     { 176, 96 },
     { 215, 96 },
     { 219, 96 },
-    { 271, 1022 },
-    { 321, 1022 },
+    { 271, 1024 },
+    { 321, 1024 },
   };
   basl::LRGoto const goto_79 [] =
   {
@@ -19034,59 +19084,59 @@ namespace
     { 187, 593 },
     { 189, 664 },
     { 200, 848 },
-    { 208, 874 },
-    { 209, 876 },
+    { 208, 876 },
+    { 209, 878 },
     { 225, 552 },
-    { 237, 956 },
-    { 238, 956 },
-    { 239, 956 },
-    { 240, 956 },
-    { 241, 956 },
-    { 242, 956 },
+    { 237, 958 },
+    { 238, 958 },
+    { 239, 958 },
+    { 240, 958 },
+    { 241, 958 },
+    { 242, 958 },
     { 245, 848 },
-    { 255, 874 },
-    { 256, 876 },
-    { 273, 1031 },
-    { 274, 1031 },
-    { 275, 1031 },
-    { 276, 1031 },
-    { 277, 1031 },
-    { 278, 1031 },
-    { 290, 1053 },
-    { 291, 956 },
-    { 308, 1087 },
-    { 309, 1087 },
-    { 310, 1087 },
-    { 311, 1087 },
-    { 312, 1087 },
-    { 313, 1087 },
-    { 314, 1087 },
-    { 315, 1087 },
-    { 316, 1087 },
-    { 317, 1087 },
-    { 318, 1087 },
-    { 319, 1087 },
-    { 324, 1031 },
-    { 325, 1115 },
-    { 326, 1115 },
-    { 327, 1115 },
-    { 328, 1115 },
-    { 329, 1115 },
-    { 330, 1115 },
-    { 335, 1053 },
-    { 344, 1149 },
-    { 345, 1087 },
-    { 347, 1087 },
-    { 349, 1115 },
-    { 352, 1167 },
-    { 353, 1167 },
-    { 354, 1167 },
-    { 355, 1167 },
-    { 356, 1167 },
-    { 357, 1167 },
-    { 360, 1173 },
-    { 366, 1167 },
-    { 368, 1173 },
+    { 255, 876 },
+    { 256, 878 },
+    { 273, 1033 },
+    { 274, 1033 },
+    { 275, 1033 },
+    { 276, 1033 },
+    { 277, 1033 },
+    { 278, 1033 },
+    { 290, 1055 },
+    { 291, 958 },
+    { 308, 1089 },
+    { 309, 1089 },
+    { 310, 1089 },
+    { 311, 1089 },
+    { 312, 1089 },
+    { 313, 1089 },
+    { 314, 1089 },
+    { 315, 1089 },
+    { 316, 1089 },
+    { 317, 1089 },
+    { 318, 1089 },
+    { 319, 1089 },
+    { 324, 1033 },
+    { 325, 1117 },
+    { 326, 1117 },
+    { 327, 1117 },
+    { 328, 1117 },
+    { 329, 1117 },
+    { 330, 1117 },
+    { 335, 1055 },
+    { 344, 1151 },
+    { 345, 1089 },
+    { 347, 1089 },
+    { 349, 1117 },
+    { 352, 1169 },
+    { 353, 1169 },
+    { 354, 1169 },
+    { 355, 1169 },
+    { 356, 1169 },
+    { 357, 1169 },
+    { 360, 1175 },
+    { 366, 1169 },
+    { 368, 1175 },
   };
   basl::LRGoto const goto_109 [] =
   {
@@ -19206,31 +19256,31 @@ namespace
     { 187, 594 },
     { 189, 665 },
     { 200, 850 },
-    { 208, 875 },
+    { 208, 877 },
     { 209, 414 },
     { 215, 125 },
     { 219, 125 },
     { 225, 553 },
     { 245, 850 },
-    { 255, 875 },
+    { 255, 877 },
     { 256, 414 },
-    { 308, 1088 },
-    { 309, 1088 },
-    { 310, 1088 },
-    { 311, 1088 },
-    { 312, 1088 },
-    { 313, 1088 },
-    { 314, 1088 },
-    { 315, 1088 },
-    { 316, 1088 },
-    { 317, 1088 },
-    { 318, 1088 },
-    { 319, 1088 },
-    { 344, 1150 },
-    { 345, 1088 },
-    { 347, 1088 },
-    { 360, 1088 },
-    { 368, 1088 },
+    { 308, 1090 },
+    { 309, 1090 },
+    { 310, 1090 },
+    { 311, 1090 },
+    { 312, 1090 },
+    { 313, 1090 },
+    { 314, 1090 },
+    { 315, 1090 },
+    { 316, 1090 },
+    { 317, 1090 },
+    { 318, 1090 },
+    { 319, 1090 },
+    { 344, 1152 },
+    { 345, 1090 },
+    { 347, 1090 },
+    { 360, 1090 },
+    { 368, 1090 },
   };
   basl::LRGoto const goto_113 [] =
   {
@@ -19246,26 +19296,26 @@ namespace
     { 181, 754 },
     { 188, 776 },
     { 197, 841 },
-    { 222, 907 },
-    { 244, 973 },
-    { 292, 1058 },
-    { 331, 1117 },
+    { 222, 909 },
+    { 244, 975 },
+    { 292, 1060 },
+    { 331, 1119 },
   };
   basl::LRGoto const goto_114 [] =
   {
-    { 12, 993 },
-    { 258, 995 },
-    { 259, 996 },
-    { 296, 1065 },
-    { 297, 1067 },
-    { 300, 1071 },
-    { 301, 1072 },
-    { 302, 1073 },
-    { 323, 1113 },
-    { 332, 1118 },
-    { 341, 1132 },
-    { 365, 1184 },
-    { 369, 1190 },
+    { 12, 995 },
+    { 258, 997 },
+    { 259, 998 },
+    { 296, 1067 },
+    { 297, 1069 },
+    { 300, 1073 },
+    { 301, 1074 },
+    { 302, 1075 },
+    { 323, 1115 },
+    { 332, 1120 },
+    { 341, 1134 },
+    { 365, 1186 },
+    { 369, 1192 },
   };
   basl::LRGoto const goto_115 [] =
   {
@@ -19362,7 +19412,7 @@ namespace
   {
     { 2, 555 },
     { 180, 752 },
-    { 225, 915 },
+    { 225, 917 },
   };
   basl::LRGoto const goto_126 [] =
   {
@@ -19380,60 +19430,60 @@ namespace
   };
   basl::LRGoto const goto_129 [] =
   {
-    { 1, 957 },
-    { 290, 1054 },
+    { 1, 959 },
+    { 290, 1056 },
   };
   basl::LRGoto const goto_130 [] =
   {
-    { 24, 1056 },
-    { 237, 958 },
-    { 238, 961 },
-    { 239, 962 },
-    { 240, 963 },
-    { 241, 964 },
-    { 242, 965 },
-    { 273, 958 },
-    { 274, 961 },
-    { 275, 962 },
-    { 276, 963 },
-    { 277, 964 },
-    { 278, 965 },
-    { 325, 958 },
-    { 326, 961 },
-    { 327, 962 },
-    { 328, 963 },
-    { 329, 964 },
-    { 330, 965 },
-    { 352, 958 },
-    { 353, 961 },
-    { 354, 962 },
-    { 355, 963 },
-    { 356, 964 },
-    { 357, 965 },
+    { 24, 1058 },
+    { 237, 960 },
+    { 238, 963 },
+    { 239, 964 },
+    { 240, 965 },
+    { 241, 966 },
+    { 242, 967 },
+    { 273, 960 },
+    { 274, 963 },
+    { 275, 964 },
+    { 276, 965 },
+    { 277, 966 },
+    { 278, 967 },
+    { 325, 960 },
+    { 326, 963 },
+    { 327, 964 },
+    { 328, 965 },
+    { 329, 966 },
+    { 330, 967 },
+    { 352, 960 },
+    { 353, 963 },
+    { 354, 964 },
+    { 355, 965 },
+    { 356, 966 },
+    { 357, 967 },
   };
   basl::LRGoto const goto_131 [] =
   {
-    { 16, 959 },
-    { 290, 1055 },
-    { 325, 1116 },
-    { 326, 1116 },
-    { 327, 1116 },
-    { 328, 1116 },
-    { 329, 1116 },
-    { 330, 1116 },
-    { 335, 1055 },
-    { 349, 1116 },
-    { 352, 1116 },
-    { 353, 1116 },
-    { 354, 1116 },
-    { 355, 1116 },
-    { 356, 1116 },
-    { 357, 1116 },
-    { 366, 1116 },
+    { 16, 961 },
+    { 290, 1057 },
+    { 325, 1118 },
+    { 326, 1118 },
+    { 327, 1118 },
+    { 328, 1118 },
+    { 329, 1118 },
+    { 330, 1118 },
+    { 335, 1057 },
+    { 349, 1118 },
+    { 352, 1118 },
+    { 353, 1118 },
+    { 354, 1118 },
+    { 355, 1118 },
+    { 356, 1118 },
+    { 357, 1118 },
+    { 366, 1118 },
   };
   basl::LRGoto const goto_132 [] =
   {
-    { 0, 960 },
+    { 0, 962 },
   };
   basl::LRGoto const goto_133 [] =
   {
@@ -19457,18 +19507,18 @@ namespace
     { 4, 671 },
     { 85, 570 },
     { 154, 676 },
-    { 248, 980 },
-    { 250, 985 },
+    { 248, 982 },
+    { 250, 987 },
   };
   basl::LRGoto const goto_138 [] =
   {
-    { 6, 880 },
+    { 6, 882 },
     { 2, 163 },
     { 153, 672 },
     { 182, 756 },
     { 203, 860 },
-    { 248, 981 },
-    { 299, 1070 },
+    { 248, 983 },
+    { 299, 1072 },
   };
   basl::LRGoto const goto_139 [] =
   {
@@ -19496,7 +19546,7 @@ namespace
     { 228, 581 },
     { 229, 581 },
     { 251, 861 },
-    { 364, 1182 },
+    { 364, 1184 },
   };
   basl::LRGoto const goto_144 [] =
   {
@@ -19504,20 +19554,20 @@ namespace
   };
   basl::LRGoto const goto_145 [] =
   {
-    { 0, 994 },
+    { 0, 996 },
   };
   basl::LRGoto const goto_146 [] =
   {
-    { 0, 1140 },
+    { 0, 1142 },
   };
   basl::LRGoto const goto_147 [] =
   {
-    { 0, 1141 },
+    { 0, 1143 },
   };
   basl::LRGoto const goto_148 [] =
   {
-    { 1, 1142 },
-    { 367, 1185 },
+    { 1, 1144 },
+    { 367, 1187 },
   };
   basl::LRGoto const goto_149 [] =
   {
@@ -19534,10 +19584,10 @@ namespace
   };
   basl::LRGoto const goto_152 [] =
   {
-    { 3, 885 },
-    { 260, 997 },
-    { 261, 998 },
-    { 280, 1041 },
+    { 3, 887 },
+    { 260, 999 },
+    { 261, 1000 },
+    { 280, 1043 },
   };
   basl::LRGoto const goto_153 [] =
   {
@@ -19549,33 +19599,33 @@ namespace
   };
   basl::LRGoto const goto_155 [] =
   {
-    { 0, 969 },
+    { 0, 971 },
   };
   basl::LRGoto const goto_156 [] =
   {
     { 2, 707 },
-    { 243, 970 },
-    { 338, 1129 },
+    { 243, 972 },
+    { 338, 1131 },
   };
   basl::LRGoto const goto_157 [] =
   {
-    { 1, 890 },
-    { 293, 1059 },
+    { 1, 892 },
+    { 293, 1061 },
   };
   basl::LRGoto const goto_158 [] =
   {
     { 6, 698 },
     { 173, 708 },
-    { 216, 891 },
-    { 243, 971 },
+    { 216, 893 },
+    { 243, 973 },
     { 265, 708 },
-    { 293, 891 },
-    { 338, 971 },
+    { 293, 893 },
+    { 338, 973 },
   };
   basl::LRGoto const goto_159 [] =
   {
-    { 1, 895 },
-    { 294, 1061 },
+    { 1, 897 },
+    { 294, 1063 },
   };
   basl::LRGoto const goto_160 [] =
   {
@@ -19584,7 +19634,7 @@ namespace
   basl::LRGoto const goto_161 [] =
   {
     { 1, 700 },
-    { 215, 888 },
+    { 215, 890 },
   };
   basl::LRGoto const goto_162 [] =
   {
@@ -19604,7 +19654,7 @@ namespace
     { 3, 233 },
     { 14, 234 },
     { 174, 712 },
-    { 305, 1081 },
+    { 305, 1083 },
   };
   basl::LRGoto const goto_165 [] =
   {
@@ -19613,10 +19663,10 @@ namespace
   };
   basl::LRGoto const goto_166 [] =
   {
-    { 3, 1121 },
-    { 334, 1124 },
-    { 343, 1143 },
-    { 371, 1193 },
+    { 3, 1123 },
+    { 334, 1126 },
+    { 343, 1145 },
+    { 371, 1195 },
   };
   basl::LRGoto const goto_167 [] =
   {
@@ -19629,25 +19679,25 @@ namespace
   basl::LRGoto const goto_169 [] =
   {
     { 1, 782 },
-    { 289, 1047 },
+    { 289, 1049 },
   };
   basl::LRGoto const goto_170 [] =
   {
-    { 1, 1001 },
-    { 288, 1046 },
+    { 1, 1003 },
+    { 288, 1048 },
   };
   basl::LRGoto const goto_171 [] =
   {
-    { 0, 1122 },
+    { 0, 1124 },
   };
   basl::LRGoto const goto_172 [] =
   {
-    { 1, 1123 },
-    { 350, 1164 },
+    { 1, 1125 },
+    { 350, 1166 },
   };
   basl::LRGoto const goto_173 [] =
   {
-    { 0, 1183 },
+    { 0, 1185 },
   };
   basl::LRGoto const goto_174 [] =
   {
@@ -19662,7 +19712,7 @@ namespace
   basl::LRGoto const goto_176 [] =
   {
     { 1, 583 },
-    { 228, 925 },
+    { 228, 927 },
   };
   basl::LRGoto const goto_177 [] =
   {
@@ -19671,7 +19721,7 @@ namespace
   basl::LRGoto const goto_178 [] =
   {
     { 1, 585 },
-    { 229, 927 },
+    { 229, 929 },
   };
   basl::LRGoto const goto_179 [] =
   {
@@ -19701,8 +19751,8 @@ namespace
   {
     { 3, 539 },
     { 102, 608 },
-    { 295, 1062 },
-    { 340, 1131 },
+    { 295, 1064 },
+    { 340, 1133 },
   };
   basl::LRGoto const goto_186 [] =
   {
@@ -19715,13 +19765,13 @@ namespace
   basl::LRGoto const goto_188 [] =
   {
     { 1, 710 },
-    { 265, 1003 },
+    { 265, 1005 },
   };
   basl::LRGoto const goto_189 [] =
   {
-    { 2, 893 },
-    { 303, 1075 },
-    { 304, 1077 },
+    { 2, 895 },
+    { 303, 1077 },
+    { 304, 1079 },
   };
   basl::LRGoto const goto_190 [] =
   {
@@ -19773,12 +19823,12 @@ namespace
   };
   basl::LRGoto const goto_198 [] =
   {
-    { 0, 932 },
+    { 0, 934 },
   };
   basl::LRGoto const goto_199 [] =
   {
     { 1, 769 },
-    { 281, 1042 },
+    { 281, 1044 },
   };
   basl::LRGoto const goto_200 [] =
   {
@@ -19835,7 +19885,7 @@ namespace
   };
   basl::LRGoto const goto_210 [] =
   {
-    { 0, 939 },
+    { 0, 941 },
   };
   basl::LRGoto const goto_211 [] =
   {
@@ -19844,7 +19894,7 @@ namespace
   basl::LRGoto const goto_212 [] =
   {
     { 1, 730 },
-    { 219, 902 },
+    { 219, 904 },
   };
   basl::LRGoto const goto_213 [] =
   {
@@ -19853,7 +19903,7 @@ namespace
   basl::LRGoto const goto_214 [] =
   {
     { 1, 732 },
-    { 320, 1104 },
+    { 320, 1106 },
   };
   basl::LRGoto const goto_215 [] =
   {
@@ -19870,12 +19920,12 @@ namespace
   basl::LRGoto const goto_218 [] =
   {
     { 1, 740 },
-    { 224, 913 },
+    { 224, 915 },
   };
   basl::LRGoto const goto_219 [] =
   {
     { 1, 741 },
-    { 223, 911 },
+    { 223, 913 },
   };
   basl::LRGoto const goto_220 [] =
   {
@@ -19891,28 +19941,28 @@ namespace
   };
   basl::LRGoto const goto_223 [] =
   {
-    { 3, 904 },
-    { 221, 906 },
-    { 269, 1009 },
-    { 270, 1010 },
+    { 3, 906 },
+    { 221, 908 },
+    { 269, 1011 },
+    { 270, 1012 },
   };
   basl::LRGoto const goto_224 [] =
   {
-    { 1, 1083 },
-    { 307, 1085 },
+    { 1, 1085 },
+    { 307, 1087 },
   };
   basl::LRGoto const goto_225 [] =
   {
-    { 0, 905 },
+    { 0, 907 },
   };
   basl::LRGoto const goto_226 [] =
   {
-    { 0, 1157 },
+    { 0, 1159 },
   };
   basl::LRGoto const goto_227 [] =
   {
-    { 1, 1084 },
-    { 322, 1110 },
+    { 1, 1086 },
+    { 322, 1112 },
   };
   basl::LRGoto const goto_228 [] =
   {
@@ -19920,79 +19970,79 @@ namespace
   };
   basl::LRGoto const goto_229 [] =
   {
-    { 0, 1023 },
+    { 0, 1025 },
   };
   basl::LRGoto const goto_230 [] =
   {
-    { 0, 1105 },
+    { 0, 1107 },
   };
   basl::LRGoto const goto_231 [] =
   {
-    { 0, 1024 },
+    { 0, 1026 },
   };
   basl::LRGoto const goto_232 [] =
   {
-    { 1, 1025 },
-    { 321, 1106 },
+    { 1, 1027 },
+    { 321, 1108 },
   };
   basl::LRGoto const goto_233 [] =
   {
-    { 0, 1026 },
+    { 0, 1028 },
   };
   basl::LRGoto const goto_234 [] =
   {
-    { 0, 1027 },
+    { 0, 1029 },
   };
   basl::LRGoto const goto_235 [] =
   {
-    { 0, 1111 },
+    { 0, 1113 },
   };
   basl::LRGoto const goto_236 [] =
   {
-    { 0, 1112 },
+    { 0, 1114 },
   };
   basl::LRGoto const goto_237 [] =
   {
-    { 12, 1089 },
-    { 309, 1093 },
-    { 310, 1094 },
-    { 311, 1095 },
-    { 312, 1096 },
-    { 313, 1097 },
-    { 314, 1098 },
-    { 315, 1099 },
-    { 316, 1100 },
-    { 317, 1101 },
-    { 318, 1102 },
-    { 319, 1103 },
-    { 347, 1159 },
+    { 12, 1091 },
+    { 309, 1095 },
+    { 310, 1096 },
+    { 311, 1097 },
+    { 312, 1098 },
+    { 313, 1099 },
+    { 314, 1100 },
+    { 315, 1101 },
+    { 316, 1102 },
+    { 317, 1103 },
+    { 318, 1104 },
+    { 319, 1105 },
+    { 347, 1161 },
   };
   basl::LRGoto const goto_238 [] =
   {
-    { 0, 1028 },
+    { 0, 1030 },
   };
   basl::LRGoto const goto_239 [] =
   {
-    { 3, 1090 },
-    { 345, 1154 },
-    { 360, 1174 },
-    { 368, 1154 },
+    { 3, 1092 },
+    { 345, 1156 },
+    { 360, 1176 },
+    { 368, 1156 },
   };
   basl::LRGoto const goto_240 [] =
   {
-    { 1, 1091 },
-    { 344, 1151 },
+    { 1, 1093 },
+    { 344, 1153 },
   };
   basl::LRGoto const goto_241 [] =
   {
-    { 0, 1152 },
+    { 0, 1154 },
   };
   basl::LRGoto const goto_242 [] =
   {
-    { 3, 1092 },
-    { 344, 1153 },
-    { 360, 1175 },
-    { 368, 1175 },
+    { 3, 1094 },
+    { 344, 1155 },
+    { 360, 1177 },
+    { 368, 1177 },
   };
 
   // symbols

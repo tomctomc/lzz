@@ -73,6 +73,16 @@ namespace smtc
         str = "final";
         break;
       }
+      case DEFAULTED_SPEC:
+      {
+        str = "default";
+        break;
+      }
+      case DELETED_SPEC:
+      {
+        str = "delete";
+        break;
+      }
     }
     return str;
   }

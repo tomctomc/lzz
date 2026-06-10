@@ -103,6 +103,18 @@ namespace smtc
       return util::hasFlag (m_flags, FINAL_SPEC);
     }
 
+    // true if defaulted (C++11)
+    bool isDefaulted () const
+    {
+      return util::hasFlag (m_flags, DEFAULTED_SPEC);
+    }
+
+    // true if deleted (C++11)
+    bool isDeleted () const
+    {
+      return util::hasFlag (m_flags, DELETED_SPEC);
+    }
+
     // true if static
     bool isStatic () const
     {

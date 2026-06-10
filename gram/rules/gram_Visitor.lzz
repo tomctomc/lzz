@@ -51,6 +51,8 @@ namespace gram
   class PureDclNode;
   class VirtSpecNode;
   class PureNode;
+  class DefaultedNode;
+  class DeletedNode;
   class DirectDcl4Node;
   class PtrOper1Node;
   class PtrOper2Node;
@@ -333,6 +335,16 @@ namespace gram
 
     // pure -> ASSIGN_TOKEN ZERO_TOKEN
     virtual void visit (gram::PureNode & node) const
+    {
+    }
+
+    // pure -> ASSIGN_TOKEN IDENT_TOKEN
+    virtual void visit (gram::DefaultedNode & node) const
+    {
+    }
+
+    // pure -> ASSIGN_TOKEN DELETE_TOKEN
+    virtual void visit (gram::DeletedNode & node) const
     {
     }
 
