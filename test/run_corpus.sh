@@ -3,9 +3,8 @@
 # .lzz file in the sdt corpus, diff the generated .h/.cpp pairs.
 #
 # Usage:  ./run_corpus.sh <candidate-lzz> [reference-lzz] [corpus-dir]
-#   reference-lzz defaults to /usr/local/bin/lzz.OLD (the frozen
-#                 pre-modernization binary; after the modernized lzz is
-#                 installed, /usr/local/bin/lzz is no longer a useful baseline)
+#   reference-lzz defaults to the frozen pre-modernization binary kept in
+#                 /z6pool/z/dev/lzz/bin.OLD (arch-dispatching lzz.OLD script)
 #   corpus-dir    defaults to /z6pool/z/work/zmed3/sdt/src
 #
 # A feature patch must produce byte-identical output for every construct it
@@ -13,7 +12,7 @@
 # the work dir printed at the end.
 set -u
 CAND=${1:?usage: run_corpus.sh <candidate-lzz> [reference-lzz] [corpus-dir]}
-REF=${2:-/usr/local/bin/lzz.OLD}
+REF=${2:-/z6pool/z/dev/lzz/bin.OLD/lzz.OLD}
 CORPUS=${3:-/z6pool/z/work/zmed3/sdt/src}
 CAND=$(readlink -f "$CAND"); REF=$(readlink -f "$REF")
 WORK=$(mktemp -d /tmp/lzz-corpus.XXXXXX)

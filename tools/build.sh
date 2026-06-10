@@ -4,7 +4,10 @@
 # the probe suite against the static binary.
 #
 # Environment overrides:
-#   LZZ        bootstrap lzz binary       (default: lzz in PATH, else /usr/local/bin/lzz)
+#   LZZ        bootstrap lzz binary       (default: the frozen binary in
+#              /z6pool/z/dev/lzz/bin.OLD, so builds are deterministic and
+#              independent of whatever lzz is installed; falls back to an
+#              installed lzz for clones outside this project tree)
 #   BUILDROOT  scratch build directory    (default: /tmp/lzz-build-$USER)
 #
 # The scratch directory must be on LOCAL disk: building inside an NFS tree
@@ -16,7 +19,7 @@ set -e
 REPO=$(cd "$(dirname "$0")/.." && pwd)
 
 if [ -z "$LZZ" ]; then
-    for c in "$(command -v lzz || true)" /usr/local/bin/lzz /usr/local/bin/lzz.OLD "$REPO/build/lzz"; do
+    for c in "$(command -v lzz || true)" /usr/local/bin/lzz "$REPO/bin/lzz-$(uname -m)" /z6pool/z/dev/lzz/bin.OLD/lzz.OLD; do
         if [ -n "$c" ] && [ -x "$c" ]; then
             LZZ=$c
             break
