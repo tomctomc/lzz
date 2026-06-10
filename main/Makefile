@@ -20,7 +20,7 @@ PROGRAMS=$(BUILD_LZZ)
 include $(PRJDIR)/maketools/Make.common
 
 # program libraries
-PRGLIBS=smtc gram smtc gram basl msg conf util
+PRGLIBS=smtc gram smtc gram basl conf msg util
 # program library base files 
 PRGLIBFILES=$(addprefix $(LIBDIR)/,$(patsubst %,lib%.a,$(PRGLIBS)))
 # program link options
