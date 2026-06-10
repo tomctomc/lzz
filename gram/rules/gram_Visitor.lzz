@@ -67,6 +67,7 @@ namespace gram
   class Decl2Node;
   class Decl1Node;
   class NoexceptSpecNode;
+  class NoexceptXSpecNode;
   class TypeIdNode;
   class NamespaceDefNode;
   class NamespaceHead1Node;
@@ -419,6 +420,11 @@ namespace gram
 
     // noexcept-spec -> NOEXCEPT_TOKEN
     virtual void visit (gram::NoexceptSpecNode & node) const
+    {
+    }
+
+    // noexcept-spec -> NOEXCEPT_TOKEN LPAREN_TOKEN >>! BLOCK_TOKEN 2 RPAREN_TOKEN
+    virtual void visit (gram::NoexceptXSpecNode & node) const
     {
     }
 

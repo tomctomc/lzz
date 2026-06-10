@@ -26,7 +26,15 @@ namespace smtc
   {
     if (throw_spec->isNoexcept ())
     {
-      return util::String ("noexcept");
+      util::String str ("noexcept");
+      util::String const & expr = throw_spec->getNoexceptExpr ();
+      if (! expr.empty ())
+      {
+        util::appendWithSpace (str, '(');
+        str += expr;
+        str += ')';
+      }
+      return str;
     }
     util::String str = "throw";
     util::appendWithSpace (str, '(');

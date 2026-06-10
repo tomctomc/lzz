@@ -54,12 +54,19 @@ namespace
 
   // IsNoexceptSpec, true if the node is a noexcept spec (a throw spec is a
   // seq node, whose walk passes through here without effect)
-  struct IsNoexceptSpec (bool & is_noexcept) : Visitor
+  struct IsNoexceptSpec (bool & is_noexcept, util::String & noexcept_expr) : Visitor
   {
     // noexcept-spec -> NOEXCEPT_TOKEN
     void visit (NoexceptSpecNode & node) const
     {
       is_noexcept = true;
+    }
+
+    // noexcept-spec -> NOEXCEPT_TOKEN LPAREN >! BLOCK 2 RPAREN
+    void visit (NoexceptXSpecNode & node) const
+    {
+      is_noexcept = true;
+      noexcept_expr = getBlock (node.getBLOCK_TOKEN ().getLexeme ()).toString ();
     }
   }
 
@@ -67,10 +74,11 @@ namespace
   smtc::ThrowSpecPtr getNodeThrowSpec (basl::Nonterm & nonterm)
   {
     bool is_noexcept = false;
-    nonterm.accept (IsNoexceptSpec (is_noexcept));
+    util::String noexcept_expr;
+    nonterm.accept (IsNoexceptSpec (is_noexcept, noexcept_expr));
     if (is_noexcept)
     {
-      return smtc::createNoexceptSpec ();
+      return smtc::createNoexceptSpec (noexcept_expr);
     }
     smtc::CvTypeVector cv_type_set;
     getNodeTypeIdSet (nonterm, cv_type_set);

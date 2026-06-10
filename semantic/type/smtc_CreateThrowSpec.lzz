@@ -5,6 +5,9 @@ $hdr
 // semantic
 #include "smtc_CvTypeVector.h"
 #include "smtc_ThrowSpecPtr.h"
+
+// util
+#include "util_String.h"
 $end
 
 $src
@@ -21,9 +24,9 @@ namespace smtc
     return new ThrowSpec (cv_type_set);
   }
 
-  // create noexcept spec (C++11)
-  ThrowSpecPtr createNoexceptSpec ()
+  // create noexcept spec (C++11), expr empty if simple form
+  ThrowSpecPtr createNoexceptSpec (util::String const & noexcept_expr = util::String ())
   {
-    return new ThrowSpec ();
+    return new ThrowSpec (noexcept_expr);
   }
 }

@@ -494,273 +494,274 @@
 493  throw-spec-opt ->
 494  throw-spec -> THROW_TOKEN LPAREN_TOKEN type-id-list-opt RPAREN_TOKEN
 495  noexcept-spec -> NOEXCEPT_TOKEN
-496  type-id-list-opt ->
-497  type-id-list-opt -> type-id-list
-498  type-id-list -> type-id-list COMMA_TOKEN type-id
-499  type-id-list -> type-id
-500  type-id -> abstract-decl
-501  namespace-def * -> namespace-head <* LBRACE_TOKEN decl-seq-opt RBRACE_TOKEN
-502  namespace-head -> NAMESPACE_TOKEN obj-name
-503  namespace-head -> NAMESPACE_TOKEN
-504  class-def * -> class-head <* LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN semi-opt
-505  class-head -> class-key dll-api-opt obj-name base-clause-opt
-506  dll-api-opt -> DLL_API_TOKEN
-507  dll-api-opt ->
-508  semi-opt -> SEMI_TOKEN
-509  semi-opt ->
-510  base-clause-opt -> base-clause
-511  base-clause-opt ->
-512  base-clause -> COLON_TOKEN base-spec-list
-513  base-spec-list -> base-spec-list COMMA_TOKEN base-spec
-514  base-spec-list -> base-spec
-515  base-spec * -> obj-name
-516  base-spec * -> VIRTUAL_TOKEN access-opt obj-name
-517  base-spec * -> access virtual-opt obj-name
-518  access-opt ->
-519  access-opt -> access
-520  access -> PUBLIC_TOKEN
-521  access -> PROTECTED_TOKEN
-522  access -> PRIVATE_TOKEN
-523  virtual-opt -> VIRTUAL_TOKEN
-524  virtual-opt ->
-525  mbr-decl-seq-opt -> mbr-decl-seq
-526  mbr-decl-seq-opt ->
-527  mbr-decl-seq -> mbr-decl-seq mbr-decl
-528  mbr-decl-seq -> mbr-decl
-529  mbr-decl -> access-spec
-530  mbr-decl -> simple-decl
-531  mbr-decl -> class-def
-532  mbr-decl -> class-decl
-533  mbr-decl -> friend-class-decl
-534  mbr-decl -> func-def semi-opt
-535  mbr-decl -> tmpl-decl
-536  mbr-decl -> lazy-ctor
-537  mbr-decl -> functor-def
-538  mbr-decl -> simple-functor-decl
-539  mbr-decl -> enum-def
-540  mbr-decl -> using-decl
-541  access-spec * -> access COLON_TOKEN
-542  class-decl -> xExx-decl-spec-seq SEMI_TOKEN
-543  friend-class-decl -> FExx-decl-spec-seq SEMI_TOKEN
-544  func-def * -> func-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
-545  func-def * -> ctor-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
-546  try-opt -> TRY_TOKEN
-547  try-opt ->
-548  ctor-init-opt -> ctor-init
-549  ctor-init-opt ->
-550  ctor-init -> COLON_TOKEN mbr-init-list
-551  mbr-init-list -> mbr-init-list COMMA_TOKEN mbr-init
-552  mbr-init-list -> mbr-init
-553  mbr-init * -> obj-name LPAREN_TOKEN expr-list-opt RPAREN_TOKEN
-554  handler-seq-opt -> handler-seq
-555  handler-seq-opt ->
-556  handler-seq -> handler-seq handler
-557  handler-seq -> handler
-558  handler * -> CATCH_TOKEN LPAREN_TOKEN catch-decl RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
-559  catch-decl -> param-decl
-560  catch-decl -> ELLIPSE_TOKEN
-561  tmpl-decl * -> tmpl-spec tmpl-spec-decl
-562  tmpl-spec * -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN
-563  tmpl-param-list-opt -> tmpl-param-list
-564  tmpl-param-list-opt ->
-565  tmpl-param-list -> tmpl-param-list COMMA_TOKEN tmpl-param
-566  tmpl-param-list -> tmpl-param
-567  tmpl-param -> type-param
-568  tmpl-param -> tmpl-param-init-decl
-569  tmpl-param -> tmpl-tmpl-param
-570  type-param <* -> type-key + obj-name
-571  type-param <* -> type-key + obj-name ASSIGN_TOKEN abstract-decl
-572  type-key -> CLASS_TOKEN
-573  type-key -> TYPENAME_TOKEN
-574  tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name
-575  tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name ASSIGN_TOKEN obj-name
-576  tmpl-spec-decl -> simple-decl
-577  tmpl-spec-decl -> class-def
-578  tmpl-spec-decl -> class-decl
-579  tmpl-spec-decl -> friend-class-decl
-580  tmpl-spec-decl -> func-def
-581  tmpl-spec-decl -> tmpl-decl
-582  tmpl-spec-decl -> lazy-ctor
-583  tmpl-spec-decl -> functor-def
-584  tmpl-spec-decl -> simple-functor-decl
-585  tmpl-inst * -> tmpl-inst-begin tmpl-inst-decl
-586  tmpl-inst-begin <* -> TEMPLATE_TOKEN
-587  tmpl-inst-decl -> simple-decl
-588  tmpl-inst-decl -> class-decl
-589  lazy-ctor * -> lazy-ctor-begin <* LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN semi-opt
-590  lazy-ctor-begin -> class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt
-591  lazy-ctor-begin -> xxxS-decl-spec-seq class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt
-592  lazy-base-clause-opt -> lazy-base-clause
-593  lazy-base-clause-opt ->
-594  lazy-base-clause * -> COLON_TOKEN lazy-base-spec-list
-595  lazy-base-spec-list -> lazy-base-spec-list COMMA_TOKEN lazy-base-spec
-596  lazy-base-spec-list -> lazy-base-spec
-597  lazy-base-spec * -> obj-name base-init
-598  lazy-base-spec * -> VIRTUAL_TOKEN access-opt obj-name base-init
-599  lazy-base-spec * -> access virtual-opt obj-name base-init
-600  lazy-base-spec -> base-spec
-601  base-init-opt -> base-init
-602  base-init-opt ->
-603  base-init -> LPAREN_TOKEN expr-list-opt RPAREN_TOKEN
-604  expr-list-opt -> expr-list
-605  expr-list-opt ->
-606  pure-functor-dcl -> functor-dcl pure-opt
-607  functor-dcl -> ptr-oper functor-dcl
-608  functor-dcl -> functor-direct-dcl
-609  functor-direct-dcl -> obj-dcl-id param-decl-1-body param-decl-2-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt
-610  functor-direct-dcl -> functor-direct-dcl param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt
-611  functor-direct-dcl -> functor-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
-612  functor-direct-dcl -> LPAREN_TOKEN functor-dcl RPAREN_TOKEN
-613  functor-decl -> xBxx-decl-spec-seq pure-functor-dcl
-614  functor-decl -> xBVx-decl-spec-seq pure-functor-dcl
-615  functor-decl -> xBxS-decl-spec-seq pure-functor-dcl
-616  functor-decl -> xBVS-decl-spec-seq pure-functor-dcl
-617  functor-decl -> xUxx-decl-spec-seq >>++ pure-functor-dcl
-618  functor-decl -> xUVx-decl-spec-seq pure-functor-dcl
-619  functor-decl -> xUxS-decl-spec-seq >>++ pure-functor-dcl
-620  functor-decl -> xUVS-decl-spec-seq pure-functor-dcl
-621  functor-decl -> xExx-decl-spec-seq pure-functor-dcl
-622  functor-decl -> xEVx-decl-spec-seq pure-functor-dcl
-623  functor-decl -> xExS-decl-spec-seq pure-functor-dcl
-624  functor-decl -> xEVS-decl-spec-seq pure-functor-dcl
-625  functor-def * -> functor-decl lazy-base-clause-opt try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
-626  simple-functor-decl -> functor-decl lazy-base-clause-opt SEMI_TOKEN
-627  enum-def * -> ENUM_TOKEN enum-key-opt + obj-name-opt enum-base-opt <* LBRACE_TOKEN enum-body-opt RBRACE_TOKEN semi-opt
-628  enum-key-opt -> enum-key
-629  enum-key-opt ->
-630  enum-key -> CLASS_TOKEN
-631  enum-key -> STRUCT_TOKEN
-632  enum-base-opt -> enum-base
-633  enum-base-opt ->
-634  enum-base -> COLON_TOKEN type-id
-635  obj-name-opt -> obj-name
-636  obj-name-opt ->
-637  enum-body-opt -> enum-body
-638  enum-body-opt ->
-639  enum-body -> enumtor-decl-list comma-opt
-640  comma-opt -> COMMA_TOKEN
-641  comma-opt ->
-642  enumtor-decl-list -> enumtor-decl-list COMMA_TOKEN enumtor-decl
-643  enumtor-decl-list -> enumtor-decl
-644  enumtor-decl <* -> obj-name
-645  enumtor-decl <* -> obj-name ASSIGN_TOKEN BLOCK_TOKEN 9
-646  using-decl * -> USING_TOKEN obj-name SEMI_TOKEN
-647  using-decl * -> USING_TOKEN IDENT_TOKEN > ASSIGN_TOKEN type-id SEMI_TOKEN
-648  using-dir * -> USING_TOKEN NAMESPACE_TOKEN obj-name SEMI_TOKEN
-649  linkage-spec * -> linkage-block-begin <* LBRACE_TOKEN decl-seq-opt RBRACE_TOKEN
-650  linkage-spec * -> linkage-decl-begin * linkage-spec-decl
-651  linkage-block-begin -> EXTERN_TOKEN LITERAL_STRING_TOKEN
-652  linkage-decl-begin -> EXTERN_TOKEN LITERAL_STRING_TOKEN
-653  linkage-spec-decl -> func-def
-654  linkage-spec-decl -> simple-decl
-655  decl -> nav-def
-656  decl -> vdf-def
-657  nav-def * -> nav-head LBRACE_TOKEN nav-spec-seq-opt RBRACE_TOKEN
-658  nav-head * -> NAVIGATOR_TOKEN nav-decl lazy-base-clause-opt
-659  nav-decl -> xBxx-decl-spec-seq nav-dcl
-660  nav-decl -> xBVx-decl-spec-seq nav-dcl
-661  nav-decl -> xBxS-decl-spec-seq nav-dcl
-662  nav-decl -> xBVS-decl-spec-seq nav-dcl
-663  nav-decl -> xUxx-decl-spec-seq nav-dcl
-664  nav-decl -> xUVx-decl-spec-seq nav-dcl
-665  nav-decl -> xUxS-decl-spec-seq nav-dcl
-666  nav-decl -> xUVS-decl-spec-seq nav-dcl
-667  nav-decl -> xExx-decl-spec-seq nav-dcl
-668  nav-decl -> xEVx-decl-spec-seq nav-dcl
-669  nav-decl -> xExS-decl-spec-seq nav-dcl
-670  nav-decl -> xEVS-decl-spec-seq nav-dcl
-671  nav-dcl -> ptr-oper nav-dcl
-672  nav-dcl -> nav-direct-dcl
-673  nav-direct-dcl -> obj-dcl-id LPAREN_TOKEN nav-node-type RPAREN_TOKEN param-decl-1-body RPAREN_TOKEN
-674  nav-direct-dcl -> nav-direct-dcl param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt
-675  nav-direct-dcl -> nav-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
-676  nav-direct-dcl -> LPAREN_TOKEN nav-dcl RPAREN_TOKEN
-677  nav-node-type -> xUxx-decl-spec-seq
-678  nav-node-type -> xUVx-decl-spec-seq
-679  nav-node-type -> xExx-decl-spec-seq
-680  nav-node-type -> xEVx-decl-spec-seq
-681  nav-spec-seq-opt -> nav-spec-seq
-682  nav-spec-seq-opt ->
-683  nav-spec-seq -> nav-spec-seq nav-spec
-684  nav-spec-seq -> nav-spec
-685  nav-spec -> access-spec
-686  nav-spec -> simple-decl
-687  nav-spec -> class-def
-688  nav-spec -> class-decl
-689  nav-spec -> friend-class-decl
-690  nav-spec -> func-def
-691  nav-spec -> tmpl-decl
-692  nav-spec -> lazy-ctor
-693  nav-spec -> functor-def
-694  nav-spec -> simple-functor-decl
-695  nav-spec -> enum-def
-696  nav-spec -> using-decl
-697  nav-spec -> nav-visit-func-def
-698  nav-spec -> return-stmt
-699  nav-visit-func-def * -> obj-name LPAREN_TOKEN (>)3 obj-name RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
-700  return-stmt * -> RETURN_TOKEN BLOCK_TOKEN 10 SEMI_TOKEN
-701  vdf-def * -> vdf-head LBRACE_TOKEN vdf-spec-seq-opt RBRACE_TOKEN
-702  vdf-head * -> VDF_TOKEN func-decl
-703  vdf-spec-seq-opt -> vdf-spec-seq
-704  vdf-spec-seq-opt ->
-705  vdf-spec-seq -> vdf-spec
-706  vdf-spec-seq -> vdf-spec-seq vdf-spec
-707  vdf-spec -> vdf-functor-def
-708  vdf-spec -> vdf-tmpl-functor-def
-709  vdf-spec -> vdf-short-data-def
-710  vdf-spec -> vdf-block-data-def
-711  vdf-functor-def * -> obj-name > param-decl-1-body RPAREN_TOKEN try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
-712  vdf-tmpl-functor-def * -> tmpl-spec vdf-functor-def
-713  vdf-short-data-def * -> xUxx-decl-spec-seq IDENT_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt SEMI_TOKEN
-714  vdf-short-data-def * -> xUxx-decl-spec-seq LITERAL_STRING_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt SEMI_TOKEN
-715  vdf-data-param-list-alt-opt -> vdf-data-param-list-alt
-716  vdf-data-param-list-alt-opt ->
-717  vdf-data-param-list -> LPAREN_TOKEN block-opt 2 RPAREN_TOKEN
-718  vdf-data-param-list-alt -> LT_TOKEN block-opt 1 GT_TOKEN
-719  vdf-direct-obj-init-opt -> vdf-direct-obj-init
-720  vdf-direct-obj-init-opt ->
-721  vdf-direct-obj-init -> LPAREN_TOKEN BLOCK_TOKEN 2 RPAREN_TOKEN
-722  vdf-block-data-def * -> vdf-block-data-head LBRACE_TOKEN simple-vdf-obj-decl-seq-opt return-stmt-opt RBRACE_TOKEN
-723  vdf-block-data-head <* -> IDENT_TOKEN vdf-data-param-list-alt-opt
-724  vdf-block-data-head <* -> LITERAL_STRING_TOKEN vdf-data-param-list-alt-opt
-725  return-stmt-opt -> return-stmt
-726  return-stmt-opt ->
-727  simple-vdf-obj-decl-seq-opt -> simple-vdf-obj-decl-seq
-728  simple-vdf-obj-decl-seq-opt ->
-729  simple-vdf-obj-decl-seq -> simple-vdf-obj-decl
-730  simple-vdf-obj-decl-seq -> simple-vdf-obj-decl-seq simple-vdf-obj-decl
-731  simple-vdf-obj-decl * -> nested-simple-vdf-obj-decl SEMI_TOKEN
-732  nested-simple-vdf-obj-decl <* -> nested-vdf-obj-decl + vdf-obj-init-opt
-733  vdf-obj-init-opt -> vdf-obj-init
-734  vdf-obj-init-opt ->
-735  vdf-obj-init -> ASSIGN_TOKEN BLOCK_TOKEN 3
-736  vdf-obj-init -> vdf-direct-obj-init
-737  nested-vdf-obj-decl -> nested-simple-vdf-obj-decl COMMA_TOKEN vdf-obj-dcl
-738  nested-vdf-obj-decl -> vdf-obj-decl
-739  vdf-obj-decl -> xBxx-decl-spec-seq vdf-obj-dcl
-740  vdf-obj-decl -> xBVx-decl-spec-seq vdf-obj-dcl
-741  vdf-obj-decl -> xBxS-decl-spec-seq vdf-obj-dcl
-742  vdf-obj-decl -> xBVS-decl-spec-seq vdf-obj-dcl
-743  vdf-obj-decl -> xUxx-decl-spec-seq vdf-obj-dcl
-744  vdf-obj-decl -> xUVx-decl-spec-seq vdf-obj-dcl
-745  vdf-obj-decl -> xUxS-decl-spec-seq vdf-obj-dcl
-746  vdf-obj-decl -> xUVS-decl-spec-seq vdf-obj-dcl
-747  vdf-obj-decl -> xExx-decl-spec-seq vdf-obj-dcl
-748  vdf-obj-decl -> xEVx-decl-spec-seq vdf-obj-dcl
-749  vdf-obj-decl -> xExS-decl-spec-seq vdf-obj-dcl
-750  vdf-obj-decl -> xEVS-decl-spec-seq vdf-obj-dcl
-751  vdf-obj-dcl -> vdf-obj-a-dcl
-752  vdf-obj-a-dcl -> ptr-oper vdf-obj-a-dcl
-753  vdf-obj-a-dcl -> vdf-obj-a-direct-dcl
-754  vdf-obj-b-dcl -> ptr-oper vdf-obj-a-dcl
-755  vdf-obj-b-dcl -> vdf-obj-b-direct-dcl
-756  vdf-obj-a-direct-dcl -> vdf-obj-b-direct-dcl
-757  vdf-obj-a-direct-dcl -> obj-dcl-id
-758  vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl vdf-data-param-list cv-spec-seq-opt throw-spec-opt
-759  vdf-obj-b-direct-dcl -> vdf-obj-a-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
-760  vdf-obj-b-direct-dcl -> LPAREN_TOKEN vdf-obj-b-dcl RPAREN_TOKEN
-761  token -> DOLLAR_TOKEN HASH_TOKEN DBLHASH_TOKEN DOT_TOKEN DOT_TIMES_TOKEN QMARK_TOKEN LITERAL_INT_TOKEN LITERAL_FLOAT_TOKEN LITERAL_CHAR_TOKEN PP_NUMBER_TOKEN UNKNOWN_TOKEN
-762  last-token -> IDENT_PARAM_START_TOKEN
+496  noexcept-spec -> NOEXCEPT_TOKEN LPAREN_TOKEN >>! BLOCK_TOKEN 2 RPAREN_TOKEN
+497  type-id-list-opt ->
+498  type-id-list-opt -> type-id-list
+499  type-id-list -> type-id-list COMMA_TOKEN type-id
+500  type-id-list -> type-id
+501  type-id -> abstract-decl
+502  namespace-def * -> namespace-head <* LBRACE_TOKEN decl-seq-opt RBRACE_TOKEN
+503  namespace-head -> NAMESPACE_TOKEN obj-name
+504  namespace-head -> NAMESPACE_TOKEN
+505  class-def * -> class-head <* LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN semi-opt
+506  class-head -> class-key dll-api-opt obj-name base-clause-opt
+507  dll-api-opt -> DLL_API_TOKEN
+508  dll-api-opt ->
+509  semi-opt -> SEMI_TOKEN
+510  semi-opt ->
+511  base-clause-opt -> base-clause
+512  base-clause-opt ->
+513  base-clause -> COLON_TOKEN base-spec-list
+514  base-spec-list -> base-spec-list COMMA_TOKEN base-spec
+515  base-spec-list -> base-spec
+516  base-spec * -> obj-name
+517  base-spec * -> VIRTUAL_TOKEN access-opt obj-name
+518  base-spec * -> access virtual-opt obj-name
+519  access-opt ->
+520  access-opt -> access
+521  access -> PUBLIC_TOKEN
+522  access -> PROTECTED_TOKEN
+523  access -> PRIVATE_TOKEN
+524  virtual-opt -> VIRTUAL_TOKEN
+525  virtual-opt ->
+526  mbr-decl-seq-opt -> mbr-decl-seq
+527  mbr-decl-seq-opt ->
+528  mbr-decl-seq -> mbr-decl-seq mbr-decl
+529  mbr-decl-seq -> mbr-decl
+530  mbr-decl -> access-spec
+531  mbr-decl -> simple-decl
+532  mbr-decl -> class-def
+533  mbr-decl -> class-decl
+534  mbr-decl -> friend-class-decl
+535  mbr-decl -> func-def semi-opt
+536  mbr-decl -> tmpl-decl
+537  mbr-decl -> lazy-ctor
+538  mbr-decl -> functor-def
+539  mbr-decl -> simple-functor-decl
+540  mbr-decl -> enum-def
+541  mbr-decl -> using-decl
+542  access-spec * -> access COLON_TOKEN
+543  class-decl -> xExx-decl-spec-seq SEMI_TOKEN
+544  friend-class-decl -> FExx-decl-spec-seq SEMI_TOKEN
+545  func-def * -> func-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
+546  func-def * -> ctor-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
+547  try-opt -> TRY_TOKEN
+548  try-opt ->
+549  ctor-init-opt -> ctor-init
+550  ctor-init-opt ->
+551  ctor-init -> COLON_TOKEN mbr-init-list
+552  mbr-init-list -> mbr-init-list COMMA_TOKEN mbr-init
+553  mbr-init-list -> mbr-init
+554  mbr-init * -> obj-name LPAREN_TOKEN expr-list-opt RPAREN_TOKEN
+555  handler-seq-opt -> handler-seq
+556  handler-seq-opt ->
+557  handler-seq -> handler-seq handler
+558  handler-seq -> handler
+559  handler * -> CATCH_TOKEN LPAREN_TOKEN catch-decl RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
+560  catch-decl -> param-decl
+561  catch-decl -> ELLIPSE_TOKEN
+562  tmpl-decl * -> tmpl-spec tmpl-spec-decl
+563  tmpl-spec * -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN
+564  tmpl-param-list-opt -> tmpl-param-list
+565  tmpl-param-list-opt ->
+566  tmpl-param-list -> tmpl-param-list COMMA_TOKEN tmpl-param
+567  tmpl-param-list -> tmpl-param
+568  tmpl-param -> type-param
+569  tmpl-param -> tmpl-param-init-decl
+570  tmpl-param -> tmpl-tmpl-param
+571  type-param <* -> type-key + obj-name
+572  type-param <* -> type-key + obj-name ASSIGN_TOKEN abstract-decl
+573  type-key -> CLASS_TOKEN
+574  type-key -> TYPENAME_TOKEN
+575  tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name
+576  tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name ASSIGN_TOKEN obj-name
+577  tmpl-spec-decl -> simple-decl
+578  tmpl-spec-decl -> class-def
+579  tmpl-spec-decl -> class-decl
+580  tmpl-spec-decl -> friend-class-decl
+581  tmpl-spec-decl -> func-def
+582  tmpl-spec-decl -> tmpl-decl
+583  tmpl-spec-decl -> lazy-ctor
+584  tmpl-spec-decl -> functor-def
+585  tmpl-spec-decl -> simple-functor-decl
+586  tmpl-inst * -> tmpl-inst-begin tmpl-inst-decl
+587  tmpl-inst-begin <* -> TEMPLATE_TOKEN
+588  tmpl-inst-decl -> simple-decl
+589  tmpl-inst-decl -> class-decl
+590  lazy-ctor * -> lazy-ctor-begin <* LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN semi-opt
+591  lazy-ctor-begin -> class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt
+592  lazy-ctor-begin -> xxxS-decl-spec-seq class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt
+593  lazy-base-clause-opt -> lazy-base-clause
+594  lazy-base-clause-opt ->
+595  lazy-base-clause * -> COLON_TOKEN lazy-base-spec-list
+596  lazy-base-spec-list -> lazy-base-spec-list COMMA_TOKEN lazy-base-spec
+597  lazy-base-spec-list -> lazy-base-spec
+598  lazy-base-spec * -> obj-name base-init
+599  lazy-base-spec * -> VIRTUAL_TOKEN access-opt obj-name base-init
+600  lazy-base-spec * -> access virtual-opt obj-name base-init
+601  lazy-base-spec -> base-spec
+602  base-init-opt -> base-init
+603  base-init-opt ->
+604  base-init -> LPAREN_TOKEN expr-list-opt RPAREN_TOKEN
+605  expr-list-opt -> expr-list
+606  expr-list-opt ->
+607  pure-functor-dcl -> functor-dcl pure-opt
+608  functor-dcl -> ptr-oper functor-dcl
+609  functor-dcl -> functor-direct-dcl
+610  functor-direct-dcl -> obj-dcl-id param-decl-1-body param-decl-2-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt
+611  functor-direct-dcl -> functor-direct-dcl param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt
+612  functor-direct-dcl -> functor-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
+613  functor-direct-dcl -> LPAREN_TOKEN functor-dcl RPAREN_TOKEN
+614  functor-decl -> xBxx-decl-spec-seq pure-functor-dcl
+615  functor-decl -> xBVx-decl-spec-seq pure-functor-dcl
+616  functor-decl -> xBxS-decl-spec-seq pure-functor-dcl
+617  functor-decl -> xBVS-decl-spec-seq pure-functor-dcl
+618  functor-decl -> xUxx-decl-spec-seq >>++ pure-functor-dcl
+619  functor-decl -> xUVx-decl-spec-seq pure-functor-dcl
+620  functor-decl -> xUxS-decl-spec-seq >>++ pure-functor-dcl
+621  functor-decl -> xUVS-decl-spec-seq pure-functor-dcl
+622  functor-decl -> xExx-decl-spec-seq pure-functor-dcl
+623  functor-decl -> xEVx-decl-spec-seq pure-functor-dcl
+624  functor-decl -> xExS-decl-spec-seq pure-functor-dcl
+625  functor-decl -> xEVS-decl-spec-seq pure-functor-dcl
+626  functor-def * -> functor-decl lazy-base-clause-opt try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
+627  simple-functor-decl -> functor-decl lazy-base-clause-opt SEMI_TOKEN
+628  enum-def * -> ENUM_TOKEN enum-key-opt + obj-name-opt enum-base-opt <* LBRACE_TOKEN enum-body-opt RBRACE_TOKEN semi-opt
+629  enum-key-opt -> enum-key
+630  enum-key-opt ->
+631  enum-key -> CLASS_TOKEN
+632  enum-key -> STRUCT_TOKEN
+633  enum-base-opt -> enum-base
+634  enum-base-opt ->
+635  enum-base -> COLON_TOKEN type-id
+636  obj-name-opt -> obj-name
+637  obj-name-opt ->
+638  enum-body-opt -> enum-body
+639  enum-body-opt ->
+640  enum-body -> enumtor-decl-list comma-opt
+641  comma-opt -> COMMA_TOKEN
+642  comma-opt ->
+643  enumtor-decl-list -> enumtor-decl-list COMMA_TOKEN enumtor-decl
+644  enumtor-decl-list -> enumtor-decl
+645  enumtor-decl <* -> obj-name
+646  enumtor-decl <* -> obj-name ASSIGN_TOKEN BLOCK_TOKEN 9
+647  using-decl * -> USING_TOKEN obj-name SEMI_TOKEN
+648  using-decl * -> USING_TOKEN IDENT_TOKEN > ASSIGN_TOKEN type-id SEMI_TOKEN
+649  using-dir * -> USING_TOKEN NAMESPACE_TOKEN obj-name SEMI_TOKEN
+650  linkage-spec * -> linkage-block-begin <* LBRACE_TOKEN decl-seq-opt RBRACE_TOKEN
+651  linkage-spec * -> linkage-decl-begin * linkage-spec-decl
+652  linkage-block-begin -> EXTERN_TOKEN LITERAL_STRING_TOKEN
+653  linkage-decl-begin -> EXTERN_TOKEN LITERAL_STRING_TOKEN
+654  linkage-spec-decl -> func-def
+655  linkage-spec-decl -> simple-decl
+656  decl -> nav-def
+657  decl -> vdf-def
+658  nav-def * -> nav-head LBRACE_TOKEN nav-spec-seq-opt RBRACE_TOKEN
+659  nav-head * -> NAVIGATOR_TOKEN nav-decl lazy-base-clause-opt
+660  nav-decl -> xBxx-decl-spec-seq nav-dcl
+661  nav-decl -> xBVx-decl-spec-seq nav-dcl
+662  nav-decl -> xBxS-decl-spec-seq nav-dcl
+663  nav-decl -> xBVS-decl-spec-seq nav-dcl
+664  nav-decl -> xUxx-decl-spec-seq nav-dcl
+665  nav-decl -> xUVx-decl-spec-seq nav-dcl
+666  nav-decl -> xUxS-decl-spec-seq nav-dcl
+667  nav-decl -> xUVS-decl-spec-seq nav-dcl
+668  nav-decl -> xExx-decl-spec-seq nav-dcl
+669  nav-decl -> xEVx-decl-spec-seq nav-dcl
+670  nav-decl -> xExS-decl-spec-seq nav-dcl
+671  nav-decl -> xEVS-decl-spec-seq nav-dcl
+672  nav-dcl -> ptr-oper nav-dcl
+673  nav-dcl -> nav-direct-dcl
+674  nav-direct-dcl -> obj-dcl-id LPAREN_TOKEN nav-node-type RPAREN_TOKEN param-decl-1-body RPAREN_TOKEN
+675  nav-direct-dcl -> nav-direct-dcl param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt
+676  nav-direct-dcl -> nav-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
+677  nav-direct-dcl -> LPAREN_TOKEN nav-dcl RPAREN_TOKEN
+678  nav-node-type -> xUxx-decl-spec-seq
+679  nav-node-type -> xUVx-decl-spec-seq
+680  nav-node-type -> xExx-decl-spec-seq
+681  nav-node-type -> xEVx-decl-spec-seq
+682  nav-spec-seq-opt -> nav-spec-seq
+683  nav-spec-seq-opt ->
+684  nav-spec-seq -> nav-spec-seq nav-spec
+685  nav-spec-seq -> nav-spec
+686  nav-spec -> access-spec
+687  nav-spec -> simple-decl
+688  nav-spec -> class-def
+689  nav-spec -> class-decl
+690  nav-spec -> friend-class-decl
+691  nav-spec -> func-def
+692  nav-spec -> tmpl-decl
+693  nav-spec -> lazy-ctor
+694  nav-spec -> functor-def
+695  nav-spec -> simple-functor-decl
+696  nav-spec -> enum-def
+697  nav-spec -> using-decl
+698  nav-spec -> nav-visit-func-def
+699  nav-spec -> return-stmt
+700  nav-visit-func-def * -> obj-name LPAREN_TOKEN (>)3 obj-name RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
+701  return-stmt * -> RETURN_TOKEN BLOCK_TOKEN 10 SEMI_TOKEN
+702  vdf-def * -> vdf-head LBRACE_TOKEN vdf-spec-seq-opt RBRACE_TOKEN
+703  vdf-head * -> VDF_TOKEN func-decl
+704  vdf-spec-seq-opt -> vdf-spec-seq
+705  vdf-spec-seq-opt ->
+706  vdf-spec-seq -> vdf-spec
+707  vdf-spec-seq -> vdf-spec-seq vdf-spec
+708  vdf-spec -> vdf-functor-def
+709  vdf-spec -> vdf-tmpl-functor-def
+710  vdf-spec -> vdf-short-data-def
+711  vdf-spec -> vdf-block-data-def
+712  vdf-functor-def * -> obj-name > param-decl-1-body RPAREN_TOKEN try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
+713  vdf-tmpl-functor-def * -> tmpl-spec vdf-functor-def
+714  vdf-short-data-def * -> xUxx-decl-spec-seq IDENT_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt SEMI_TOKEN
+715  vdf-short-data-def * -> xUxx-decl-spec-seq LITERAL_STRING_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt SEMI_TOKEN
+716  vdf-data-param-list-alt-opt -> vdf-data-param-list-alt
+717  vdf-data-param-list-alt-opt ->
+718  vdf-data-param-list -> LPAREN_TOKEN block-opt 2 RPAREN_TOKEN
+719  vdf-data-param-list-alt -> LT_TOKEN block-opt 1 GT_TOKEN
+720  vdf-direct-obj-init-opt -> vdf-direct-obj-init
+721  vdf-direct-obj-init-opt ->
+722  vdf-direct-obj-init -> LPAREN_TOKEN BLOCK_TOKEN 2 RPAREN_TOKEN
+723  vdf-block-data-def * -> vdf-block-data-head LBRACE_TOKEN simple-vdf-obj-decl-seq-opt return-stmt-opt RBRACE_TOKEN
+724  vdf-block-data-head <* -> IDENT_TOKEN vdf-data-param-list-alt-opt
+725  vdf-block-data-head <* -> LITERAL_STRING_TOKEN vdf-data-param-list-alt-opt
+726  return-stmt-opt -> return-stmt
+727  return-stmt-opt ->
+728  simple-vdf-obj-decl-seq-opt -> simple-vdf-obj-decl-seq
+729  simple-vdf-obj-decl-seq-opt ->
+730  simple-vdf-obj-decl-seq -> simple-vdf-obj-decl
+731  simple-vdf-obj-decl-seq -> simple-vdf-obj-decl-seq simple-vdf-obj-decl
+732  simple-vdf-obj-decl * -> nested-simple-vdf-obj-decl SEMI_TOKEN
+733  nested-simple-vdf-obj-decl <* -> nested-vdf-obj-decl + vdf-obj-init-opt
+734  vdf-obj-init-opt -> vdf-obj-init
+735  vdf-obj-init-opt ->
+736  vdf-obj-init -> ASSIGN_TOKEN BLOCK_TOKEN 3
+737  vdf-obj-init -> vdf-direct-obj-init
+738  nested-vdf-obj-decl -> nested-simple-vdf-obj-decl COMMA_TOKEN vdf-obj-dcl
+739  nested-vdf-obj-decl -> vdf-obj-decl
+740  vdf-obj-decl -> xBxx-decl-spec-seq vdf-obj-dcl
+741  vdf-obj-decl -> xBVx-decl-spec-seq vdf-obj-dcl
+742  vdf-obj-decl -> xBxS-decl-spec-seq vdf-obj-dcl
+743  vdf-obj-decl -> xBVS-decl-spec-seq vdf-obj-dcl
+744  vdf-obj-decl -> xUxx-decl-spec-seq vdf-obj-dcl
+745  vdf-obj-decl -> xUVx-decl-spec-seq vdf-obj-dcl
+746  vdf-obj-decl -> xUxS-decl-spec-seq vdf-obj-dcl
+747  vdf-obj-decl -> xUVS-decl-spec-seq vdf-obj-dcl
+748  vdf-obj-decl -> xExx-decl-spec-seq vdf-obj-dcl
+749  vdf-obj-decl -> xEVx-decl-spec-seq vdf-obj-dcl
+750  vdf-obj-decl -> xExS-decl-spec-seq vdf-obj-dcl
+751  vdf-obj-decl -> xEVS-decl-spec-seq vdf-obj-dcl
+752  vdf-obj-dcl -> vdf-obj-a-dcl
+753  vdf-obj-a-dcl -> ptr-oper vdf-obj-a-dcl
+754  vdf-obj-a-dcl -> vdf-obj-a-direct-dcl
+755  vdf-obj-b-dcl -> ptr-oper vdf-obj-a-dcl
+756  vdf-obj-b-dcl -> vdf-obj-b-direct-dcl
+757  vdf-obj-a-direct-dcl -> vdf-obj-b-direct-dcl
+758  vdf-obj-a-direct-dcl -> obj-dcl-id
+759  vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl vdf-data-param-list cv-spec-seq-opt throw-spec-opt
+760  vdf-obj-b-direct-dcl -> vdf-obj-a-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
+761  vdf-obj-b-direct-dcl -> LPAREN_TOKEN vdf-obj-b-dcl RPAREN_TOKEN
+762  token -> DOLLAR_TOKEN HASH_TOKEN DBLHASH_TOKEN DOT_TOKEN DOT_TIMES_TOKEN QMARK_TOKEN LITERAL_INT_TOKEN LITERAL_FLOAT_TOKEN LITERAL_CHAR_TOKEN PP_NUMBER_TOKEN UNKNOWN_TOKEN
+763  last-token -> IDENT_PARAM_START_TOKEN
 
 0
 -----
@@ -1016,44 +1017,44 @@ nested-name -> DCOLON_TOKEN. (45)
 5
 -----
 tmpl-spec * -> TEMPLATE_TOKEN.LT_TOKEN tmpl-param-list-opt GT_TOKEN
-tmpl-inst-begin <* -> TEMPLATE_TOKEN. (586)
+tmpl-inst-begin <* -> TEMPLATE_TOKEN. (587)
 
-LPAREN_TOKEN - ACCEPT 586 tmpl-inst-begin
-DCOLON_TOKEN - ACCEPT 586 tmpl-inst-begin
+LPAREN_TOKEN - ACCEPT 587 tmpl-inst-begin
+DCOLON_TOKEN - ACCEPT 587 tmpl-inst-begin
 LT_TOKEN - SHIFT 175
-IDENT_TOKEN - ACCEPT 586 tmpl-inst-begin
-MACRO_TOKEN - ACCEPT 586 tmpl-inst-begin
-BITNOT_TOKEN - ACCEPT 586 tmpl-inst-begin
-OPERATOR_TOKEN - ACCEPT 586 tmpl-inst-begin
-TYPEDEF_TOKEN - ACCEPT 586 tmpl-inst-begin
-FRIEND_TOKEN - ACCEPT 586 tmpl-inst-begin
-CONST_TOKEN - ACCEPT 586 tmpl-inst-begin
-VOLATILE_TOKEN - ACCEPT 586 tmpl-inst-begin
-INLINE_TOKEN - ACCEPT 586 tmpl-inst-begin
-VIRTUAL_TOKEN - ACCEPT 586 tmpl-inst-begin
-EXPLICIT_TOKEN - ACCEPT 586 tmpl-inst-begin
-STATIC_TOKEN - ACCEPT 586 tmpl-inst-begin
-EXTERN_TOKEN - ACCEPT 586 tmpl-inst-begin
-MUTABLE_TOKEN - ACCEPT 586 tmpl-inst-begin
-AUTO_TOKEN - ACCEPT 586 tmpl-inst-begin
-REGISTER_TOKEN - ACCEPT 586 tmpl-inst-begin
-DLL_API_TOKEN - ACCEPT 586 tmpl-inst-begin
-ENUM_TOKEN - ACCEPT 586 tmpl-inst-begin
-TYPENAME_TOKEN - ACCEPT 586 tmpl-inst-begin
-CLASS_TOKEN - ACCEPT 586 tmpl-inst-begin
-STRUCT_TOKEN - ACCEPT 586 tmpl-inst-begin
-UNION_TOKEN - ACCEPT 586 tmpl-inst-begin
-BOOL_TOKEN - ACCEPT 586 tmpl-inst-begin
-CHAR_TOKEN - ACCEPT 586 tmpl-inst-begin
-DOUBLE_TOKEN - ACCEPT 586 tmpl-inst-begin
-FLOAT_TOKEN - ACCEPT 586 tmpl-inst-begin
-INT_TOKEN - ACCEPT 586 tmpl-inst-begin
-LONG_TOKEN - ACCEPT 586 tmpl-inst-begin
-SHORT_TOKEN - ACCEPT 586 tmpl-inst-begin
-SIGNED_TOKEN - ACCEPT 586 tmpl-inst-begin
-UNSIGNED_TOKEN - ACCEPT 586 tmpl-inst-begin
-VOID_TOKEN - ACCEPT 586 tmpl-inst-begin
-WCHAR_TOKEN - ACCEPT 586 tmpl-inst-begin
+IDENT_TOKEN - ACCEPT 587 tmpl-inst-begin
+MACRO_TOKEN - ACCEPT 587 tmpl-inst-begin
+BITNOT_TOKEN - ACCEPT 587 tmpl-inst-begin
+OPERATOR_TOKEN - ACCEPT 587 tmpl-inst-begin
+TYPEDEF_TOKEN - ACCEPT 587 tmpl-inst-begin
+FRIEND_TOKEN - ACCEPT 587 tmpl-inst-begin
+CONST_TOKEN - ACCEPT 587 tmpl-inst-begin
+VOLATILE_TOKEN - ACCEPT 587 tmpl-inst-begin
+INLINE_TOKEN - ACCEPT 587 tmpl-inst-begin
+VIRTUAL_TOKEN - ACCEPT 587 tmpl-inst-begin
+EXPLICIT_TOKEN - ACCEPT 587 tmpl-inst-begin
+STATIC_TOKEN - ACCEPT 587 tmpl-inst-begin
+EXTERN_TOKEN - ACCEPT 587 tmpl-inst-begin
+MUTABLE_TOKEN - ACCEPT 587 tmpl-inst-begin
+AUTO_TOKEN - ACCEPT 587 tmpl-inst-begin
+REGISTER_TOKEN - ACCEPT 587 tmpl-inst-begin
+DLL_API_TOKEN - ACCEPT 587 tmpl-inst-begin
+ENUM_TOKEN - ACCEPT 587 tmpl-inst-begin
+TYPENAME_TOKEN - ACCEPT 587 tmpl-inst-begin
+CLASS_TOKEN - ACCEPT 587 tmpl-inst-begin
+STRUCT_TOKEN - ACCEPT 587 tmpl-inst-begin
+UNION_TOKEN - ACCEPT 587 tmpl-inst-begin
+BOOL_TOKEN - ACCEPT 587 tmpl-inst-begin
+CHAR_TOKEN - ACCEPT 587 tmpl-inst-begin
+DOUBLE_TOKEN - ACCEPT 587 tmpl-inst-begin
+FLOAT_TOKEN - ACCEPT 587 tmpl-inst-begin
+INT_TOKEN - ACCEPT 587 tmpl-inst-begin
+LONG_TOKEN - ACCEPT 587 tmpl-inst-begin
+SHORT_TOKEN - ACCEPT 587 tmpl-inst-begin
+SIGNED_TOKEN - ACCEPT 587 tmpl-inst-begin
+UNSIGNED_TOKEN - ACCEPT 587 tmpl-inst-begin
+VOID_TOKEN - ACCEPT 587 tmpl-inst-begin
+WCHAR_TOKEN - ACCEPT 587 tmpl-inst-begin
 
 6
 -----
@@ -1141,12 +1142,12 @@ ftor-token -> DLL_API_TOKEN. (124)
 elaborated-type -> ENUM_TOKEN.obj-name
 enum-def * -> ENUM_TOKEN.enum-key-opt + obj-name-opt enum-base-opt <* LBRACE_TOKEN enum-body-opt RBRACE_TOKEN semi-opt
 
-DCOLON_TOKEN - REDUCE 629 enum-key-opt, SHIFT 4
-IDENT_TOKEN - REDUCE 629 enum-key-opt, REDUCE 48 nested-name-opt
-MACRO_TOKEN - REDUCE 629 enum-key-opt, REDUCE 48 nested-name-opt
+DCOLON_TOKEN - REDUCE 630 enum-key-opt, SHIFT 4
+IDENT_TOKEN - REDUCE 630 enum-key-opt, REDUCE 48 nested-name-opt
+MACRO_TOKEN - REDUCE 630 enum-key-opt, REDUCE 48 nested-name-opt
 CLASS_TOKEN - SHIFT 177
 STRUCT_TOKEN - SHIFT 178
-* - REDUCE 629 enum-key-opt
+* - REDUCE 630 enum-key-opt
 
 nested-name - GOTO 67
 obj-name - GOTO 179
@@ -1252,10 +1253,10 @@ built-in-type-token -> WCHAR_TOKEN. (143)
 35
 -----
 namespace-head -> NAMESPACE_TOKEN.obj-name
-namespace-head -> NAMESPACE_TOKEN. (503)
+namespace-head -> NAMESPACE_TOKEN. (504)
 
 DCOLON_TOKEN - SHIFT 4
-LBRACE_TOKEN - ACCEPT 503 namespace-head
+LBRACE_TOKEN - ACCEPT 504 namespace-head
 * - REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
@@ -1742,8 +1743,8 @@ nested-bitf-decl -> bitf-decl. (30)
 nested-func-decl -> func-decl. (32)
 func-def * -> func-decl.try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
 
-COLON_TOKEN - REDUCE 547 try-opt
-LBRACE_TOKEN - REDUCE 547 try-opt
+COLON_TOKEN - REDUCE 548 try-opt
+LBRACE_TOKEN - REDUCE 548 try-opt
 TRY_TOKEN - SHIFT 236
 * - REDUCE 32 nested-func-decl
 
@@ -1760,8 +1761,8 @@ ctor-decl -> pure-ctor-dcl. (457)
 nested-ctor-decl -> ctor-decl. (34)
 func-def * -> ctor-decl.try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
 
-COLON_TOKEN - REDUCE 547 try-opt
-LBRACE_TOKEN - REDUCE 547 try-opt
+COLON_TOKEN - REDUCE 548 try-opt
+LBRACE_TOKEN - REDUCE 548 try-opt
 TRY_TOKEN - SHIFT 236
 * - REDUCE 34 nested-ctor-decl
 
@@ -1861,7 +1862,7 @@ class-head -> class-key.dll-api-opt obj-name base-clause-opt
 lazy-ctor-begin -> class-key.dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt
 
 DLL_API_TOKEN - SHIFT 246
-* - REDUCE 507 dll-api-opt
+* - REDUCE 508 dll-api-opt
 
 dll-api-opt - GOTO 247
 
@@ -4433,7 +4434,7 @@ functor-def * -> functor-decl.lazy-base-clause-opt try-opt LBRACE_TOKEN block-op
 simple-functor-decl -> functor-decl.lazy-base-clause-opt SEMI_TOKEN
 
 COLON_TOKEN - SHIFT 543
-* - REDUCE 593 lazy-base-clause-opt
+* - REDUCE 594 lazy-base-clause-opt
 
 lazy-base-clause-opt - GOTO 544
 lazy-base-clause - GOTO 545
@@ -4561,15 +4562,15 @@ linkage-spec-decl - GOTO 550
 
 138
 -----
-decl -> nav-def. (655)
+decl -> nav-def. (656)
 
-* - REDUCE 655 decl
+* - REDUCE 656 decl
 
 139
 -----
-decl -> vdf-def. (656)
+decl -> vdf-def. (657)
 
-* - REDUCE 656 decl
+* - REDUCE 657 decl
 
 140
 -----
@@ -4631,7 +4632,7 @@ macro - GOTO 244
 elaborated-type -> class-key.dll-api-opt obj-name
 
 DLL_API_TOKEN - SHIFT 246
-* - REDUCE 507 dll-api-opt
+* - REDUCE 508 dll-api-opt
 
 dll-api-opt - GOTO 554
 
@@ -5499,7 +5500,7 @@ param-decl-1-list - GOTO 503
 tmpl-spec * -> TEMPLATE_TOKEN LT_TOKEN.tmpl-param-list-opt GT_TOKEN
 
 DCOLON_TOKEN - SHIFT 4
-GT_TOKEN - REDUCE 564 tmpl-param-list-opt
+GT_TOKEN - REDUCE 565 tmpl-param-list-opt
 TEMPLATE_TOKEN - SHIFT 585
 CONST_TOKEN - SHIFT 8
 VOLATILE_TOKEN - SHIFT 9
@@ -5568,23 +5569,23 @@ type-key - GOTO 595
 
 176
 -----
-linkage-block-begin -> EXTERN_TOKEN LITERAL_STRING_TOKEN. (651)
-linkage-decl-begin -> EXTERN_TOKEN LITERAL_STRING_TOKEN. (652)
+linkage-block-begin -> EXTERN_TOKEN LITERAL_STRING_TOKEN. (652)
+linkage-decl-begin -> EXTERN_TOKEN LITERAL_STRING_TOKEN. (653)
 
-LBRACE_TOKEN - ACCEPT 651 linkage-block-begin
-* - ACCEPT 652 linkage-decl-begin
+LBRACE_TOKEN - ACCEPT 652 linkage-block-begin
+* - ACCEPT 653 linkage-decl-begin
 
 177
 -----
-enum-key -> CLASS_TOKEN. (630)
+enum-key -> CLASS_TOKEN. (631)
 
-* - REDUCE 630 enum-key
+* - REDUCE 631 enum-key
 
 178
 -----
-enum-key -> STRUCT_TOKEN. (631)
+enum-key -> STRUCT_TOKEN. (632)
 
-* - REDUCE 631 enum-key
+* - REDUCE 632 enum-key
 
 179
 -----
@@ -5599,8 +5600,8 @@ DCOLON_TOKEN - SHIFT 240
 enum-def * -> ENUM_TOKEN enum-key-opt +.obj-name-opt enum-base-opt <* LBRACE_TOKEN enum-body-opt RBRACE_TOKEN semi-opt
 
 DCOLON_TOKEN - SHIFT 4
-COLON_TOKEN - REDUCE 636 obj-name-opt
-LBRACE_TOKEN - REDUCE 636 obj-name-opt
+COLON_TOKEN - REDUCE 637 obj-name-opt
+LBRACE_TOKEN - REDUCE 637 obj-name-opt
 * - REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
@@ -5610,9 +5611,9 @@ obj-name-opt - GOTO 597
 
 181
 -----
-enum-key-opt -> enum-key. (628)
+enum-key-opt -> enum-key. (629)
 
-* - REDUCE 628 enum-key-opt
+* - REDUCE 629 enum-key-opt
 
 182
 -----
@@ -5624,11 +5625,11 @@ DCOLON_TOKEN - SHIFT 240
 
 183
 -----
-namespace-head -> NAMESPACE_TOKEN obj-name. (502)
+namespace-head -> NAMESPACE_TOKEN obj-name. (503)
 nested-name -> obj-name.DCOLON_TOKEN >!
 
 DCOLON_TOKEN - SHIFT 240
-LBRACE_TOKEN - ACCEPT 502 namespace-head
+LBRACE_TOKEN - ACCEPT 503 namespace-head
 
 184
 -----
@@ -6160,16 +6161,16 @@ nav-direct-dcl - GOTO 605
 nav-head * -> NAVIGATOR_TOKEN nav-decl.lazy-base-clause-opt
 
 COLON_TOKEN - SHIFT 543
-* - REDUCE 593 lazy-base-clause-opt
+* - REDUCE 594 lazy-base-clause-opt
 
 lazy-base-clause-opt - GOTO 617
 lazy-base-clause - GOTO 545
 
 200
 -----
-vdf-head * -> VDF_TOKEN func-decl. (702)
+vdf-head * -> VDF_TOKEN func-decl. (703)
 
-* - ACCEPT 702 vdf-head
+* - ACCEPT 703 vdf-head
 
 201
 -----
@@ -7375,16 +7376,16 @@ RPAREN_TOKEN - SHIFT 627
 
 236
 -----
-try-opt -> TRY_TOKEN. (546)
+try-opt -> TRY_TOKEN. (547)
 
-* - REDUCE 546 try-opt
+* - REDUCE 547 try-opt
 
 237
 -----
 func-def * -> func-decl try-opt.ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
 
 COLON_TOKEN - SHIFT 628
-* - REDUCE 549 ctor-init-opt
+* - REDUCE 550 ctor-init-opt
 
 ctor-init-opt - GOTO 629
 ctor-init - GOTO 630
@@ -7394,7 +7395,7 @@ ctor-init - GOTO 630
 func-def * -> ctor-decl try-opt.ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
 
 COLON_TOKEN - SHIFT 628
-* - REDUCE 549 ctor-init-opt
+* - REDUCE 550 ctor-init-opt
 
 ctor-init-opt - GOTO 631
 ctor-init - GOTO 630
@@ -7457,9 +7458,9 @@ LT_TOKEN - SHIFT 637
 
 246
 -----
-dll-api-opt -> DLL_API_TOKEN. (506)
+dll-api-opt -> DLL_API_TOKEN. (507)
 
-* - REDUCE 506 dll-api-opt
+* - REDUCE 507 dll-api-opt
 
 247
 -----
@@ -7564,7 +7565,7 @@ lazy-ctor-begin -> xxxS-decl-spec-seq class-key.dll-api-opt obj-name param-decl-
 elaborated-type -> class-key.dll-api-opt obj-name
 
 DLL_API_TOKEN - SHIFT 246
-* - REDUCE 507 dll-api-opt
+* - REDUCE 508 dll-api-opt
 
 dll-api-opt - GOTO 639
 
@@ -7871,9 +7872,9 @@ bitf-dcl-id -> bitf-id. (383)
 
 296
 -----
-functor-decl -> xBxx-decl-spec-seq pure-functor-dcl. (613)
+functor-decl -> xBxx-decl-spec-seq pure-functor-dcl. (614)
 
-* - REDUCE 613 functor-decl
+* - REDUCE 614 functor-decl
 
 297
 -----
@@ -7887,13 +7888,13 @@ pure - GOTO 670
 
 298
 -----
-functor-dcl -> functor-direct-dcl. (608)
+functor-dcl -> functor-direct-dcl. (609)
 functor-direct-dcl -> functor-direct-dcl.param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt
 functor-direct-dcl -> functor-direct-dcl.LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
 
 LPAREN_TOKEN - SHIFT 501
 LBRACK_TOKEN - SHIFT 671
-* - REDUCE 608 functor-dcl
+* - REDUCE 609 functor-dcl
 
 param-decl-1-body - GOTO 672
 param-decl-1-list - GOTO 503
@@ -7948,9 +7949,9 @@ xBVx-decl-spec-seq -> xBVx-decl-spec-seq built-in-type. (157)
 
 307
 -----
-functor-decl -> xBVx-decl-spec-seq pure-functor-dcl. (614)
+functor-decl -> xBVx-decl-spec-seq pure-functor-dcl. (615)
 
-* - REDUCE 614 functor-decl
+* - REDUCE 615 functor-decl
 
 308
 -----
@@ -8002,9 +8003,9 @@ xBxS-decl-spec-seq -> xBxS-decl-spec-seq built-in-type. (161)
 
 316
 -----
-functor-decl -> xBxS-decl-spec-seq pure-functor-dcl. (615)
+functor-decl -> xBxS-decl-spec-seq pure-functor-dcl. (616)
 
-* - REDUCE 615 functor-decl
+* - REDUCE 616 functor-decl
 
 317
 -----
@@ -8056,9 +8057,9 @@ xBVS-decl-spec-seq -> xBVS-decl-spec-seq built-in-type. (167)
 
 325
 -----
-functor-decl -> xBVS-decl-spec-seq pure-functor-dcl. (616)
+functor-decl -> xBVS-decl-spec-seq pure-functor-dcl. (617)
 
-* - REDUCE 616 functor-decl
+* - REDUCE 617 functor-decl
 
 326
 -----
@@ -8104,9 +8105,9 @@ xUxS-decl-spec-seq -> xUxx-decl-spec-seq ftor-spec. (172)
 
 333
 -----
-functor-decl -> xUxx-decl-spec-seq >>++ pure-functor-dcl. (617)
+functor-decl -> xUxx-decl-spec-seq >>++ pure-functor-dcl. (618)
 
-* - REDUCE 617 functor-decl
+* - REDUCE 618 functor-decl
 
 334
 -----
@@ -8152,9 +8153,9 @@ xUVS-decl-spec-seq -> xUVx-decl-spec-seq ftor-spec. (175)
 
 341
 -----
-functor-decl -> xUVx-decl-spec-seq pure-functor-dcl. (618)
+functor-decl -> xUVx-decl-spec-seq pure-functor-dcl. (619)
 
-* - REDUCE 618 functor-decl
+* - REDUCE 619 functor-decl
 
 342
 -----
@@ -8194,9 +8195,9 @@ xUxS-decl-spec-seq -> xUxS-decl-spec-seq ftor-spec. (174)
 
 348
 -----
-functor-decl -> xUxS-decl-spec-seq >>++ pure-functor-dcl. (619)
+functor-decl -> xUxS-decl-spec-seq >>++ pure-functor-dcl. (620)
 
-* - REDUCE 619 functor-decl
+* - REDUCE 620 functor-decl
 
 349
 -----
@@ -8236,15 +8237,15 @@ xUVS-decl-spec-seq -> xUVS-decl-spec-seq ftor-spec. (178)
 
 355
 -----
-functor-decl -> xUVS-decl-spec-seq pure-functor-dcl. (620)
+functor-decl -> xUVS-decl-spec-seq pure-functor-dcl. (621)
 
-* - REDUCE 620 functor-decl
+* - REDUCE 621 functor-decl
 
 356
 -----
-class-decl -> xExx-decl-spec-seq SEMI_TOKEN. (542)
+class-decl -> xExx-decl-spec-seq SEMI_TOKEN. (543)
 
-* - REDUCE 542 class-decl
+* - REDUCE 543 class-decl
 
 357
 -----
@@ -8316,9 +8317,9 @@ xExS-decl-spec-seq -> xExx-decl-spec-seq ftor-spec. (184)
 
 364
 -----
-functor-decl -> xExx-decl-spec-seq pure-functor-dcl. (621)
+functor-decl -> xExx-decl-spec-seq pure-functor-dcl. (622)
 
-* - REDUCE 621 functor-decl
+* - REDUCE 622 functor-decl
 
 365
 -----
@@ -8358,9 +8359,9 @@ xEVS-decl-spec-seq -> xEVx-decl-spec-seq ftor-spec. (187)
 
 371
 -----
-functor-decl -> xEVx-decl-spec-seq pure-functor-dcl. (622)
+functor-decl -> xEVx-decl-spec-seq pure-functor-dcl. (623)
 
-* - REDUCE 622 functor-decl
+* - REDUCE 623 functor-decl
 
 372
 -----
@@ -8394,9 +8395,9 @@ xExS-decl-spec-seq -> xExS-decl-spec-seq ftor-spec. (186)
 
 377
 -----
-functor-decl -> xExS-decl-spec-seq pure-functor-dcl. (623)
+functor-decl -> xExS-decl-spec-seq pure-functor-dcl. (624)
 
-* - REDUCE 623 functor-decl
+* - REDUCE 624 functor-decl
 
 378
 -----
@@ -8430,9 +8431,9 @@ xEVS-decl-spec-seq -> xEVS-decl-spec-seq ftor-spec. (190)
 
 383
 -----
-functor-decl -> xEVS-decl-spec-seq pure-functor-dcl. (624)
+functor-decl -> xEVS-decl-spec-seq pure-functor-dcl. (625)
 
-* - REDUCE 624 functor-decl
+* - REDUCE 625 functor-decl
 
 384
 -----
@@ -9568,7 +9569,7 @@ SIGNED_TOKEN - SHIFT 31
 UNSIGNED_TOKEN - SHIFT 32
 VOID_TOKEN - SHIFT 33
 WCHAR_TOKEN - SHIFT 34
-RBRACE_TOKEN - REDUCE 526 mbr-decl-seq-opt
+RBRACE_TOKEN - REDUCE 527 mbr-decl-seq-opt
 PUBLIC_TOKEN - SHIFT 691
 PROTECTED_TOKEN - SHIFT 692
 PRIVATE_TOKEN - SHIFT 693
@@ -9678,51 +9679,51 @@ LT_TOKEN - SHIFT 175
 
 513
 -----
-tmpl-spec-decl -> simple-decl. (576)
-
-* - REDUCE 576 tmpl-spec-decl
-
-514
------
-tmpl-spec-decl -> class-def. (577)
+tmpl-spec-decl -> simple-decl. (577)
 
 * - REDUCE 577 tmpl-spec-decl
 
-515
+514
 -----
-tmpl-spec-decl -> class-decl. (578)
+tmpl-spec-decl -> class-def. (578)
 
 * - REDUCE 578 tmpl-spec-decl
 
+515
+-----
+tmpl-spec-decl -> class-decl. (579)
+
+* - REDUCE 579 tmpl-spec-decl
+
 516
 -----
-tmpl-spec-decl -> func-def. (580)
-
-* - REDUCE 580 tmpl-spec-decl
-
-517
------
-tmpl-spec-decl -> tmpl-decl. (581)
+tmpl-spec-decl -> func-def. (581)
 
 * - REDUCE 581 tmpl-spec-decl
 
-518
+517
 -----
-tmpl-spec-decl -> lazy-ctor. (582)
+tmpl-spec-decl -> tmpl-decl. (582)
 
 * - REDUCE 582 tmpl-spec-decl
 
-519
+518
 -----
-tmpl-spec-decl -> functor-def. (583)
+tmpl-spec-decl -> lazy-ctor. (583)
 
 * - REDUCE 583 tmpl-spec-decl
 
-520
+519
 -----
-tmpl-spec-decl -> simple-functor-decl. (584)
+tmpl-spec-decl -> functor-def. (584)
 
 * - REDUCE 584 tmpl-spec-decl
+
+520
+-----
+tmpl-spec-decl -> simple-functor-decl. (585)
+
+* - REDUCE 585 tmpl-spec-decl
 
 521
 -----
@@ -9769,27 +9770,27 @@ func-id - GOTO 129
 
 522
 -----
-tmpl-spec-decl -> friend-class-decl. (579)
+tmpl-spec-decl -> friend-class-decl. (580)
 
-* - REDUCE 579 tmpl-spec-decl
+* - REDUCE 580 tmpl-spec-decl
 
 523
 -----
-tmpl-decl * -> tmpl-spec tmpl-spec-decl. (561)
+tmpl-decl * -> tmpl-spec tmpl-spec-decl. (562)
 
-* - ACCEPT 561 tmpl-decl
+* - ACCEPT 562 tmpl-decl
 
 524
 -----
-tmpl-inst-decl -> simple-decl. (587)
+tmpl-inst-decl -> simple-decl. (588)
 
-* - REDUCE 587 tmpl-inst-decl
+* - REDUCE 588 tmpl-inst-decl
 
 525
 -----
-tmpl-inst-decl -> class-decl. (588)
+tmpl-inst-decl -> class-decl. (589)
 
-* - REDUCE 588 tmpl-inst-decl
+* - REDUCE 589 tmpl-inst-decl
 
 526
 -----
@@ -10581,9 +10582,9 @@ func-id - GOTO 129
 
 541
 -----
-tmpl-inst * -> tmpl-inst-begin tmpl-inst-decl. (585)
+tmpl-inst * -> tmpl-inst-begin tmpl-inst-decl. (586)
 
-* - ACCEPT 585 tmpl-inst
+* - ACCEPT 586 tmpl-inst
 
 542
 -----
@@ -10621,7 +10622,7 @@ SIGNED_TOKEN - SHIFT 31
 UNSIGNED_TOKEN - SHIFT 32
 VOID_TOKEN - SHIFT 33
 WCHAR_TOKEN - SHIFT 34
-RBRACE_TOKEN - REDUCE 526 mbr-decl-seq-opt
+RBRACE_TOKEN - REDUCE 527 mbr-decl-seq-opt
 PUBLIC_TOKEN - SHIFT 691
 PROTECTED_TOKEN - SHIFT 692
 PRIVATE_TOKEN - SHIFT 693
@@ -10749,15 +10750,15 @@ simple-functor-decl -> functor-decl lazy-base-clause-opt.SEMI_TOKEN
 
 SEMI_TOKEN - SHIFT 719
 TRY_TOKEN - SHIFT 236
-* - REDUCE 547 try-opt
+* - REDUCE 548 try-opt
 
 try-opt - GOTO 720
 
 545
 -----
-lazy-base-clause-opt -> lazy-base-clause. (592)
+lazy-base-clause-opt -> lazy-base-clause. (593)
 
-* - REDUCE 592 lazy-base-clause-opt
+* - REDUCE 593 lazy-base-clause-opt
 
 546
 -----
@@ -10908,15 +10909,15 @@ vdf-head - GOTO 141
 
 547
 -----
-linkage-spec-decl -> simple-decl. (654)
+linkage-spec-decl -> simple-decl. (655)
 
-* - REDUCE 654 linkage-spec-decl
+* - REDUCE 655 linkage-spec-decl
 
 548
 -----
-linkage-spec-decl -> func-def. (653)
+linkage-spec-decl -> func-def. (654)
 
-* - REDUCE 653 linkage-spec-decl
+* - REDUCE 654 linkage-spec-decl
 
 549
 -----
@@ -10972,9 +10973,9 @@ func-id - GOTO 129
 
 550
 -----
-linkage-spec * -> linkage-decl-begin * linkage-spec-decl. (650)
+linkage-spec * -> linkage-decl-begin * linkage-spec-decl. (651)
 
-* - ACCEPT 650 linkage-spec
+* - ACCEPT 651 linkage-spec
 
 551
 -----
@@ -11012,7 +11013,7 @@ SIGNED_TOKEN - SHIFT 31
 UNSIGNED_TOKEN - SHIFT 32
 VOID_TOKEN - SHIFT 33
 WCHAR_TOKEN - SHIFT 34
-RBRACE_TOKEN - REDUCE 682 nav-spec-seq-opt
+RBRACE_TOKEN - REDUCE 683 nav-spec-seq-opt
 PUBLIC_TOKEN - SHIFT 691
 PROTECTED_TOKEN - SHIFT 692
 PRIVATE_TOKEN - SHIFT 693
@@ -11124,7 +11125,7 @@ vdf-def * -> vdf-head LBRACE_TOKEN.vdf-spec-seq-opt RBRACE_TOKEN
 DCOLON_TOKEN - SHIFT 4
 TEMPLATE_TOKEN - SHIFT 512
 IDENT_TOKEN - REDUCE 48 nested-name-opt, SHIFT 741
-RBRACE_TOKEN - REDUCE 704 vdf-spec-seq-opt
+RBRACE_TOKEN - REDUCE 705 vdf-spec-seq-opt
 LITERAL_STRING_TOKEN - SHIFT 742
 * - REDUCE 48 nested-name-opt
 
@@ -11476,10 +11477,10 @@ LT_TOKEN - SHIFT 774
 586
 -----
 elaborated-type -> TYPENAME_TOKEN.obj-name
-type-key -> TYPENAME_TOKEN. (573)
+type-key -> TYPENAME_TOKEN. (574)
 
-DCOLON_TOKEN - REDUCE 573 type-key, SHIFT 4
-* - REDUCE 573 type-key, REDUCE 48 nested-name-opt
+DCOLON_TOKEN - REDUCE 574 type-key, SHIFT 4
+* - REDUCE 574 type-key, REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
 obj-name - GOTO 182
@@ -11488,10 +11489,10 @@ nested-name-opt - GOTO 146
 587
 -----
 class-key -> CLASS_TOKEN. (129)
-type-key -> CLASS_TOKEN. (572)
+type-key -> CLASS_TOKEN. (573)
 
 DLL_API_TOKEN - REDUCE 129 class-key
-* - REDUCE 572 type-key, REDUCE 129 class-key
+* - REDUCE 573 type-key, REDUCE 129 class-key
 
 588
 -----
@@ -11504,9 +11505,9 @@ GT_TOKEN - ACCEPT 409 tmpl-param-init-decl
 
 589
 -----
-tmpl-param -> tmpl-param-init-decl. (568)
+tmpl-param -> tmpl-param-init-decl. (569)
 
-* - REDUCE 568 tmpl-param
+* - REDUCE 569 tmpl-param
 
 590
 -----
@@ -11516,29 +11517,29 @@ GT_TOKEN - SHIFT 776
 
 591
 -----
-tmpl-param-list-opt -> tmpl-param-list. (563)
+tmpl-param-list-opt -> tmpl-param-list. (564)
 tmpl-param-list -> tmpl-param-list.COMMA_TOKEN tmpl-param
 
 COMMA_TOKEN - SHIFT 777
-* - REDUCE 563 tmpl-param-list-opt
+* - REDUCE 564 tmpl-param-list-opt
 
 592
 -----
-tmpl-param-list -> tmpl-param. (566)
+tmpl-param-list -> tmpl-param. (567)
 
-* - REDUCE 566 tmpl-param-list
+* - REDUCE 567 tmpl-param-list
 
 593
 -----
-tmpl-param -> type-param. (567)
+tmpl-param -> type-param. (568)
 
-* - REDUCE 567 tmpl-param
+* - REDUCE 568 tmpl-param
 
 594
 -----
-tmpl-param -> tmpl-tmpl-param. (569)
+tmpl-param -> tmpl-tmpl-param. (570)
 
-* - REDUCE 569 tmpl-param
+* - REDUCE 570 tmpl-param
 
 595
 -----
@@ -11555,17 +11556,17 @@ nested-name-opt - GOTO 146
 596
 -----
 nested-name -> obj-name.DCOLON_TOKEN >!
-obj-name-opt -> obj-name. (635)
+obj-name-opt -> obj-name. (636)
 
 DCOLON_TOKEN - SHIFT 240
-* - REDUCE 635 obj-name-opt
+* - REDUCE 636 obj-name-opt
 
 597
 -----
 enum-def * -> ENUM_TOKEN enum-key-opt + obj-name-opt.enum-base-opt <* LBRACE_TOKEN enum-body-opt RBRACE_TOKEN semi-opt
 
 COLON_TOKEN - SHIFT 779
-LBRACE_TOKEN - ACCEPT 633 enum-base-opt
+LBRACE_TOKEN - ACCEPT 634 enum-base-opt
 
 enum-base-opt - GOTO 780
 enum-base - GOTO 781
@@ -11625,9 +11626,9 @@ DCOLON_TOKEN - SHIFT 240
 
 600
 -----
-using-decl * -> USING_TOKEN obj-name SEMI_TOKEN. (646)
+using-decl * -> USING_TOKEN obj-name SEMI_TOKEN. (647)
 
-* - ACCEPT 646 using-decl
+* - ACCEPT 647 using-decl
 
 601
 -----
@@ -11678,94 +11679,94 @@ LPAREN_TOKEN - SHIFT 795
 
 604
 -----
-nav-decl -> xBxx-decl-spec-seq nav-dcl. (659)
+nav-decl -> xBxx-decl-spec-seq nav-dcl. (660)
 
-* - REDUCE 659 nav-decl
+* - REDUCE 660 nav-decl
 
 605
 -----
-nav-dcl -> nav-direct-dcl. (672)
+nav-dcl -> nav-direct-dcl. (673)
 nav-direct-dcl -> nav-direct-dcl.param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt
 nav-direct-dcl -> nav-direct-dcl.LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
 
 LPAREN_TOKEN - SHIFT 501
 LBRACK_TOKEN - SHIFT 796
-* - REDUCE 672 nav-dcl
+* - REDUCE 673 nav-dcl
 
 param-decl-1-body - GOTO 797
 param-decl-1-list - GOTO 503
 
 606
 -----
-nav-decl -> xBVx-decl-spec-seq nav-dcl. (660)
-
-* - REDUCE 660 nav-decl
-
-607
------
-nav-decl -> xBxS-decl-spec-seq nav-dcl. (661)
+nav-decl -> xBVx-decl-spec-seq nav-dcl. (661)
 
 * - REDUCE 661 nav-decl
 
-608
+607
 -----
-nav-decl -> xBVS-decl-spec-seq nav-dcl. (662)
+nav-decl -> xBxS-decl-spec-seq nav-dcl. (662)
 
 * - REDUCE 662 nav-decl
 
-609
+608
 -----
-nav-decl -> xUxx-decl-spec-seq nav-dcl. (663)
+nav-decl -> xBVS-decl-spec-seq nav-dcl. (663)
 
 * - REDUCE 663 nav-decl
 
-610
+609
 -----
-nav-decl -> xUVx-decl-spec-seq nav-dcl. (664)
+nav-decl -> xUxx-decl-spec-seq nav-dcl. (664)
 
 * - REDUCE 664 nav-decl
 
-611
+610
 -----
-nav-decl -> xUxS-decl-spec-seq nav-dcl. (665)
+nav-decl -> xUVx-decl-spec-seq nav-dcl. (665)
 
 * - REDUCE 665 nav-decl
 
-612
+611
 -----
-nav-decl -> xUVS-decl-spec-seq nav-dcl. (666)
+nav-decl -> xUxS-decl-spec-seq nav-dcl. (666)
 
 * - REDUCE 666 nav-decl
 
-613
+612
 -----
-nav-decl -> xExx-decl-spec-seq nav-dcl. (667)
+nav-decl -> xUVS-decl-spec-seq nav-dcl. (667)
 
 * - REDUCE 667 nav-decl
 
-614
+613
 -----
-nav-decl -> xEVx-decl-spec-seq nav-dcl. (668)
+nav-decl -> xExx-decl-spec-seq nav-dcl. (668)
 
 * - REDUCE 668 nav-decl
 
-615
+614
 -----
-nav-decl -> xExS-decl-spec-seq nav-dcl. (669)
+nav-decl -> xEVx-decl-spec-seq nav-dcl. (669)
 
 * - REDUCE 669 nav-decl
 
-616
+615
 -----
-nav-decl -> xEVS-decl-spec-seq nav-dcl. (670)
+nav-decl -> xExS-decl-spec-seq nav-dcl. (670)
 
 * - REDUCE 670 nav-decl
 
+616
+-----
+nav-decl -> xEVS-decl-spec-seq nav-dcl. (671)
+
+* - REDUCE 671 nav-decl
+
 617
 -----
-nav-head * -> NAVIGATOR_TOKEN nav-decl lazy-base-clause-opt. (658)
+nav-head * -> NAVIGATOR_TOKEN nav-decl lazy-base-clause-opt. (659)
 
-* - ACCEPT 658 nav-head
+* - ACCEPT 659 nav-head
 
 618
 -----
@@ -11883,9 +11884,9 @@ LBRACE_TOKEN - SHIFT 804
 
 630
 -----
-ctor-init-opt -> ctor-init. (548)
+ctor-init-opt -> ctor-init. (549)
 
-* - REDUCE 548 ctor-init-opt
+* - REDUCE 549 ctor-init-opt
 
 631
 -----
@@ -12026,7 +12027,7 @@ nested-name -> obj-name.DCOLON_TOKEN >!
 LPAREN_TOKEN - SHIFT 501, REDUCE 126 elaborated-type
 DCOLON_TOKEN - SHIFT 240
 COLON_TOKEN - SHIFT 860
-LBRACE_TOKEN - REDUCE 511 base-clause-opt
+LBRACE_TOKEN - REDUCE 512 base-clause-opt
 * - REDUCE 126 elaborated-type
 
 param-decl-1-body - GOTO 861
@@ -12224,9 +12225,9 @@ func-dcl -> ptr-oper func-dcl. (343)
 
 658
 -----
-functor-dcl -> ptr-oper functor-dcl. (607)
+functor-dcl -> ptr-oper functor-dcl. (608)
 
-* - REDUCE 607 functor-dcl
+* - REDUCE 608 functor-dcl
 
 659 (5)
 -----
@@ -12378,9 +12379,9 @@ ZERO_TOKEN - SHIFT 892
 
 669
 -----
-pure-functor-dcl -> functor-dcl pure-opt. (606)
+pure-functor-dcl -> functor-dcl pure-opt. (607)
 
-* - REDUCE 606 pure-functor-dcl
+* - REDUCE 607 pure-functor-dcl
 
 670
 -----
@@ -12790,21 +12791,21 @@ vdf-head - GOTO 141
 
 691
 -----
-access -> PUBLIC_TOKEN. (520)
-
-* - REDUCE 520 access
-
-692
------
-access -> PROTECTED_TOKEN. (521)
+access -> PUBLIC_TOKEN. (521)
 
 * - REDUCE 521 access
 
-693
+692
 -----
-access -> PRIVATE_TOKEN. (522)
+access -> PROTECTED_TOKEN. (522)
 
 * - REDUCE 522 access
+
+693
+-----
+access -> PRIVATE_TOKEN. (523)
+
+* - REDUCE 523 access
 
 694
 -----
@@ -12821,66 +12822,66 @@ nested-name-opt - GOTO 146
 
 695
 -----
-mbr-decl -> simple-decl. (530)
-
-* - REDUCE 530 mbr-decl
-
-696
------
-mbr-decl -> class-def. (531)
+mbr-decl -> simple-decl. (531)
 
 * - REDUCE 531 mbr-decl
 
-697
+696
 -----
-mbr-decl -> class-decl. (532)
+mbr-decl -> class-def. (532)
 
 * - REDUCE 532 mbr-decl
+
+697
+-----
+mbr-decl -> class-decl. (533)
+
+* - REDUCE 533 mbr-decl
 
 698
 -----
 mbr-decl -> func-def.semi-opt
 
 SEMI_TOKEN - SHIFT 905
-* - REDUCE 509 semi-opt
+* - REDUCE 510 semi-opt
 
 semi-opt - GOTO 906
 
 699
 -----
-mbr-decl -> tmpl-decl. (535)
-
-* - REDUCE 535 mbr-decl
-
-700
------
-mbr-decl -> lazy-ctor. (536)
+mbr-decl -> tmpl-decl. (536)
 
 * - REDUCE 536 mbr-decl
 
-701
+700
 -----
-mbr-decl -> functor-def. (537)
+mbr-decl -> lazy-ctor. (537)
 
 * - REDUCE 537 mbr-decl
 
-702
+701
 -----
-mbr-decl -> simple-functor-decl. (538)
+mbr-decl -> functor-def. (538)
 
 * - REDUCE 538 mbr-decl
 
-703
+702
 -----
-mbr-decl -> enum-def. (539)
+mbr-decl -> simple-functor-decl. (539)
 
 * - REDUCE 539 mbr-decl
 
-704
+703
 -----
-mbr-decl -> using-decl. (540)
+mbr-decl -> enum-def. (540)
 
 * - REDUCE 540 mbr-decl
+
+704
+-----
+mbr-decl -> using-decl. (541)
+
+* - REDUCE 541 mbr-decl
 
 705
 -----
@@ -12896,7 +12897,7 @@ COLON_TOKEN - SHIFT 908
 
 707
 -----
-mbr-decl-seq-opt -> mbr-decl-seq. (525)
+mbr-decl-seq-opt -> mbr-decl-seq. (526)
 mbr-decl-seq -> mbr-decl-seq.mbr-decl
 
 LPAREN_TOKEN - SHIFT 3
@@ -12931,7 +12932,7 @@ SIGNED_TOKEN - SHIFT 31
 UNSIGNED_TOKEN - SHIFT 32
 VOID_TOKEN - SHIFT 33
 WCHAR_TOKEN - SHIFT 34
-RBRACE_TOKEN - REDUCE 525 mbr-decl-seq-opt
+RBRACE_TOKEN - REDUCE 526 mbr-decl-seq-opt
 PUBLIC_TOKEN - SHIFT 691
 PROTECTED_TOKEN - SHIFT 692
 PRIVATE_TOKEN - SHIFT 693
@@ -13033,27 +13034,27 @@ functor-decl - GOTO 135
 
 708
 -----
-mbr-decl-seq -> mbr-decl. (528)
+mbr-decl-seq -> mbr-decl. (529)
 
-* - REDUCE 528 mbr-decl-seq
+* - REDUCE 529 mbr-decl-seq
 
 709
 -----
-mbr-decl -> access-spec. (529)
+mbr-decl -> access-spec. (530)
 
-* - REDUCE 529 mbr-decl
+* - REDUCE 530 mbr-decl
 
 710
 -----
-mbr-decl -> friend-class-decl. (533)
+mbr-decl -> friend-class-decl. (534)
 
-* - REDUCE 533 mbr-decl
+* - REDUCE 534 mbr-decl
 
 711
 -----
-friend-class-decl -> FExx-decl-spec-seq SEMI_TOKEN. (543)
+friend-class-decl -> FExx-decl-spec-seq SEMI_TOKEN. (544)
 
-* - REDUCE 543 friend-class-decl
+* - REDUCE 544 friend-class-decl
 
 712
 -----
@@ -13069,7 +13070,7 @@ lazy-base-spec * -> VIRTUAL_TOKEN.access-opt obj-name base-init
 PUBLIC_TOKEN - SHIFT 691
 PROTECTED_TOKEN - SHIFT 692
 PRIVATE_TOKEN - SHIFT 693
-* - REDUCE 518 access-opt
+* - REDUCE 519 access-opt
 
 access-opt - GOTO 911
 access - GOTO 912
@@ -13077,20 +13078,20 @@ access - GOTO 912
 714
 -----
 nested-name -> obj-name.DCOLON_TOKEN >!
-base-spec * -> obj-name. (515)
+base-spec * -> obj-name. (516)
 lazy-base-spec * -> obj-name.base-init
 
 LPAREN_TOKEN - SHIFT 913
 DCOLON_TOKEN - SHIFT 240
-* - ACCEPT 515 base-spec
+* - ACCEPT 516 base-spec
 
 base-init - GOTO 914
 
 715
 -----
-lazy-base-spec -> base-spec. (600)
+lazy-base-spec -> base-spec. (601)
 
-* - REDUCE 600 lazy-base-spec
+* - REDUCE 601 lazy-base-spec
 
 716
 -----
@@ -13098,29 +13099,29 @@ base-spec * -> access.virtual-opt obj-name
 lazy-base-spec * -> access.virtual-opt obj-name base-init
 
 VIRTUAL_TOKEN - SHIFT 915
-* - REDUCE 524 virtual-opt
+* - REDUCE 525 virtual-opt
 
 virtual-opt - GOTO 916
 
 717
 -----
-lazy-base-clause * -> COLON_TOKEN lazy-base-spec-list. (594)
+lazy-base-clause * -> COLON_TOKEN lazy-base-spec-list. (595)
 lazy-base-spec-list -> lazy-base-spec-list.COMMA_TOKEN lazy-base-spec
 
 COMMA_TOKEN - SHIFT 917
-* - ACCEPT 594 lazy-base-clause
+* - ACCEPT 595 lazy-base-clause
 
 718
 -----
-lazy-base-spec-list -> lazy-base-spec. (596)
+lazy-base-spec-list -> lazy-base-spec. (597)
 
-* - REDUCE 596 lazy-base-spec-list
+* - REDUCE 597 lazy-base-spec-list
 
 719
 -----
-simple-functor-decl -> functor-decl lazy-base-clause-opt SEMI_TOKEN. (626)
+simple-functor-decl -> functor-decl lazy-base-clause-opt SEMI_TOKEN. (627)
 
-* - REDUCE 626 simple-functor-decl
+* - REDUCE 627 simple-functor-decl
 
 720
 -----
@@ -13142,63 +13143,63 @@ BLOCK_TOKEN - SHIFT 920
 
 723
 -----
-nav-spec -> simple-decl. (686)
-
-* - REDUCE 686 nav-spec
-
-724
------
-nav-spec -> class-def. (687)
+nav-spec -> simple-decl. (687)
 
 * - REDUCE 687 nav-spec
 
-725
+724
 -----
-nav-spec -> class-decl. (688)
+nav-spec -> class-def. (688)
 
 * - REDUCE 688 nav-spec
 
+725
+-----
+nav-spec -> class-decl. (689)
+
+* - REDUCE 689 nav-spec
+
 726
 -----
-nav-spec -> func-def. (690)
-
-* - REDUCE 690 nav-spec
-
-727
------
-nav-spec -> tmpl-decl. (691)
+nav-spec -> func-def. (691)
 
 * - REDUCE 691 nav-spec
 
-728
+727
 -----
-nav-spec -> lazy-ctor. (692)
+nav-spec -> tmpl-decl. (692)
 
 * - REDUCE 692 nav-spec
 
-729
+728
 -----
-nav-spec -> functor-def. (693)
+nav-spec -> lazy-ctor. (693)
 
 * - REDUCE 693 nav-spec
 
-730
+729
 -----
-nav-spec -> simple-functor-decl. (694)
+nav-spec -> functor-def. (694)
 
 * - REDUCE 694 nav-spec
 
-731
+730
 -----
-nav-spec -> enum-def. (695)
+nav-spec -> simple-functor-decl. (695)
 
 * - REDUCE 695 nav-spec
 
-732
+731
 -----
-nav-spec -> using-decl. (696)
+nav-spec -> enum-def. (696)
 
 * - REDUCE 696 nav-spec
+
+732
+-----
+nav-spec -> using-decl. (697)
+
+* - REDUCE 697 nav-spec
 
 733
 -----
@@ -13213,15 +13214,15 @@ DCOLON_TOKEN - SHIFT 240
 
 734
 -----
-nav-spec -> access-spec. (685)
+nav-spec -> access-spec. (686)
 
-* - REDUCE 685 nav-spec
+* - REDUCE 686 nav-spec
 
 735
 -----
-nav-spec -> friend-class-decl. (689)
+nav-spec -> friend-class-decl. (690)
 
-* - REDUCE 689 nav-spec
+* - REDUCE 690 nav-spec
 
 736
 -----
@@ -13231,7 +13232,7 @@ RBRACE_TOKEN - SHIFT 922
 
 737
 -----
-nav-spec-seq-opt -> nav-spec-seq. (681)
+nav-spec-seq-opt -> nav-spec-seq. (682)
 nav-spec-seq -> nav-spec-seq.nav-spec
 
 LPAREN_TOKEN - SHIFT 3
@@ -13266,7 +13267,7 @@ SIGNED_TOKEN - SHIFT 31
 UNSIGNED_TOKEN - SHIFT 32
 VOID_TOKEN - SHIFT 33
 WCHAR_TOKEN - SHIFT 34
-RBRACE_TOKEN - REDUCE 681 nav-spec-seq-opt
+RBRACE_TOKEN - REDUCE 682 nav-spec-seq-opt
 PUBLIC_TOKEN - SHIFT 691
 PROTECTED_TOKEN - SHIFT 692
 PRIVATE_TOKEN - SHIFT 693
@@ -13371,28 +13372,28 @@ return-stmt - GOTO 740
 
 738
 -----
-nav-spec-seq -> nav-spec. (684)
+nav-spec-seq -> nav-spec. (685)
 
-* - REDUCE 684 nav-spec-seq
+* - REDUCE 685 nav-spec-seq
 
 739
 -----
-nav-spec -> nav-visit-func-def. (697)
+nav-spec -> nav-visit-func-def. (698)
 
-* - REDUCE 697 nav-spec
+* - REDUCE 698 nav-spec
 
 740
 -----
-nav-spec -> return-stmt. (698)
+nav-spec -> return-stmt. (699)
 
-* - REDUCE 698 nav-spec
+* - REDUCE 699 nav-spec
 
 741
 -----
 vdf-block-data-head <* -> IDENT_TOKEN.vdf-data-param-list-alt-opt
 
 LT_TOKEN - SHIFT 924
-* - REDUCE 716 vdf-data-param-list-alt-opt
+* - REDUCE 717 vdf-data-param-list-alt-opt
 
 vdf-data-param-list-alt-opt - GOTO 925
 vdf-data-param-list-alt - GOTO 926
@@ -13402,7 +13403,7 @@ vdf-data-param-list-alt - GOTO 926
 vdf-block-data-head <* -> LITERAL_STRING_TOKEN.vdf-data-param-list-alt-opt
 
 LT_TOKEN - SHIFT 924
-* - REDUCE 716 vdf-data-param-list-alt-opt
+* - REDUCE 717 vdf-data-param-list-alt-opt
 
 vdf-data-param-list-alt-opt - GOTO 927
 vdf-data-param-list-alt - GOTO 926
@@ -13448,13 +13449,13 @@ RBRACE_TOKEN - SHIFT 933
 
 747
 -----
-vdf-spec-seq-opt -> vdf-spec-seq. (703)
+vdf-spec-seq-opt -> vdf-spec-seq. (704)
 vdf-spec-seq -> vdf-spec-seq.vdf-spec
 
 DCOLON_TOKEN - SHIFT 4
 TEMPLATE_TOKEN - SHIFT 512
 IDENT_TOKEN - REDUCE 48 nested-name-opt, SHIFT 741
-RBRACE_TOKEN - REDUCE 703 vdf-spec-seq-opt
+RBRACE_TOKEN - REDUCE 704 vdf-spec-seq-opt
 LITERAL_STRING_TOKEN - SHIFT 742
 * - REDUCE 48 nested-name-opt
 
@@ -13473,33 +13474,33 @@ vdf-block-data-head - GOTO 753
 
 748
 -----
-vdf-spec-seq -> vdf-spec. (705)
+vdf-spec-seq -> vdf-spec. (706)
 
-* - REDUCE 705 vdf-spec-seq
+* - REDUCE 706 vdf-spec-seq
 
 749
 -----
-vdf-spec -> vdf-functor-def. (707)
-
-* - REDUCE 707 vdf-spec
-
-750
------
-vdf-spec -> vdf-tmpl-functor-def. (708)
+vdf-spec -> vdf-functor-def. (708)
 
 * - REDUCE 708 vdf-spec
 
-751
+750
 -----
-vdf-spec -> vdf-short-data-def. (709)
+vdf-spec -> vdf-tmpl-functor-def. (709)
 
 * - REDUCE 709 vdf-spec
 
-752
+751
 -----
-vdf-spec -> vdf-block-data-def. (710)
+vdf-spec -> vdf-short-data-def. (710)
 
 * - REDUCE 710 vdf-spec
+
+752
+-----
+vdf-spec -> vdf-block-data-def. (711)
+
+* - REDUCE 711 vdf-spec
 
 753
 -----
@@ -13757,7 +13758,7 @@ tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN.tmpl-param-list-opt GT_TOKEN CLASS
 tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN.tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name ASSIGN_TOKEN obj-name
 
 DCOLON_TOKEN - SHIFT 4
-GT_TOKEN - REDUCE 564 tmpl-param-list-opt
+GT_TOKEN - REDUCE 565 tmpl-param-list-opt
 TEMPLATE_TOKEN - SHIFT 585
 CONST_TOKEN - SHIFT 8
 VOLATILE_TOKEN - SHIFT 9
@@ -13832,9 +13833,9 @@ BLOCK_TOKEN - SHIFT 951
 
 776
 -----
-tmpl-spec * -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN. (562)
+tmpl-spec * -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN. (563)
 
-* - ACCEPT 562 tmpl-spec
+* - ACCEPT 563 tmpl-spec
 
 777
 -----
@@ -13907,14 +13908,14 @@ type-key - GOTO 595
 
 778
 -----
-type-param <* -> type-key + obj-name. (570)
+type-param <* -> type-key + obj-name. (571)
 type-param <* -> type-key + obj-name.ASSIGN_TOKEN abstract-decl
 nested-name -> obj-name.DCOLON_TOKEN >!
 
-COMMA_TOKEN - ACCEPT 570 type-param
+COMMA_TOKEN - ACCEPT 571 type-param
 ASSIGN_TOKEN - SHIFT 953
 DCOLON_TOKEN - SHIFT 240
-GT_TOKEN - ACCEPT 570 type-param
+GT_TOKEN - ACCEPT 571 type-param
 
 779
 -----
@@ -13969,15 +13970,15 @@ LBRACE_TOKEN - SHIFT 961
 
 781
 -----
-enum-base-opt -> enum-base. (632)
+enum-base-opt -> enum-base. (633)
 
-LBRACE_TOKEN - ACCEPT 632 enum-base-opt
+LBRACE_TOKEN - ACCEPT 633 enum-base-opt
 
 782
 -----
-type-id -> abstract-decl. (500)
+type-id -> abstract-decl. (501)
 
-* - REDUCE 500 type-id
+* - REDUCE 501 type-id
 
 783
 -----
@@ -14216,9 +14217,9 @@ SEMI_TOKEN - SHIFT 972
 
 791
 -----
-using-dir * -> USING_TOKEN NAMESPACE_TOKEN obj-name SEMI_TOKEN. (648)
+using-dir * -> USING_TOKEN NAMESPACE_TOKEN obj-name SEMI_TOKEN. (649)
 
-* - ACCEPT 648 using-dir
+* - ACCEPT 649 using-dir
 
 792
 -----
@@ -14236,9 +14237,9 @@ RPAREN_TOKEN - SHIFT 973
 
 794
 -----
-nav-dcl -> ptr-oper nav-dcl. (671)
+nav-dcl -> ptr-oper nav-dcl. (672)
 
-* - REDUCE 671 nav-dcl
+* - REDUCE 672 nav-dcl
 
 795
 -----
@@ -14314,17 +14315,17 @@ DCOLON_TOKEN - SHIFT 240
 
 802
 -----
-ctor-init -> COLON_TOKEN mbr-init-list. (550)
+ctor-init -> COLON_TOKEN mbr-init-list. (551)
 mbr-init-list -> mbr-init-list.COMMA_TOKEN mbr-init
 
 COMMA_TOKEN - SHIFT 985
-* - REDUCE 550 ctor-init
+* - REDUCE 551 ctor-init
 
 803
 -----
-mbr-init-list -> mbr-init. (552)
+mbr-init-list -> mbr-init. (553)
 
-* - REDUCE 552 mbr-init-list
+* - REDUCE 553 mbr-init-list
 
 804 (7)
 -----
@@ -14855,15 +14856,15 @@ RPAREN_TOKEN - SHIFT 1002
 
 862
 -----
-class-head -> class-key dll-api-opt obj-name base-clause-opt. (505)
+class-head -> class-key dll-api-opt obj-name base-clause-opt. (506)
 
-LBRACE_TOKEN - ACCEPT 505 class-head
+LBRACE_TOKEN - ACCEPT 506 class-head
 
 863
 -----
-base-clause-opt -> base-clause. (510)
+base-clause-opt -> base-clause. (511)
 
-* - REDUCE 510 base-clause-opt
+* - REDUCE 511 base-clause-opt
 
 864
 -----
@@ -14969,9 +14970,9 @@ func-a-direct-dcl -> LPAREN_TOKEN func-dcl RPAREN_TOKEN. (349)
 
 873
 -----
-functor-direct-dcl -> LPAREN_TOKEN functor-dcl RPAREN_TOKEN. (612)
+functor-direct-dcl -> LPAREN_TOKEN functor-dcl RPAREN_TOKEN. (613)
 
-* - REDUCE 612 functor-direct-dcl
+* - REDUCE 613 functor-direct-dcl
 
 874
 -----
@@ -15394,49 +15395,49 @@ noexcept-spec - GOTO 1025
 
 904
 -----
-namespace-def * -> namespace-head <* LBRACE_TOKEN decl-seq-opt RBRACE_TOKEN. (501)
+namespace-def * -> namespace-head <* LBRACE_TOKEN decl-seq-opt RBRACE_TOKEN. (502)
 
-* - ACCEPT 501 namespace-def
+* - ACCEPT 502 namespace-def
 
 905
 -----
-semi-opt -> SEMI_TOKEN. (508)
+semi-opt -> SEMI_TOKEN. (509)
 
-* - REDUCE 508 semi-opt
+* - REDUCE 509 semi-opt
 
 906
 -----
-mbr-decl -> func-def semi-opt. (534)
+mbr-decl -> func-def semi-opt. (535)
 
-* - REDUCE 534 mbr-decl
+* - REDUCE 535 mbr-decl
 
 907
 -----
 class-def * -> class-head <* LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN.semi-opt
 
 SEMI_TOKEN - SHIFT 905
-* - REDUCE 509 semi-opt
+* - REDUCE 510 semi-opt
 
 semi-opt - GOTO 1028
 
 908
 -----
-access-spec * -> access COLON_TOKEN. (541)
+access-spec * -> access COLON_TOKEN. (542)
 
-* - ACCEPT 541 access-spec
+* - ACCEPT 542 access-spec
 
 909
 -----
-mbr-decl-seq -> mbr-decl-seq mbr-decl. (527)
+mbr-decl-seq -> mbr-decl-seq mbr-decl. (528)
 
-* - REDUCE 527 mbr-decl-seq
+* - REDUCE 528 mbr-decl-seq
 
 910
 -----
 lazy-ctor * -> lazy-ctor-begin <* LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN.semi-opt
 
 SEMI_TOKEN - SHIFT 905
-* - REDUCE 509 semi-opt
+* - REDUCE 510 semi-opt
 
 semi-opt - GOTO 1029
 
@@ -15454,16 +15455,16 @@ nested-name-opt - GOTO 146
 
 912
 -----
-access-opt -> access. (519)
+access-opt -> access. (520)
 
-* - REDUCE 519 access-opt
+* - REDUCE 520 access-opt
 
 913 (4)
 -----
 base-init -> LPAREN_TOKEN.expr-list-opt RPAREN_TOKEN
 
 BLOCK_TOKEN - SHIFT 167
-* - REDUCE 605 expr-list-opt
+* - REDUCE 606 expr-list-opt
 
 expr-list - GOTO 1031
 block - GOTO 169
@@ -15471,15 +15472,15 @@ expr-list-opt - GOTO 1032
 
 914
 -----
-lazy-base-spec * -> obj-name base-init. (597)
+lazy-base-spec * -> obj-name base-init. (598)
 
-* - ACCEPT 597 lazy-base-spec
+* - ACCEPT 598 lazy-base-spec
 
 915
 -----
-virtual-opt -> VIRTUAL_TOKEN. (523)
+virtual-opt -> VIRTUAL_TOKEN. (524)
 
-* - REDUCE 523 virtual-opt
+* - REDUCE 524 virtual-opt
 
 916
 -----
@@ -15522,9 +15523,9 @@ block-opt - GOTO 1035
 
 919
 -----
-linkage-spec * -> linkage-block-begin <* LBRACE_TOKEN decl-seq-opt RBRACE_TOKEN. (649)
+linkage-spec * -> linkage-block-begin <* LBRACE_TOKEN decl-seq-opt RBRACE_TOKEN. (650)
 
-* - ACCEPT 649 linkage-spec
+* - ACCEPT 650 linkage-spec
 
 920
 -----
@@ -15545,15 +15546,15 @@ nested-name-opt - GOTO 146
 
 922
 -----
-nav-def * -> nav-head LBRACE_TOKEN nav-spec-seq-opt RBRACE_TOKEN. (657)
+nav-def * -> nav-head LBRACE_TOKEN nav-spec-seq-opt RBRACE_TOKEN. (658)
 
-* - ACCEPT 657 nav-def
+* - ACCEPT 658 nav-def
 
 923
 -----
-nav-spec-seq -> nav-spec-seq nav-spec. (683)
+nav-spec-seq -> nav-spec-seq nav-spec. (684)
 
-* - REDUCE 683 nav-spec-seq
+* - REDUCE 684 nav-spec-seq
 
 924 (1)
 -----
@@ -15566,21 +15567,21 @@ block-opt - GOTO 1038
 
 925
 -----
-vdf-block-data-head <* -> IDENT_TOKEN vdf-data-param-list-alt-opt. (723)
+vdf-block-data-head <* -> IDENT_TOKEN vdf-data-param-list-alt-opt. (724)
 
-LBRACE_TOKEN - ACCEPT 723 vdf-block-data-head
+LBRACE_TOKEN - ACCEPT 724 vdf-block-data-head
 
 926
 -----
-vdf-data-param-list-alt-opt -> vdf-data-param-list-alt. (715)
+vdf-data-param-list-alt-opt -> vdf-data-param-list-alt. (716)
 
-* - REDUCE 715 vdf-data-param-list-alt-opt
+* - REDUCE 716 vdf-data-param-list-alt-opt
 
 927
 -----
-vdf-block-data-head <* -> LITERAL_STRING_TOKEN vdf-data-param-list-alt-opt. (724)
+vdf-block-data-head <* -> LITERAL_STRING_TOKEN vdf-data-param-list-alt-opt. (725)
 
-LBRACE_TOKEN - ACCEPT 724 vdf-block-data-head
+LBRACE_TOKEN - ACCEPT 725 vdf-block-data-head
 
 928
 -----
@@ -15593,7 +15594,7 @@ RPAREN_TOKEN - SHIFT 1039
 vdf-short-data-def * -> xUxx-decl-spec-seq IDENT_TOKEN.vdf-data-param-list-alt-opt vdf-direct-obj-init-opt SEMI_TOKEN
 
 LT_TOKEN - SHIFT 924
-* - REDUCE 716 vdf-data-param-list-alt-opt
+* - REDUCE 717 vdf-data-param-list-alt-opt
 
 vdf-data-param-list-alt-opt - GOTO 1040
 vdf-data-param-list-alt - GOTO 926
@@ -15603,7 +15604,7 @@ vdf-data-param-list-alt - GOTO 926
 vdf-short-data-def * -> xUxx-decl-spec-seq LITERAL_STRING_TOKEN.vdf-data-param-list-alt-opt vdf-direct-obj-init-opt SEMI_TOKEN
 
 LT_TOKEN - SHIFT 924
-* - REDUCE 716 vdf-data-param-list-alt-opt
+* - REDUCE 717 vdf-data-param-list-alt-opt
 
 vdf-data-param-list-alt-opt - GOTO 1041
 vdf-data-param-list-alt - GOTO 926
@@ -15621,21 +15622,21 @@ param-decl-1-list - GOTO 503
 
 932
 -----
-vdf-tmpl-functor-def * -> tmpl-spec vdf-functor-def. (712)
+vdf-tmpl-functor-def * -> tmpl-spec vdf-functor-def. (713)
 
-* - ACCEPT 712 vdf-tmpl-functor-def
+* - ACCEPT 713 vdf-tmpl-functor-def
 
 933
 -----
-vdf-def * -> vdf-head LBRACE_TOKEN vdf-spec-seq-opt RBRACE_TOKEN. (701)
+vdf-def * -> vdf-head LBRACE_TOKEN vdf-spec-seq-opt RBRACE_TOKEN. (702)
 
-* - ACCEPT 701 vdf-def
+* - ACCEPT 702 vdf-def
 
 934
 -----
-vdf-spec-seq -> vdf-spec-seq vdf-spec. (706)
+vdf-spec-seq -> vdf-spec-seq vdf-spec. (707)
 
-* - REDUCE 706 vdf-spec-seq
+* - REDUCE 707 vdf-spec-seq
 
 935
 -----
@@ -15669,8 +15670,8 @@ SIGNED_TOKEN - SHIFT 31
 UNSIGNED_TOKEN - SHIFT 32
 VOID_TOKEN - SHIFT 33
 WCHAR_TOKEN - SHIFT 34
-RBRACE_TOKEN - REDUCE 728 simple-vdf-obj-decl-seq-opt
-RETURN_TOKEN - REDUCE 728 simple-vdf-obj-decl-seq-opt
+RBRACE_TOKEN - REDUCE 729 simple-vdf-obj-decl-seq-opt
+RETURN_TOKEN - REDUCE 729 simple-vdf-obj-decl-seq-opt
 * - REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
@@ -16003,9 +16004,9 @@ GT_TOKEN - ACCEPT 410 tmpl-param-init-decl
 
 952
 -----
-tmpl-param-list -> tmpl-param-list COMMA_TOKEN tmpl-param. (565)
+tmpl-param-list -> tmpl-param-list COMMA_TOKEN tmpl-param. (566)
 
-* - REDUCE 565 tmpl-param-list
+* - REDUCE 566 tmpl-param-list
 
 953
 -----
@@ -16243,16 +16244,16 @@ abstract-direct-dcl-opt - GOTO 564
 
 960
 -----
-enum-base -> COLON_TOKEN type-id. (634)
+enum-base -> COLON_TOKEN type-id. (635)
 
-* - REDUCE 634 enum-base
+* - REDUCE 635 enum-base
 
 961
 -----
 enum-def * -> ENUM_TOKEN enum-key-opt + obj-name-opt enum-base-opt <* LBRACE_TOKEN.enum-body-opt RBRACE_TOKEN semi-opt
 
 DCOLON_TOKEN - SHIFT 4
-RBRACE_TOKEN - REDUCE 638 enum-body-opt
+RBRACE_TOKEN - REDUCE 639 enum-body-opt
 * - REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
@@ -16358,15 +16359,15 @@ abstract-decl -> xEVx-decl-spec-seq abstract-dcl-opt. (416)
 
 972
 -----
-using-decl * -> USING_TOKEN IDENT_TOKEN > ASSIGN_TOKEN type-id SEMI_TOKEN. (647)
+using-decl * -> USING_TOKEN IDENT_TOKEN > ASSIGN_TOKEN type-id SEMI_TOKEN. (648)
 
-* - ACCEPT 647 using-decl
+* - ACCEPT 648 using-decl
 
 973
 -----
-nav-direct-dcl -> LPAREN_TOKEN nav-dcl RPAREN_TOKEN. (676)
+nav-direct-dcl -> LPAREN_TOKEN nav-dcl RPAREN_TOKEN. (677)
 
-* - REDUCE 676 nav-direct-dcl
+* - REDUCE 677 nav-direct-dcl
 
 974
 -----
@@ -16396,11 +16397,11 @@ class-key - GOTO 147
 975
 -----
 xUVx-decl-spec-seq -> xUxx-decl-spec-seq.cv-spec
-nav-node-type -> xUxx-decl-spec-seq. (677)
+nav-node-type -> xUxx-decl-spec-seq. (678)
 
 CONST_TOKEN - SHIFT 8
 VOLATILE_TOKEN - SHIFT 9
-* - REDUCE 677 nav-node-type
+* - REDUCE 678 nav-node-type
 
 cv-spec - GOTO 331
 cv-token - GOTO 74
@@ -16408,11 +16409,11 @@ cv-token - GOTO 74
 976
 -----
 xUVx-decl-spec-seq -> xUVx-decl-spec-seq.cv-spec
-nav-node-type -> xUVx-decl-spec-seq. (678)
+nav-node-type -> xUVx-decl-spec-seq. (679)
 
 CONST_TOKEN - SHIFT 8
 VOLATILE_TOKEN - SHIFT 9
-* - REDUCE 678 nav-node-type
+* - REDUCE 679 nav-node-type
 
 cv-spec - GOTO 339
 cv-token - GOTO 74
@@ -16420,11 +16421,11 @@ cv-token - GOTO 74
 977
 -----
 xEVx-decl-spec-seq -> xExx-decl-spec-seq.cv-spec
-nav-node-type -> xExx-decl-spec-seq. (679)
+nav-node-type -> xExx-decl-spec-seq. (680)
 
 CONST_TOKEN - SHIFT 8
 VOLATILE_TOKEN - SHIFT 9
-* - REDUCE 679 nav-node-type
+* - REDUCE 680 nav-node-type
 
 cv-spec - GOTO 362
 cv-token - GOTO 74
@@ -16432,11 +16433,11 @@ cv-token - GOTO 74
 978
 -----
 xEVx-decl-spec-seq -> xEVx-decl-spec-seq.cv-spec
-nav-node-type -> xEVx-decl-spec-seq. (680)
+nav-node-type -> xEVx-decl-spec-seq. (681)
 
 CONST_TOKEN - SHIFT 8
 VOLATILE_TOKEN - SHIFT 9
-* - REDUCE 680 nav-node-type
+* - REDUCE 681 nav-node-type
 
 cv-spec - GOTO 369
 cv-token - GOTO 74
@@ -16483,7 +16484,7 @@ direct-expr-list -> LPAREN_TOKEN LPAREN_TOKEN block 2 RPAREN_TOKEN. (40)
 mbr-init * -> obj-name LPAREN_TOKEN.expr-list-opt RPAREN_TOKEN
 
 BLOCK_TOKEN - SHIFT 167
-* - REDUCE 605 expr-list-opt
+* - REDUCE 606 expr-list-opt
 
 expr-list - GOTO 1031
 block - GOTO 169
@@ -16593,7 +16594,7 @@ base-spec * -> VIRTUAL_TOKEN.access-opt obj-name
 PUBLIC_TOKEN - SHIFT 691
 PROTECTED_TOKEN - SHIFT 692
 PRIVATE_TOKEN - SHIFT 693
-* - REDUCE 518 access-opt
+* - REDUCE 519 access-opt
 
 access-opt - GOTO 1091
 access - GOTO 912
@@ -16601,31 +16602,31 @@ access - GOTO 912
 998
 -----
 nested-name -> obj-name.DCOLON_TOKEN >!
-base-spec * -> obj-name. (515)
+base-spec * -> obj-name. (516)
 
 DCOLON_TOKEN - SHIFT 240
-* - ACCEPT 515 base-spec
+* - ACCEPT 516 base-spec
 
 999
 -----
-base-clause -> COLON_TOKEN base-spec-list. (512)
+base-clause -> COLON_TOKEN base-spec-list. (513)
 base-spec-list -> base-spec-list.COMMA_TOKEN base-spec
 
 COMMA_TOKEN - SHIFT 1092
-* - REDUCE 512 base-clause
+* - REDUCE 513 base-clause
 
 1000
 -----
-base-spec-list -> base-spec. (514)
+base-spec-list -> base-spec. (515)
 
-* - REDUCE 514 base-spec-list
+* - REDUCE 515 base-spec-list
 
 1001
 -----
 base-spec * -> access.virtual-opt obj-name
 
 VIRTUAL_TOKEN - SHIFT 915
-* - REDUCE 524 virtual-opt
+* - REDUCE 525 virtual-opt
 
 virtual-opt - GOTO 1093
 
@@ -16634,7 +16635,7 @@ virtual-opt - GOTO 1093
 lazy-ctor-begin -> class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN.lazy-base-clause-opt
 
 COLON_TOKEN - SHIFT 543
-* - REDUCE 593 lazy-base-clause-opt
+* - REDUCE 594 lazy-base-clause-opt
 
 lazy-base-clause-opt - GOTO 1094
 lazy-base-clause - GOTO 545
@@ -16822,9 +16823,9 @@ noexcept-spec - GOTO 1025
 
 1018
 -----
-functor-direct-dcl -> functor-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN. (611)
+functor-direct-dcl -> functor-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN. (612)
 
-* - REDUCE 611 functor-direct-dcl
+* - REDUCE 612 functor-direct-dcl
 
 1019
 -----
@@ -16855,7 +16856,9 @@ LPAREN_TOKEN - SHIFT 1106
 1022
 -----
 noexcept-spec -> NOEXCEPT_TOKEN. (495)
+noexcept-spec -> NOEXCEPT_TOKEN.LPAREN_TOKEN >>! BLOCK_TOKEN 2 RPAREN_TOKEN
 
+LPAREN_TOKEN - SHIFT 1107
 * - REDUCE 495 noexcept-spec
 
 1023
@@ -16890,114 +16893,114 @@ func-c-direct-dcl -> func-c-direct-dcl param-decl-1-body RPAREN_TOKEN cv-spec-se
 
 1028
 -----
-class-def * -> class-head <* LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN semi-opt. (504)
+class-def * -> class-head <* LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN semi-opt. (505)
 
-* - ACCEPT 504 class-def
+* - ACCEPT 505 class-def
 
 1029
 -----
-lazy-ctor * -> lazy-ctor-begin <* LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN semi-opt. (589)
+lazy-ctor * -> lazy-ctor-begin <* LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN semi-opt. (590)
 
-* - ACCEPT 589 lazy-ctor
+* - ACCEPT 590 lazy-ctor
 
 1030
 -----
-base-spec * -> VIRTUAL_TOKEN access-opt obj-name. (516)
+base-spec * -> VIRTUAL_TOKEN access-opt obj-name. (517)
 lazy-base-spec * -> VIRTUAL_TOKEN access-opt obj-name.base-init
-nested-name -> obj-name.DCOLON_TOKEN >!
-
-LPAREN_TOKEN - SHIFT 913
-DCOLON_TOKEN - SHIFT 240
-* - ACCEPT 516 base-spec
-
-base-init - GOTO 1107
-
-1031
------
-expr-list -> expr-list.COMMA_TOKEN block 4
-expr-list-opt -> expr-list. (604)
-
-COMMA_TOKEN - SHIFT 580
-* - REDUCE 604 expr-list-opt
-
-1032
------
-base-init -> LPAREN_TOKEN expr-list-opt.RPAREN_TOKEN
-
-RPAREN_TOKEN - SHIFT 1108
-
-1033
------
-base-spec * -> access virtual-opt obj-name. (517)
-lazy-base-spec * -> access virtual-opt obj-name.base-init
 nested-name -> obj-name.DCOLON_TOKEN >!
 
 LPAREN_TOKEN - SHIFT 913
 DCOLON_TOKEN - SHIFT 240
 * - ACCEPT 517 base-spec
 
-base-init - GOTO 1109
+base-init - GOTO 1108
+
+1031
+-----
+expr-list -> expr-list.COMMA_TOKEN block 4
+expr-list-opt -> expr-list. (605)
+
+COMMA_TOKEN - SHIFT 580
+* - REDUCE 605 expr-list-opt
+
+1032
+-----
+base-init -> LPAREN_TOKEN expr-list-opt.RPAREN_TOKEN
+
+RPAREN_TOKEN - SHIFT 1109
+
+1033
+-----
+base-spec * -> access virtual-opt obj-name. (518)
+lazy-base-spec * -> access virtual-opt obj-name.base-init
+nested-name -> obj-name.DCOLON_TOKEN >!
+
+LPAREN_TOKEN - SHIFT 913
+DCOLON_TOKEN - SHIFT 240
+* - ACCEPT 518 base-spec
+
+base-init - GOTO 1110
 
 1034
 -----
-lazy-base-spec-list -> lazy-base-spec-list COMMA_TOKEN lazy-base-spec. (595)
+lazy-base-spec-list -> lazy-base-spec-list COMMA_TOKEN lazy-base-spec. (596)
 
-* - REDUCE 595 lazy-base-spec-list
+* - REDUCE 596 lazy-base-spec-list
 
 1035
 -----
 functor-def * -> functor-decl lazy-base-clause-opt try-opt LBRACE_TOKEN block-opt 7.RBRACE_TOKEN handler-seq-opt
 
-RBRACE_TOKEN - SHIFT 1110
+RBRACE_TOKEN - SHIFT 1111
 
 1036
 -----
-return-stmt * -> RETURN_TOKEN BLOCK_TOKEN 10 SEMI_TOKEN. (700)
+return-stmt * -> RETURN_TOKEN BLOCK_TOKEN 10 SEMI_TOKEN. (701)
 
-* - ACCEPT 700 return-stmt
+* - ACCEPT 701 return-stmt
 
 1037
 -----
 nav-visit-func-def * -> obj-name LPAREN_TOKEN (>)3 obj-name.RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
 nested-name -> obj-name.DCOLON_TOKEN >!
 
-RPAREN_TOKEN - SHIFT 1111
+RPAREN_TOKEN - SHIFT 1112
 DCOLON_TOKEN - SHIFT 240
 
 1038
 -----
 vdf-data-param-list-alt -> LT_TOKEN block-opt 1.GT_TOKEN
 
-GT_TOKEN - SHIFT 1112
+GT_TOKEN - SHIFT 1113
 
 1039
 -----
 vdf-functor-def * -> obj-name > param-decl-1-body RPAREN_TOKEN.try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
 
 TRY_TOKEN - SHIFT 236
-* - REDUCE 547 try-opt
+* - REDUCE 548 try-opt
 
-try-opt - GOTO 1113
+try-opt - GOTO 1114
 
 1040
 -----
 vdf-short-data-def * -> xUxx-decl-spec-seq IDENT_TOKEN vdf-data-param-list-alt-opt.vdf-direct-obj-init-opt SEMI_TOKEN
 
-LPAREN_TOKEN - SHIFT 1114
-* - REDUCE 720 vdf-direct-obj-init-opt
+LPAREN_TOKEN - SHIFT 1115
+* - REDUCE 721 vdf-direct-obj-init-opt
 
-vdf-direct-obj-init-opt - GOTO 1115
-vdf-direct-obj-init - GOTO 1116
+vdf-direct-obj-init-opt - GOTO 1116
+vdf-direct-obj-init - GOTO 1117
 
 1041
 -----
 vdf-short-data-def * -> xUxx-decl-spec-seq LITERAL_STRING_TOKEN vdf-data-param-list-alt-opt.vdf-direct-obj-init-opt SEMI_TOKEN
 
-LPAREN_TOKEN - SHIFT 1114
-* - REDUCE 720 vdf-direct-obj-init-opt
+LPAREN_TOKEN - SHIFT 1115
+* - REDUCE 721 vdf-direct-obj-init-opt
 
-vdf-direct-obj-init-opt - GOTO 1117
-vdf-direct-obj-init - GOTO 1116
+vdf-direct-obj-init-opt - GOTO 1118
+vdf-direct-obj-init - GOTO 1117
 
 1042
 -----
@@ -17006,7 +17009,7 @@ xBVx-decl-spec-seq -> xBxx-decl-spec-seq.cv-spec
 xBxS-decl-spec-seq -> xBxx-decl-spec-seq.ftor-spec
 vdf-obj-decl -> xBxx-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17044,13 +17047,13 @@ ftor-spec - GOTO 285
 ftor-token - GOTO 76
 built-in-type - GOTO 286
 built-in-type-token - GOTO 81
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1121
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1122
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1043
 -----
@@ -17059,7 +17062,7 @@ xBVx-decl-spec-seq -> xBVx-decl-spec-seq.built-in-type
 xBVS-decl-spec-seq -> xBVx-decl-spec-seq.ftor-spec
 vdf-obj-decl -> xBVx-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17097,13 +17100,13 @@ ftor-spec - GOTO 305
 ftor-token - GOTO 76
 built-in-type - GOTO 306
 built-in-type-token - GOTO 81
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1125
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1126
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1044
 -----
@@ -17112,7 +17115,7 @@ xBxS-decl-spec-seq -> xBxS-decl-spec-seq.built-in-type
 xBVS-decl-spec-seq -> xBxS-decl-spec-seq.cv-spec
 vdf-obj-decl -> xBxS-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17150,13 +17153,13 @@ ftor-spec - GOTO 314
 ftor-token - GOTO 76
 built-in-type - GOTO 315
 built-in-type-token - GOTO 81
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1126
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1127
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1045
 -----
@@ -17165,7 +17168,7 @@ xBVS-decl-spec-seq -> xBVS-decl-spec-seq.cv-spec
 xBVS-decl-spec-seq -> xBVS-decl-spec-seq.built-in-type
 vdf-obj-decl -> xBVS-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17203,13 +17206,13 @@ ftor-spec - GOTO 323
 ftor-token - GOTO 76
 built-in-type - GOTO 324
 built-in-type-token - GOTO 81
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1127
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1128
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1046
 -----
@@ -17217,7 +17220,7 @@ xUVx-decl-spec-seq -> xUxx-decl-spec-seq.cv-spec
 xUxS-decl-spec-seq -> xUxx-decl-spec-seq.ftor-spec
 vdf-obj-decl -> xUxx-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17242,13 +17245,13 @@ cv-spec - GOTO 331
 cv-token - GOTO 74
 ftor-spec - GOTO 332
 ftor-token - GOTO 76
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1128
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1129
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1047
 -----
@@ -17256,7 +17259,7 @@ xUVx-decl-spec-seq -> xUVx-decl-spec-seq.cv-spec
 xUVS-decl-spec-seq -> xUVx-decl-spec-seq.ftor-spec
 vdf-obj-decl -> xUVx-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17281,13 +17284,13 @@ cv-spec - GOTO 339
 cv-token - GOTO 74
 ftor-spec - GOTO 340
 ftor-token - GOTO 76
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1129
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1130
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1048
 -----
@@ -17295,7 +17298,7 @@ xUxS-decl-spec-seq -> xUxS-decl-spec-seq.ftor-spec
 xUVS-decl-spec-seq -> xUxS-decl-spec-seq.cv-spec
 vdf-obj-decl -> xUxS-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17320,13 +17323,13 @@ cv-spec - GOTO 346
 cv-token - GOTO 74
 ftor-spec - GOTO 347
 ftor-token - GOTO 76
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1130
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1131
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1049
 -----
@@ -17334,7 +17337,7 @@ xUVS-decl-spec-seq -> xUVS-decl-spec-seq.ftor-spec
 xUVS-decl-spec-seq -> xUVS-decl-spec-seq.cv-spec
 vdf-obj-decl -> xUVS-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17359,13 +17362,13 @@ cv-spec - GOTO 353
 cv-token - GOTO 74
 ftor-spec - GOTO 354
 ftor-token - GOTO 76
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1131
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1132
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1050
 -----
@@ -17373,7 +17376,7 @@ xEVx-decl-spec-seq -> xExx-decl-spec-seq.cv-spec
 xExS-decl-spec-seq -> xExx-decl-spec-seq.ftor-spec
 vdf-obj-decl -> xExx-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17398,13 +17401,13 @@ cv-spec - GOTO 362
 cv-token - GOTO 74
 ftor-spec - GOTO 363
 ftor-token - GOTO 76
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1132
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1133
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1051
 -----
@@ -17412,7 +17415,7 @@ xEVx-decl-spec-seq -> xEVx-decl-spec-seq.cv-spec
 xEVS-decl-spec-seq -> xEVx-decl-spec-seq.ftor-spec
 vdf-obj-decl -> xEVx-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17437,13 +17440,13 @@ cv-spec - GOTO 369
 cv-token - GOTO 74
 ftor-spec - GOTO 370
 ftor-token - GOTO 76
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1133
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1134
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1052
 -----
@@ -17451,7 +17454,7 @@ xExS-decl-spec-seq -> xExS-decl-spec-seq.ftor-spec
 xEVS-decl-spec-seq -> xExS-decl-spec-seq.cv-spec
 vdf-obj-decl -> xExS-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17476,13 +17479,13 @@ cv-spec - GOTO 375
 cv-token - GOTO 74
 ftor-spec - GOTO 376
 ftor-token - GOTO 76
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1134
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1135
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1053
 -----
@@ -17490,7 +17493,7 @@ xEVS-decl-spec-seq -> xEVS-decl-spec-seq.ftor-spec
 xEVS-decl-spec-seq -> xEVS-decl-spec-seq.cv-spec
 vdf-obj-decl -> xEVS-decl-spec-seq.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -17515,27 +17518,27 @@ cv-spec - GOTO 381
 cv-token - GOTO 74
 ftor-spec - GOTO 382
 ftor-token - GOTO 76
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1135
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1136
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1054
 -----
 vdf-block-data-def * -> vdf-block-data-head LBRACE_TOKEN simple-vdf-obj-decl-seq-opt.return-stmt-opt RBRACE_TOKEN
 
 RETURN_TOKEN - SHIFT 722
-* - REDUCE 726 return-stmt-opt
+* - REDUCE 727 return-stmt-opt
 
-return-stmt - GOTO 1136
-return-stmt-opt - GOTO 1137
+return-stmt - GOTO 1137
+return-stmt-opt - GOTO 1138
 
 1055
 -----
-simple-vdf-obj-decl-seq-opt -> simple-vdf-obj-decl-seq. (727)
+simple-vdf-obj-decl-seq-opt -> simple-vdf-obj-decl-seq. (728)
 simple-vdf-obj-decl-seq -> simple-vdf-obj-decl-seq.simple-vdf-obj-decl
 
 DCOLON_TOKEN - SHIFT 4
@@ -17566,8 +17569,8 @@ SIGNED_TOKEN - SHIFT 31
 UNSIGNED_TOKEN - SHIFT 32
 VOID_TOKEN - SHIFT 33
 WCHAR_TOKEN - SHIFT 34
-RBRACE_TOKEN - REDUCE 727 simple-vdf-obj-decl-seq-opt
-RETURN_TOKEN - REDUCE 727 simple-vdf-obj-decl-seq-opt
+RBRACE_TOKEN - REDUCE 728 simple-vdf-obj-decl-seq-opt
+RETURN_TOKEN - REDUCE 728 simple-vdf-obj-decl-seq-opt
 * - REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
@@ -17597,42 +17600,42 @@ xExx-decl-spec-seq - GOTO 1050
 xEVx-decl-spec-seq - GOTO 1051
 xExS-decl-spec-seq - GOTO 1052
 xEVS-decl-spec-seq - GOTO 1053
-simple-vdf-obj-decl - GOTO 1138
+simple-vdf-obj-decl - GOTO 1139
 nested-simple-vdf-obj-decl - GOTO 1057
 nested-vdf-obj-decl - GOTO 1058
 vdf-obj-decl - GOTO 1059
 
 1056
 -----
-simple-vdf-obj-decl-seq -> simple-vdf-obj-decl. (729)
+simple-vdf-obj-decl-seq -> simple-vdf-obj-decl. (730)
 
-* - REDUCE 729 simple-vdf-obj-decl-seq
+* - REDUCE 730 simple-vdf-obj-decl-seq
 
 1057
 -----
 simple-vdf-obj-decl * -> nested-simple-vdf-obj-decl.SEMI_TOKEN
 nested-vdf-obj-decl -> nested-simple-vdf-obj-decl.COMMA_TOKEN vdf-obj-dcl
 
-SEMI_TOKEN - SHIFT 1139
-COMMA_TOKEN - SHIFT 1140
+SEMI_TOKEN - SHIFT 1140
+COMMA_TOKEN - SHIFT 1141
 
 1058
 -----
 nested-simple-vdf-obj-decl <* -> nested-vdf-obj-decl +.vdf-obj-init-opt
 
-ASSIGN_TOKEN - SHIFT 1141
-LPAREN_TOKEN - SHIFT 1114
-* - REDUCE 734 vdf-obj-init-opt
+ASSIGN_TOKEN - SHIFT 1142
+LPAREN_TOKEN - SHIFT 1115
+* - REDUCE 735 vdf-obj-init-opt
 
-vdf-direct-obj-init - GOTO 1142
-vdf-obj-init-opt - GOTO 1143
-vdf-obj-init - GOTO 1144
+vdf-direct-obj-init - GOTO 1143
+vdf-obj-init-opt - GOTO 1144
+vdf-obj-init - GOTO 1145
 
 1059
 -----
-nested-vdf-obj-decl -> vdf-obj-decl. (738)
+nested-vdf-obj-decl -> vdf-obj-decl. (739)
 
-* - REDUCE 738 nested-vdf-obj-decl
+* - REDUCE 739 nested-vdf-obj-decl
 
 1060
 -----
@@ -17648,7 +17651,7 @@ THROW_TOKEN - SHIFT 1021
 NOEXCEPT_TOKEN - SHIFT 1022
 * - REDUCE 493 throw-spec-opt
 
-throw-spec-opt - GOTO 1145
+throw-spec-opt - GOTO 1146
 throw-spec - GOTO 1024
 noexcept-spec - GOTO 1025
 
@@ -17666,7 +17669,7 @@ THROW_TOKEN - SHIFT 1021
 NOEXCEPT_TOKEN - SHIFT 1022
 * - REDUCE 493 throw-spec-opt
 
-throw-spec-opt - GOTO 1146
+throw-spec-opt - GOTO 1147
 throw-spec - GOTO 1024
 noexcept-spec - GOTO 1025
 
@@ -17698,14 +17701,14 @@ abstract-direct-dcl-opt - GOTO 564
 tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN.CLASS_TOKEN obj-name
 tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN.CLASS_TOKEN obj-name ASSIGN_TOKEN obj-name
 
-CLASS_TOKEN - SHIFT 1147
+CLASS_TOKEN - SHIFT 1148
 
 1066
 -----
-type-param <* -> type-key + obj-name ASSIGN_TOKEN abstract-decl. (571)
+type-param <* -> type-key + obj-name ASSIGN_TOKEN abstract-decl. (572)
 
-COMMA_TOKEN - ACCEPT 571 type-param
-GT_TOKEN - ACCEPT 571 type-param
+COMMA_TOKEN - ACCEPT 572 type-param
+GT_TOKEN - ACCEPT 572 type-param
 
 1067
 -----
@@ -17743,7 +17746,7 @@ cv-spec - GOTO 284
 cv-token - GOTO 74
 built-in-type - GOTO 286
 built-in-type-token - GOTO 81
-ptr-oper - GOTO 1148
+ptr-oper - GOTO 1149
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 965
 abstract-direct-dcl - GOTO 563
@@ -17785,7 +17788,7 @@ cv-spec - GOTO 304
 cv-token - GOTO 74
 built-in-type - GOTO 306
 built-in-type-token - GOTO 81
-ptr-oper - GOTO 1148
+ptr-oper - GOTO 1149
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 967
 abstract-direct-dcl - GOTO 563
@@ -17813,7 +17816,7 @@ obj-name - GOTO 963
 nested-name-opt - GOTO 146
 cv-spec - GOTO 331
 cv-token - GOTO 74
-ptr-oper - GOTO 1148
+ptr-oper - GOTO 1149
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 968
 abstract-direct-dcl - GOTO 563
@@ -17841,7 +17844,7 @@ obj-name - GOTO 963
 nested-name-opt - GOTO 146
 cv-spec - GOTO 339
 cv-token - GOTO 74
-ptr-oper - GOTO 1148
+ptr-oper - GOTO 1149
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 969
 abstract-direct-dcl - GOTO 563
@@ -17869,7 +17872,7 @@ obj-name - GOTO 963
 nested-name-opt - GOTO 146
 cv-spec - GOTO 362
 cv-token - GOTO 74
-ptr-oper - GOTO 1148
+ptr-oper - GOTO 1149
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 970
 abstract-direct-dcl - GOTO 563
@@ -17897,7 +17900,7 @@ obj-name - GOTO 963
 nested-name-opt - GOTO 146
 cv-spec - GOTO 369
 cv-token - GOTO 74
-ptr-oper - GOTO 1148
+ptr-oper - GOTO 1149
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 971
 abstract-direct-dcl - GOTO 563
@@ -17936,41 +17939,41 @@ LBRACE_TOKEN - REDUCE 368 abstract-dcl
 1075
 -----
 nested-name -> obj-name.DCOLON_TOKEN >!
-enumtor-decl <* -> obj-name. (644)
+enumtor-decl <* -> obj-name. (645)
 enumtor-decl <* -> obj-name.ASSIGN_TOKEN BLOCK_TOKEN 9
 
-COMMA_TOKEN - ACCEPT 644 enumtor-decl
-ASSIGN_TOKEN - SHIFT 1149
+COMMA_TOKEN - ACCEPT 645 enumtor-decl
+ASSIGN_TOKEN - SHIFT 1150
 DCOLON_TOKEN - SHIFT 240
-RBRACE_TOKEN - ACCEPT 644 enumtor-decl
+RBRACE_TOKEN - ACCEPT 645 enumtor-decl
 
 1076
 -----
 enum-def * -> ENUM_TOKEN enum-key-opt + obj-name-opt enum-base-opt <* LBRACE_TOKEN enum-body-opt.RBRACE_TOKEN semi-opt
 
-RBRACE_TOKEN - SHIFT 1150
+RBRACE_TOKEN - SHIFT 1151
 
 1077
 -----
-enum-body-opt -> enum-body. (637)
+enum-body-opt -> enum-body. (638)
 
-* - REDUCE 637 enum-body-opt
+* - REDUCE 638 enum-body-opt
 
 1078
 -----
 enum-body -> enumtor-decl-list.comma-opt
 enumtor-decl-list -> enumtor-decl-list.COMMA_TOKEN enumtor-decl
 
-COMMA_TOKEN - SHIFT 1151
-* - REDUCE 641 comma-opt
+COMMA_TOKEN - SHIFT 1152
+* - REDUCE 642 comma-opt
 
-comma-opt - GOTO 1152
+comma-opt - GOTO 1153
 
 1079
 -----
-enumtor-decl-list -> enumtor-decl. (643)
+enumtor-decl-list -> enumtor-decl. (644)
 
-* - REDUCE 643 enumtor-decl-list
+* - REDUCE 644 enumtor-decl-list
 
 1080
 -----
@@ -18000,14 +18003,14 @@ nav-direct-dcl -> obj-dcl-id LPAREN_TOKEN nav-node-type RPAREN_TOKEN.param-decl-
 
 LPAREN_TOKEN - SHIFT 501
 
-param-decl-1-body - GOTO 1153
+param-decl-1-body - GOTO 1154
 param-decl-1-list - GOTO 503
 
 1082
 -----
-nav-direct-dcl -> nav-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN. (675)
+nav-direct-dcl -> nav-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN. (676)
 
-* - REDUCE 675 nav-direct-dcl
+* - REDUCE 676 nav-direct-dcl
 
 1083
 -----
@@ -18017,7 +18020,7 @@ THROW_TOKEN - SHIFT 1021
 NOEXCEPT_TOKEN - SHIFT 1022
 * - REDUCE 493 throw-spec-opt
 
-throw-spec-opt - GOTO 1154
+throw-spec-opt - GOTO 1155
 throw-spec - GOTO 1024
 noexcept-spec - GOTO 1025
 
@@ -18025,35 +18028,35 @@ noexcept-spec - GOTO 1025
 -----
 mbr-init * -> obj-name LPAREN_TOKEN expr-list-opt.RPAREN_TOKEN
 
-RPAREN_TOKEN - SHIFT 1155
+RPAREN_TOKEN - SHIFT 1156
 
 1085
 -----
-mbr-init-list -> mbr-init-list COMMA_TOKEN mbr-init. (551)
+mbr-init-list -> mbr-init-list COMMA_TOKEN mbr-init. (552)
 
-* - REDUCE 551 mbr-init-list
+* - REDUCE 552 mbr-init-list
 
 1086
 -----
 func-def * -> func-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN.handler-seq-opt
 
-CATCH_TOKEN - SHIFT 1156
-* - REDUCE 555 handler-seq-opt
+CATCH_TOKEN - SHIFT 1157
+* - REDUCE 556 handler-seq-opt
 
-handler-seq-opt - GOTO 1157
-handler-seq - GOTO 1158
-handler - GOTO 1159
+handler-seq-opt - GOTO 1158
+handler-seq - GOTO 1159
+handler - GOTO 1160
 
 1087
 -----
 func-def * -> ctor-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN.handler-seq-opt
 
-CATCH_TOKEN - SHIFT 1156
-* - REDUCE 555 handler-seq-opt
+CATCH_TOKEN - SHIFT 1157
+* - REDUCE 556 handler-seq-opt
 
-handler-seq-opt - GOTO 1160
-handler-seq - GOTO 1158
-handler - GOTO 1159
+handler-seq-opt - GOTO 1161
+handler-seq - GOTO 1159
+handler - GOTO 1160
 
 1088
 -----
@@ -18081,7 +18084,7 @@ DCOLON_TOKEN - SHIFT 4
 * - REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
-obj-name - GOTO 1161
+obj-name - GOTO 1162
 nested-name-opt - GOTO 146
 
 1092
@@ -18098,7 +18101,7 @@ PRIVATE_TOKEN - SHIFT 693
 nested-name - GOTO 67
 obj-name - GOTO 998
 nested-name-opt - GOTO 146
-base-spec - GOTO 1162
+base-spec - GOTO 1163
 access - GOTO 1001
 
 1093
@@ -18109,23 +18112,23 @@ DCOLON_TOKEN - SHIFT 4
 * - REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
-obj-name - GOTO 1163
+obj-name - GOTO 1164
 nested-name-opt - GOTO 146
 
 1094
 -----
-lazy-ctor-begin -> class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt. (590)
+lazy-ctor-begin -> class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt. (591)
 
-LBRACE_TOKEN - ACCEPT 590 lazy-ctor-begin
+LBRACE_TOKEN - ACCEPT 591 lazy-ctor-begin
 
 1095
 -----
 lazy-ctor-begin -> xxxS-decl-spec-seq class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN.lazy-base-clause-opt
 
 COLON_TOKEN - SHIFT 543
-* - REDUCE 593 lazy-base-clause-opt
+* - REDUCE 594 lazy-base-clause-opt
 
-lazy-base-clause-opt - GOTO 1164
+lazy-base-clause-opt - GOTO 1165
 lazy-base-clause - GOTO 545
 
 1096
@@ -18163,7 +18166,7 @@ THROW_TOKEN - SHIFT 1021
 NOEXCEPT_TOKEN - SHIFT 1022
 * - REDUCE 493 throw-spec-opt
 
-throw-spec-opt - GOTO 1165
+throw-spec-opt - GOTO 1166
 throw-spec - GOTO 1024
 noexcept-spec - GOTO 1025
 
@@ -18193,15 +18196,15 @@ func-a-direct-dcl -> func-dcl-id param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt 
 
 1105
 -----
-functor-direct-dcl -> functor-direct-dcl param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt. (610)
+functor-direct-dcl -> functor-direct-dcl param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt. (611)
 
-* - REDUCE 610 functor-direct-dcl
+* - REDUCE 611 functor-direct-dcl
 
 1106
 -----
 throw-spec -> THROW_TOKEN LPAREN_TOKEN.type-id-list-opt RPAREN_TOKEN
 
-RPAREN_TOKEN - REDUCE 496 type-id-list-opt
+RPAREN_TOKEN - REDUCE 497 type-id-list-opt
 DCOLON_TOKEN - SHIFT 4
 CONST_TOKEN - SHIFT 8
 VOLATILE_TOKEN - SHIFT 9
@@ -18235,93 +18238,99 @@ class-key - GOTO 147
 built-in-type - GOTO 80
 built-in-type-token - GOTO 81
 xxVx-decl-spec-seq - GOTO 783
-xBxx-decl-spec-seq - GOTO 1166
-xBVx-decl-spec-seq - GOTO 1167
-xUxx-decl-spec-seq - GOTO 1168
-xUVx-decl-spec-seq - GOTO 1169
-xExx-decl-spec-seq - GOTO 1170
-xEVx-decl-spec-seq - GOTO 1171
-type-id-list-opt - GOTO 1172
-type-id-list - GOTO 1173
-type-id - GOTO 1174
+xBxx-decl-spec-seq - GOTO 1167
+xBVx-decl-spec-seq - GOTO 1168
+xUxx-decl-spec-seq - GOTO 1169
+xUVx-decl-spec-seq - GOTO 1170
+xExx-decl-spec-seq - GOTO 1171
+xEVx-decl-spec-seq - GOTO 1172
+type-id-list-opt - GOTO 1173
+type-id-list - GOTO 1174
+type-id - GOTO 1175
 
-1107
+1107 (2)
 -----
-lazy-base-spec * -> VIRTUAL_TOKEN access-opt obj-name base-init. (598)
+noexcept-spec -> NOEXCEPT_TOKEN LPAREN_TOKEN >>!.BLOCK_TOKEN 2 RPAREN_TOKEN
 
-* - ACCEPT 598 lazy-base-spec
+BLOCK_TOKEN - SHIFT 1176
 
 1108
 -----
-base-init -> LPAREN_TOKEN expr-list-opt RPAREN_TOKEN. (603)
-
-* - REDUCE 603 base-init
-
-1109
------
-lazy-base-spec * -> access virtual-opt obj-name base-init. (599)
+lazy-base-spec * -> VIRTUAL_TOKEN access-opt obj-name base-init. (599)
 
 * - ACCEPT 599 lazy-base-spec
 
+1109
+-----
+base-init -> LPAREN_TOKEN expr-list-opt RPAREN_TOKEN. (604)
+
+* - REDUCE 604 base-init
+
 1110
 -----
-functor-def * -> functor-decl lazy-base-clause-opt try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN.handler-seq-opt
+lazy-base-spec * -> access virtual-opt obj-name base-init. (600)
 
-CATCH_TOKEN - SHIFT 1156
-* - REDUCE 555 handler-seq-opt
-
-handler-seq-opt - GOTO 1175
-handler-seq - GOTO 1158
-handler - GOTO 1159
+* - ACCEPT 600 lazy-base-spec
 
 1111
 -----
-nav-visit-func-def * -> obj-name LPAREN_TOKEN (>)3 obj-name RPAREN_TOKEN.LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
+functor-def * -> functor-decl lazy-base-clause-opt try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN.handler-seq-opt
 
-LBRACE_TOKEN - SHIFT 1176
+CATCH_TOKEN - SHIFT 1157
+* - REDUCE 556 handler-seq-opt
+
+handler-seq-opt - GOTO 1177
+handler-seq - GOTO 1159
+handler - GOTO 1160
 
 1112
 -----
-vdf-data-param-list-alt -> LT_TOKEN block-opt 1 GT_TOKEN. (718)
+nav-visit-func-def * -> obj-name LPAREN_TOKEN (>)3 obj-name RPAREN_TOKEN.LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
 
-* - REDUCE 718 vdf-data-param-list-alt
+LBRACE_TOKEN - SHIFT 1178
 
 1113
 -----
+vdf-data-param-list-alt -> LT_TOKEN block-opt 1 GT_TOKEN. (719)
+
+* - REDUCE 719 vdf-data-param-list-alt
+
+1114
+-----
 vdf-functor-def * -> obj-name > param-decl-1-body RPAREN_TOKEN try-opt.LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
 
-LBRACE_TOKEN - SHIFT 1177
+LBRACE_TOKEN - SHIFT 1179
 
-1114 (2)
+1115 (2)
 -----
 vdf-direct-obj-init -> LPAREN_TOKEN.BLOCK_TOKEN 2 RPAREN_TOKEN
 
-BLOCK_TOKEN - SHIFT 1178
-
-1115
------
-vdf-short-data-def * -> xUxx-decl-spec-seq IDENT_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt.SEMI_TOKEN
-
-SEMI_TOKEN - SHIFT 1179
+BLOCK_TOKEN - SHIFT 1180
 
 1116
 -----
-vdf-direct-obj-init-opt -> vdf-direct-obj-init. (719)
+vdf-short-data-def * -> xUxx-decl-spec-seq IDENT_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt.SEMI_TOKEN
 
-* - REDUCE 719 vdf-direct-obj-init-opt
+SEMI_TOKEN - SHIFT 1181
 
 1117
 -----
-vdf-short-data-def * -> xUxx-decl-spec-seq LITERAL_STRING_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt.SEMI_TOKEN
+vdf-direct-obj-init-opt -> vdf-direct-obj-init. (720)
 
-SEMI_TOKEN - SHIFT 1180
+* - REDUCE 720 vdf-direct-obj-init-opt
 
 1118
+-----
+vdf-short-data-def * -> xUxx-decl-spec-seq LITERAL_STRING_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt.SEMI_TOKEN
+
+SEMI_TOKEN - SHIFT 1182
+
+1119
 -----
 obj-dcl-id -> LPAREN_TOKEN.obj-dcl-id RPAREN_TOKEN
 vdf-obj-b-direct-dcl -> LPAREN_TOKEN.vdf-obj-b-dcl RPAREN_TOKEN
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -18331,165 +18340,165 @@ TIMES_TOKEN - SHIFT 275
 nested-name - GOTO 67
 obj-name - GOTO 279
 nested-name-opt - GOTO 146
-ptr-oper - GOTO 1181
-obj-dcl-id - GOTO 1182
+ptr-oper - GOTO 1183
+obj-dcl-id - GOTO 1184
 obj-id - GOTO 128
-vdf-obj-a-direct-dcl - GOTO 1183
-vdf-obj-b-dcl - GOTO 1184
-vdf-obj-b-direct-dcl - GOTO 1185
-
-1119
------
-vdf-obj-a-dcl -> ptr-oper.vdf-obj-a-dcl
-
-LPAREN_TOKEN - SHIFT 1118
-DCOLON_TOKEN - SHIFT 4
-AND_TOKEN - SHIFT 273
-BITAND_TOKEN - SHIFT 274
-TIMES_TOKEN - SHIFT 275
-* - REDUCE 48 nested-name-opt
-
-nested-name - GOTO 67
-obj-name - GOTO 279
-nested-name-opt - GOTO 146
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
-obj-id - GOTO 128
-vdf-obj-a-dcl - GOTO 1186
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-a-direct-dcl - GOTO 1185
+vdf-obj-b-dcl - GOTO 1186
+vdf-obj-b-direct-dcl - GOTO 1187
 
 1120
 -----
-vdf-obj-a-direct-dcl -> obj-dcl-id. (757)
+vdf-obj-a-dcl -> ptr-oper.vdf-obj-a-dcl
 
-* - REDUCE 757 vdf-obj-a-direct-dcl
+LPAREN_TOKEN - SHIFT 1119
+DCOLON_TOKEN - SHIFT 4
+AND_TOKEN - SHIFT 273
+BITAND_TOKEN - SHIFT 274
+TIMES_TOKEN - SHIFT 275
+* - REDUCE 48 nested-name-opt
+
+nested-name - GOTO 67
+obj-name - GOTO 279
+nested-name-opt - GOTO 146
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
+obj-id - GOTO 128
+vdf-obj-a-dcl - GOTO 1188
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
 1121
 -----
-vdf-obj-decl -> xBxx-decl-spec-seq vdf-obj-dcl. (739)
+vdf-obj-a-direct-dcl -> obj-dcl-id. (758)
 
-* - REDUCE 739 vdf-obj-decl
+* - REDUCE 758 vdf-obj-a-direct-dcl
 
 1122
 -----
-vdf-obj-dcl -> vdf-obj-a-dcl. (751)
-
-* - REDUCE 751 vdf-obj-dcl
-
-1123
------
-vdf-obj-a-dcl -> vdf-obj-a-direct-dcl. (753)
-vdf-obj-b-direct-dcl -> vdf-obj-a-direct-dcl.LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
-
-LBRACK_TOKEN - SHIFT 1187
-* - REDUCE 753 vdf-obj-a-dcl
-
-1124
------
-vdf-obj-a-direct-dcl -> vdf-obj-b-direct-dcl. (756)
-vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl.vdf-data-param-list cv-spec-seq-opt throw-spec-opt
-
-LPAREN_TOKEN - REDUCE 756 vdf-obj-a-direct-dcl, SHIFT 1188
-* - REDUCE 756 vdf-obj-a-direct-dcl
-
-vdf-data-param-list - GOTO 1189
-
-1125
------
-vdf-obj-decl -> xBVx-decl-spec-seq vdf-obj-dcl. (740)
+vdf-obj-decl -> xBxx-decl-spec-seq vdf-obj-dcl. (740)
 
 * - REDUCE 740 vdf-obj-decl
 
+1123
+-----
+vdf-obj-dcl -> vdf-obj-a-dcl. (752)
+
+* - REDUCE 752 vdf-obj-dcl
+
+1124
+-----
+vdf-obj-a-dcl -> vdf-obj-a-direct-dcl. (754)
+vdf-obj-b-direct-dcl -> vdf-obj-a-direct-dcl.LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
+
+LBRACK_TOKEN - SHIFT 1189
+* - REDUCE 754 vdf-obj-a-dcl
+
+1125
+-----
+vdf-obj-a-direct-dcl -> vdf-obj-b-direct-dcl. (757)
+vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl.vdf-data-param-list cv-spec-seq-opt throw-spec-opt
+
+LPAREN_TOKEN - REDUCE 757 vdf-obj-a-direct-dcl, SHIFT 1190
+* - REDUCE 757 vdf-obj-a-direct-dcl
+
+vdf-data-param-list - GOTO 1191
+
 1126
 -----
-vdf-obj-decl -> xBxS-decl-spec-seq vdf-obj-dcl. (741)
+vdf-obj-decl -> xBVx-decl-spec-seq vdf-obj-dcl. (741)
 
 * - REDUCE 741 vdf-obj-decl
 
 1127
 -----
-vdf-obj-decl -> xBVS-decl-spec-seq vdf-obj-dcl. (742)
+vdf-obj-decl -> xBxS-decl-spec-seq vdf-obj-dcl. (742)
 
 * - REDUCE 742 vdf-obj-decl
 
 1128
 -----
-vdf-obj-decl -> xUxx-decl-spec-seq vdf-obj-dcl. (743)
+vdf-obj-decl -> xBVS-decl-spec-seq vdf-obj-dcl. (743)
 
 * - REDUCE 743 vdf-obj-decl
 
 1129
 -----
-vdf-obj-decl -> xUVx-decl-spec-seq vdf-obj-dcl. (744)
+vdf-obj-decl -> xUxx-decl-spec-seq vdf-obj-dcl. (744)
 
 * - REDUCE 744 vdf-obj-decl
 
 1130
 -----
-vdf-obj-decl -> xUxS-decl-spec-seq vdf-obj-dcl. (745)
+vdf-obj-decl -> xUVx-decl-spec-seq vdf-obj-dcl. (745)
 
 * - REDUCE 745 vdf-obj-decl
 
 1131
 -----
-vdf-obj-decl -> xUVS-decl-spec-seq vdf-obj-dcl. (746)
+vdf-obj-decl -> xUxS-decl-spec-seq vdf-obj-dcl. (746)
 
 * - REDUCE 746 vdf-obj-decl
 
 1132
 -----
-vdf-obj-decl -> xExx-decl-spec-seq vdf-obj-dcl. (747)
+vdf-obj-decl -> xUVS-decl-spec-seq vdf-obj-dcl. (747)
 
 * - REDUCE 747 vdf-obj-decl
 
 1133
 -----
-vdf-obj-decl -> xEVx-decl-spec-seq vdf-obj-dcl. (748)
+vdf-obj-decl -> xExx-decl-spec-seq vdf-obj-dcl. (748)
 
 * - REDUCE 748 vdf-obj-decl
 
 1134
 -----
-vdf-obj-decl -> xExS-decl-spec-seq vdf-obj-dcl. (749)
+vdf-obj-decl -> xEVx-decl-spec-seq vdf-obj-dcl. (749)
 
 * - REDUCE 749 vdf-obj-decl
 
 1135
 -----
-vdf-obj-decl -> xEVS-decl-spec-seq vdf-obj-dcl. (750)
+vdf-obj-decl -> xExS-decl-spec-seq vdf-obj-dcl. (750)
 
 * - REDUCE 750 vdf-obj-decl
 
 1136
 -----
-return-stmt-opt -> return-stmt. (725)
+vdf-obj-decl -> xEVS-decl-spec-seq vdf-obj-dcl. (751)
 
-* - REDUCE 725 return-stmt-opt
+* - REDUCE 751 vdf-obj-decl
 
 1137
 -----
-vdf-block-data-def * -> vdf-block-data-head LBRACE_TOKEN simple-vdf-obj-decl-seq-opt return-stmt-opt.RBRACE_TOKEN
+return-stmt-opt -> return-stmt. (726)
 
-RBRACE_TOKEN - SHIFT 1190
+* - REDUCE 726 return-stmt-opt
 
 1138
 -----
-simple-vdf-obj-decl-seq -> simple-vdf-obj-decl-seq simple-vdf-obj-decl. (730)
+vdf-block-data-def * -> vdf-block-data-head LBRACE_TOKEN simple-vdf-obj-decl-seq-opt return-stmt-opt.RBRACE_TOKEN
 
-* - REDUCE 730 simple-vdf-obj-decl-seq
+RBRACE_TOKEN - SHIFT 1192
 
 1139
 -----
-simple-vdf-obj-decl * -> nested-simple-vdf-obj-decl SEMI_TOKEN. (731)
+simple-vdf-obj-decl-seq -> simple-vdf-obj-decl-seq simple-vdf-obj-decl. (731)
 
-* - ACCEPT 731 simple-vdf-obj-decl
+* - REDUCE 731 simple-vdf-obj-decl-seq
 
 1140
 -----
+simple-vdf-obj-decl * -> nested-simple-vdf-obj-decl SEMI_TOKEN. (732)
+
+* - ACCEPT 732 simple-vdf-obj-decl
+
+1141
+-----
 nested-vdf-obj-decl -> nested-simple-vdf-obj-decl COMMA_TOKEN.vdf-obj-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -18499,52 +18508,52 @@ TIMES_TOKEN - SHIFT 275
 nested-name - GOTO 67
 obj-name - GOTO 279
 nested-name-opt - GOTO 146
-ptr-oper - GOTO 1119
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1120
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-dcl - GOTO 1191
-vdf-obj-a-dcl - GOTO 1122
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1124
+vdf-obj-dcl - GOTO 1193
+vdf-obj-a-dcl - GOTO 1123
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1125
 
-1141 (3)
+1142 (3)
 -----
 vdf-obj-init -> ASSIGN_TOKEN.BLOCK_TOKEN 3
 
-BLOCK_TOKEN - SHIFT 1192
-
-1142
------
-vdf-obj-init -> vdf-direct-obj-init. (736)
-
-* - REDUCE 736 vdf-obj-init
+BLOCK_TOKEN - SHIFT 1194
 
 1143
 -----
-nested-simple-vdf-obj-decl <* -> nested-vdf-obj-decl + vdf-obj-init-opt. (732)
+vdf-obj-init -> vdf-direct-obj-init. (737)
 
-SEMI_TOKEN - ACCEPT 732 nested-simple-vdf-obj-decl
-COMMA_TOKEN - ACCEPT 732 nested-simple-vdf-obj-decl
+* - REDUCE 737 vdf-obj-init
 
 1144
 -----
-vdf-obj-init-opt -> vdf-obj-init. (733)
+nested-simple-vdf-obj-decl <* -> nested-vdf-obj-decl + vdf-obj-init-opt. (733)
 
-* - REDUCE 733 vdf-obj-init-opt
+SEMI_TOKEN - ACCEPT 733 nested-simple-vdf-obj-decl
+COMMA_TOKEN - ACCEPT 733 nested-simple-vdf-obj-decl
 
 1145
+-----
+vdf-obj-init-opt -> vdf-obj-init. (734)
+
+* - REDUCE 734 vdf-obj-init-opt
+
+1146
 -----
 param-b-direct-dcl -> param-a-direct-dcl param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt. (364)
 
 * - REDUCE 364 param-b-direct-dcl
 
-1146
+1147
 -----
 abstract-direct-dcl -> abstract-direct-dcl-opt param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt. (369)
 
 * - REDUCE 369 abstract-direct-dcl
 
-1147
+1148
 -----
 tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN.obj-name
 tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN.obj-name ASSIGN_TOKEN obj-name
@@ -18553,10 +18562,10 @@ DCOLON_TOKEN - SHIFT 4
 * - REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
-obj-name - GOTO 1193
+obj-name - GOTO 1195
 nested-name-opt - GOTO 146
 
-1148
+1149
 -----
 abstract-dcl -> ptr-oper.abstract-dcl-opt
 
@@ -18573,134 +18582,134 @@ TIMES_TOKEN - SHIFT 275
 nested-name - GOTO 67
 obj-name - GOTO 963
 nested-name-opt - GOTO 146
-ptr-oper - GOTO 1148
+ptr-oper - GOTO 1149
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 764
 abstract-direct-dcl - GOTO 563
 abstract-direct-dcl-opt - GOTO 564
 
-1149 (9)
+1150 (9)
 -----
 enumtor-decl <* -> obj-name ASSIGN_TOKEN.BLOCK_TOKEN 9
 
-BLOCK_TOKEN - SHIFT 1194
+BLOCK_TOKEN - SHIFT 1196
 
-1150
+1151
 -----
 enum-def * -> ENUM_TOKEN enum-key-opt + obj-name-opt enum-base-opt <* LBRACE_TOKEN enum-body-opt RBRACE_TOKEN.semi-opt
 
 SEMI_TOKEN - SHIFT 905
-* - REDUCE 509 semi-opt
+* - REDUCE 510 semi-opt
 
-semi-opt - GOTO 1195
+semi-opt - GOTO 1197
 
-1151
+1152
 -----
 enumtor-decl-list -> enumtor-decl-list COMMA_TOKEN.enumtor-decl
-comma-opt -> COMMA_TOKEN. (640)
+comma-opt -> COMMA_TOKEN. (641)
 
 DCOLON_TOKEN - SHIFT 4
-RBRACE_TOKEN - REDUCE 640 comma-opt
+RBRACE_TOKEN - REDUCE 641 comma-opt
 * - REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
 obj-name - GOTO 1075
 nested-name-opt - GOTO 146
-enumtor-decl - GOTO 1196
-
-1152
------
-enum-body -> enumtor-decl-list comma-opt. (639)
-
-* - REDUCE 639 enum-body
+enumtor-decl - GOTO 1198
 
 1153
 -----
-nav-direct-dcl -> obj-dcl-id LPAREN_TOKEN nav-node-type RPAREN_TOKEN param-decl-1-body.RPAREN_TOKEN
+enum-body -> enumtor-decl-list comma-opt. (640)
 
-RPAREN_TOKEN - SHIFT 1197
+* - REDUCE 640 enum-body
 
 1154
 -----
-nav-direct-dcl -> nav-direct-dcl param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt. (674)
+nav-direct-dcl -> obj-dcl-id LPAREN_TOKEN nav-node-type RPAREN_TOKEN param-decl-1-body.RPAREN_TOKEN
 
-* - REDUCE 674 nav-direct-dcl
+RPAREN_TOKEN - SHIFT 1199
 
 1155
 -----
-mbr-init * -> obj-name LPAREN_TOKEN expr-list-opt RPAREN_TOKEN. (553)
+nav-direct-dcl -> nav-direct-dcl param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt. (675)
 
-* - ACCEPT 553 mbr-init
+* - REDUCE 675 nav-direct-dcl
 
 1156
 -----
-handler * -> CATCH_TOKEN.LPAREN_TOKEN catch-decl RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
+mbr-init * -> obj-name LPAREN_TOKEN expr-list-opt RPAREN_TOKEN. (554)
 
-LPAREN_TOKEN - SHIFT 1198
+* - ACCEPT 554 mbr-init
 
 1157
 -----
-func-def * -> func-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt. (544)
+handler * -> CATCH_TOKEN.LPAREN_TOKEN catch-decl RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
 
-* - ACCEPT 544 func-def
+LPAREN_TOKEN - SHIFT 1200
 
 1158
 -----
-handler-seq-opt -> handler-seq. (554)
-handler-seq -> handler-seq.handler
-
-CATCH_TOKEN - SHIFT 1156
-* - REDUCE 554 handler-seq-opt
-
-handler - GOTO 1199
-
-1159
------
-handler-seq -> handler. (557)
-
-* - REDUCE 557 handler-seq
-
-1160
------
-func-def * -> ctor-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt. (545)
+func-def * -> func-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt. (545)
 
 * - ACCEPT 545 func-def
 
+1159
+-----
+handler-seq-opt -> handler-seq. (555)
+handler-seq -> handler-seq.handler
+
+CATCH_TOKEN - SHIFT 1157
+* - REDUCE 555 handler-seq-opt
+
+handler - GOTO 1201
+
+1160
+-----
+handler-seq -> handler. (558)
+
+* - REDUCE 558 handler-seq
+
 1161
 -----
-base-spec * -> VIRTUAL_TOKEN access-opt obj-name. (516)
-nested-name -> obj-name.DCOLON_TOKEN >!
+func-def * -> ctor-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt. (546)
 
-DCOLON_TOKEN - SHIFT 240
-* - ACCEPT 516 base-spec
+* - ACCEPT 546 func-def
 
 1162
 -----
-base-spec-list -> base-spec-list COMMA_TOKEN base-spec. (513)
-
-* - REDUCE 513 base-spec-list
-
-1163
------
-base-spec * -> access virtual-opt obj-name. (517)
+base-spec * -> VIRTUAL_TOKEN access-opt obj-name. (517)
 nested-name -> obj-name.DCOLON_TOKEN >!
 
 DCOLON_TOKEN - SHIFT 240
 * - ACCEPT 517 base-spec
 
+1163
+-----
+base-spec-list -> base-spec-list COMMA_TOKEN base-spec. (514)
+
+* - REDUCE 514 base-spec-list
+
 1164
 -----
-lazy-ctor-begin -> xxxS-decl-spec-seq class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt. (591)
+base-spec * -> access virtual-opt obj-name. (518)
+nested-name -> obj-name.DCOLON_TOKEN >!
 
-LBRACE_TOKEN - ACCEPT 591 lazy-ctor-begin
+DCOLON_TOKEN - SHIFT 240
+* - ACCEPT 518 base-spec
 
 1165
 -----
-functor-direct-dcl -> obj-dcl-id param-decl-1-body param-decl-2-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt. (609)
+lazy-ctor-begin -> xxxS-decl-spec-seq class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt. (592)
 
-* - REDUCE 609 functor-direct-dcl
+LBRACE_TOKEN - ACCEPT 592 lazy-ctor-begin
 
 1166
+-----
+functor-direct-dcl -> obj-dcl-id param-decl-1-body param-decl-2-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt. (610)
+
+* - REDUCE 610 functor-direct-dcl
+
+1167
 -----
 xBxx-decl-spec-seq -> xBxx-decl-spec-seq.built-in-type
 xBVx-decl-spec-seq -> xBxx-decl-spec-seq.cv-spec
@@ -18736,13 +18745,13 @@ cv-spec - GOTO 284
 cv-token - GOTO 74
 built-in-type - GOTO 286
 built-in-type-token - GOTO 81
-ptr-oper - GOTO 1200
+ptr-oper - GOTO 1202
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 965
 abstract-direct-dcl - GOTO 563
 abstract-direct-dcl-opt - GOTO 564
 
-1167
+1168
 -----
 xBVx-decl-spec-seq -> xBVx-decl-spec-seq.cv-spec
 xBVx-decl-spec-seq -> xBVx-decl-spec-seq.built-in-type
@@ -18778,13 +18787,13 @@ cv-spec - GOTO 304
 cv-token - GOTO 74
 built-in-type - GOTO 306
 built-in-type-token - GOTO 81
-ptr-oper - GOTO 1200
+ptr-oper - GOTO 1202
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 967
 abstract-direct-dcl - GOTO 563
 abstract-direct-dcl-opt - GOTO 564
 
-1168
+1169
 -----
 xUVx-decl-spec-seq -> xUxx-decl-spec-seq.cv-spec
 abstract-decl -> xUxx-decl-spec-seq.abstract-dcl-opt
@@ -18806,13 +18815,13 @@ obj-name - GOTO 963
 nested-name-opt - GOTO 146
 cv-spec - GOTO 331
 cv-token - GOTO 74
-ptr-oper - GOTO 1200
+ptr-oper - GOTO 1202
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 968
 abstract-direct-dcl - GOTO 563
 abstract-direct-dcl-opt - GOTO 564
 
-1169
+1170
 -----
 xUVx-decl-spec-seq -> xUVx-decl-spec-seq.cv-spec
 abstract-decl -> xUVx-decl-spec-seq.abstract-dcl-opt
@@ -18834,13 +18843,13 @@ obj-name - GOTO 963
 nested-name-opt - GOTO 146
 cv-spec - GOTO 339
 cv-token - GOTO 74
-ptr-oper - GOTO 1200
+ptr-oper - GOTO 1202
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 969
 abstract-direct-dcl - GOTO 563
 abstract-direct-dcl-opt - GOTO 564
 
-1170
+1171
 -----
 xEVx-decl-spec-seq -> xExx-decl-spec-seq.cv-spec
 abstract-decl -> xExx-decl-spec-seq.abstract-dcl-opt
@@ -18862,13 +18871,13 @@ obj-name - GOTO 963
 nested-name-opt - GOTO 146
 cv-spec - GOTO 362
 cv-token - GOTO 74
-ptr-oper - GOTO 1200
+ptr-oper - GOTO 1202
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 970
 abstract-direct-dcl - GOTO 563
 abstract-direct-dcl-opt - GOTO 564
 
-1171
+1172
 -----
 xEVx-decl-spec-seq -> xEVx-decl-spec-seq.cv-spec
 abstract-decl -> xEVx-decl-spec-seq.abstract-dcl-opt
@@ -18890,79 +18899,85 @@ obj-name - GOTO 963
 nested-name-opt - GOTO 146
 cv-spec - GOTO 369
 cv-token - GOTO 74
-ptr-oper - GOTO 1200
+ptr-oper - GOTO 1202
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 971
 abstract-direct-dcl - GOTO 563
 abstract-direct-dcl-opt - GOTO 564
 
-1172
+1173
 -----
 throw-spec -> THROW_TOKEN LPAREN_TOKEN type-id-list-opt.RPAREN_TOKEN
 
-RPAREN_TOKEN - SHIFT 1201
-
-1173
------
-type-id-list-opt -> type-id-list. (497)
-type-id-list -> type-id-list.COMMA_TOKEN type-id
-
-COMMA_TOKEN - SHIFT 1202
-* - REDUCE 497 type-id-list-opt
+RPAREN_TOKEN - SHIFT 1203
 
 1174
 -----
-type-id-list -> type-id. (499)
+type-id-list-opt -> type-id-list. (498)
+type-id-list -> type-id-list.COMMA_TOKEN type-id
 
-* - REDUCE 499 type-id-list
+COMMA_TOKEN - SHIFT 1204
+* - REDUCE 498 type-id-list-opt
 
 1175
 -----
-functor-def * -> functor-decl lazy-base-clause-opt try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt. (625)
+type-id-list -> type-id. (500)
 
-* - ACCEPT 625 functor-def
+* - REDUCE 500 type-id-list
 
-1176 (7)
+1176
+-----
+noexcept-spec -> NOEXCEPT_TOKEN LPAREN_TOKEN >>! BLOCK_TOKEN 2.RPAREN_TOKEN
+
+RPAREN_TOKEN - SHIFT 1205
+
+1177
+-----
+functor-def * -> functor-decl lazy-base-clause-opt try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt. (626)
+
+* - ACCEPT 626 functor-def
+
+1178 (7)
 -----
 nav-visit-func-def * -> obj-name LPAREN_TOKEN (>)3 obj-name RPAREN_TOKEN LBRACE_TOKEN.block-opt 7 RBRACE_TOKEN
 
 BLOCK_TOKEN - SHIFT 807
 * - REDUCE 330 block-opt
 
-block-opt - GOTO 1203
+block-opt - GOTO 1206
 
-1177 (7)
+1179 (7)
 -----
 vdf-functor-def * -> obj-name > param-decl-1-body RPAREN_TOKEN try-opt LBRACE_TOKEN.block-opt 7 RBRACE_TOKEN handler-seq-opt
 
 BLOCK_TOKEN - SHIFT 807
 * - REDUCE 330 block-opt
 
-block-opt - GOTO 1204
-
-1178
------
-vdf-direct-obj-init -> LPAREN_TOKEN BLOCK_TOKEN 2.RPAREN_TOKEN
-
-RPAREN_TOKEN - SHIFT 1205
-
-1179
------
-vdf-short-data-def * -> xUxx-decl-spec-seq IDENT_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt SEMI_TOKEN. (713)
-
-* - ACCEPT 713 vdf-short-data-def
+block-opt - GOTO 1207
 
 1180
 -----
-vdf-short-data-def * -> xUxx-decl-spec-seq LITERAL_STRING_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt SEMI_TOKEN. (714)
+vdf-direct-obj-init -> LPAREN_TOKEN BLOCK_TOKEN 2.RPAREN_TOKEN
 
-* - ACCEPT 714 vdf-short-data-def
+RPAREN_TOKEN - SHIFT 1208
 
 1181
 -----
+vdf-short-data-def * -> xUxx-decl-spec-seq IDENT_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt SEMI_TOKEN. (714)
+
+* - ACCEPT 714 vdf-short-data-def
+
+1182
+-----
+vdf-short-data-def * -> xUxx-decl-spec-seq LITERAL_STRING_TOKEN vdf-data-param-list-alt-opt vdf-direct-obj-init-opt SEMI_TOKEN. (715)
+
+* - ACCEPT 715 vdf-short-data-def
+
+1183
+-----
 vdf-obj-b-dcl -> ptr-oper.vdf-obj-a-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -18972,70 +18987,70 @@ TIMES_TOKEN - SHIFT 275
 nested-name - GOTO 67
 obj-name - GOTO 279
 nested-name-opt - GOTO 146
-ptr-oper - GOTO 1206
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1209
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-a-dcl - GOTO 1207
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1208
-
-1182
------
-obj-dcl-id -> LPAREN_TOKEN obj-dcl-id.RPAREN_TOKEN
-vdf-obj-a-direct-dcl -> obj-dcl-id. (757)
-
-RPAREN_TOKEN - SHIFT 582
-* - REDUCE 757 vdf-obj-a-direct-dcl
-
-1183
------
-vdf-obj-b-direct-dcl -> vdf-obj-a-direct-dcl.LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
-
-LBRACK_TOKEN - SHIFT 1187
+vdf-obj-a-dcl - GOTO 1210
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1211
 
 1184
 -----
-vdf-obj-b-direct-dcl -> LPAREN_TOKEN vdf-obj-b-dcl.RPAREN_TOKEN
+obj-dcl-id -> LPAREN_TOKEN obj-dcl-id.RPAREN_TOKEN
+vdf-obj-a-direct-dcl -> obj-dcl-id. (758)
 
-RPAREN_TOKEN - SHIFT 1209
+RPAREN_TOKEN - SHIFT 582
+* - REDUCE 758 vdf-obj-a-direct-dcl
 
 1185
 -----
-vdf-obj-b-dcl -> vdf-obj-b-direct-dcl. (755)
-vdf-obj-a-direct-dcl -> vdf-obj-b-direct-dcl. (756)
-vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl.vdf-data-param-list cv-spec-seq-opt throw-spec-opt
+vdf-obj-b-direct-dcl -> vdf-obj-a-direct-dcl.LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
 
-LPAREN_TOKEN - SHIFT 1188
-LBRACK_TOKEN - REDUCE 756 vdf-obj-a-direct-dcl
-* - REDUCE 755 vdf-obj-b-dcl
-
-vdf-data-param-list - GOTO 1189
+LBRACK_TOKEN - SHIFT 1189
 
 1186
 -----
-vdf-obj-a-dcl -> ptr-oper vdf-obj-a-dcl. (752)
+vdf-obj-b-direct-dcl -> LPAREN_TOKEN vdf-obj-b-dcl.RPAREN_TOKEN
 
-* - REDUCE 752 vdf-obj-a-dcl
+RPAREN_TOKEN - SHIFT 1212
 
-1187 (5)
+1187
+-----
+vdf-obj-b-dcl -> vdf-obj-b-direct-dcl. (756)
+vdf-obj-a-direct-dcl -> vdf-obj-b-direct-dcl. (757)
+vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl.vdf-data-param-list cv-spec-seq-opt throw-spec-opt
+
+LPAREN_TOKEN - SHIFT 1190
+LBRACK_TOKEN - REDUCE 757 vdf-obj-a-direct-dcl
+* - REDUCE 756 vdf-obj-b-dcl
+
+vdf-data-param-list - GOTO 1191
+
+1188
+-----
+vdf-obj-a-dcl -> ptr-oper vdf-obj-a-dcl. (753)
+
+* - REDUCE 753 vdf-obj-a-dcl
+
+1189 (5)
 -----
 vdf-obj-b-direct-dcl -> vdf-obj-a-direct-dcl LBRACK_TOKEN.block-opt 5 RBRACK_TOKEN
 
 BLOCK_TOKEN - SHIFT 807
 * - REDUCE 330 block-opt
 
-block-opt - GOTO 1210
+block-opt - GOTO 1213
 
-1188 (2)
+1190 (2)
 -----
 vdf-data-param-list -> LPAREN_TOKEN.block-opt 2 RPAREN_TOKEN
 
 BLOCK_TOKEN - SHIFT 807
 * - REDUCE 330 block-opt
 
-block-opt - GOTO 1211
+block-opt - GOTO 1214
 
-1189
+1191
 -----
 vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl vdf-data-param-list.cv-spec-seq-opt throw-spec-opt
 
@@ -19046,63 +19061,63 @@ VOLATILE_TOKEN - SHIFT 9
 cv-spec - GOTO 651
 cv-token - GOTO 74
 cv-spec-seq - GOTO 652
-cv-spec-seq-opt - GOTO 1212
-
-1190
------
-vdf-block-data-def * -> vdf-block-data-head LBRACE_TOKEN simple-vdf-obj-decl-seq-opt return-stmt-opt RBRACE_TOKEN. (722)
-
-* - ACCEPT 722 vdf-block-data-def
-
-1191
------
-nested-vdf-obj-decl -> nested-simple-vdf-obj-decl COMMA_TOKEN vdf-obj-dcl. (737)
-
-* - REDUCE 737 nested-vdf-obj-decl
+cv-spec-seq-opt - GOTO 1215
 
 1192
 -----
-vdf-obj-init -> ASSIGN_TOKEN BLOCK_TOKEN 3. (735)
+vdf-block-data-def * -> vdf-block-data-head LBRACE_TOKEN simple-vdf-obj-decl-seq-opt return-stmt-opt RBRACE_TOKEN. (723)
 
-* - REDUCE 735 vdf-obj-init
+* - ACCEPT 723 vdf-block-data-def
 
 1193
 -----
-tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name. (574)
-tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name.ASSIGN_TOKEN obj-name
-nested-name -> obj-name.DCOLON_TOKEN >!
+nested-vdf-obj-decl -> nested-simple-vdf-obj-decl COMMA_TOKEN vdf-obj-dcl. (738)
 
-COMMA_TOKEN - ACCEPT 574 tmpl-tmpl-param
-ASSIGN_TOKEN - SHIFT 1213
-DCOLON_TOKEN - SHIFT 240
-GT_TOKEN - ACCEPT 574 tmpl-tmpl-param
+* - REDUCE 738 nested-vdf-obj-decl
 
 1194
 -----
-enumtor-decl <* -> obj-name ASSIGN_TOKEN BLOCK_TOKEN 9. (645)
+vdf-obj-init -> ASSIGN_TOKEN BLOCK_TOKEN 3. (736)
 
-COMMA_TOKEN - ACCEPT 645 enumtor-decl
-RBRACE_TOKEN - ACCEPT 645 enumtor-decl
+* - REDUCE 736 vdf-obj-init
 
 1195
 -----
-enum-def * -> ENUM_TOKEN enum-key-opt + obj-name-opt enum-base-opt <* LBRACE_TOKEN enum-body-opt RBRACE_TOKEN semi-opt. (627)
+tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name. (575)
+tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name.ASSIGN_TOKEN obj-name
+nested-name -> obj-name.DCOLON_TOKEN >!
 
-* - ACCEPT 627 enum-def
+COMMA_TOKEN - ACCEPT 575 tmpl-tmpl-param
+ASSIGN_TOKEN - SHIFT 1216
+DCOLON_TOKEN - SHIFT 240
+GT_TOKEN - ACCEPT 575 tmpl-tmpl-param
 
 1196
 -----
-enumtor-decl-list -> enumtor-decl-list COMMA_TOKEN enumtor-decl. (642)
+enumtor-decl <* -> obj-name ASSIGN_TOKEN BLOCK_TOKEN 9. (646)
 
-* - REDUCE 642 enumtor-decl-list
+COMMA_TOKEN - ACCEPT 646 enumtor-decl
+RBRACE_TOKEN - ACCEPT 646 enumtor-decl
 
 1197
 -----
-nav-direct-dcl -> obj-dcl-id LPAREN_TOKEN nav-node-type RPAREN_TOKEN param-decl-1-body RPAREN_TOKEN. (673)
+enum-def * -> ENUM_TOKEN enum-key-opt + obj-name-opt enum-base-opt <* LBRACE_TOKEN enum-body-opt RBRACE_TOKEN semi-opt. (628)
 
-* - REDUCE 673 nav-direct-dcl
+* - ACCEPT 628 enum-def
 
 1198
+-----
+enumtor-decl-list -> enumtor-decl-list COMMA_TOKEN enumtor-decl. (643)
+
+* - REDUCE 643 enumtor-decl-list
+
+1199
+-----
+nav-direct-dcl -> obj-dcl-id LPAREN_TOKEN nav-node-type RPAREN_TOKEN param-decl-1-body RPAREN_TOKEN. (674)
+
+* - REDUCE 674 nav-direct-dcl
+
+1200
 -----
 handler * -> CATCH_TOKEN LPAREN_TOKEN.catch-decl RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
 
@@ -19134,7 +19149,7 @@ SIGNED_TOKEN - SHIFT 31
 UNSIGNED_TOKEN - SHIFT 32
 VOID_TOKEN - SHIFT 33
 WCHAR_TOKEN - SHIFT 34
-ELLIPSE_TOKEN - SHIFT 1214
+ELLIPSE_TOKEN - SHIFT 1217
 * - REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
@@ -19152,28 +19167,28 @@ built-in-type-token - GOTO 81
 xxVx-decl-spec-seq - GOTO 148
 xxxS-decl-spec-seq - GOTO 149
 xxVS-decl-spec-seq - GOTO 150
-xBxx-decl-spec-seq - GOTO 1215
-xBVx-decl-spec-seq - GOTO 1216
-xBxS-decl-spec-seq - GOTO 1217
-xBVS-decl-spec-seq - GOTO 1218
-xUxx-decl-spec-seq - GOTO 1219
-xUVx-decl-spec-seq - GOTO 1220
-xUxS-decl-spec-seq - GOTO 1221
-xUVS-decl-spec-seq - GOTO 1222
-xExx-decl-spec-seq - GOTO 1223
-xEVx-decl-spec-seq - GOTO 1224
-xExS-decl-spec-seq - GOTO 1225
-xEVS-decl-spec-seq - GOTO 1226
-param-decl - GOTO 1227
-catch-decl - GOTO 1228
+xBxx-decl-spec-seq - GOTO 1218
+xBVx-decl-spec-seq - GOTO 1219
+xBxS-decl-spec-seq - GOTO 1220
+xBVS-decl-spec-seq - GOTO 1221
+xUxx-decl-spec-seq - GOTO 1222
+xUVx-decl-spec-seq - GOTO 1223
+xUxS-decl-spec-seq - GOTO 1224
+xUVS-decl-spec-seq - GOTO 1225
+xExx-decl-spec-seq - GOTO 1226
+xEVx-decl-spec-seq - GOTO 1227
+xExS-decl-spec-seq - GOTO 1228
+xEVS-decl-spec-seq - GOTO 1229
+param-decl - GOTO 1230
+catch-decl - GOTO 1231
 
-1199
+1201
 -----
-handler-seq -> handler-seq handler. (556)
+handler-seq -> handler-seq handler. (557)
 
-* - REDUCE 556 handler-seq
+* - REDUCE 557 handler-seq
 
-1200
+1202
 -----
 abstract-dcl -> ptr-oper.abstract-dcl-opt
 
@@ -19190,19 +19205,19 @@ TIMES_TOKEN - SHIFT 275
 nested-name - GOTO 67
 obj-name - GOTO 963
 nested-name-opt - GOTO 146
-ptr-oper - GOTO 1200
+ptr-oper - GOTO 1202
 abstract-dcl - GOTO 763
 abstract-dcl-opt - GOTO 764
 abstract-direct-dcl - GOTO 563
 abstract-direct-dcl-opt - GOTO 564
 
-1201
+1203
 -----
 throw-spec -> THROW_TOKEN LPAREN_TOKEN type-id-list-opt RPAREN_TOKEN. (494)
 
 * - REDUCE 494 throw-spec
 
-1202
+1204
 -----
 type-id-list -> type-id-list COMMA_TOKEN.type-id
 
@@ -19239,37 +19254,43 @@ class-key - GOTO 147
 built-in-type - GOTO 80
 built-in-type-token - GOTO 81
 xxVx-decl-spec-seq - GOTO 783
-xBxx-decl-spec-seq - GOTO 1166
-xBVx-decl-spec-seq - GOTO 1167
-xUxx-decl-spec-seq - GOTO 1168
-xUVx-decl-spec-seq - GOTO 1169
-xExx-decl-spec-seq - GOTO 1170
-xEVx-decl-spec-seq - GOTO 1171
-type-id - GOTO 1229
-
-1203
------
-nav-visit-func-def * -> obj-name LPAREN_TOKEN (>)3 obj-name RPAREN_TOKEN LBRACE_TOKEN block-opt 7.RBRACE_TOKEN
-
-RBRACE_TOKEN - SHIFT 1230
-
-1204
------
-vdf-functor-def * -> obj-name > param-decl-1-body RPAREN_TOKEN try-opt LBRACE_TOKEN block-opt 7.RBRACE_TOKEN handler-seq-opt
-
-RBRACE_TOKEN - SHIFT 1231
+xBxx-decl-spec-seq - GOTO 1167
+xBVx-decl-spec-seq - GOTO 1168
+xUxx-decl-spec-seq - GOTO 1169
+xUVx-decl-spec-seq - GOTO 1170
+xExx-decl-spec-seq - GOTO 1171
+xEVx-decl-spec-seq - GOTO 1172
+type-id - GOTO 1232
 
 1205
 -----
-vdf-direct-obj-init -> LPAREN_TOKEN BLOCK_TOKEN 2 RPAREN_TOKEN. (721)
+noexcept-spec -> NOEXCEPT_TOKEN LPAREN_TOKEN >>! BLOCK_TOKEN 2 RPAREN_TOKEN. (496)
 
-* - REDUCE 721 vdf-direct-obj-init
+* - REDUCE 496 noexcept-spec
 
 1206
 -----
+nav-visit-func-def * -> obj-name LPAREN_TOKEN (>)3 obj-name RPAREN_TOKEN LBRACE_TOKEN block-opt 7.RBRACE_TOKEN
+
+RBRACE_TOKEN - SHIFT 1233
+
+1207
+-----
+vdf-functor-def * -> obj-name > param-decl-1-body RPAREN_TOKEN try-opt LBRACE_TOKEN block-opt 7.RBRACE_TOKEN handler-seq-opt
+
+RBRACE_TOKEN - SHIFT 1234
+
+1208
+-----
+vdf-direct-obj-init -> LPAREN_TOKEN BLOCK_TOKEN 2 RPAREN_TOKEN. (722)
+
+* - REDUCE 722 vdf-direct-obj-init
+
+1209
+-----
 vdf-obj-a-dcl -> ptr-oper.vdf-obj-a-dcl
 
-LPAREN_TOKEN - SHIFT 1118
+LPAREN_TOKEN - SHIFT 1119
 DCOLON_TOKEN - SHIFT 4
 AND_TOKEN - SHIFT 273
 BITAND_TOKEN - SHIFT 274
@@ -19279,48 +19300,48 @@ TIMES_TOKEN - SHIFT 275
 nested-name - GOTO 67
 obj-name - GOTO 279
 nested-name-opt - GOTO 146
-ptr-oper - GOTO 1206
-obj-dcl-id - GOTO 1120
+ptr-oper - GOTO 1209
+obj-dcl-id - GOTO 1121
 obj-id - GOTO 128
-vdf-obj-a-dcl - GOTO 1186
-vdf-obj-a-direct-dcl - GOTO 1123
-vdf-obj-b-direct-dcl - GOTO 1208
-
-1207
------
-vdf-obj-b-dcl -> ptr-oper vdf-obj-a-dcl. (754)
-
-* - REDUCE 754 vdf-obj-b-dcl
-
-1208
------
-vdf-obj-a-direct-dcl -> vdf-obj-b-direct-dcl. (756)
-vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl.vdf-data-param-list cv-spec-seq-opt throw-spec-opt
-
-LPAREN_TOKEN - SHIFT 1188
-* - REDUCE 756 vdf-obj-a-direct-dcl
-
-vdf-data-param-list - GOTO 1189
-
-1209
------
-vdf-obj-b-direct-dcl -> LPAREN_TOKEN vdf-obj-b-dcl RPAREN_TOKEN. (760)
-
-* - REDUCE 760 vdf-obj-b-direct-dcl
+vdf-obj-a-dcl - GOTO 1188
+vdf-obj-a-direct-dcl - GOTO 1124
+vdf-obj-b-direct-dcl - GOTO 1211
 
 1210
 -----
-vdf-obj-b-direct-dcl -> vdf-obj-a-direct-dcl LBRACK_TOKEN block-opt 5.RBRACK_TOKEN
+vdf-obj-b-dcl -> ptr-oper vdf-obj-a-dcl. (755)
 
-RBRACK_TOKEN - SHIFT 1232
+* - REDUCE 755 vdf-obj-b-dcl
 
 1211
 -----
-vdf-data-param-list -> LPAREN_TOKEN block-opt 2.RPAREN_TOKEN
+vdf-obj-a-direct-dcl -> vdf-obj-b-direct-dcl. (757)
+vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl.vdf-data-param-list cv-spec-seq-opt throw-spec-opt
 
-RPAREN_TOKEN - SHIFT 1233
+LPAREN_TOKEN - SHIFT 1190
+* - REDUCE 757 vdf-obj-a-direct-dcl
+
+vdf-data-param-list - GOTO 1191
 
 1212
+-----
+vdf-obj-b-direct-dcl -> LPAREN_TOKEN vdf-obj-b-dcl RPAREN_TOKEN. (761)
+
+* - REDUCE 761 vdf-obj-b-direct-dcl
+
+1213
+-----
+vdf-obj-b-direct-dcl -> vdf-obj-a-direct-dcl LBRACK_TOKEN block-opt 5.RBRACK_TOKEN
+
+RBRACK_TOKEN - SHIFT 1235
+
+1214
+-----
+vdf-data-param-list -> LPAREN_TOKEN block-opt 2.RPAREN_TOKEN
+
+RPAREN_TOKEN - SHIFT 1236
+
+1215
 -----
 vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl vdf-data-param-list cv-spec-seq-opt.throw-spec-opt
 
@@ -19328,11 +19349,11 @@ THROW_TOKEN - SHIFT 1021
 NOEXCEPT_TOKEN - SHIFT 1022
 * - REDUCE 493 throw-spec-opt
 
-throw-spec-opt - GOTO 1234
+throw-spec-opt - GOTO 1237
 throw-spec - GOTO 1024
 noexcept-spec - GOTO 1025
 
-1213
+1216
 -----
 tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name ASSIGN_TOKEN.obj-name
 
@@ -19340,16 +19361,16 @@ DCOLON_TOKEN - SHIFT 4
 * - REDUCE 48 nested-name-opt
 
 nested-name - GOTO 67
-obj-name - GOTO 1235
+obj-name - GOTO 1238
 nested-name-opt - GOTO 146
 
-1214
+1217
 -----
-catch-decl -> ELLIPSE_TOKEN. (560)
+catch-decl -> ELLIPSE_TOKEN. (561)
 
-* - REDUCE 560 catch-decl
+* - REDUCE 561 catch-decl
 
-1215
+1218
 -----
 xBxx-decl-spec-seq -> xBxx-decl-spec-seq.built-in-type
 xBVx-decl-spec-seq -> xBxx-decl-spec-seq.cv-spec
@@ -19407,7 +19428,7 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1216
+1219
 -----
 xBVx-decl-spec-seq -> xBVx-decl-spec-seq.cv-spec
 xBVx-decl-spec-seq -> xBVx-decl-spec-seq.built-in-type
@@ -19465,7 +19486,7 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1217
+1220
 -----
 xBxS-decl-spec-seq -> xBxS-decl-spec-seq.ftor-spec
 xBxS-decl-spec-seq -> xBxS-decl-spec-seq.built-in-type
@@ -19523,7 +19544,7 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1218
+1221
 -----
 xBVS-decl-spec-seq -> xBVS-decl-spec-seq.ftor-spec
 xBVS-decl-spec-seq -> xBVS-decl-spec-seq.cv-spec
@@ -19581,7 +19602,7 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1219
+1222
 -----
 xUVx-decl-spec-seq -> xUxx-decl-spec-seq.cv-spec
 xUxS-decl-spec-seq -> xUxx-decl-spec-seq.ftor-spec
@@ -19625,7 +19646,7 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1220
+1223
 -----
 xUVx-decl-spec-seq -> xUVx-decl-spec-seq.cv-spec
 xUVS-decl-spec-seq -> xUVx-decl-spec-seq.ftor-spec
@@ -19669,7 +19690,7 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1221
+1224
 -----
 xUxS-decl-spec-seq -> xUxS-decl-spec-seq.ftor-spec
 xUVS-decl-spec-seq -> xUxS-decl-spec-seq.cv-spec
@@ -19713,7 +19734,7 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1222
+1225
 -----
 xUVS-decl-spec-seq -> xUVS-decl-spec-seq.ftor-spec
 xUVS-decl-spec-seq -> xUVS-decl-spec-seq.cv-spec
@@ -19757,7 +19778,7 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1223
+1226
 -----
 xEVx-decl-spec-seq -> xExx-decl-spec-seq.cv-spec
 xExS-decl-spec-seq -> xExx-decl-spec-seq.ftor-spec
@@ -19801,7 +19822,7 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1224
+1227
 -----
 xEVx-decl-spec-seq -> xEVx-decl-spec-seq.cv-spec
 xEVS-decl-spec-seq -> xEVx-decl-spec-seq.ftor-spec
@@ -19845,7 +19866,7 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1225
+1228
 -----
 xExS-decl-spec-seq -> xExS-decl-spec-seq.ftor-spec
 xEVS-decl-spec-seq -> xExS-decl-spec-seq.cv-spec
@@ -19889,7 +19910,7 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1226
+1229
 -----
 xEVS-decl-spec-seq -> xEVS-decl-spec-seq.ftor-spec
 xEVS-decl-spec-seq -> xEVS-decl-spec-seq.cv-spec
@@ -19933,98 +19954,98 @@ abstract-direct-dcl - GOTO 761
 abstract-direct-dcl-opt - GOTO 564
 obj-id - GOTO 128
 
-1227
------
-catch-decl -> param-decl. (559)
-
-* - REDUCE 559 catch-decl
-
-1228
------
-handler * -> CATCH_TOKEN LPAREN_TOKEN catch-decl.RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
-
-RPAREN_TOKEN - SHIFT 1236
-
-1229
------
-type-id-list -> type-id-list COMMA_TOKEN type-id. (498)
-
-* - REDUCE 498 type-id-list
-
 1230
 -----
-nav-visit-func-def * -> obj-name LPAREN_TOKEN (>)3 obj-name RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN. (699)
+catch-decl -> param-decl. (560)
 
-* - ACCEPT 699 nav-visit-func-def
+* - REDUCE 560 catch-decl
 
 1231
 -----
-vdf-functor-def * -> obj-name > param-decl-1-body RPAREN_TOKEN try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN.handler-seq-opt
+handler * -> CATCH_TOKEN LPAREN_TOKEN catch-decl.RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
 
-CATCH_TOKEN - SHIFT 1156
-* - REDUCE 555 handler-seq-opt
-
-handler-seq-opt - GOTO 1237
-handler-seq - GOTO 1158
-handler - GOTO 1159
+RPAREN_TOKEN - SHIFT 1239
 
 1232
 -----
-vdf-obj-b-direct-dcl -> vdf-obj-a-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN. (759)
+type-id-list -> type-id-list COMMA_TOKEN type-id. (499)
 
-* - REDUCE 759 vdf-obj-b-direct-dcl
+* - REDUCE 499 type-id-list
 
 1233
 -----
-vdf-data-param-list -> LPAREN_TOKEN block-opt 2 RPAREN_TOKEN. (717)
+nav-visit-func-def * -> obj-name LPAREN_TOKEN (>)3 obj-name RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN. (700)
 
-* - REDUCE 717 vdf-data-param-list
+* - ACCEPT 700 nav-visit-func-def
 
 1234
 -----
-vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl vdf-data-param-list cv-spec-seq-opt throw-spec-opt. (758)
+vdf-functor-def * -> obj-name > param-decl-1-body RPAREN_TOKEN try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN.handler-seq-opt
 
-* - REDUCE 758 vdf-obj-b-direct-dcl
+CATCH_TOKEN - SHIFT 1157
+* - REDUCE 556 handler-seq-opt
+
+handler-seq-opt - GOTO 1240
+handler-seq - GOTO 1159
+handler - GOTO 1160
 
 1235
 -----
-tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name ASSIGN_TOKEN obj-name. (575)
-nested-name -> obj-name.DCOLON_TOKEN >!
+vdf-obj-b-direct-dcl -> vdf-obj-a-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN. (760)
 
-COMMA_TOKEN - ACCEPT 575 tmpl-tmpl-param
-DCOLON_TOKEN - SHIFT 240
-GT_TOKEN - ACCEPT 575 tmpl-tmpl-param
+* - REDUCE 760 vdf-obj-b-direct-dcl
 
 1236
 -----
-handler * -> CATCH_TOKEN LPAREN_TOKEN catch-decl RPAREN_TOKEN.LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
+vdf-data-param-list -> LPAREN_TOKEN block-opt 2 RPAREN_TOKEN. (718)
 
-LBRACE_TOKEN - SHIFT 1238
+* - REDUCE 718 vdf-data-param-list
 
 1237
 -----
-vdf-functor-def * -> obj-name > param-decl-1-body RPAREN_TOKEN try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt. (711)
+vdf-obj-b-direct-dcl -> vdf-obj-b-direct-dcl vdf-data-param-list cv-spec-seq-opt throw-spec-opt. (759)
 
-* - ACCEPT 711 vdf-functor-def
+* - REDUCE 759 vdf-obj-b-direct-dcl
 
-1238 (7)
+1238
+-----
+tmpl-tmpl-param <* -> TEMPLATE_TOKEN LT_TOKEN tmpl-param-list-opt GT_TOKEN CLASS_TOKEN obj-name ASSIGN_TOKEN obj-name. (576)
+nested-name -> obj-name.DCOLON_TOKEN >!
+
+COMMA_TOKEN - ACCEPT 576 tmpl-tmpl-param
+DCOLON_TOKEN - SHIFT 240
+GT_TOKEN - ACCEPT 576 tmpl-tmpl-param
+
+1239
+-----
+handler * -> CATCH_TOKEN LPAREN_TOKEN catch-decl RPAREN_TOKEN.LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
+
+LBRACE_TOKEN - SHIFT 1241
+
+1240
+-----
+vdf-functor-def * -> obj-name > param-decl-1-body RPAREN_TOKEN try-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt. (712)
+
+* - ACCEPT 712 vdf-functor-def
+
+1241 (7)
 -----
 handler * -> CATCH_TOKEN LPAREN_TOKEN catch-decl RPAREN_TOKEN LBRACE_TOKEN.block-opt 7 RBRACE_TOKEN
 
 BLOCK_TOKEN - SHIFT 807
 * - REDUCE 330 block-opt
 
-block-opt - GOTO 1239
+block-opt - GOTO 1242
 
-1239
+1242
 -----
 handler * -> CATCH_TOKEN LPAREN_TOKEN catch-decl RPAREN_TOKEN LBRACE_TOKEN block-opt 7.RBRACE_TOKEN
 
-RBRACE_TOKEN - SHIFT 1240
+RBRACE_TOKEN - SHIFT 1243
 
-1240
+1243
 -----
-handler * -> CATCH_TOKEN LPAREN_TOKEN catch-decl RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN. (558)
+handler * -> CATCH_TOKEN LPAREN_TOKEN catch-decl RPAREN_TOKEN LBRACE_TOKEN block-opt 7 RBRACE_TOKEN. (559)
 
-* - ACCEPT 558 handler
+* - ACCEPT 559 handler
 

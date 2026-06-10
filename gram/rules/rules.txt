@@ -1248,9 +1248,16 @@ throw-spec-opt ->
 [(SeqNode)]
 throw-spec -> THROW_TOKEN LPAREN_TOKEN type-id-list-opt RPAREN_TOKEN
 
-# noexcept spec (C++11, simple non-conditional form only)
+# noexcept spec (C++11)
 [NoexceptSpecNode]
 noexcept-spec -> NOEXCEPT_TOKEN
+
+# conditional form: commit at '(' (without it the backtracking parser finds a
+# function-returning-function parse and emits garbage), const expr is block-lexed.
+# two shift priorities: the competing reduce path inherits one priority from
+# 'param-decl-1-body >' in the func declarator rules, one is a tie
+[NoexceptXSpecNode]
+noexcept-spec -> NOEXCEPT_TOKEN LPAREN_TOKEN >>! BLOCK_TOKEN 2 RPAREN_TOKEN
 
 #
 # type id
