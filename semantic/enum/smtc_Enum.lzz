@@ -5,6 +5,7 @@
 
 $hdr
 // semantic
+#include "smtc_CvType.h"
 #include "smtc_EnumtorPtrVector.h"
 #include "smtc_NamePtr.h"
 
@@ -28,13 +29,20 @@ namespace smtc
     // name, not set if enum is not named
     NamePtr m_name;
 
+    // true if scoped (C++11, enum class)
+    bool m_is_scoped;
+
+    // underlying type (C++11, enum E : type), not set if none given
+    CvType m_base_type;
+
     // enumerators
     EnumtorPtrVector m_enumtor_set;
 
   public:
     // constructor
-    Enum (util::Loc const & loc, NamePtr const & name, EnumtorPtrVector const & enumtor_set)
-      : m_loc (loc), m_name (name), m_enumtor_set (enumtor_set)
+    Enum (util::Loc const & loc, NamePtr const & name, bool is_scoped, CvType const & base_type,
+        EnumtorPtrVector const & enumtor_set)
+      : m_loc (loc), m_name (name), m_is_scoped (is_scoped), m_base_type (base_type), m_enumtor_set (enumtor_set)
     {
     }
 
@@ -42,7 +50,7 @@ namespace smtc
     ~ Enum ()
     {
     }
-    
+
     // get loc
     inline util::Loc const & getLoc () const
     {
@@ -59,6 +67,24 @@ namespace smtc
     inline NamePtr const & getName () const
     {
       return m_name;
+    }
+
+    // true if scoped (enum class)
+    inline bool isScoped () const
+    {
+      return m_is_scoped;
+    }
+
+    // true if has underlying type
+    inline bool hasBaseType () const
+    {
+      return m_base_type.isSet ();
+    }
+
+    // get underlying type
+    inline CvType const & getBaseType () const
+    {
+      return m_base_type;
     }
 
     // get enumtor set

@@ -3,6 +3,7 @@
 
 $hdr
 // semantic
+#include "smtc_CvType.h"
 #include "smtc_EnumtorPtrVector.h"
 #include "smtc_NamePtr.h"
 #include "smtc_ScopePtr.h"
@@ -33,7 +34,8 @@ namespace
   using namespace smtc;
 
   // define enum
-  struct DefineEnum (util::Loc const & loc, NamePtr const & name, EnumtorPtrVector const & enumtor_set)
+  struct DefineEnum (util::Loc const & loc, NamePtr const & name, bool is_scoped, CvType const & base_type,
+      EnumtorPtrVector const & enumtor_set)
     : ScopeVisitor
   {
     // ns scope
@@ -80,7 +82,7 @@ namespace
     // build entity
     EntityPtr buildEntity () const
     {
-      EnumPtr en = createEnum (loc, name, enumtor_set);
+      EnumPtr en = createEnum (loc, name, is_scoped, base_type, enumtor_set);
       return createEnumEntity (en);
     }
   }
@@ -90,8 +92,9 @@ namespace
 namespace smtc
 {
   // define enum, name not set if unnamed enum
-  void defineEnum (ScopePtr const & scope, util::Loc const & loc, NamePtr const & name, EnumtorPtrVector const & enumtor_set)
+  void defineEnum (ScopePtr const & scope, util::Loc const & loc, NamePtr const & name, bool is_scoped,
+      CvType const & base_type, EnumtorPtrVector const & enumtor_set)
   {
-    scope->accept (DefineEnum (loc, name, enumtor_set));
+    scope->accept (DefineEnum (loc, name, is_scoped, base_type, enumtor_set));
   }
 }

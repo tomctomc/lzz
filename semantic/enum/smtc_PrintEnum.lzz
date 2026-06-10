@@ -63,10 +63,19 @@ namespace smtc
   {
     using namespace util;
     String str = "enum";
+    if (en->isScoped ())
+    {
+      appendWithSpace (str, "class");
+    }
     NamePtr const & name = en->getName ();
     if (name.isSet ())
     {
       appendWithSpace (str, nameToString (name));
+    }
+    if (en->hasBaseType ())
+    {
+      appendWithSpace (str, ":");
+      appendWithSpace (str, en->getBaseType ().toString ());
     }
     printLine (file, DECLARATION_SECTION, en->getLoc (), str);
     printOpenBrace (file, DECLARATION_SECTION);

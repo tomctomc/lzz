@@ -1577,7 +1577,25 @@ simple-functor-decl -> functor-decl lazy-base-clause-opt SEMI_TOKEN
 
 # enum def
 [EnumDefNode]
-enum-def * -> ENUM_TOKEN obj-name-opt * < LBRACE_TOKEN enum-body-opt RBRACE_TOKEN semi-opt
+# reduce priority on enum-key-opt: when no class/struct key follows ENUM the
+# empty reduction must win over starting the enum name (or ::) directly
+enum-def * -> ENUM_TOKEN enum-key-opt + obj-name-opt enum-base-opt * < LBRACE_TOKEN enum-body-opt RBRACE_TOKEN semi-opt
+
+# enum key opt (C++11 scoped enum: enum class / enum struct)
+enum-key-opt -> enum-key
+enum-key-opt ->
+
+[EnumKeyNode]
+enum-key -> CLASS_TOKEN
+[(EnumKeyNode)]
+enum-key -> STRUCT_TOKEN
+
+# enum base opt (C++11 underlying type: enum E : type)
+enum-base-opt -> enum-base
+enum-base-opt ->
+
+[EnumBaseNode]
+enum-base -> COLON_TOKEN type-id
 
 # obj name opt
 obj-name-opt -> obj-name

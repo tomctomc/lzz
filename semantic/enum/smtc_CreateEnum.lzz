@@ -3,6 +3,7 @@
 
 $hdr
 // semantic
+#include "smtc_CvType.h"
 #include "smtc_EnumPtr.h"
 #include "smtc_EnumtorPtrVector.h"
 #include "smtc_NamePtr.h"
@@ -20,8 +21,9 @@ $end
 namespace smtc
 {
   // create enum
-  EnumPtr createEnum (util::Loc const & loc, NamePtr const & name, EnumtorPtrVector const & enumtor_set)
+  EnumPtr createEnum (util::Loc const & loc, NamePtr const & name, bool is_scoped, CvType const & base_type,
+      EnumtorPtrVector const & enumtor_set)
   {
-    return new Enum (loc, name, enumtor_set);
+    return new Enum (loc, name, is_scoped, base_type, enumtor_set);
   }
 }

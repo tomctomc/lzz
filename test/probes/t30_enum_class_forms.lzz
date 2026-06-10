@@ -1,0 +1,20 @@
+#hdr
+#include <cstdint>
+#end
+enum class Color { Red, Green, Blue };
+enum class Mode : int { A = 1, B = 2 };
+enum Legacy { L1, L2 };
+enum Sized : std::uint8_t { S1, S2 };
+namespace zz
+{
+  class Box
+  {
+  public:
+    enum class Kind : std::int64_t { None = 0, Wide, Tall };
+    enum Old { O1, O2 };
+    Kind kind () const;
+  private:
+    Kind k_ = Kind::None;
+  };
+  Box::Kind Box::kind () const { return k_; }
+}

@@ -99,6 +99,8 @@ namespace gram
   class FunctorDefNode;
   class FunctorDeclTypeNode;
   class EnumDefNode;
+  class EnumKeyNode;
+  class EnumBaseNode;
   class EnumtorDecl1Node;
   class EnumtorDecl2Node;
   class UsingDeclNode;
@@ -574,8 +576,18 @@ namespace gram
     {
     }
 
-    // enum-def * -> ENUM_TOKEN obj-name-opt <* LBRACE_TOKEN enum-body-opt RBRACE_TOKEN semi-opt
+    // enum-def * -> ENUM_TOKEN enum-key-opt + obj-name-opt enum-base-opt <* LBRACE_TOKEN enum-body-opt RBRACE_TOKEN semi-opt
     virtual void visit (gram::EnumDefNode & node) const
+    {
+    }
+
+    // enum-key -> CLASS_TOKEN
+    virtual void visit (gram::EnumKeyNode & node) const
+    {
+    }
+
+    // enum-base -> COLON_TOKEN type-id
+    virtual void visit (gram::EnumBaseNode & node) const
     {
     }
 

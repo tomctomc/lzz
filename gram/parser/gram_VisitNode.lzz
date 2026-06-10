@@ -371,13 +371,22 @@ namespace
           base_spec_set);
     }
 
-    // enum-def * -> ENUM obj-name-opt LBRACE enum-body-opt RBRACE semi-opt
+    // enum-def * -> ENUM enum-key-opt obj-name-opt enum-base-opt LBRACE enum-body-opt RBRACE semi-opt
     void visit (EnumDefNode & node) const
     {
+      // scoped if 'enum class' or 'enum struct' (C++11)
+      bool is_scoped = node.getEnumKeyOpt ().isSet ();
       smtc::NamePtr name = getNodeName (node.getObjNameOpt ());
+      // underlying type (C++11, ': type')
+      smtc::CvType base_type;
+      basl::Nonterm & base_node = node.getEnumBaseOpt ();
+      if (base_node.isSet ())
+      {
+        getNodeAbstractDcl (TypeIdNode (EnumBaseNode (base_node).getTypeId ()).getAbstractDecl (), base_type);
+      }
       smtc::EnumtorPtrVector enumtor_set;
       getEnumtorSet (node.getEnumBodyOpt (), enumtor_set);
-      smtc::defineEnum (cs, node.getENUM_TOKEN ().getLoc (), name, enumtor_set);
+      smtc::defineEnum (cs, node.getENUM_TOKEN ().getLoc (), name, is_scoped, base_type, enumtor_set);
     }
 
     // using-decl -> USING obj-name SEMI

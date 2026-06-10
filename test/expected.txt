@@ -5,7 +5,7 @@ PASS t01_override.lzz
 PASS t02_default_delete.lzz
 PASS t03_nsdmi.lzz
 PASS t04_using_alias.lzz
-FAIL t05_enum_class.lzz
+PASS t05_enum_class.lzz
 FAIL t06_noexcept.lzz
 PASS t07_digitsep.lzz
 PASS t08_stdfunction_member.lzz
@@ -13,7 +13,7 @@ FAIL t09_final.lzz
 PASS t10_nested_template_close.lzz
 FAIL t11_constexpr.lzz
 FAIL t12_rvalue_ref.lzz
-FAIL t13_member_enum_class.lzz
+PASS t13_member_enum_class.lzz
 PASS t14_uniqueptr_member.lzz
 FAIL t15_trailing_return.lzz
 PASS t16_digitsep_odd.lzz
@@ -30,3 +30,4 @@ PASS t26_nested_template_forms.lzz
 PASS t27_virt_spec_forms.lzz
 PASS t28_default_delete_forms.lzz
 PASS t29_using_alias_forms.lzz
+PASS t30_enum_class_forms.lzz
