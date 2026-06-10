@@ -107,6 +107,25 @@ namespace
   // using gram
   using namespace gram;
 
+  // true if decimal digit
+  bool isDigitChar (char ch)
+  {
+    return ch >= '0' && ch <= '9';
+  }
+
+  // true if identifier char (letter, digit or underscore)
+  bool isIdentChar (char ch)
+  {
+    return ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z' || isDigitChar (ch) || ch == '_';
+  }
+
+  // true if char continues a pp number (digit, letter, underscore or dot;
+  // exponent signs are not needed for digit separator tracking)
+  bool isPPNumberChar (char ch)
+  {
+    return isIdentChar (ch) || ch == '.';
+  }
+
   // LexBlock
   struct LexBlock (Prep & prep)
   {
@@ -184,6 +203,10 @@ namespace
         }
         block.append (' ');
       }
+      // track pp numbers at char level so a ' between digits is taken as a
+      // C++14 digit separator and not the start of a character literal
+      char prev_ch = ' ';
+      bool in_number = false;
       // read from lexer if block not found end
       while (! found_end)
       {
@@ -244,10 +267,22 @@ namespace
             }
             while (ch != '\n');
           }
+          prev_ch = ch;
+          in_number = false;
         }
         // check if start of char literal
         else if (ch == '\'')
         {
+          char next_ch2;
+          if (in_number && lexer.peekChar (next_ch2, 1) && isIdentChar (next_ch2))
+          {
+            // digit separator inside a pp number, keep it and stay in the number
+            lexer.readChar (ch);
+            block.append (ch);
+            prev_ch = ch;
+            found = true;
+            continue;
+          }
           // save start of literal
           util::Loc loc = lexer.getLoc ();
           // read and append quote
@@ -283,6 +318,8 @@ namespace
           }
           // found something
           found = true;
+          prev_ch = '\'';
+          in_number = false;
         }
         // check if start of string literal
         else if (ch == '\"')
@@ -316,6 +353,8 @@ namespace
           }
           // found something
           found = true;
+          prev_ch = '\"';
+          in_number = false;
         }
         else
         {
@@ -394,6 +433,17 @@ namespace
             {
               found = true;
             }
+            // pp number tracking: a number starts at a digit not preceded by
+            // an identifier char and continues over pp number chars
+            if (in_number)
+            {
+              in_number = isPPNumberChar (ch);
+            }
+            else if (isDigitChar (ch) && ! isIdentChar (prev_ch))
+            {
+              in_number = true;
+            }
+            prev_ch = ch;
           }
         }
       }

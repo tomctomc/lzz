@@ -713,6 +713,11 @@ namespace gram
               {
                 state = S_PP_NUMBER_E;
               }
+              else if (ch_kind == C_SQUOTE && peekCharKind (m_reader, 1) <= C_DIGIT)
+              {
+                // C++14 digit separator: ' followed by a digit or nondigit
+                // continues the pp number, stay in same state
+              }
               else if (ch_kind > C_DIGIT && ch_kind != C_DOT)
               {
                 if (ch_kind == C_BACKSLASH)

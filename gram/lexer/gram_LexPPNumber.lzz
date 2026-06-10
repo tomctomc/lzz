@@ -127,6 +127,13 @@ namespace gram
     for (;;)
     {
       char ch = * s;
+      // skip C++14 digit separators, they are not part of the value and are
+      // dropped from the normalized lexeme
+      if (ch == '\'')
+      {
+        ++ s;
+        continue;
+      }
       switch (state)
       {
         // start

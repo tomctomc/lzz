@@ -1,0 +1,10 @@
+class DF { public: long f (); };
+long DF::f ()
+{
+  long a = 1'000;            // odd separator count, body
+  long b = 1'000'000;        // even count, body
+  double c = 1'000.000'1;    // float with separators
+  long d = 0x1'FF'FF;        // hex with separators
+  unsigned long u = 4'000'000'000UL;  // suffix after separators
+  return a + b + (long)c + d + (long)u;
+}

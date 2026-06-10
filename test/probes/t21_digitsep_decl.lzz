@@ -1,0 +1,3 @@
+// separators in PARSED DECLARATION contexts (not body blobs)
+class DS { public: static const int n = 1'000'000; };
+const long big = 2'000'000'000L;

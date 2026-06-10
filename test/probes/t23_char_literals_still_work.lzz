@@ -1,0 +1,9 @@
+class CL { public: int f (); };
+int CL::f ()
+{
+  char q = '\'';      // escaped quote char literal
+  char a = 'a';
+  char z = '0';
+  int  m = 2 * 'x';   // quote right after operator
+  return q + a + z + m;
+}
