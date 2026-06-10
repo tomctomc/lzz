@@ -2,12 +2,16 @@
 # and is driven by tools/build.sh, which sets up the bootstrap environment and
 # builds on local disk (see test/README for why).
 #
-#   make            build build/lzz and build/lzz-static, run the probe suite
-#   make install    build, then install the static binary as /usr/local/bin/lzz
+#   make            build, run probes, put the static binary at bin/lzz-`uname -m`
+#   make install    build, then copy bin/* verbatim to /usr/local/bin
 #   make test       build, then run probes and the sdt corpus byte-compare
 #   make gate       regenerate parser tables from rules.txt and byte-compare
 #   make clean      remove the scratch build directory (local disk)
-#   make cleanall   clean, and also remove the built binaries in build/
+#   make cleanall   clean, and also remove build/ (bin/ is NEVER deleted)
+#
+# bin/ holds the lzz dispatcher script (picks bin/lzz-`uname -m` at runtime)
+# and one static binary per architecture; build on each arch once and the
+# same bin/ contents install everywhere.
 #
 # Fresh install on any machine:  make cleanall && make install
 
@@ -17,8 +21,8 @@ all:
 	tools/build.sh
 
 install: all
-	sudo install -m 755 build/lzz-static /usr/local/bin/lzz
-	@echo "installed build/lzz-static as /usr/local/bin/lzz"
+	sudo cp -p bin/* /usr/local/bin/
+	@echo "installed: $$(cd bin && echo *) -> /usr/local/bin/"
 
 test: all
 	test/run_probes.sh build/lzz-static

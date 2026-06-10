@@ -52,5 +52,9 @@ cp "$BUILDROOT/lzz" "$BUILDROOT/lzz-static" "$REPO/build/"
 echo "== probe suite (static binary)"
 "$REPO/test/run_probes.sh" "$REPO/build/lzz-static"
 
+# the deliverable: the static binary, named for this machine's architecture,
+# next to the bin/lzz dispatcher (bin/ is never cleaned)
+cp "$BUILDROOT/lzz-static" "$REPO/bin/lzz-$(uname -m)"
+
 echo "== built:"
-ls -la "$REPO/build/lzz" "$REPO/build/lzz-static"
+ls -la "$REPO/build/lzz" "$REPO/build/lzz-static" "$REPO/bin/lzz-$(uname -m)"

@@ -1,0 +1,3 @@
+#! /bin/bash
+# run the lzz binary for this machine's architecture
+exec "$(dirname "$0")/lzz-$(uname -m)" "$@"

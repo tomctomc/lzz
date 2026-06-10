@@ -3,3 +3,4 @@ gcc.debug/
 gcc.selfhost/
 mingw.opt/
 build/
+bin/lzz-*
