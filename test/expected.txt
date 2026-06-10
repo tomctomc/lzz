@@ -1,0 +1,23 @@
+# Expected probe results for the BASELINE lzz (2.8.x + tomctomc patches as of
+# commit 37ef5ce).  Format: <expect> <file>.  As features land, flip FAIL->PASS
+# here in the same commit that implements the feature.
+FAIL t01_override.lzz
+FAIL t02_default_delete.lzz
+FAIL t03_nsdmi.lzz
+FAIL t04_using_alias.lzz
+FAIL t05_enum_class.lzz
+FAIL t06_noexcept.lzz
+PASS t07_digitsep.lzz
+PASS t08_stdfunction_member.lzz
+FAIL t09_final.lzz
+FAIL t10_nested_template_close.lzz
+FAIL t11_constexpr.lzz
+FAIL t12_rvalue_ref.lzz
+FAIL t13_member_enum_class.lzz
+PASS t14_uniqueptr_member.lzz
+FAIL t15_trailing_return.lzz
+FAIL t16_digitsep_odd.lzz
+PASS t17_spaced_templates.lzz
+PASS t18_rvalue_in_body_only.lzz
+FAIL t19_member_default_brace.lzz
+PASS t20_static_const_init.lzz

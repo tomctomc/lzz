@@ -1,0 +1,6 @@
+#hdr
+#include <functional>
+#end
+struct F {
+  std::function<void(int const &)> cb;
+};

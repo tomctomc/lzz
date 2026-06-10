@@ -1,0 +1,4 @@
+#hdr
+#include <memory>
+#end
+struct U { std::unique_ptr<int> p; };

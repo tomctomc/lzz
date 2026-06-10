@@ -1,0 +1,4 @@
+class Base { public: virtual void f (); };
+class Derived : public Base { public: void f () override; };
+void Base::f () {} 
+void Derived::f () {}

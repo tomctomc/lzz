@@ -1,0 +1,4 @@
+struct S {
+  int x = 0;
+  double y = 4.0;
+};

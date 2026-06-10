@@ -1,0 +1,6 @@
+#hdr
+#include <string>
+#include <utility>
+#end
+class R2 { public: void go (); };
+void R2::go () { std::string a; std::string b = std::move (a); }

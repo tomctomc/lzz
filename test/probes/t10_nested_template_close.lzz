@@ -1,0 +1,4 @@
+#hdr
+#include <vector>
+#end
+struct V { std::vector<std::vector<int>> v; };

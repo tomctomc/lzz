@@ -1,0 +1,5 @@
+#hdr
+#include <string>
+#end
+class R { public: void take (std::string && s); };
+void R::take (std::string && s) {}

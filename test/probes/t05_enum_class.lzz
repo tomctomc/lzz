@@ -1,0 +1,2 @@
+enum class Color { Red, Green };
+enum class Mode : int { A, B };

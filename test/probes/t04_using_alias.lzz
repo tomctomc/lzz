@@ -1,0 +1,2 @@
+using MyInt = int;
+class C { public: typedef int Old; using New = int; };

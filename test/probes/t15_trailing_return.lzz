@@ -1,0 +1,2 @@
+class T { public: auto get () -> int; };
+auto T::get () -> int { return 1; }

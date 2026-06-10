@@ -1,0 +1,2 @@
+class D2 { public: int f (); };
+int D2::f () { return 1'000; }

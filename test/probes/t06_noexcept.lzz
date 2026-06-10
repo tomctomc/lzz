@@ -1,0 +1,2 @@
+class N { public: void f () noexcept; };
+void N::f () noexcept {}

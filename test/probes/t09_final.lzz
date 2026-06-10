@@ -1,0 +1,4 @@
+class Base { public: virtual void f (); };
+class D2 final : public Base { public: void f () final; };
+void Base::f () {}
+void D2::f () {}
