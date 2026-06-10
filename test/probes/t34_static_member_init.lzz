@@ -1,0 +1,16 @@
+// static member initializers print with the .cpp definition, never in the
+// header; template statics keep their initializer too (it was once dropped)
+class SM
+{
+public:
+  static const int  k  = 42;
+  static const long big = 1'000'000L;
+  static int        counter;            // no init
+};
+template <class T>
+class TSM
+{
+public:
+  static const int n = 7;
+  T get () const { return T (n); }
+};
