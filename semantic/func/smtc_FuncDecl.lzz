@@ -115,6 +115,12 @@ namespace smtc
       return util::hasFlag (m_flags, DELETED_SPEC);
     }
 
+    // true if declared with a trailing return type (C++11)
+    bool isTrailingReturn () const
+    {
+      return util::hasFlag (m_flags, TRAILING_RET_SPEC);
+    }
+
     // true if static
     bool isStatic () const
     {

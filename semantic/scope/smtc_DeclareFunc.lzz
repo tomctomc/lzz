@@ -63,7 +63,13 @@ namespace
       }
 
       // function cannot be mutable, auto or register
-      checkInvalidSpecFlags (spec_sel, MUTABLE_SPEC|AUTO_SPEC|REGISTER_SPEC, msg::invalidFuncSpec);
+      // 'auto' is valid as the C++11 placeholder with a trailing return type
+      int invalid_flags = MUTABLE_SPEC|REGISTER_SPEC;
+      if (! spec_sel.hasSpec (TRAILING_RET_SPEC))
+      {
+        invalid_flags |= AUTO_SPEC;
+      }
+      checkInvalidSpecFlags (spec_sel, invalid_flags, msg::invalidFuncSpec);
       // virtual, explicit and pure are not valid namespace func specifiers
       checkInvalidSpecFlags (spec_sel, VIRTUAL_SPEC|EXPLICIT_SPEC|PURE_SPEC|OVERRIDE_SPEC|FINAL_SPEC, msg::invalidNsFuncSpec);
 
@@ -86,7 +92,13 @@ namespace
     void visit (ClassScope const & scope) const
     {
       // function cannot be mutable, auto or register
-      checkInvalidSpecFlags (spec_sel, MUTABLE_SPEC|AUTO_SPEC|REGISTER_SPEC, msg::invalidFuncSpec);
+      // 'auto' is valid as the C++11 placeholder with a trailing return type
+      int invalid_flags = MUTABLE_SPEC|REGISTER_SPEC;
+      if (! spec_sel.hasSpec (TRAILING_RET_SPEC))
+      {
+        invalid_flags |= AUTO_SPEC;
+      }
+      checkInvalidSpecFlags (spec_sel, invalid_flags, msg::invalidFuncSpec);
       if (is_frnd)
       {
         // virtual, explicit and pure are not valid on friend functions

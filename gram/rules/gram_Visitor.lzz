@@ -55,6 +55,7 @@ namespace gram
   class DefaultedNode;
   class DeletedNode;
   class DirectDcl4Node;
+  class TrailingDclNode;
   class PtrOper1Node;
   class PtrOper2Node;
   class PtrOper4Node;
@@ -362,6 +363,11 @@ namespace gram
 
     // func-a-direct-dcl -> obj-dcl-id param-decl-1-body > RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt
     virtual void visit (gram::DirectDcl4Node & node) const
+    {
+    }
+
+    // pure-ctor-dcl -> func-c-direct-dcl PTR_TOKEN type-id virt-spec-seq-opt ^ pure-opt
+    virtual void visit (gram::TrailingDclNode & node) const
     {
     }
 

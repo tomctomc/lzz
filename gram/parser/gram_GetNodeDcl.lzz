@@ -176,6 +176,25 @@ namespace
       node.getFuncDcl ().accept (* this);
     }
 
+    // pure-ctor-dcl -> func-c-direct-dcl PTR type-id virt-spec-seq-opt ^ pure-opt
+    // (C++11 trailing return type: the type-id is the return type)
+    void visit (TrailingDclNode & node) const
+    {
+      basl::Nonterm & virt_spec_node = node.getVirtSpecSeqOpt ();
+      if (virt_spec_node.isSet ())
+      {
+        virt_spec_node.accept (GetNodeVirtSpecSeq (dcl_spec_sel));
+      }
+      basl::Nonterm & pure_node = node.getPureOpt ();
+      if (pure_node.isSet ())
+      {
+        pure_node.accept (GetNodePure (dcl_spec_sel));
+      }
+      getNodeAbstractDcl (TypeIdNode (node.getTypeId ()).getAbstractDecl (), dcl_cv_type);
+      dcl_spec_sel.addSpec (TRAILING_RET_SPEC, node.getPTR_TOKEN ().getLoc ());
+      node.getFuncCDirectDcl ().accept (* this);
+    }
+
     // obj-a-dcl -> ptr-oper obj-a-dcl
     void visit (DclNode & node) const
     {

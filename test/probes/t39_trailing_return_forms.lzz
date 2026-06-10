@@ -1,0 +1,59 @@
+// C++11 trailing return types: 'auto f () -> T' parses through the ctor path
+// (no leading return type) with the type-id as the return type.  Emitted in
+// trailing form in BOTH the declaration and the out-of-line definition; the
+// trailing position follows the qualified name, so nested return types stay
+// unqualified as written
+#hdr
+#include <vector>
+#end
+namespace probe
+{
+  class TR
+  {
+  public:
+    struct Segment
+    {
+      int off;
+    };
+    auto segments () -> std::vector <Segment>
+    {
+      return std::vector <Segment> ();
+    }
+    auto first () const -> Segment
+    {
+      Segment s; s.off = 0; return s;
+    }
+    virtual auto v () -> int
+    {
+      return 1;
+    }
+    virtual auto pv () -> int = 0;
+    static auto count () -> int
+    {
+      return 2;
+    }
+    int field;
+    // member-pointer return type, the backtracking case behind the
+    // virt-spec first-priority
+    auto fp () -> int TR::*
+    {
+      return & TR::field;
+    }
+  };
+  class TRD : public TR
+  {
+  public:
+    auto v () -> int override
+    {
+      return 3;
+    }
+    auto pv () -> int override
+    {
+      return 4;
+    }
+  };
+  auto free_func (int x) -> int
+  {
+    return x + 1;
+  }
+}

@@ -844,6 +844,17 @@ func-a-direct-dcl -> LPAREN_TOKEN func-dcl RPAREN_TOKEN
 [(PureDclNode)]
 pure-ctor-dcl -> func-c-direct-dcl virt-spec-seq-opt pure-opt
 
+# trailing return type (C++11): 'auto f () -> T' parses through the ctor path
+# (declarator with no leading return type); the type-id supplies the return
+# type, 'auto' (a C++03 storage class) is accepted as the placeholder.  a
+# trailing return on an actual constructor is rejected by the downstream
+# compiler
+# the first priority on the virt specs orders the one new conflict: an
+# identifier after the type-id is a virt spec ('override'), not the start of
+# a member-pointer declarator (that form still parses, via backtracking)
+[TrailingDclNode]
+pure-ctor-dcl -> func-c-direct-dcl PTR_TOKEN type-id virt-spec-seq-opt ^ pure-opt
+
 # func c direct dcl
 [(DirectDcl4Node)]
 func-c-direct-dcl -> obj-dcl-id        param-decl-1-body RPAREN_TOKEN cv-spec-seq-opt throw-spec-opt

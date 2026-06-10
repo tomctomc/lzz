@@ -137,10 +137,23 @@ namespace smtc
       {
         appendWithSpace (dcl_str, throwSpecToString (throw_spec));
       }
-      CvType const & ret_type = (use_alt_ret_type && func_decl->hasAltReturnType ()) ? func_decl->getAltReturnType () : func_decl->getReturnType ();
-      if (ret_type.isSet ())
+      if (func_decl->isTrailingReturn ())
       {
-        dcl_str = ret_type.toString (dcl_str);
+        // trailing position follows the (possibly qualified) declarator, so
+        // class scope is active: print the type as written, never the alt
+        String trl_str ("auto");
+        appendWithSpace (trl_str, dcl_str);
+        appendWithSpace (trl_str, "->");
+        appendWithSpace (trl_str, func_decl->getReturnType ().toString (String ()));
+        dcl_str = trl_str;
+      }
+      else
+      {
+        CvType const & ret_type = (use_alt_ret_type && func_decl->hasAltReturnType ()) ? func_decl->getAltReturnType () : func_decl->getReturnType ();
+        if (ret_type.isSet ())
+        {
+          dcl_str = ret_type.toString (dcl_str);
+        }
       }
       appendWithSpace (str, dcl_str);
       if (! not_virt_spec)

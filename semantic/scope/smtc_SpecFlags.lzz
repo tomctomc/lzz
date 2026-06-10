@@ -56,5 +56,8 @@ namespace smtc
 
     // deleted function (C++11, = delete)
     DELETED_SPEC   = gram::DELETED_SPEC,
+
+    // trailing return type (C++11, auto f () -> T)
+    TRAILING_RET_SPEC = gram::TRAILING_RET_SPEC,
   }
 }
