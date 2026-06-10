@@ -1,0 +1,29 @@
+// smtc_CreateBraceInit.lzz
+//
+
+$hdr
+#include "smtc_InitPtr.h"
+
+#include "gram_Block.h"
+
+#include "util_Loc.h"
+$end
+
+$src
+#include "smtc_BraceInit.h"
+$end
+
+namespace smtc
+{
+  // create brace init with contents
+  InitPtr createBraceInit (util::Loc const & loc, gram::Block const & block)
+  {
+    return new BraceInit (loc, block);
+  }
+
+  // create empty brace init
+  InitPtr createBraceInit (util::Loc const & loc)
+  {
+    return new BraceInit (loc);
+  }
+}

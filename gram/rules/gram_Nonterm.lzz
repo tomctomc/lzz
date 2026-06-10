@@ -55,545 +55,550 @@ namespace
   }
   void accept_7 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ObjInit3Node node (nonterm);
+    gram::ObjInit5Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_8 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::BlockNode node (nonterm);
+    gram::ObjInit3Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_9 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::NestedName1Node node (nonterm);
+    gram::BlockNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_10 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::NestedName2Node node (nonterm);
+    gram::NestedName1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_11 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Name1Node node (nonterm);
+    gram::NestedName2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_12 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Name2Node node (nonterm);
+    gram::Name1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_13 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Name3Node node (nonterm);
+    gram::Name2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_14 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::BaseName1Node node (nonterm);
+    gram::Name3Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_15 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Name4Node node (nonterm);
+    gram::BaseName1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_16 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Name5Node node (nonterm);
+    gram::Name4Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_17 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::BaseName2Node node (nonterm);
+    gram::Name5Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_18 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::BaseName3Node node (nonterm);
+    gram::BaseName2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_19 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::BaseName4Node node (nonterm);
+    gram::BaseName3Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_20 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Oper1Node node (nonterm);
+    gram::BaseName4Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_21 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Oper2Node node (nonterm);
+    gram::Oper1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_22 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Oper3Node node (nonterm);
+    gram::Oper2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_23 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Oper4Node node (nonterm);
+    gram::Oper3Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_24 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Oper5Node node (nonterm);
+    gram::Oper4Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_25 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::DeclSpecNode node (nonterm);
+    gram::Oper5Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_26 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::CVSpecNode node (nonterm);
+    gram::DeclSpecNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_27 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::SeqNode node (nonterm);
+    gram::CVSpecNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_28 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::FtorSpecNode node (nonterm);
+    gram::SeqNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_29 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::UserTypeNode node (nonterm);
+    gram::FtorSpecNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_30 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ElabTypeNode node (nonterm);
+    gram::UserTypeNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_31 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::BuiltInTypeNode node (nonterm);
+    gram::ElabTypeNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_32 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::DclNode node (nonterm);
+    gram::BuiltInTypeNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_33 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::DirectDcl1Node node (nonterm);
+    gram::DclNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_34 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::DirectDcl2Node node (nonterm);
+    gram::DirectDcl1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_35 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::DirectDcl3Node node (nonterm);
+    gram::DirectDcl2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_36 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::PureDclNode node (nonterm);
+    gram::DirectDcl3Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_37 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::VirtSpecNode node (nonterm);
+    gram::PureDclNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_38 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::PureNode node (nonterm);
+    gram::VirtSpecNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_39 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::DefaultedNode node (nonterm);
+    gram::PureNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_40 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::DeletedNode node (nonterm);
+    gram::DefaultedNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_41 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::DirectDcl4Node node (nonterm);
+    gram::DeletedNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_42 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::PtrOper1Node node (nonterm);
+    gram::DirectDcl4Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_43 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::PtrOper2Node node (nonterm);
+    gram::PtrOper1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_44 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::PtrOper4Node node (nonterm);
+    gram::PtrOper2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_45 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::PtrOper3Node node (nonterm);
+    gram::PtrOper4Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_46 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::IdNode node (nonterm);
+    gram::PtrOper3Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_47 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ParamDeclBody1Node node (nonterm);
+    gram::IdNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_48 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ParamDeclBody2Node node (nonterm);
+    gram::ParamDeclBody1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_49 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ParamDeclBody3Node node (nonterm);
+    gram::ParamDeclBody2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_50 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ParamDecl1Node node (nonterm);
+    gram::ParamDeclBody3Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_51 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ParamDecl2Node node (nonterm);
+    gram::ParamDecl1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_52 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Decl2Node node (nonterm);
+    gram::ParamDecl2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_53 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::Decl1Node node (nonterm);
+    gram::Decl2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_54 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::NoexceptSpecNode node (nonterm);
+    gram::Decl1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_55 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::NoexceptXSpecNode node (nonterm);
+    gram::NoexceptSpecNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_56 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::TypeIdNode node (nonterm);
+    gram::NoexceptXSpecNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_57 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::NamespaceDefNode node (nonterm);
+    gram::TypeIdNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_58 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::NamespaceHead1Node node (nonterm);
+    gram::NamespaceDefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_59 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::NamespaceHead2Node node (nonterm);
+    gram::NamespaceHead1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_60 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ClassDefNode node (nonterm);
+    gram::NamespaceHead2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_61 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ClassHeadNode node (nonterm);
+    gram::ClassDefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_62 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ClassHead2Node node (nonterm);
+    gram::ClassHeadNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_63 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::BaseSpec1Node node (nonterm);
+    gram::ClassHead2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_64 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::BaseSpec2Node node (nonterm);
+    gram::BaseSpec1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_65 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::BaseSpec3Node node (nonterm);
+    gram::BaseSpec2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_66 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::AccessSpecNode node (nonterm);
+    gram::BaseSpec3Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_67 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ClassDeclNode node (nonterm);
+    gram::AccessSpecNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_68 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::FriendClassDeclNode node (nonterm);
+    gram::ClassDeclNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_69 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::FuncDefNode node (nonterm);
+    gram::FriendClassDeclNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_70 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::MbrInitNode node (nonterm);
+    gram::FuncDefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_71 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::HandlerNode node (nonterm);
+    gram::MbrInitNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_72 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::TmplDeclNode node (nonterm);
+    gram::HandlerNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_73 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::TmplSpecNode node (nonterm);
+    gram::TmplDeclNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_74 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::TypeParam1Node node (nonterm);
+    gram::TmplSpecNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_75 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::TypeParam2Node node (nonterm);
+    gram::TypeParam1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_76 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::TmplTmplParam1Node node (nonterm);
+    gram::TypeParam2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_77 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::TmplTmplParam2Node node (nonterm);
+    gram::TmplTmplParam1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_78 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::TmplInstNode node (nonterm);
+    gram::TmplTmplParam2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_79 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::TmplInstBeginNode node (nonterm);
+    gram::TmplInstNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_80 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::LazyCtorNode node (nonterm);
+    gram::TmplInstBeginNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_81 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::LazyCtorBegin1Node node (nonterm);
+    gram::LazyCtorNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_82 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::LazyCtorBegin2Node node (nonterm);
+    gram::LazyCtorBegin1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_83 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::LazyBaseSpec1Node node (nonterm);
+    gram::LazyCtorBegin2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_84 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::LazyBaseSpec2Node node (nonterm);
+    gram::LazyBaseSpec1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_85 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::LazyBaseSpec3Node node (nonterm);
+    gram::LazyBaseSpec2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_86 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::DirectDcl5Node node (nonterm);
+    gram::LazyBaseSpec3Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_87 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::FunctorDefNode node (nonterm);
+    gram::DirectDcl5Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_88 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::FunctorDeclTypeNode node (nonterm);
+    gram::FunctorDefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_89 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::EnumDefNode node (nonterm);
+    gram::FunctorDeclTypeNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_90 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::EnumKeyNode node (nonterm);
+    gram::EnumDefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_91 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::EnumBaseNode node (nonterm);
+    gram::EnumKeyNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_92 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::EnumtorDecl1Node node (nonterm);
+    gram::EnumBaseNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_93 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::EnumtorDecl2Node node (nonterm);
+    gram::EnumtorDecl1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_94 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::UsingDeclNode node (nonterm);
+    gram::EnumtorDecl2Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_95 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::AliasDeclNode node (nonterm);
+    gram::UsingDeclNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_96 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::UsingDirNode node (nonterm);
+    gram::AliasDeclNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_97 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::LinkageSpecNode node (nonterm);
+    gram::UsingDirNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_98 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::LinkageBlockBeginNode node (nonterm);
+    gram::LinkageSpecNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_99 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::LinkageDeclBeginNode node (nonterm);
+    gram::LinkageBlockBeginNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_100 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::NavDefNode node (nonterm);
+    gram::LinkageDeclBeginNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_101 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::NavHeadNode node (nonterm);
+    gram::NavDefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_102 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::NavDirectDcl1Node node (nonterm);
+    gram::NavHeadNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_103 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::NavVisitFuncDefNode node (nonterm);
+    gram::NavDirectDcl1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_104 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ReturnStmtNode node (nonterm);
+    gram::NavVisitFuncDefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_105 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::VdfDefNode node (nonterm);
+    gram::ReturnStmtNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_106 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::VdfHeadNode node (nonterm);
+    gram::VdfDefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_107 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::VdfFunctorDefNode node (nonterm);
+    gram::VdfHeadNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_108 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::VdfShortData1DefNode node (nonterm);
+    gram::VdfFunctorDefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_109 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::VdfShortData2DefNode node (nonterm);
+    gram::VdfShortData1DefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_110 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::VdfDataParamListNode node (nonterm);
+    gram::VdfShortData2DefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_111 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::ObjInit4Node node (nonterm);
+    gram::VdfDataParamListNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_112 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::VdfBlockDataDefNode node (nonterm);
+    gram::ObjInit4Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_113 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::VdfBlockDataHead1Node node (nonterm);
+    gram::VdfBlockDataDefNode node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_114 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
-    gram::VdfBlockDataHead2Node node (nonterm);
+    gram::VdfBlockDataHead1Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
   }
   void accept_115 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
+  {
+    gram::VdfBlockDataHead2Node node (nonterm);
+    static_cast <gram::Visitor const &> (visitor).visit (node);
+  }
+  void accept_116 (basl::Nonterm & nonterm, basl::Visitor const & visitor)
   {
     gram::DirectDcl6Node node (nonterm);
     static_cast <gram::Visitor const &> (visitor).visit (node);
@@ -790,12 +795,44 @@ namespace gram
     }
   }
 
+  // obj-init -> LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
+  class ObjInit5Node : public basl::NontermProxy
+  {
+  public:
+    // nonterm info
+    static basl::NontermInfo const info = { "ObjInit5Node", accept_7 };
+
+    // constructor
+    inline ObjInit5Node (basl::Nonterm & nonterm)
+      : basl::NontermProxy (nonterm)
+    {
+    }
+
+    // get LBRACE_TOKEN
+    inline basl::Token & getLBRACE_TOKEN () const
+    {
+      return getChild (1).getToken ();
+    }
+
+    // get block-opt
+    inline basl::Token & getBlockOpt () const
+    {
+      return getChild (2).getToken ();
+    }
+
+    // get RBRACE_TOKEN
+    inline basl::Token & getRBRACE_TOKEN () const
+    {
+      return getChild (3).getToken ();
+    }
+  }
+
   // obj-init -> direct-expr-list RPAREN_TOKEN
   class ObjInit3Node : public basl::NontermProxy
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ObjInit3Node", accept_7 };
+    static basl::NontermInfo const info = { "ObjInit3Node", accept_8 };
 
     // constructor
     inline ObjInit3Node (basl::Nonterm & nonterm)
@@ -821,7 +858,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "BlockNode", accept_8 };
+    static basl::NontermInfo const info = { "BlockNode", accept_9 };
 
     // constructor
     inline BlockNode (basl::Nonterm & nonterm)
@@ -841,7 +878,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "NestedName1Node", accept_9 };
+    static basl::NontermInfo const info = { "NestedName1Node", accept_10 };
 
     // constructor
     inline NestedName1Node (basl::Nonterm & nonterm)
@@ -861,7 +898,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "NestedName2Node", accept_10 };
+    static basl::NontermInfo const info = { "NestedName2Node", accept_11 };
 
     // constructor
     inline NestedName2Node (basl::Nonterm & nonterm)
@@ -887,7 +924,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Name1Node", accept_11 };
+    static basl::NontermInfo const info = { "Name1Node", accept_12 };
 
     // constructor
     inline Name1Node (basl::Nonterm & nonterm)
@@ -913,7 +950,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Name2Node", accept_12 };
+    static basl::NontermInfo const info = { "Name2Node", accept_13 };
 
     // constructor
     inline Name2Node (basl::Nonterm & nonterm)
@@ -957,7 +994,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Name3Node", accept_13 };
+    static basl::NontermInfo const info = { "Name3Node", accept_14 };
 
     // constructor
     inline Name3Node (basl::Nonterm & nonterm)
@@ -1007,7 +1044,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "BaseName1Node", accept_14 };
+    static basl::NontermInfo const info = { "BaseName1Node", accept_15 };
 
     // constructor
     inline BaseName1Node (basl::Nonterm & nonterm)
@@ -1033,7 +1070,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Name4Node", accept_15 };
+    static basl::NontermInfo const info = { "Name4Node", accept_16 };
 
     // constructor
     inline Name4Node (basl::Nonterm & nonterm)
@@ -1077,7 +1114,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Name5Node", accept_16 };
+    static basl::NontermInfo const info = { "Name5Node", accept_17 };
 
     // constructor
     inline Name5Node (basl::Nonterm & nonterm)
@@ -1103,7 +1140,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "BaseName2Node", accept_17 };
+    static basl::NontermInfo const info = { "BaseName2Node", accept_18 };
 
     // constructor
     inline BaseName2Node (basl::Nonterm & nonterm)
@@ -1135,7 +1172,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "BaseName3Node", accept_18 };
+    static basl::NontermInfo const info = { "BaseName3Node", accept_19 };
 
     // constructor
     inline BaseName3Node (basl::Nonterm & nonterm)
@@ -1167,7 +1204,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "BaseName4Node", accept_19 };
+    static basl::NontermInfo const info = { "BaseName4Node", accept_20 };
 
     // constructor
     inline BaseName4Node (basl::Nonterm & nonterm)
@@ -1199,7 +1236,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Oper1Node", accept_20 };
+    static basl::NontermInfo const info = { "Oper1Node", accept_21 };
 
     // constructor
     inline Oper1Node (basl::Nonterm & nonterm)
@@ -1225,7 +1262,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Oper2Node", accept_21 };
+    static basl::NontermInfo const info = { "Oper2Node", accept_22 };
 
     // constructor
     inline Oper2Node (basl::Nonterm & nonterm)
@@ -1251,7 +1288,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Oper3Node", accept_22 };
+    static basl::NontermInfo const info = { "Oper3Node", accept_23 };
 
     // constructor
     inline Oper3Node (basl::Nonterm & nonterm)
@@ -1283,7 +1320,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Oper4Node", accept_23 };
+    static basl::NontermInfo const info = { "Oper4Node", accept_24 };
 
     // constructor
     inline Oper4Node (basl::Nonterm & nonterm)
@@ -1315,7 +1352,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Oper5Node", accept_24 };
+    static basl::NontermInfo const info = { "Oper5Node", accept_25 };
 
     // constructor
     inline Oper5Node (basl::Nonterm & nonterm)
@@ -1335,7 +1372,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "DeclSpecNode", accept_25 };
+    static basl::NontermInfo const info = { "DeclSpecNode", accept_26 };
 
     // constructor
     inline DeclSpecNode (basl::Nonterm & nonterm)
@@ -1355,7 +1392,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "CVSpecNode", accept_26 };
+    static basl::NontermInfo const info = { "CVSpecNode", accept_27 };
 
     // constructor
     inline CVSpecNode (basl::Nonterm & nonterm)
@@ -1375,7 +1412,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "SeqNode", accept_27 };
+    static basl::NontermInfo const info = { "SeqNode", accept_28 };
 
     // constructor
     inline SeqNode (basl::Nonterm & nonterm)
@@ -1401,7 +1438,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "FtorSpecNode", accept_28 };
+    static basl::NontermInfo const info = { "FtorSpecNode", accept_29 };
 
     // constructor
     inline FtorSpecNode (basl::Nonterm & nonterm)
@@ -1421,7 +1458,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "UserTypeNode", accept_29 };
+    static basl::NontermInfo const info = { "UserTypeNode", accept_30 };
 
     // constructor
     inline UserTypeNode (basl::Nonterm & nonterm)
@@ -1441,7 +1478,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ElabTypeNode", accept_30 };
+    static basl::NontermInfo const info = { "ElabTypeNode", accept_31 };
 
     // constructor
     inline ElabTypeNode (basl::Nonterm & nonterm)
@@ -1473,7 +1510,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "BuiltInTypeNode", accept_31 };
+    static basl::NontermInfo const info = { "BuiltInTypeNode", accept_32 };
 
     // constructor
     inline BuiltInTypeNode (basl::Nonterm & nonterm)
@@ -1493,7 +1530,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "DclNode", accept_32 };
+    static basl::NontermInfo const info = { "DclNode", accept_33 };
 
     // constructor
     inline DclNode (basl::Nonterm & nonterm)
@@ -1519,7 +1556,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "DirectDcl1Node", accept_33 };
+    static basl::NontermInfo const info = { "DirectDcl1Node", accept_34 };
 
     // constructor
     inline DirectDcl1Node (basl::Nonterm & nonterm)
@@ -1563,7 +1600,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "DirectDcl2Node", accept_34 };
+    static basl::NontermInfo const info = { "DirectDcl2Node", accept_35 };
 
     // constructor
     inline DirectDcl2Node (basl::Nonterm & nonterm)
@@ -1601,7 +1638,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "DirectDcl3Node", accept_35 };
+    static basl::NontermInfo const info = { "DirectDcl3Node", accept_36 };
 
     // constructor
     inline DirectDcl3Node (basl::Nonterm & nonterm)
@@ -1633,7 +1670,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "PureDclNode", accept_36 };
+    static basl::NontermInfo const info = { "PureDclNode", accept_37 };
 
     // constructor
     inline PureDclNode (basl::Nonterm & nonterm)
@@ -1665,7 +1702,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "VirtSpecNode", accept_37 };
+    static basl::NontermInfo const info = { "VirtSpecNode", accept_38 };
 
     // constructor
     inline VirtSpecNode (basl::Nonterm & nonterm)
@@ -1685,7 +1722,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "PureNode", accept_38 };
+    static basl::NontermInfo const info = { "PureNode", accept_39 };
 
     // constructor
     inline PureNode (basl::Nonterm & nonterm)
@@ -1711,7 +1748,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "DefaultedNode", accept_39 };
+    static basl::NontermInfo const info = { "DefaultedNode", accept_40 };
 
     // constructor
     inline DefaultedNode (basl::Nonterm & nonterm)
@@ -1737,7 +1774,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "DeletedNode", accept_40 };
+    static basl::NontermInfo const info = { "DeletedNode", accept_41 };
 
     // constructor
     inline DeletedNode (basl::Nonterm & nonterm)
@@ -1763,7 +1800,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "DirectDcl4Node", accept_41 };
+    static basl::NontermInfo const info = { "DirectDcl4Node", accept_42 };
 
     // constructor
     inline DirectDcl4Node (basl::Nonterm & nonterm)
@@ -1807,7 +1844,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "PtrOper1Node", accept_42 };
+    static basl::NontermInfo const info = { "PtrOper1Node", accept_43 };
 
     // constructor
     inline PtrOper1Node (basl::Nonterm & nonterm)
@@ -1833,7 +1870,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "PtrOper2Node", accept_43 };
+    static basl::NontermInfo const info = { "PtrOper2Node", accept_44 };
 
     // constructor
     inline PtrOper2Node (basl::Nonterm & nonterm)
@@ -1853,7 +1890,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "PtrOper4Node", accept_44 };
+    static basl::NontermInfo const info = { "PtrOper4Node", accept_45 };
 
     // constructor
     inline PtrOper4Node (basl::Nonterm & nonterm)
@@ -1873,7 +1910,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "PtrOper3Node", accept_45 };
+    static basl::NontermInfo const info = { "PtrOper3Node", accept_46 };
 
     // constructor
     inline PtrOper3Node (basl::Nonterm & nonterm)
@@ -1911,7 +1948,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "IdNode", accept_46 };
+    static basl::NontermInfo const info = { "IdNode", accept_47 };
 
     // constructor
     inline IdNode (basl::Nonterm & nonterm)
@@ -1931,7 +1968,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ParamDeclBody1Node", accept_47 };
+    static basl::NontermInfo const info = { "ParamDeclBody1Node", accept_48 };
 
     // constructor
     inline ParamDeclBody1Node (basl::Nonterm & nonterm)
@@ -1957,7 +1994,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ParamDeclBody2Node", accept_48 };
+    static basl::NontermInfo const info = { "ParamDeclBody2Node", accept_49 };
 
     // constructor
     inline ParamDeclBody2Node (basl::Nonterm & nonterm)
@@ -1989,7 +2026,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ParamDeclBody3Node", accept_49 };
+    static basl::NontermInfo const info = { "ParamDeclBody3Node", accept_50 };
 
     // constructor
     inline ParamDeclBody3Node (basl::Nonterm & nonterm)
@@ -2015,7 +2052,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ParamDecl1Node", accept_50 };
+    static basl::NontermInfo const info = { "ParamDecl1Node", accept_51 };
 
     // constructor
     inline ParamDecl1Node (basl::Nonterm & nonterm)
@@ -2035,7 +2072,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ParamDecl2Node", accept_51 };
+    static basl::NontermInfo const info = { "ParamDecl2Node", accept_52 };
 
     // constructor
     inline ParamDecl2Node (basl::Nonterm & nonterm)
@@ -2067,7 +2104,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Decl2Node", accept_52 };
+    static basl::NontermInfo const info = { "Decl2Node", accept_53 };
 
     // constructor
     inline Decl2Node (basl::Nonterm & nonterm)
@@ -2093,7 +2130,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "Decl1Node", accept_53 };
+    static basl::NontermInfo const info = { "Decl1Node", accept_54 };
 
     // constructor
     inline Decl1Node (basl::Nonterm & nonterm)
@@ -2113,7 +2150,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "NoexceptSpecNode", accept_54 };
+    static basl::NontermInfo const info = { "NoexceptSpecNode", accept_55 };
 
     // constructor
     inline NoexceptSpecNode (basl::Nonterm & nonterm)
@@ -2133,7 +2170,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "NoexceptXSpecNode", accept_55 };
+    static basl::NontermInfo const info = { "NoexceptXSpecNode", accept_56 };
 
     // constructor
     inline NoexceptXSpecNode (basl::Nonterm & nonterm)
@@ -2171,7 +2208,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "TypeIdNode", accept_56 };
+    static basl::NontermInfo const info = { "TypeIdNode", accept_57 };
 
     // constructor
     inline TypeIdNode (basl::Nonterm & nonterm)
@@ -2191,7 +2228,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "NamespaceDefNode", accept_57 };
+    static basl::NontermInfo const info = { "NamespaceDefNode", accept_58 };
 
     // constructor
     inline NamespaceDefNode (basl::Nonterm & nonterm)
@@ -2229,7 +2266,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "NamespaceHead1Node", accept_58 };
+    static basl::NontermInfo const info = { "NamespaceHead1Node", accept_59 };
 
     // constructor
     inline NamespaceHead1Node (basl::Nonterm & nonterm)
@@ -2255,7 +2292,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "NamespaceHead2Node", accept_59 };
+    static basl::NontermInfo const info = { "NamespaceHead2Node", accept_60 };
 
     // constructor
     inline NamespaceHead2Node (basl::Nonterm & nonterm)
@@ -2275,7 +2312,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ClassDefNode", accept_60 };
+    static basl::NontermInfo const info = { "ClassDefNode", accept_61 };
 
     // constructor
     inline ClassDefNode (basl::Nonterm & nonterm)
@@ -2319,7 +2356,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ClassHeadNode", accept_61 };
+    static basl::NontermInfo const info = { "ClassHeadNode", accept_62 };
 
     // constructor
     inline ClassHeadNode (basl::Nonterm & nonterm)
@@ -2357,7 +2394,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ClassHead2Node", accept_62 };
+    static basl::NontermInfo const info = { "ClassHead2Node", accept_63 };
 
     // constructor
     inline ClassHead2Node (basl::Nonterm & nonterm)
@@ -2401,7 +2438,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "BaseSpec1Node", accept_63 };
+    static basl::NontermInfo const info = { "BaseSpec1Node", accept_64 };
 
     // constructor
     inline BaseSpec1Node (basl::Nonterm & nonterm)
@@ -2421,7 +2458,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "BaseSpec2Node", accept_64 };
+    static basl::NontermInfo const info = { "BaseSpec2Node", accept_65 };
 
     // constructor
     inline BaseSpec2Node (basl::Nonterm & nonterm)
@@ -2453,7 +2490,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "BaseSpec3Node", accept_65 };
+    static basl::NontermInfo const info = { "BaseSpec3Node", accept_66 };
 
     // constructor
     inline BaseSpec3Node (basl::Nonterm & nonterm)
@@ -2485,7 +2522,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "AccessSpecNode", accept_66 };
+    static basl::NontermInfo const info = { "AccessSpecNode", accept_67 };
 
     // constructor
     inline AccessSpecNode (basl::Nonterm & nonterm)
@@ -2511,7 +2548,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ClassDeclNode", accept_67 };
+    static basl::NontermInfo const info = { "ClassDeclNode", accept_68 };
 
     // constructor
     inline ClassDeclNode (basl::Nonterm & nonterm)
@@ -2537,7 +2574,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "FriendClassDeclNode", accept_68 };
+    static basl::NontermInfo const info = { "FriendClassDeclNode", accept_69 };
 
     // constructor
     inline FriendClassDeclNode (basl::Nonterm & nonterm)
@@ -2563,7 +2600,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "FuncDefNode", accept_69 };
+    static basl::NontermInfo const info = { "FuncDefNode", accept_70 };
 
     // constructor
     inline FuncDefNode (basl::Nonterm & nonterm)
@@ -2619,7 +2656,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "MbrInitNode", accept_70 };
+    static basl::NontermInfo const info = { "MbrInitNode", accept_71 };
 
     // constructor
     inline MbrInitNode (basl::Nonterm & nonterm)
@@ -2657,7 +2694,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "HandlerNode", accept_71 };
+    static basl::NontermInfo const info = { "HandlerNode", accept_72 };
 
     // constructor
     inline HandlerNode (basl::Nonterm & nonterm)
@@ -2713,7 +2750,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "TmplDeclNode", accept_72 };
+    static basl::NontermInfo const info = { "TmplDeclNode", accept_73 };
 
     // constructor
     inline TmplDeclNode (basl::Nonterm & nonterm)
@@ -2739,7 +2776,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "TmplSpecNode", accept_73 };
+    static basl::NontermInfo const info = { "TmplSpecNode", accept_74 };
 
     // constructor
     inline TmplSpecNode (basl::Nonterm & nonterm)
@@ -2777,7 +2814,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "TypeParam1Node", accept_74 };
+    static basl::NontermInfo const info = { "TypeParam1Node", accept_75 };
 
     // constructor
     inline TypeParam1Node (basl::Nonterm & nonterm)
@@ -2803,7 +2840,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "TypeParam2Node", accept_75 };
+    static basl::NontermInfo const info = { "TypeParam2Node", accept_76 };
 
     // constructor
     inline TypeParam2Node (basl::Nonterm & nonterm)
@@ -2841,7 +2878,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "TmplTmplParam1Node", accept_76 };
+    static basl::NontermInfo const info = { "TmplTmplParam1Node", accept_77 };
 
     // constructor
     inline TmplTmplParam1Node (basl::Nonterm & nonterm)
@@ -2891,7 +2928,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "TmplTmplParam2Node", accept_77 };
+    static basl::NontermInfo const info = { "TmplTmplParam2Node", accept_78 };
 
     // constructor
     inline TmplTmplParam2Node (basl::Nonterm & nonterm)
@@ -2953,7 +2990,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "TmplInstNode", accept_78 };
+    static basl::NontermInfo const info = { "TmplInstNode", accept_79 };
 
     // constructor
     inline TmplInstNode (basl::Nonterm & nonterm)
@@ -2979,7 +3016,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "TmplInstBeginNode", accept_79 };
+    static basl::NontermInfo const info = { "TmplInstBeginNode", accept_80 };
 
     // constructor
     inline TmplInstBeginNode (basl::Nonterm & nonterm)
@@ -2999,7 +3036,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "LazyCtorNode", accept_80 };
+    static basl::NontermInfo const info = { "LazyCtorNode", accept_81 };
 
     // constructor
     inline LazyCtorNode (basl::Nonterm & nonterm)
@@ -3043,7 +3080,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "LazyCtorBegin1Node", accept_81 };
+    static basl::NontermInfo const info = { "LazyCtorBegin1Node", accept_82 };
 
     // constructor
     inline LazyCtorBegin1Node (basl::Nonterm & nonterm)
@@ -3093,7 +3130,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "LazyCtorBegin2Node", accept_82 };
+    static basl::NontermInfo const info = { "LazyCtorBegin2Node", accept_83 };
 
     // constructor
     inline LazyCtorBegin2Node (basl::Nonterm & nonterm)
@@ -3149,7 +3186,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "LazyBaseSpec1Node", accept_83 };
+    static basl::NontermInfo const info = { "LazyBaseSpec1Node", accept_84 };
 
     // constructor
     inline LazyBaseSpec1Node (basl::Nonterm & nonterm)
@@ -3175,7 +3212,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "LazyBaseSpec2Node", accept_84 };
+    static basl::NontermInfo const info = { "LazyBaseSpec2Node", accept_85 };
 
     // constructor
     inline LazyBaseSpec2Node (basl::Nonterm & nonterm)
@@ -3213,7 +3250,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "LazyBaseSpec3Node", accept_85 };
+    static basl::NontermInfo const info = { "LazyBaseSpec3Node", accept_86 };
 
     // constructor
     inline LazyBaseSpec3Node (basl::Nonterm & nonterm)
@@ -3251,7 +3288,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "DirectDcl5Node", accept_86 };
+    static basl::NontermInfo const info = { "DirectDcl5Node", accept_87 };
 
     // constructor
     inline DirectDcl5Node (basl::Nonterm & nonterm)
@@ -3301,7 +3338,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "FunctorDefNode", accept_87 };
+    static basl::NontermInfo const info = { "FunctorDefNode", accept_88 };
 
     // constructor
     inline FunctorDefNode (basl::Nonterm & nonterm)
@@ -3357,7 +3394,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "FunctorDeclTypeNode", accept_88 };
+    static basl::NontermInfo const info = { "FunctorDeclTypeNode", accept_89 };
 
     // constructor
     inline FunctorDeclTypeNode (basl::Nonterm & nonterm)
@@ -3389,7 +3426,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "EnumDefNode", accept_89 };
+    static basl::NontermInfo const info = { "EnumDefNode", accept_90 };
 
     // constructor
     inline EnumDefNode (basl::Nonterm & nonterm)
@@ -3451,7 +3488,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "EnumKeyNode", accept_90 };
+    static basl::NontermInfo const info = { "EnumKeyNode", accept_91 };
 
     // constructor
     inline EnumKeyNode (basl::Nonterm & nonterm)
@@ -3471,7 +3508,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "EnumBaseNode", accept_91 };
+    static basl::NontermInfo const info = { "EnumBaseNode", accept_92 };
 
     // constructor
     inline EnumBaseNode (basl::Nonterm & nonterm)
@@ -3497,7 +3534,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "EnumtorDecl1Node", accept_92 };
+    static basl::NontermInfo const info = { "EnumtorDecl1Node", accept_93 };
 
     // constructor
     inline EnumtorDecl1Node (basl::Nonterm & nonterm)
@@ -3517,7 +3554,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "EnumtorDecl2Node", accept_93 };
+    static basl::NontermInfo const info = { "EnumtorDecl2Node", accept_94 };
 
     // constructor
     inline EnumtorDecl2Node (basl::Nonterm & nonterm)
@@ -3549,7 +3586,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "UsingDeclNode", accept_94 };
+    static basl::NontermInfo const info = { "UsingDeclNode", accept_95 };
 
     // constructor
     inline UsingDeclNode (basl::Nonterm & nonterm)
@@ -3581,7 +3618,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "AliasDeclNode", accept_95 };
+    static basl::NontermInfo const info = { "AliasDeclNode", accept_96 };
 
     // constructor
     inline AliasDeclNode (basl::Nonterm & nonterm)
@@ -3625,7 +3662,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "UsingDirNode", accept_96 };
+    static basl::NontermInfo const info = { "UsingDirNode", accept_97 };
 
     // constructor
     inline UsingDirNode (basl::Nonterm & nonterm)
@@ -3663,7 +3700,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "LinkageSpecNode", accept_97 };
+    static basl::NontermInfo const info = { "LinkageSpecNode", accept_98 };
 
     // constructor
     inline LinkageSpecNode (basl::Nonterm & nonterm)
@@ -3701,7 +3738,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "LinkageBlockBeginNode", accept_98 };
+    static basl::NontermInfo const info = { "LinkageBlockBeginNode", accept_99 };
 
     // constructor
     inline LinkageBlockBeginNode (basl::Nonterm & nonterm)
@@ -3727,7 +3764,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "LinkageDeclBeginNode", accept_99 };
+    static basl::NontermInfo const info = { "LinkageDeclBeginNode", accept_100 };
 
     // constructor
     inline LinkageDeclBeginNode (basl::Nonterm & nonterm)
@@ -3753,7 +3790,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "NavDefNode", accept_100 };
+    static basl::NontermInfo const info = { "NavDefNode", accept_101 };
 
     // constructor
     inline NavDefNode (basl::Nonterm & nonterm)
@@ -3791,7 +3828,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "NavHeadNode", accept_101 };
+    static basl::NontermInfo const info = { "NavHeadNode", accept_102 };
 
     // constructor
     inline NavHeadNode (basl::Nonterm & nonterm)
@@ -3823,7 +3860,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "NavDirectDcl1Node", accept_102 };
+    static basl::NontermInfo const info = { "NavDirectDcl1Node", accept_103 };
 
     // constructor
     inline NavDirectDcl1Node (basl::Nonterm & nonterm)
@@ -3873,7 +3910,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "NavVisitFuncDefNode", accept_103 };
+    static basl::NontermInfo const info = { "NavVisitFuncDefNode", accept_104 };
 
     // constructor
     inline NavVisitFuncDefNode (basl::Nonterm & nonterm)
@@ -3929,7 +3966,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ReturnStmtNode", accept_104 };
+    static basl::NontermInfo const info = { "ReturnStmtNode", accept_105 };
 
     // constructor
     inline ReturnStmtNode (basl::Nonterm & nonterm)
@@ -3961,7 +3998,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "VdfDefNode", accept_105 };
+    static basl::NontermInfo const info = { "VdfDefNode", accept_106 };
 
     // constructor
     inline VdfDefNode (basl::Nonterm & nonterm)
@@ -3999,7 +4036,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "VdfHeadNode", accept_106 };
+    static basl::NontermInfo const info = { "VdfHeadNode", accept_107 };
 
     // constructor
     inline VdfHeadNode (basl::Nonterm & nonterm)
@@ -4025,7 +4062,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "VdfFunctorDefNode", accept_107 };
+    static basl::NontermInfo const info = { "VdfFunctorDefNode", accept_108 };
 
     // constructor
     inline VdfFunctorDefNode (basl::Nonterm & nonterm)
@@ -4087,7 +4124,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "VdfShortData1DefNode", accept_108 };
+    static basl::NontermInfo const info = { "VdfShortData1DefNode", accept_109 };
 
     // constructor
     inline VdfShortData1DefNode (basl::Nonterm & nonterm)
@@ -4131,7 +4168,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "VdfShortData2DefNode", accept_109 };
+    static basl::NontermInfo const info = { "VdfShortData2DefNode", accept_110 };
 
     // constructor
     inline VdfShortData2DefNode (basl::Nonterm & nonterm)
@@ -4175,7 +4212,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "VdfDataParamListNode", accept_110 };
+    static basl::NontermInfo const info = { "VdfDataParamListNode", accept_111 };
 
     // constructor
     inline VdfDataParamListNode (basl::Nonterm & nonterm)
@@ -4207,7 +4244,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "ObjInit4Node", accept_111 };
+    static basl::NontermInfo const info = { "ObjInit4Node", accept_112 };
 
     // constructor
     inline ObjInit4Node (basl::Nonterm & nonterm)
@@ -4239,7 +4276,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "VdfBlockDataDefNode", accept_112 };
+    static basl::NontermInfo const info = { "VdfBlockDataDefNode", accept_113 };
 
     // constructor
     inline VdfBlockDataDefNode (basl::Nonterm & nonterm)
@@ -4283,7 +4320,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "VdfBlockDataHead1Node", accept_113 };
+    static basl::NontermInfo const info = { "VdfBlockDataHead1Node", accept_114 };
 
     // constructor
     inline VdfBlockDataHead1Node (basl::Nonterm & nonterm)
@@ -4309,7 +4346,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "VdfBlockDataHead2Node", accept_114 };
+    static basl::NontermInfo const info = { "VdfBlockDataHead2Node", accept_115 };
 
     // constructor
     inline VdfBlockDataHead2Node (basl::Nonterm & nonterm)
@@ -4335,7 +4372,7 @@ namespace gram
   {
   public:
     // nonterm info
-    static basl::NontermInfo const info = { "DirectDcl6Node", accept_115 };
+    static basl::NontermInfo const info = { "DirectDcl6Node", accept_116 };
 
     // constructor
     inline DirectDcl6Node (basl::Nonterm & nonterm)

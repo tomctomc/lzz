@@ -23,9 +23,9 @@ $end
 namespace smtc
 {
   // create mbr init
-  MbrInitPtr createMbrInit (NamePtr const & name, util::String const & arg_set)
+  MbrInitPtr createMbrInit (NamePtr const & name, util::String const & arg_set, bool is_brace = false)
   {
-    return new MbrInit (name, arg_set);
+    return new MbrInit (name, arg_set, is_brace);
   }
 
   // create mbr init

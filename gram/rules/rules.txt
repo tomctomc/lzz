@@ -85,6 +85,10 @@ obj-init -> ASSIGN_TOKEN BLOCK_TOKEN 3
 [ObjInit2Node]
 obj-init -> DINIT_TOKEN LPAREN_TOKEN expr-list RPAREN_TOKEN
 
+# brace initializer (C++11), contents block-lexed like a function body
+[ObjInit5Node]
+obj-init -> LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
+
 [ObjInit3Node]
 obj-init -> direct-expr-list RPAREN_TOKEN
 

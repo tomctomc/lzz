@@ -28,6 +28,12 @@ namespace smtc
   util::String mbrInitToString (MbrInitPtr const & mbr_init)
   {
     String str = nameToString (mbr_init->getName ());
+    if (mbr_init->isBrace ())
+    {
+      // arg set is the complete brace initializer, no parens
+      appendWithSpace (str, mbr_init->getArgSet ());
+      return str;
+    }
     appendWithSpace (str, '(');
     str += mbr_init->getArgSet ();
     str += ')';

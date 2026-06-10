@@ -19,6 +19,7 @@ namespace gram
   class NestedDeclNode;
   class ObjInit1Node;
   class ObjInit2Node;
+  class ObjInit5Node;
   class ObjInit3Node;
   class BlockNode;
   class NestedName1Node;
@@ -177,6 +178,11 @@ namespace gram
 
     // obj-init -> DINIT_TOKEN LPAREN_TOKEN expr-list RPAREN_TOKEN
     virtual void visit (gram::ObjInit2Node & node) const
+    {
+    }
+
+    // obj-init -> LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
+    virtual void visit (gram::ObjInit5Node & node) const
     {
     }
 

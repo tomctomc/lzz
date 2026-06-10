@@ -19,7 +19,7 @@ FAIL t15_trailing_return.lzz
 PASS t16_digitsep_odd.lzz
 PASS t17_spaced_templates.lzz
 PASS t18_rvalue_in_body_only.lzz
-FAIL t19_member_default_brace.lzz
+PASS t19_member_default_brace.lzz
 PASS t20_static_const_init.lzz
 PASS t21_digitsep_decl.lzz
 PASS t22_digitsep_forms.lzz
@@ -38,3 +38,4 @@ PASS t34_static_member_init.lzz
 PASS t35_nested_type_qual.lzz
 PASS t36_noexcept_expr.lzz
 PASS t37_class_final_forms.lzz
+PASS t38_brace_init_forms.lzz

@@ -1,0 +1,76 @@
+// smtc_BraceInit.lzz
+//
+// C++11 brace initializer: int x { 0 };
+//
+
+$hdr
+#include "smtc_Init.h"
+
+#include "gram_Block.h"
+$end
+
+$src
+#include "smtc_File.h"
+#include "smtc_PrintCode.h"
+$end
+
+namespace smtc
+{
+  class BraceInit : public Init
+  {
+    // contents between the braces, may not be set (empty braces)
+    bool m_has_block;
+    gram::Block m_block;
+
+  public:
+    inline BraceInit (util::Loc const & loc)
+      : Init (loc), m_has_block (false)
+    {
+    }
+
+    inline BraceInit (util::Loc const & loc, gram::Block const & block)
+      : Init (loc), m_has_block (true), m_block (block)
+    {
+    }
+
+    ~ BraceInit ()
+    {
+    }
+
+    bool isCopy () const
+    {
+      return false;
+    }
+
+    bool isBrace () const
+    {
+      return true;
+    }
+
+    util::String toString () const
+    {
+      util::String str = "{";
+      if (m_has_block)
+      {
+        m_block.trim ();
+        str += ' ';
+        str += m_block.toString ();
+        str += ' ';
+      }
+      str += '}';
+      return str;
+    }
+
+    void print (FilePtr const & file, SectionKind skind) const
+    {
+      std::ostream & os = file->getStream (skind);
+      os << '{';
+      if (m_has_block)
+      {
+        // token printing supplies the surrounding spaces
+        printBlockAtLoc (file, skind, m_block);
+      }
+      os << '}';
+    }
+  }
+}

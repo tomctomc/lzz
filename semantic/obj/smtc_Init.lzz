@@ -50,6 +50,12 @@ namespace smtc
       return ! isCopy ();
     }
 
+    // true if brace init (C++11)
+    virtual bool isBrace () const
+    {
+      return false;
+    }
+
     // to string (for lazy class init)
     virtual util::String toString () const = 0;
 

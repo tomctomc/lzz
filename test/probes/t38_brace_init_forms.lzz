@@ -1,0 +1,36 @@
+// C++11 brace initializers on objs: members emit in the .h declaration
+// (like the = form), namespace objs and static members init with the .cpp
+// definition, lazy-class members convert to brace ctor member inits.
+// note: brace inits in explicit ctor-init lists (": x { 7 }") are still
+// unsupported and fail loudly at parse time
+#hdr
+#include <vector>
+#end
+namespace probe
+{
+  int g_count { 5 };
+  class W
+  {
+  public:
+    int x { 0 };
+    int y { 1 + 2 };
+    int z {};
+    double d { 3.5 };
+    std::vector <int> v { 1, 2, 3 };
+    static int s_count { 42 };
+    int method ()
+    {
+      return x;
+    }
+  };
+}
+class LazyBrace (int start)
+{
+public:
+  int count { 7 };
+  int base = 3;
+  int get ()
+  {
+    return count + base + start;
+  }
+}

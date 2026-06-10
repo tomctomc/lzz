@@ -22,6 +22,7 @@ $src
 #include "basl_Node.h"
 
 // semantic
+#include "smtc_CreateBraceInit.h"
 #include "smtc_CreateCopyInit.h"
 #include "smtc_CreateDirectInit.h"
 $end
@@ -57,6 +58,22 @@ namespace
       BlockVector block_set;
       getNodeBlockSet (node.getDirectExprList (), block_set);
       init = smtc::createDirectInit (basl::getFirstLoc (node.getDirectExprList ()), block_set);
+    }
+
+    // obj-init -> LBRACE block-opt 7 RBRACE (C++11 brace initializer)
+    void visit (ObjInit5Node & node) const
+    {
+      util::Loc const & loc = node.getLBRACE_TOKEN ().getLoc ();
+      basl::Token & block_token = node.getBlockOpt ();
+      if (block_token.isSet ())
+      {
+        Block block = getBlock (block_token.getLexeme ());
+        init = smtc::createBraceInit (loc, block);
+      }
+      else
+      {
+        init = smtc::createBraceInit (loc);
+      }
     }
 
     // vdf-direct-obj-init -> LPAREN BLOCK 2 RPAREN

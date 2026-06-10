@@ -24,10 +24,13 @@ namespace smtc
     // arg set
     util::String m_arg_set;
 
+    // true if arg set is a C++11 brace initializer (printed without parens)
+    bool m_is_brace;
+
   public:
     // constructor
-    MbrInit (NamePtr const & name, util::String const & arg_set)
-      : m_name (name), m_arg_set (arg_set)
+    MbrInit (NamePtr const & name, util::String const & arg_set, bool is_brace)
+      : m_name (name), m_arg_set (arg_set), m_is_brace (is_brace)
     {
     }
 
@@ -46,6 +49,12 @@ namespace smtc
     inline util::String const & getArgSet () const
     {
       return m_arg_set;
+    }
+
+    // true if brace initializer
+    inline bool isBrace () const
+    {
+      return m_is_brace;
     }
   }
 }

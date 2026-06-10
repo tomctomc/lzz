@@ -127,7 +127,7 @@ namespace
       int flags = spec_sel.getFlags ();
       if (init.isSet () && ! util::hasFlag (flags, STATIC_SPEC))
       {
-        lazy_class->addMbrInit (createMbrInit (name, init->toString ()));
+        lazy_class->addMbrInit (createMbrInit (name, init->toString (), init->isBrace ()));
         ObjPtr obj = createObj (linkage, flags, cv_type, name, InitPtr ());
         lazy_class->addEntity (createObjEntity (obj));
       }
