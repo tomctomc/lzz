@@ -7,6 +7,7 @@ $hdr
 #include "smtc_NamePtr.h"
 
 // gram
+#include "gram_Block.h"
 #include "gram_BlockVector.h"
 $end
 
@@ -26,5 +27,20 @@ namespace smtc
   {
     std::for_each (arg_set.begin (), arg_set.end (), gram::TrimBlock ());
     return createMbrInit (name, arg_set);
+  }
+
+  // brace form (C++11), block holds the contents between the braces
+  MbrInitPtr getMbrBraceInit (NamePtr const & name, gram::Block const & block, bool has_block)
+  {
+    util::String init_str = "{";
+    if (has_block)
+    {
+      block.trim ();
+      init_str += ' ';
+      init_str += block.toString ();
+      init_str += ' ';
+    }
+    init_str += '}';
+    return createMbrInit (name, init_str, true);
   }
 }

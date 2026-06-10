@@ -1,0 +1,25 @@
+// C++11 brace initializers in ctor-init lists, member and base inits,
+// re-emitted verbatim in the definition
+#hdr
+#include <vector>
+#end
+class CIBase
+{
+public:
+  CIBase (int a)
+  {
+  }
+};
+class CIDer : public CIBase
+{
+  int x;
+  std::vector <int> v;
+  int z;
+public:
+  CIDer () : CIBase { 5 }, x { 7 }, v { 1, 2, 3 }, z {}
+  {
+  }
+  CIDer (int n) : CIBase (n), x { n }, v (), z { n + 1 }
+  {
+  }
+};

@@ -31,13 +31,27 @@ namespace
   struct GetMbrInitSet (smtc::MbrInitPtrVector & mbr_init_set)
     : Visitor
   {
-    // mbr-init -> obj-name LPAREN expr-list-opt RPAREN 
+    // mbr-init -> obj-name LPAREN expr-list-opt RPAREN
     void visit (MbrInitNode & node) const
     {
       smtc::NamePtr name = getNodeName (node.getObjName ());
       BlockVector arg_set;
       getNodeBlockSet (node.getExprListOpt (), arg_set);
       mbr_init_set.push_back (smtc::getMbrInit (name, arg_set));
+    }
+
+    // mbr-init -> obj-name LBRACE block-opt 7 RBRACE (C++11 brace form)
+    void visit (MbrInit2Node & node) const
+    {
+      smtc::NamePtr name = getNodeName (node.getObjName ());
+      Block block;
+      basl::Token & block_token = node.getBlockOpt ();
+      bool has_block = block_token.isSet ();
+      if (has_block)
+      {
+        block = getBlock (block_token.getLexeme ());
+      }
+      mbr_init_set.push_back (smtc::getMbrBraceInit (name, block, has_block));
     }
   }
 }

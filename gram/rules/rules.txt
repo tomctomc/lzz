@@ -1423,7 +1423,11 @@ mbr-init-list -> mbr-init
 
 # mbr init
 [MbrInitNode]
-mbr-init * -> obj-name LPAREN_TOKEN expr-list-opt RPAREN_TOKEN 
+mbr-init * -> obj-name LPAREN_TOKEN expr-list-opt RPAREN_TOKEN
+
+# brace form (C++11), contents block-lexed like a body
+[MbrInit2Node]
+mbr-init * -> obj-name LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
 
 # handler seq opt
 handler-seq-opt -> handler-seq

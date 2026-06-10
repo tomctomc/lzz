@@ -85,6 +85,7 @@ namespace gram
   class FriendClassDeclNode;
   class FuncDefNode;
   class MbrInitNode;
+  class MbrInit2Node;
   class HandlerNode;
   class TmplDeclNode;
   class TmplSpecNode;
@@ -513,6 +514,11 @@ namespace gram
 
     // mbr-init * -> obj-name LPAREN_TOKEN expr-list-opt RPAREN_TOKEN
     virtual void visit (gram::MbrInitNode & node) const
+    {
+    }
+
+    // mbr-init * -> obj-name LBRACE_TOKEN block-opt 7 RBRACE_TOKEN
+    virtual void visit (gram::MbrInit2Node & node) const
     {
     }
 
