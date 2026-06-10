@@ -688,6 +688,13 @@ namespace gram::msg
     print (loc, Message (ERROR_MSG, str) << spec);
   }
 
+  // invalid virt specifier
+  void invalidVirtSpecifier (util::Loc const & loc, char const * spec)
+  {
+    static char const str [] = "Invalid virt specifier: '%1', expecting 'override' or 'final'.";
+    print (loc, Message (ERROR_MSG, str) << spec);
+  }
+
   // conflicting specifier
   void conflictingSpecifier (util::Loc const & loc, char const * spec1, char const * spec2)
   {

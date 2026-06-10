@@ -17,6 +17,9 @@ $hdr
 $end
 
 $src
+// std lib
+#include <cstring>
+
 // gram
 #include "gram_BlockTable.h"
 #include "gram_DclSpecFlags.h"
@@ -27,6 +30,7 @@ $src
 #include "gram_GetNodeName.h"
 #include "gram_GetNodePtrDcl.h"
 #include "gram_GetNodeTypeIdSet.h"
+#include "gram_Message.h"
 #include "gram_Nonterm.h"
 #include "gram_Parser.h"
 #include "gram_Visitor.h"
@@ -48,6 +52,30 @@ namespace
   // using gram
   using namespace gram;
 
+  // GetNodeVirtSpecSeq, override and final are contextual identifiers
+  struct GetNodeVirtSpecSeq (SpecSel & dcl_spec_sel) : Visitor
+  {
+    // virt-spec -> IDENT_TOKEN
+    void visit (VirtSpecNode & node) const
+    {
+      basl::Token & token = node.getIDENT_TOKEN ();
+      util::Loc const & loc = token.getLoc ();
+      char const * lexeme = token.getLexeme ().c_str ();
+      if (strcmp (lexeme, "override") == 0)
+      {
+        dcl_spec_sel.addSpec (OVERRIDE_SPEC, loc);
+      }
+      else if (strcmp (lexeme, "final") == 0)
+      {
+        dcl_spec_sel.addSpec (FINAL_SPEC, loc);
+      }
+      else
+      {
+        msg::invalidVirtSpecifier (loc, lexeme);
+      }
+    }
+  }
+
   // GetNodeDcl
   struct GetNodeDcl (SpecSel & decl_spec_sel, SpecSel & dcl_spec_sel, smtc::CvType & cv_type,
       smtc::CvType & dcl_cv_type, smtc::NamePtr & name)
@@ -68,9 +96,15 @@ namespace
       node.getObjDcl ().accept (* this);
     }
 
-    // pure-func-dcl -> func-dcl pure-opt
+    // pure-func-dcl -> func-dcl virt-spec-seq-opt pure-opt
+    // pure-ctor-dcl -> func-c-direct-dcl virt-spec-seq-opt pure-opt
     void visit (PureDclNode & node) const
     {
+      basl::Nonterm & virt_spec_node = node.getVirtSpecSeqOpt ();
+      if (virt_spec_node.isSet ())
+      {
+        virt_spec_node.accept (GetNodeVirtSpecSeq (dcl_spec_sel));
+      }
       basl::Nonterm & pure_node = node.getPureOpt ();
       if (pure_node.isSet ())
       {

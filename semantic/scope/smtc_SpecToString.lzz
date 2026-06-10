@@ -63,6 +63,16 @@ namespace smtc
         str = "pure";
         break;
       }
+      case OVERRIDE_SPEC:
+      {
+        str = "override";
+        break;
+      }
+      case FINAL_SPEC:
+      {
+        str = "final";
+        break;
+      }
     }
     return str;
   }

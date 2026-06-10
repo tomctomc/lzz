@@ -1,7 +1,7 @@
 # Expected probe results for the BASELINE lzz (2.8.x + tomctomc patches as of
 # commit 37ef5ce).  Format: <expect> <file>.  As features land, flip FAIL->PASS
 # here in the same commit that implements the feature.
-FAIL t01_override.lzz
+PASS t01_override.lzz
 FAIL t02_default_delete.lzz
 PASS t03_nsdmi.lzz
 FAIL t04_using_alias.lzz
@@ -27,3 +27,4 @@ PASS t23_char_literals_still_work.lzz
 PASS t24_nsdmi_struct.lzz
 PASS t25_lazy_class_init.lzz
 PASS t26_nested_template_forms.lzz
+PASS t27_virt_spec_forms.lzz

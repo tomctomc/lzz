@@ -44,5 +44,11 @@ namespace smtc
 
     // dll api specifier
     DLL_API_SPEC   = gram::DLL_API_SPEC,
+
+    // override virt specifier (C++11)
+    OVERRIDE_SPEC  = gram::OVERRIDE_SPEC,
+
+    // final virt specifier (C++11)
+    FINAL_SPEC     = gram::FINAL_SPEC,
   }
 }

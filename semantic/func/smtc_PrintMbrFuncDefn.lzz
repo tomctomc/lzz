@@ -32,6 +32,7 @@ namespace
       printer.not_explicit = true;
       printer.not_virtual = true;
       printer.not_pure = true;
+      printer.not_virt_spec = true;
       printer.use_alt_ret_type = true;
       printer.print (file, skind, func_defn, ns);
     }

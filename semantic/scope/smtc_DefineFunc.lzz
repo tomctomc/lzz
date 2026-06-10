@@ -67,7 +67,7 @@ namespace
       // function cannot be mutable, auto or register
       checkInvalidSpecFlags (spec_sel, MUTABLE_SPEC|AUTO_SPEC|REGISTER_SPEC, msg::invalidFuncSpec);
       // virtual, explicit and pure are not valid namespace func specifiers
-      checkInvalidSpecFlags (spec_sel, VIRTUAL_SPEC|EXPLICIT_SPEC|PURE_SPEC, msg::invalidNsFuncSpec);
+      checkInvalidSpecFlags (spec_sel, VIRTUAL_SPEC|EXPLICIT_SPEC|PURE_SPEC|OVERRIDE_SPEC|FINAL_SPEC, msg::invalidNsFuncSpec);
 
       if (linkage.isSet ())
       {
@@ -151,7 +151,7 @@ namespace
       if (is_frnd)
       {
         // virtual, explicit and pure are not valid on friend functions
-        checkInvalidSpecFlags (spec_sel, VIRTUAL_SPEC|EXPLICIT_SPEC|PURE_SPEC, msg::invalidFriendFuncSpec);
+        checkInvalidSpecFlags (spec_sel, VIRTUAL_SPEC|EXPLICIT_SPEC|PURE_SPEC|OVERRIDE_SPEC|FINAL_SPEC, msg::invalidFriendFuncSpec);
       }
       else
       {

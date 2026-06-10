@@ -1,0 +1,28 @@
+class B1
+{
+public:
+  virtual void f ();
+  virtual void g () const;
+  virtual int  h (int x);
+  virtual void k ();
+  virtual ~ B1 ();
+};
+class D1 : public B1
+{
+public:
+  void f () override;
+  void g () const override;       // cv then virt-spec
+  int  h (int x) final;           // final on member
+  virtual void k () override final;  // both specifiers
+  ~ D1 () override;               // dtor override
+};
+void B1::f () {}
+void B1::g () const {}
+int  B1::h (int x) { return x; }
+void B1::k () {}
+B1::~ B1 () {}
+void D1::f () {}
+void D1::g () const {}
+int  D1::h (int x) { return x + 1; }
+void D1::k () {}
+D1::~ D1 () {}

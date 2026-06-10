@@ -784,7 +784,21 @@ block-opt -> BLOCK_TOKEN
 
 # pure func dcl
 [ PureDclNode ]
-pure-func-dcl -> func-dcl pure-opt
+pure-func-dcl -> func-dcl virt-spec-seq-opt pure-opt
+
+# virt spec seq opt (C++11 member virt specifiers: override, final; they are
+# contextual identifiers, validated when the node is visited)
+virt-spec-seq-opt -> virt-spec-seq
+virt-spec-seq-opt ->
+
+# virt spec seq
+[(SeqNode)]
+virt-spec-seq -> virt-spec-seq virt-spec
+virt-spec-seq -> virt-spec
+
+# virt spec
+[VirtSpecNode]
+virt-spec -> IDENT_TOKEN
 
 # pure opt
 pure-opt -> pure
@@ -811,9 +825,11 @@ func-a-direct-dcl -> func-a-direct-dcl LBRACK_TOKEN block-opt 5 RBRACK_TOKEN
 [(DirectDcl3Node)]
 func-a-direct-dcl -> LPAREN_TOKEN func-dcl RPAREN_TOKEN
 
-# ctor dcl (function dcl with no return type)
+# ctor dcl (function dcl with no return type; also dtors, which may take a
+# virt specifier — a virt specifier on an actual constructor is rejected by
+# the downstream compiler)
 [(PureDclNode)]
-pure-ctor-dcl -> func-c-direct-dcl pure-opt
+pure-ctor-dcl -> func-c-direct-dcl virt-spec-seq-opt pure-opt
 
 # func c direct dcl
 [(DirectDcl4Node)]

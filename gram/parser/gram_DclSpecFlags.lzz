@@ -44,5 +44,11 @@ namespace gram
 
     // dll api
     DLL_API_SPEC   = 1 << 9,
+
+    // override virt specifier (C++11)
+    OVERRIDE_SPEC  = 1 << 10,
+
+    // final virt specifier (C++11)
+    FINAL_SPEC     = 1 << 11,
   }
 }

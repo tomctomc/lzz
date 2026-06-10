@@ -49,6 +49,7 @@ namespace gram
   class DirectDcl2Node;
   class DirectDcl3Node;
   class PureDclNode;
+  class VirtSpecNode;
   class PureNode;
   class DirectDcl4Node;
   class PtrOper1Node;
@@ -320,8 +321,13 @@ namespace gram
     {
     }
 
-    // pure-func-dcl -> func-dcl pure-opt
+    // pure-func-dcl -> func-dcl virt-spec-seq-opt pure-opt
     virtual void visit (gram::PureDclNode & node) const
+    {
+    }
+
+    // virt-spec -> IDENT_TOKEN
+    virtual void visit (gram::VirtSpecNode & node) const
     {
     }
 

@@ -39,13 +39,17 @@ namespace smtc
     // not pure
     bool not_pure;
 
+    // not virt specifiers (override/final, valid on the declaration only)
+    bool not_virt_spec;
+
     // use alt return type (if set)
     bool use_alt_ret_type;
 
     // constructor
     inline PrintFuncDecl (NamePtr const & qual_name = NamePtr ())
       : qual_name (qual_name), is_frnd (false), is_inst (false), is_decl (false), not_inline (false), not_explicit (false),
-        not_static (false), not_virtual (false), not_external (false), not_pure (false), use_alt_ret_type (false)
+        not_static (false), not_virtual (false), not_external (false), not_pure (false), not_virt_spec (false),
+        use_alt_ret_type (false)
     {
     }
 
@@ -139,6 +143,19 @@ namespace smtc
         dcl_str = ret_type.toString (dcl_str);
       }
       appendWithSpace (str, dcl_str);
+      if (! not_virt_spec)
+      {
+        // virt specifiers print after the declarator, before any pure
+        // specifier (C++11 member-declarator order)
+        if (func_decl->isOverride ())
+        {
+          appendWithSpace (str, "override");
+        }
+        if (func_decl->isFinal ())
+        {
+          appendWithSpace (str, "final");
+        }
+      }
       if (! not_pure && func_decl->isPure ())
       {
         appendWithSpace (str, "= 0");

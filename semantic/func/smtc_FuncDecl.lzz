@@ -91,6 +91,18 @@ namespace smtc
       return util::hasFlag (m_flags, PURE_SPEC);
     }
 
+    // true if override (C++11)
+    bool isOverride () const
+    {
+      return util::hasFlag (m_flags, OVERRIDE_SPEC);
+    }
+
+    // true if final (C++11)
+    bool isFinal () const
+    {
+      return util::hasFlag (m_flags, FINAL_SPEC);
+    }
+
     // true if static
     bool isStatic () const
     {
