@@ -6,8 +6,8 @@ class NoCopy
 public:
   NoCopy () = default;
   ~ NoCopy () = default;
-  NoCopy (NoCopy const & other) = delete;
-  NoCopy & operator = (NoCopy const & other) = delete;
+  NoCopy (NoCopy const &) = delete;
+  NoCopy & operator = (NoCopy const &) = delete;
   void run ();
 };
 class Mix

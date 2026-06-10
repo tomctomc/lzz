@@ -61,7 +61,6 @@ namespace gram
   class ParamDeclBody1Node;
   class ParamDeclBody2Node;
   class ParamDeclBody3Node;
-  class ParamDeclBody4Node;
   class ParamDecl1Node;
   class ParamDecl2Node;
   class Decl2Node;
@@ -389,11 +388,6 @@ namespace gram
 
     // param-decl-1-body -> LPAREN_TOKEN ellipse-opt
     virtual void visit (gram::ParamDeclBody3Node & node) const
-    {
-    }
-
-    // param-decl-1-body -> LPAREN_TOKEN VOID_TOKEN
-    virtual void visit (gram::ParamDeclBody4Node & node) const
     {
     }
 

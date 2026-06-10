@@ -1,5 +1,5 @@
 class A {
 public:
   A () = default;
-  A (A const & other) = delete;
+  A (A const &) = delete;
 };

@@ -1,0 +1,25 @@
+#hdr
+#include <string>
+#end
+class U
+{
+public:
+  void a (int);
+  void b (int *, double &);
+  void c (std::string const &);
+  void d (int x, char);                  // named and unnamed mixed
+  U (U const &) = delete;                // unnamed in deleted copy ctor
+  U & operator = (U const &) = delete;
+  void e (void (*)(int));                // unnamed function pointer
+  void f1 (int [4]);                     // unnamed array
+  static int g (void);                   // (void) is an empty param list
+  U ();
+};
+void U::a (int) {}
+void U::b (int * p, double & d) { * p = (int) d; }
+void U::c (std::string const &) {}
+void U::d (int x, char) { (void) x; }
+void U::e (void (*)(int)) {}
+void U::f1 (int [4]) {}
+int  U::g () { return 0; }
+U::U () {}

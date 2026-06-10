@@ -75,7 +75,11 @@ namespace smtc
     {
       using namespace util;
       String str = specFlagsToString (m_flags);
-      String dcl_str = nameToString (getName ());
+      String dcl_str;
+      if (getName ().isSet ())
+      {
+        dcl_str = nameToString (getName ());
+      }
       appendWithSpace (str, m_cv_type.toString (dcl_str));
       if (is_decl && m_def_arg.isSet ())
       {

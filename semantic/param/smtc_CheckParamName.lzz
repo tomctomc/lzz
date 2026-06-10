@@ -19,6 +19,11 @@ namespace smtc
   // check param name
   void checkParamName (NamePtr const & name)
   {
+    // unnamed parameter is fine
+    if (! name.isSet ())
+    {
+      return;
+    }
     // name cannot be qualified
     if (isNameQual (name))
     {

@@ -856,6 +856,10 @@ func-c-direct-dcl -> LPAREN_TOKEN func-c-direct-dcl RPAREN_TOKEN
 
 # param dcl
 param-dcl -> param-a-dcl
+# unnamed parameter: abstract declarator (int *, int [], ...) or no
+# declarator at all (int)
+param-dcl -> abstract-dcl
+param-dcl ->
 
 # param a dcl
 [(DclNode)]
@@ -978,8 +982,6 @@ param-decl-1-body -> param-decl-1-list ellipse-opt
 param-decl-1-body -> param-decl-1-list COMMA_TOKEN ELLIPSE_TOKEN
 [ParamDeclBody3Node]
 param-decl-1-body -> LPAREN_TOKEN ellipse-opt
-[ParamDeclBody4Node]
-param-decl-1-body -> LPAREN_TOKEN VOID_TOKEN
 
 # param init 1 list
 # accept on first param declaration -- don't try as direct initializer
@@ -995,8 +997,6 @@ param-decl-2-body -> param-decl-2-list ellipse-opt
 param-decl-2-body -> param-decl-2-list COMMA_TOKEN ELLIPSE_TOKEN
 [(ParamDeclBody3Node)]
 param-decl-2-body -> SEMI_TOKEN ellipse-opt
-[(ParamDeclBody4Node)]
-param-decl-2-body -> SEMI_TOKEN VOID_TOKEN
 
 # param init 2 list
 [(SeqNode)]

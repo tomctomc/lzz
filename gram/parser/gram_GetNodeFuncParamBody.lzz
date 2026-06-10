@@ -12,6 +12,12 @@ $end
 $src
 // gram
 #include "gram_GetNodeDcl.h"
+
+// semantic
+#include "smtc_CvType.h"
+#include "smtc_NonTypeParam.h"
+#include "smtc_Type.h"
+#include "smtc_TypeKind.h"
 #include "gram_GetNodeFuncParamSet.h"
 #include "gram_Nonterm.h"
 #include "gram_Visitor.h"
@@ -32,6 +38,20 @@ namespace
     {
       getNodeFuncParamSet (node.getParamDecl1List (), param_set);
       vararg = node.getEllipseOpt ().isSet ();
+      // (void) is an empty parameter list: drop a single unnamed plain void
+      // parameter with no default argument
+      if (! vararg && param_set.size () == 1)
+      {
+        smtc::NonTypeParam const & param = static_cast <smtc::NonTypeParam const &> (* param_set.front ());
+        if (! param.getName ().isSet () && ! param.hasDefaultArg ())
+        {
+          smtc::CvType const & cv_type = param.getCvType ();
+          if (! cv_type.getCv ().isSet () && cv_type.getType ()->getKind () == smtc::VOID_TYPE)
+          {
+            param_set.clear ();
+          }
+        }
+      }
     }
 
     // param-decl-1-body -> param-decl-1-list COMMA ELLIPSE
@@ -47,11 +67,6 @@ namespace
       vararg = node.getEllipseOpt ().isSet ();
     }
 
-    // param-decl-1-body -> LPAREN VOID
-    void visit (ParamDeclBody4Node & node) const
-    {
-      // nothing to do 
-    }
   }
 }
 
