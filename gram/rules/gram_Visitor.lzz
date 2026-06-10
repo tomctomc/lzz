@@ -507,7 +507,7 @@ namespace gram
     {
     }
 
-    // func-def * -> func-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
+    // func-def * -> func-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt semi-opt >!
     virtual void visit (gram::FuncDefNode & node) const
     {
     }

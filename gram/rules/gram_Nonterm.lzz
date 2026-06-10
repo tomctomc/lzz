@@ -2649,7 +2649,7 @@ namespace gram
     }
   }
 
-  // func-def * -> func-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
+  // func-def * -> func-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt semi-opt >!
   class FuncDefNode : public basl::NontermProxy
   {
   public:
@@ -2702,6 +2702,12 @@ namespace gram
     inline basl::Nonterm & getHandlerSeqOpt () const
     {
       return getChild (7).getNonterm ();
+    }
+
+    // get semi-opt
+    inline basl::Token & getSemiOpt () const
+    {
+      return getChild (8).getToken ();
     }
   }
 

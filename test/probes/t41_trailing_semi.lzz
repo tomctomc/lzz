@@ -1,0 +1,24 @@
+// a trailing ';' after a function body is tolerated and discarded (it never
+// emits), matching compiler behavior; previously a loud syntax error
+int trailing_semi_func ()
+{
+  return 9;
+};
+class TS
+{
+public:
+  int method ()
+  {
+    return 1;
+  };
+  TS ()
+  {
+  };
+  ~ TS ()
+  {
+  };
+};
+int normal_after (int x)
+{
+  return x;
+}

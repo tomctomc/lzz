@@ -41,3 +41,4 @@ PASS t37_class_final_forms.lzz
 PASS t38_brace_init_forms.lzz
 PASS t39_trailing_return_forms.lzz
 PASS t40_ctor_init_brace.lzz
+PASS t41_trailing_semi.lzz

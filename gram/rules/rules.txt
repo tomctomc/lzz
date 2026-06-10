@@ -1397,12 +1397,13 @@ class-decl -> xExx-decl-spec-seq SEMI_TOKEN
 [FriendClassDeclNode]
 friend-class-decl -> FExx-decl-spec-seq SEMI_TOKEN
 
-# func def
+# func def (trailing semicolon tolerated and discarded, as compilers do; the
+# shift commits because no other rule can use a ';' after a function body)
 [ FuncDefNode ]
-func-def * -> func-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
+func-def * -> func-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt semi-opt >!
 
 [(FuncDefNode)]
-func-def * -> ctor-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt
+func-def * -> ctor-decl try-opt ctor-init-opt LBRACE_TOKEN block-opt 7 RBRACE_TOKEN handler-seq-opt semi-opt >!
 
 # try opt
 try-opt -> TRY_TOKEN
