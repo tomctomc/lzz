@@ -21,7 +21,7 @@ all:
 	tools/build.sh
 
 install: all
-	sudo cp -p bin/* /usr/local/bin/
+	sudo install -m 755 bin/* /usr/local/bin/
 	@echo "installed: $$(cd bin && echo *) -> /usr/local/bin/"
 
 test: all
