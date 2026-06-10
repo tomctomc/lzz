@@ -1,0 +1,83 @@
+// nested-type return types and static-member types must be qualified with the
+// class name in the out-of-line .cpp definition (they lexically precede the
+// qualified declarator, so class scope is not yet active there); this includes
+// names inside template argument lists, which lzz keeps as verbatim text
+#hdr
+#include <map>
+#include <vector>
+#include <utility>
+#end
+
+namespace demo
+{
+  class RingReader
+  {
+  public:
+    class Inner
+    {
+    public:
+      struct Sub { int x; };
+    };
+    struct Segment { int off; };
+    typedef int Depth;
+    enum Mode { RAW, COOKED };
+
+    Segment first ()
+    {
+      Segment s; s.off = 0; return s;
+    }
+    Inner::Sub deep ()
+    {
+      Inner::Sub s; s.x = 1; return s;
+    }
+    Inner * ptr ()
+    {
+      return 0;
+    }
+    Mode mode ()
+    {
+      return RAW;
+    }
+    std::vector <Segment> segments ()
+    {
+      return std::vector <Segment> ();
+    }
+    std::map <Depth, Inner> table ()
+    {
+      return std::map <Depth, Inner> ();
+    }
+    std::vector <std::pair <Inner, int> > pairs ()
+    {
+      return std::vector <std::pair <Inner, int> > ();
+    }
+    // own name is not a nested type, must stay untouched
+    std::vector <RingReader> selves ()
+    {
+      return std::vector <RingReader> ();
+    }
+    // already qualified, must stay untouched
+    std::vector <demo::RingReader::Inner> already_qual ()
+    {
+      return std::vector <demo::RingReader::Inner> ();
+    }
+    static Segment def_seg;
+    static Inner::Sub default_sub;
+    static std::vector <Inner> registry;
+  };
+
+  template <class T>
+  class Holder
+  {
+  public:
+    struct Slot { T val; };
+    Slot get ()
+    {
+      return Slot ();
+    }
+    std::vector <Slot> all ()
+    {
+      return std::vector <Slot> ();
+    }
+    static Slot empty;
+  };
+}

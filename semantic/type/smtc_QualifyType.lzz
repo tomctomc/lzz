@@ -70,7 +70,8 @@ namespace
       {
         MbrPtrType const & mbr_ptr_type = static_cast <MbrPtrType const &> (* type);
         NamePtr res_mbr_name = mbr_ptr_type.getMbrName ();
-        result = qualifyTypeName (res_mbr_name, type_name_set, qual_name, res_mbr_name);
+        bool mbr_base_qualified = false;
+        result = qualifyTypeName (res_mbr_name, type_name_set, qual_name, dpdt, res_mbr_name, mbr_base_qualified);
         if (qualify (mbr_ptr_type.getToCvType ()) || result)
         {
           if (! res_cv_type.isSet ())
@@ -104,10 +105,12 @@ namespace
       {
         UserType const & user_type = static_cast <UserType const &> (* type);
         NamePtr res_name;
-        if (qualifyTypeName (user_type.getName (), type_name_set, qual_name, res_name))
+        bool base_qualified = false;
+        if (qualifyTypeName (user_type.getName (), type_name_set, qual_name, dpdt, res_name, base_qualified))
         {
-          // if dependent then add 'typename'
-          if (dpdt)
+          // 'typename' only if the name itself is now dependent qualified (not when only
+          // names within its template args were qualified)
+          if (dpdt && base_qualified)
           {
             res_cv_type = CvType (getElabType (TYPENAME_KEY, res_name), cv);
           }

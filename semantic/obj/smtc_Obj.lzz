@@ -37,6 +37,10 @@ namespace smtc
     // type
     CvType m_cv_type;
 
+    // alternate type for out of class definition (nested type names qualified
+    // with the class name), may not be set
+    CvType m_alt_cv_type;
+
     // name
     NamePtr m_name;
 
@@ -95,6 +99,24 @@ namespace smtc
     inline CvType const & getCvType () const
     {
       return m_cv_type;
+    }
+
+    // set alternate cv type
+    void setAltCvType (CvType const & alt_cv_type)
+    {
+      m_alt_cv_type = alt_cv_type;
+    }
+
+    // true if has alternate cv type
+    bool hasAltCvType () const
+    {
+      return m_alt_cv_type.isSet ();
+    }
+
+    // get alternate cv type
+    inline CvType const & getAltCvType () const
+    {
+      return m_alt_cv_type;
     }
 
     // get name

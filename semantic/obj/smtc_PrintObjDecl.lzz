@@ -23,9 +23,13 @@ namespace smtc
     // print with init
     bool with_init;
 
+    // use alt cv type (nested type names qualified for out of class definition) if set
+    bool use_alt_cv_type;
+
     // constructor
     inline PrintObjDecl (NamePtr const & qual_name = NamePtr ())
-      : qual_name (qual_name), is_extern (false), not_extern (false), not_static (false), with_init (false)
+      : qual_name (qual_name), is_extern (false), not_extern (false), not_static (false), with_init (false),
+        use_alt_cv_type (false)
     {
     }
 
@@ -87,7 +91,8 @@ namespace smtc
         name = createQualName (qual_name, name);
       }
       String dcl_str = nameToString (name);
-      appendWithSpace (str, obj->getCvType ().toString (dcl_str));
+      CvType const & cv_type = (use_alt_cv_type && obj->hasAltCvType ()) ? obj->getAltCvType () : obj->getCvType ();
+      appendWithSpace (str, cv_type.toString (dcl_str));
       return str;
     }
   }

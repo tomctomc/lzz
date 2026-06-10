@@ -35,3 +35,4 @@ PASS t31_noexcept_forms.lzz
 PASS t32_unnamed_params.lzz
 PASS t33_rvalue_ref_forms.lzz
 PASS t34_static_member_init.lzz
+PASS t35_nested_type_qual.lzz

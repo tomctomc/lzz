@@ -12,9 +12,13 @@
 #src
 // semantic
 #include "smtc_CreateQualName.h"
+#include "smtc_CreateTmplName.h"
 #include "smtc_GetBaseNameIfIdent.h"
+#include "smtc_NameToString.h"
 #include "smtc_NameVisitor.h"
 #include "smtc_NonTmplName.h"
+#include "smtc_QualName.h"
+#include "smtc_QualifyTmplArgs.h"
 #include "smtc_TmplName.h"
 #end
 
@@ -24,47 +28,106 @@ namespace
   // using semantic
   using namespace smtc;
 
+  // forward, see below
+  bool qualifyNamePart (NamePtr const & name, util::IdentSet const & type_name_set, NamePtr const & qual_name,
+      bool dpdt, bool allow_base_qual, NamePtr & res_name, bool & base_qualified);
+
   // qualify type name, res_name initially is name visiting as pointer
+  // allow_base_qual is false for the trailing components of a qualified name (they are looked
+  // up in the scope of their qualifier, not the class), template args always qualify (they are
+  // looked up at the point of use)
   struct QualifyTypeName (NamePtr const & name_ptr, util::IdentSet const & type_name_set, NamePtr const & qual_name,
-      bool & result, NamePtr & res_name) : NameVisitor
+      bool dpdt, bool allow_base_qual, bool & result, NamePtr & res_name, bool & base_qualified) : NameVisitor
   {
     // tmpl name
     void visit (TmplName const & name) const
     {
-      qualifyBaseName (name.getBaseName ());
+      // qualify type names in args
+      util::String args = name.getArgs ();
+      bool args_qualified = qualifyTmplArgs (args, type_name_set, nameToString (qual_name) + "::", dpdt, args);
+      // qualify base name
+      bool base_qual = allow_base_qual && inTypeNameSet (name.getBaseName ());
+      if (base_qual || args_qualified)
+      {
+        NamePtr unql_name = args_qualified ? createTmplName (name.getBaseName (), name.hasTemplateKeyword (), args) : name_ptr;
+        res_name = base_qual ? createQualName (qual_name, unql_name) : unql_name;
+        base_qualified = base_qual;
+        result = true;
+      }
     }
 
     // non tmpl name
     void visit (NonTmplName const & name) const
     {
-      qualifyBaseName (name.getBaseName ());
-    }
-
-    // qualify name
-    void qualifyBaseName (BaseNamePtr const & base_name) const
-    {
-      util::Ident ident = getBaseNameIfIdent (base_name);
-      if (ident.isSet ())
+      if (allow_base_qual && inTypeNameSet (name.getBaseName ()))
       {
-        util::IdentSetConstIter i = type_name_set.find (ident);
-        if (i != type_name_set.end ())
-        {
-          res_name = createQualName (qual_name, name_ptr);
-          result = true;
-        }
+        res_name = createQualName (qual_name, name_ptr);
+        base_qualified = true;
+        result = true;
       }
     }
-  }    
+
+    // qual name, qualify leftmost component and template args in any component
+    void visit (QualName const & name) const
+    {
+      bool changed = false;
+      NamePtr res_qual = name.getQualName ();
+      if (res_qual.isSet ())
+      {
+        NamePtr new_qual;
+        bool qual_base_qualified = false;
+        if (qualifyNamePart (res_qual, type_name_set, qual_name, dpdt, allow_base_qual, new_qual, qual_base_qualified))
+        {
+          res_qual = new_qual;
+          base_qualified = qual_base_qualified;
+          changed = true;
+        }
+      }
+      NamePtr res_unql = name.getUnqlName ();
+      {
+        NamePtr new_unql;
+        bool unql_base_qualified = false;
+        if (qualifyNamePart (res_unql, type_name_set, qual_name, dpdt, false, new_unql, unql_base_qualified))
+        {
+          res_unql = new_unql;
+          changed = true;
+        }
+      }
+      if (changed)
+      {
+        res_name = createQualName (res_qual, res_unql);
+        result = true;
+      }
+    }
+
+    // true if base name is an identifier in the type name set
+    bool inTypeNameSet (BaseNamePtr const & base_name) const
+    {
+      util::Ident ident = getBaseNameIfIdent (base_name);
+      return ident.isSet () && type_name_set.find (ident) != type_name_set.end ();
+    }
+  }
+
+  // qualify name component, return true if changed
+  bool qualifyNamePart (NamePtr const & name, util::IdentSet const & type_name_set, NamePtr const & qual_name,
+      bool dpdt, bool allow_base_qual, NamePtr & res_name, bool & base_qualified)
+  {
+    bool result = false;
+    base_qualified = false;
+    name->accept (QualifyTypeName (name, type_name_set, qual_name, dpdt, allow_base_qual, result, res_name, base_qualified));
+    return result;
+  }
 }
 
 // semantic
 namespace smtc
 {
-  // qualify type name, return true if qualified
-  bool qualifyTypeName (NamePtr const & name, util::IdentSet const & type_name_set, NamePtr const & qual_name, NamePtr & res_name)
+  // qualify type name, return true if changed
+  // base_qualified set true if the name itself was qualified with the class name (as opposed
+  // to only names within its template args), the caller uses it to decide on 'typename'
+  bool qualifyTypeName (NamePtr const & name, util::IdentSet const & type_name_set, NamePtr const & qual_name,
+      bool dpdt, NamePtr & res_name, bool & base_qualified)
   {
-    bool result = false;
-    name->accept (QualifyTypeName (name, type_name_set, qual_name, result, res_name));
-    return result;
+    return qualifyNamePart (name, type_name_set, qual_name, dpdt, true, res_name, base_qualified);
   }
 }

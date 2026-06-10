@@ -35,6 +35,8 @@
 #include "smtc_NavClassScope.h"
 #include "smtc_Ns.h"
 #include "smtc_NsScope.h"
+#include "smtc_Obj.h"
+#include "smtc_QualifyType.h"
 #include "smtc_ScopeVisitor.h"
 #include "smtc_SpecFlags.h"
 #include "smtc_TranslateVdfDataInit.h"
@@ -99,8 +101,13 @@ namespace
       // non static obj may have an initializer (C++11 default member
       // initializer), printed with the declaration
 
+      // alt type used for out of class definition of static objs
+      ClassDefnPtr const & class_defn = scope.getClassDefn ();
+      CvType alt_cv_type;
+      qualifyType (cv_type, class_defn->getTypeNameSet (), class_defn->getQualName (), class_defn->isDependent (), alt_cv_type);
+
       // add entity to class
-      scope.getClassDefn ()->addEntity (buildEntity ());
+      class_defn->addEntity (buildEntity (alt_cv_type));
     }
 
     // lazy class scope
@@ -109,20 +116,25 @@ namespace
       // check name and flags
       checkClassNameAndFlags ();
 
+      // alt type used for out of class definition of static objs
+      LazyClassPtr lazy_class = scope.getLazyClass ();
+      CvType alt_cv_type;
+      qualifyType (cv_type, lazy_class->getTypeNameSet (), lazy_class->getQualName (), lazy_class->isDependent (), alt_cv_type);
+
       // non-static obj can have initializer, it becomes a constructor
       // member initializer, so the entity must not keep it (otherwise it
       // would also print as a default member initializer in the decl)
       int flags = spec_sel.getFlags ();
       if (init.isSet () && ! util::hasFlag (flags, STATIC_SPEC))
       {
-        scope.getLazyClass ()->addMbrInit (createMbrInit (name, init->toString ()));
+        lazy_class->addMbrInit (createMbrInit (name, init->toString ()));
         ObjPtr obj = createObj (linkage, flags, cv_type, name, InitPtr ());
-        scope.getLazyClass ()->addEntity (createObjEntity (obj));
+        lazy_class->addEntity (createObjEntity (obj));
       }
       else
       {
         // add entity
-        scope.getLazyClass ()->addEntity (buildEntity ());
+        lazy_class->addEntity (buildEntity (alt_cv_type));
       }
     }
 
@@ -217,9 +229,10 @@ namespace
     }
 
     // build entity
-    EntityPtr buildEntity () const
+    EntityPtr buildEntity (CvType const & alt_cv_type = CvType ()) const
     {
       ObjPtr obj = createObj (linkage, spec_sel.getFlags (), cv_type, name, init);
+      obj->setAltCvType (alt_cv_type);
       return createObjEntity (obj);
     }
   }

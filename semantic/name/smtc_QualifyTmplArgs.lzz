@@ -1,0 +1,143 @@
+// smtc_QualifyTmplArgs.lzz
+//
+// qualify unqualified type names in a template argument string
+// (template args are kept verbatim, so this is a token level scan)
+//
+
+#hdr
+// util
+#include "util_IdentSet.h"
+#include "util_String.h"
+#end
+
+#src
+// util
+#include "util_GetIdent.h"
+
+// std lib
+#include <cctype>
+#include <cstring>
+#end
+
+// private namespace
+namespace
+{
+  // true if char can start an identifier
+  bool isIdentStart (char c)
+  {
+    return isalpha ((unsigned char) c) || c == '_';
+  }
+
+  // true if char can continue an identifier
+  bool isIdentChar (char c)
+  {
+    return isalnum ((unsigned char) c) || c == '_';
+  }
+}
+
+// semantic
+namespace smtc
+{
+  // qualify identifiers in args that name types in type_name_set, return true if any qualified
+  // qual_str is the class name with trailing '::', if dpdt prepend 'typename' as well
+  bool qualifyTmplArgs (util::String const & args, util::IdentSet const & type_name_set, util::String const & qual_str,
+      bool dpdt, util::String & res_args)
+  {
+    bool result = false;
+    util::String res;
+    size_t i = 0, n = args.length ();
+    // true if next identifier is already qualified ('::') or a member access ('.', '->')
+    bool after_scope = false;
+    while (i < n)
+    {
+      char c = args [i];
+      if (isIdentStart (c))
+      {
+        size_t b = i;
+        for (++ i; i < n && isIdentChar (args [i]); ++ i)
+          ;
+        util::String ident_str (args, b, i - b);
+        if (! after_scope && type_name_set.find (util::getIdent (ident_str.c_str ())) != type_name_set.end ())
+        {
+          if (dpdt)
+          {
+            res += "typename ";
+          }
+          res += qual_str;
+          result = true;
+        }
+        res += ident_str;
+        after_scope = false;
+      }
+      else if (isdigit ((unsigned char) c) || (c == '.' && i + 1 < n && isdigit ((unsigned char) args [i + 1])))
+      {
+        // pp-number, consume as unit so suffixes are not taken for identifiers
+        size_t b = i;
+        for (++ i; i < n; ++ i)
+        {
+          char d = args [i];
+          if (isIdentChar (d) || d == '.' || d == '\'')
+            ;
+          else if ((d == '+' || d == '-') && strchr ("eEpP", args [i - 1]) != 0)
+            ;
+          else
+            break;
+        }
+        res.append (args, b, i - b);
+        after_scope = false;
+      }
+      else if (c == '\'' || c == '"')
+      {
+        // literal, copy verbatim
+        size_t b = i;
+        for (++ i; i < n && args [i] != c; ++ i)
+        {
+          if (args [i] == '\\' && i + 1 < n)
+          {
+            ++ i;
+          }
+        }
+        if (i < n)
+        {
+          ++ i;
+        }
+        res.append (args, b, i - b);
+        after_scope = false;
+      }
+      else if (isspace ((unsigned char) c))
+      {
+        // whitespace does not separate a scope operator from its identifier
+        res += c;
+        ++ i;
+      }
+      else if (c == ':' && i + 1 < n && args [i + 1] == ':')
+      {
+        res += "::";
+        i += 2;
+        after_scope = true;
+      }
+      else if (c == '.' || (c == '-' && i + 1 < n && args [i + 1] == '>'))
+      {
+        res += c;
+        ++ i;
+        if (c == '-')
+        {
+          res += '>';
+          ++ i;
+        }
+        after_scope = true;
+      }
+      else
+      {
+        res += c;
+        ++ i;
+        after_scope = false;
+      }
+    }
+    if (result)
+    {
+      res_args = res;
+    }
+    return result;
+  }
+}
