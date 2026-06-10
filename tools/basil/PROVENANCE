@@ -1,0 +1,29 @@
+basil 5.3.1 — the parser-table generator for this repo's grammar
+=================================================================
+
+`basil` is the backtracking LR(1) parser generator by Michael Spencer
+(lzz's author) that produced the checked-in generated files in
+gram/rules/ (gram_ParserData.lzz, gram_Nonterm.lzz, gram_Visitor.lzz,
+gram_TokenNumber.lzz).  Its SOURCE WAS NEVER PUBLISHED; version 5.3.1
+(released 2002-03-21) is the only build ever distributed, and this
+statically linked i386 ELF is, as far as we can tell, the only
+surviving artifact capable of regenerating the tables.  Guard it.
+
+Provenance:
+  http://www.lazycplusplus.com/basil/basil_5_3_1_linux.zip
+  recovered 2026-06-10 via the Internet Archive Wayback Machine capture
+  http://web.archive.org/web/20070328213051if_/http://www.lazycplusplus.com/basil/basil_5_3_1_linux.zip
+  sha256 (basil binary):  28b49754e53d9ae2e92e5707450efae8481cff8c8c6a0f0fd9bf6872c3a5237c
+  sha256 (original zip):  71b99ba3b4435ebd202326b0d065657457fb41d9500a516d5e636fad5907d379
+  (original zip also archived at /z6pool/z/dev/lzz/archive/)
+
+Verification (2026-06-10): running `basil rules.txt -v -bc` in
+gram/rules/ reproduces all four checked-in generated files
+BYTE-IDENTICALLY (1191 states, 0 conflicts).  See test/run_gate.sh.
+
+Runs on x86-64 Linux via ia32 emulation (standard kernels).  basilsim
+is the companion parser simulator (same distribution, see README.TXT).
+
+The modern basilcc on GitHub (github.com/mjspncr/basilcc) is a 2016
+rewrite serving lzz3: different CLI, different rule syntax, runtime FSM
+output — it CANNOT regenerate these tables.

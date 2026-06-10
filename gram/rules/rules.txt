@@ -1457,8 +1457,8 @@ lazy-ctor * -> lazy-ctor-begin *< LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN sem
 lazy-ctor-begin -> class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt
 
 # maybe accept virtual, other decl specs?
-#[LazyCtorBegin2Node]
-#lazy-ctor-begin -> xxxS-decl-spec-seq class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt
+[LazyCtorBegin2Node]
+lazy-ctor-begin -> xxxS-decl-spec-seq class-key dll-api-opt obj-name param-decl-1-body > RPAREN_TOKEN lazy-base-clause-opt
 
 # lazy base clause opt
 lazy-base-clause-opt -> lazy-base-clause
