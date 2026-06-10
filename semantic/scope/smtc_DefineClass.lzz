@@ -40,7 +40,7 @@ namespace
 
   // define class
   struct DefineClass (bool is_tmpl, TmplSpecPtrVector & tmpl_spec_set, ClassKey key, NamePtr const & name,
-      bool is_dll_api, BaseSpecPtrVector const & base_spec_set, ScopePtr & res_scope)
+      bool is_dll_api, bool is_final, BaseSpecPtrVector const & base_spec_set, ScopePtr & res_scope)
     : ScopeVisitor
   {
     // ns scope
@@ -76,13 +76,17 @@ namespace
     {
       // declare template class
       tmpl_spec_set.push_back (scope.getTmplSpec ());
-      scope.getParent ()->accept (DefineClass (true, tmpl_spec_set, key, name, is_dll_api, base_spec_set, res_scope));
+      scope.getParent ()->accept (DefineClass (true, tmpl_spec_set, key, name, is_dll_api, is_final, base_spec_set, res_scope));
     }
 
     // build entity
     EntityPtr buildEntity (NamePtr const & encl_qual_name = NamePtr ()) const
     {
       ClassDefnPtr class_defn = createClassDefn (key, name, is_dll_api, base_spec_set);
+      if (is_final)
+      {
+        class_defn->setFinal ();
+      }
       NamePtr qual_name;
       EntityPtr entity;
       if (is_tmpl)
@@ -117,11 +121,11 @@ namespace smtc
 {
   // define class, return class scope, set class defn
   ScopePtr defineClass (ScopePtr const & scope, ClassKey key, NamePtr const & name, bool is_dll_api,
-      BaseSpecPtrVector const & base_spec_set)
+      BaseSpecPtrVector const & base_spec_set, bool is_final = false)
   {
     ScopePtr res_scope;
     TmplSpecPtrVector tmpl_spec_set;
-    scope->accept (DefineClass (false, tmpl_spec_set, key, name, is_dll_api, base_spec_set, res_scope));
+    scope->accept (DefineClass (false, tmpl_spec_set, key, name, is_dll_api, is_final, base_spec_set, res_scope));
     return res_scope;
   }
 }

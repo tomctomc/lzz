@@ -10,6 +10,9 @@ $hdr
 $end
 
 $src
+// std lib
+#include <cstring>
+
 // gram
 #include "gram_BlockTable.h"
 #include "gram_CharBlock.h"
@@ -153,6 +156,23 @@ namespace
       smtc::BaseSpecPtrVector base_spec_set;
       getBaseSpecSet (node.getBaseClauseOpt (), base_spec_set);
       smtc::ScopePtr res_scope = smtc::defineClass (cs, key, name, node.getDllApiOpt ().isSet (), base_spec_set);
+      ss.push_back (res_scope);
+    }
+
+    // class-head -> class-key dll-api-opt obj-name IDENT > base-clause-opt
+    // ('final' is a contextual identifier)
+    void visit (ClassHead2Node & node) const
+    {
+      basl::Token & spec_token = node.getIDENT_TOKEN ();
+      if (strcmp (spec_token.getLexeme ().c_str (), "final") != 0)
+      {
+        msg::invalidVirtSpecifier (spec_token.getLoc (), spec_token.getLexeme ().c_str ());
+      }
+      smtc::ClassKey key = getClassKey (node.getClassKey ().getNumber ());
+      smtc::NamePtr name = getNodeName (node.getObjName ());
+      smtc::BaseSpecPtrVector base_spec_set;
+      getBaseSpecSet (node.getBaseClauseOpt (), base_spec_set);
+      smtc::ScopePtr res_scope = smtc::defineClass (cs, key, name, node.getDllApiOpt ().isSet (), base_spec_set, true);
       ss.push_back (res_scope);
     }
 

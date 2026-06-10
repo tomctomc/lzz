@@ -1,0 +1,38 @@
+// class-level 'final' (C++11): contextual identifier in the class head,
+// printed in the .h definition head only.  The grammar shifts the identifier
+// with priority but no commit, so the elaborated-type variable declarations
+// at the bottom (including one whose name is literally 'final') still parse
+// via backtracking
+class FBase
+{
+public:
+  virtual int f ()
+  {
+    return 0;
+  }
+};
+class FD final : public FBase
+{
+public:
+  int f () override
+  {
+    return 1;
+  }
+  class Inner final
+  {
+  public:
+    int x;
+  };
+};
+struct FS final
+{
+  int y;
+};
+template <class T>
+class FT final
+{
+public:
+  T t;
+};
+class FBase a_base_obj;
+class FBase final;

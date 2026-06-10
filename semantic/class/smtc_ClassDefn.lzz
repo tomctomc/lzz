@@ -31,7 +31,10 @@ namespace smtc
 
     // true if class definition is dependent (ie: a template class definition), if true
     // return types are pefixed with 'typename' in definition
-    bool m_dpdt; 
+    bool m_dpdt;
+
+    // true if class is declared final (C++11), printed in the defn head only
+    bool m_is_final;
 
     // qualified class name relative to enclosing ns
     NamePtr m_qual_name;
@@ -39,7 +42,7 @@ namespace smtc
   public:
     // constructor
     ClassDefn (ClassKey key, NamePtr const & name, bool is_dll_api, BaseSpecPtrVector const & base_spec_set)
-      : ClassDecl (key, name, is_dll_api), m_base_spec_set (base_spec_set), m_dpdt (false)
+      : ClassDecl (key, name, is_dll_api), m_base_spec_set (base_spec_set), m_dpdt (false), m_is_final (false)
     {
     }
 
@@ -77,6 +80,18 @@ namespace smtc
     util::IdentSet const & getTypeNameSet () const
     {
       return m_type_name_set;
+    }
+
+    // set final
+    void setFinal ()
+    {
+      m_is_final = true;
+    }
+
+    // true if final
+    bool isFinal () const
+    {
+      return m_is_final;
     }
 
     // set dependent

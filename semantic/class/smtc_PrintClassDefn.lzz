@@ -53,6 +53,10 @@ namespace smtc
     void printHead (FilePtr const & file, ClassDefnPtr const & class_defn) const
     {
       String str = declToString (class_defn);
+      if (class_defn->isFinal ())
+      {
+        appendWithSpace (str, "final");
+      }
       BaseSpecPtrVector const & base_spec_set = class_defn->getBaseSpecSet ();
       if (! base_spec_set.empty ())
       {

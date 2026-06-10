@@ -9,7 +9,7 @@ PASS t05_enum_class.lzz
 PASS t06_noexcept.lzz
 PASS t07_digitsep.lzz
 PASS t08_stdfunction_member.lzz
-FAIL t09_final.lzz
+PASS t09_final.lzz
 PASS t10_nested_template_close.lzz
 FAIL t11_constexpr.lzz
 PASS t12_rvalue_ref.lzz
@@ -37,3 +37,4 @@ PASS t33_rvalue_ref_forms.lzz
 PASS t34_static_member_init.lzz
 PASS t35_nested_type_qual.lzz
 PASS t36_noexcept_expr.lzz
+PASS t37_class_final_forms.lzz

@@ -74,6 +74,7 @@ namespace gram
   class NamespaceHead2Node;
   class ClassDefNode;
   class ClassHeadNode;
+  class ClassHead2Node;
   class BaseSpec1Node;
   class BaseSpec2Node;
   class BaseSpec3Node;
@@ -455,6 +456,11 @@ namespace gram
 
     // class-head -> class-key dll-api-opt obj-name base-clause-opt
     virtual void visit (gram::ClassHeadNode & node) const
+    {
+    }
+
+    // class-head -> class-key dll-api-opt obj-name IDENT_TOKEN > base-clause-opt
+    virtual void visit (gram::ClassHead2Node & node) const
     {
     }
 

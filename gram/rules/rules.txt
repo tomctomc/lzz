@@ -1296,6 +1296,12 @@ class-def * -> class-head *< LBRACE_TOKEN mbr-decl-seq-opt RBRACE_TOKEN semi-opt
 [ClassHeadNode]
 class-head -> class-key dll-api-opt obj-name base-clause-opt
 
+# class head with C++11 'final' (contextual identifier, validated in the
+# visitor).  shift priority but NO commit: 'class A final;' (a variable named
+# final of elaborated type) must still parse, via backtracking
+[ClassHead2Node]
+class-head -> class-key dll-api-opt obj-name IDENT_TOKEN > base-clause-opt
+
 # dll api keyword
 dll-api-opt -> DLL_API_TOKEN
 dll-api-opt ->
