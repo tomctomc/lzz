@@ -35,6 +35,10 @@ export CONFIG=gcc.opt
 export CONFIGDIR=$BUILDROOT/gcc.opt
 export OBJDIR=$CONFIGDIR/objs
 export LZZ
+# a sourced setup_gcc_*.env must not leak in: BUILD_LZZ would make the
+# recursive make below link into $PRJDIR/gcc.*/ (which this build never
+# creates), and DEBUG_BUILD would skip the strip
+unset BUILD_LZZ DEBUG_BUILD
 
 echo "== lzz build: bootstrap=$LZZ scratch=$CONFIGDIR"
 rm -rf "$CONFIGDIR"
