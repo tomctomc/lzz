@@ -16,6 +16,8 @@ $src
 #include "smtc_AcceptEntityVisitor.h"
 #include "smtc_EntityVisitor.h"
 #include "smtc_Ns.h"
+#include "smtc_Output.h"
+#include "smtc_PrintCode.h"
 #include "smtc_PrintNsClassDecl.h"
 #include "smtc_PrintNsClassDefn.h"
 #include "smtc_PrintNsClassInst.h"
@@ -46,6 +48,7 @@ $src
 #include "smtc_FuncDeclEntity.h"
 #include "smtc_FuncDefnEntity.h"
 #include "smtc_FuncInstEntity.h"
+#include "smtc_HashDirEntity.h"
 #include "smtc_LazyClassEntity.h"
 #include "smtc_NavClassEntity.h"
 #include "smtc_NsEntity.h"
@@ -185,6 +188,20 @@ namespace
     void visit (UsingDirEntity const & entity) const
     {
       printNsUsingDir (out, entity.getUsingDir (), ns);
+    }
+
+    // passed-through conditional directive: the sections copy it as they are written (see smtc_CondContext),
+    // an #error or #warning is printed in the header with the declarations
+    void visit (HashDirEntity const & entity) const
+    {
+      if (entity.getKind () == HASH_LINE_DIR)
+      {
+        printDir (out.getHdrFile (), DECLARATION_SECTION, entity.getLine ());
+      }
+      else
+      {
+        out.getCodeCondContext ().apply (entity.getKind (), entity.getLine ());
+      }
     }
 
     // prl extensions

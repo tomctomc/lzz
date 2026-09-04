@@ -315,4 +315,39 @@ namespace smtc::msg
     print (loc, Message (ERROR_MSG, str));
   }
 
+  // passed-through preprocessor conditional directives (see smtc_CondContext)
+
+  // #elif, #else or #endif in a class body without an #if opened in the same body
+  void hashDirWithoutIfInClass (util::Loc const & loc, char const * dir)
+  {
+    static char const str [] = "'%1' has no matching #if in this class body.";
+    print (loc, Message (ERROR_MSG, str) << dir);
+  }
+
+  // conditional group opened in a class body is not closed before the closing brace
+  void hashIfNotClosedInClass (util::Loc const & loc)
+  {
+    static char const str [] = "Conditional directive group is not closed within the class body.";
+    print (loc, Message (ERROR_MSG, str));
+  }
+
+  // conditional directive somewhere lzz cannot copy it into the output
+  void hashDirInInvalidContext (util::Loc const & loc, char const * dir)
+  {
+    static char const str [] = "'%1' cannot be passed through in this context.";
+    print (loc, Message (ERROR_MSG, str) << dir);
+  }
+
+  // lazy class member with initializer inside a conditional group (the ctor init list cannot be guarded)
+  void lazyMbrInitInHashIf (util::Loc const & loc, util::Loc const & hash_if_loc)
+  {
+    {
+      static char const str [] = "Lazy class member with initializer inside a conditional directive group.";
+      print (loc, Message (ERROR_MSG, str));
+    }
+    {
+      static char const str [] = "The group is opened here.";
+      print (hash_if_loc, Message (INFO_MSG, str));
+    }
+  }
 }

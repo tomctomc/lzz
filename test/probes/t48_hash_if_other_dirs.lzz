@@ -1,0 +1,13 @@
+// inside a passed-through group lzz leaves the preprocessor's business to the
+// compiler: #include is not read, #error/#warning are copied into the header
+#ifdef _WIN32
+#include "no_such_header_on_this_box.h"
+#warning "building the windows flavor"
+class W
+{
+#error "W is not ready"
+  int w;
+};
+#else
+int posix ();
+#endif

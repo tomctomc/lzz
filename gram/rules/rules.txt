@@ -33,6 +33,7 @@ decl -> enum-def
 decl -> using-decl
 decl -> using-dir
 decl -> linkage-spec
+decl -> hash-dir
 
 # simple decl
 [ SimpleDeclNode ]
@@ -1385,10 +1386,30 @@ mbr-decl -> functor-def
 mbr-decl -> simple-functor-decl
 mbr-decl -> enum-def
 mbr-decl -> using-decl
+mbr-decl -> hash-dir
 
 # access spec
 [AccessSpecNode]
 access-spec * -> access COLON_TOKEN
+
+# preprocessor conditional directive (#if/#ifdef/#ifndef, #elif, #else, #endif) that lzz cannot
+# decide itself: passed through to the generated files around the declarations it guards.  The
+# lexeme is the directive line as written (see gram_Prep).
+[HashDirNode]
+hash-dir * -> HASH_IF_TOKEN
+
+[(HashDirNode)]
+hash-dir * -> HASH_ELIF_TOKEN
+
+[(HashDirNode)]
+hash-dir * -> HASH_ELSE_TOKEN
+
+[(HashDirNode)]
+hash-dir * -> HASH_ENDIF_TOKEN
+
+# an #error or #warning inside such a group, copied into the header at its position
+[(HashDirNode)]
+hash-dir * -> HASH_LINE_TOKEN
 
 # class decl
 [ClassDeclNode]

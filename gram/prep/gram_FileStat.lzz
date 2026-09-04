@@ -22,9 +22,12 @@ namespace gram
     // true if guard
     bool guard;
 
+    // true if passed through: the group is copied to the output rather than evaluated (see Prep)
+    bool pt;
+
     // constructor
-    IfStat (util::Loc const & loc, int rs, int ss, bool guard)
-      : loc (loc), rs (rs), ss (ss), guard (guard)
+    IfStat (util::Loc const & loc, int rs, int ss, bool guard, bool pt = false)
+      : loc (loc), rs (rs), ss (ss), guard (guard), pt (pt)
     {
     }
 

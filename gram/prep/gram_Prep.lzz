@@ -6,6 +6,7 @@
 #include <map>
 #include <set>
 #include <cstdlib>
+#include <cctype>
 
 // gram
 #include "gram_FileStatPtrVector.h"
@@ -36,6 +37,7 @@
 #include "gram_EvalHashIfExpr.h"
 #include "gram_FileStat.h"
 #include "gram_FindIncludeFile.h"
+#include "gram_GetHashDirKind.h"
 #include "gram_GetIdent.h"
 #include "gram_IsMacroSame.h"
 #include "gram_KeywordTable.h"
@@ -344,7 +346,7 @@ namespace gram
                 // error
                 case ERROR_DIR:
                 {
-                  prepError (dir_loc);
+                  prepError (dir_loc, dir_name);
                   break;
                 }
                 // pragma
@@ -356,7 +358,7 @@ namespace gram
                 // warning
                 case WARNING_DIR:
                 {
-                  prepWarning (dir_loc);
+                  prepWarning (dir_loc, dir_name);
                   break;
                 }
                 // hdr or header
@@ -497,6 +499,12 @@ namespace gram
       IfStat & is = fs.is_stack.back ();
       // in body
       fs.status = FILE_BODY;
+      // an #include in a passed-through group is left to the compiler (an #insert is still inserted)
+      if (! insert && is.rs == ON_RS && inPassThruGroup ())
+      {
+        discardRestOfLine (fs.lexer);
+        return;
+      }
       // lex line
       util::Loc name_loc;
       util::String name;
@@ -521,12 +529,25 @@ namespace gram
       IfStat & is = fs.is_stack.back ();
       // in file body
       fs.status = FILE_BODY;
+      // rest of line as written and its tokens
+      util::String line;
+      util::Loc eol_loc;
+      basl::TokenVector token_set;
+      readDirLine (fs.lexer, line, eol_loc, token_set);
+      bool live = (is.rs == ON_RS);
+      // if lzz cannot decide the condition (it mentions a macro lzz does not know) the whole group is
+      // passed through to the output for the compiler to decide
+      if (live && isPassThruContext () && ! token_set.empty () && hasUnknownMacro (token_set))
+      {
+        passThruDir (HASH_IF_TOKEN, dir_loc, dir_name, line);
+        fs.is_stack.push_back (IfStat (dir_loc, ON_RS, IF_SS, false, true));
+        return;
+      }
       // get next read state
       int rs = OFF_RS;
       try
       {
-        bool live = (is.rs == ON_RS);
-        if (lexIfLine (fs.lexer, dir_loc, dir_name, live))
+        if (evalIfLine (dir_loc, dir_name, live, eol_loc, token_set))
         {
           // live and #if true
           rs = ON_RS;
@@ -544,6 +565,43 @@ namespace gram
       fs.is_stack.push_back (IfStat (dir_loc, rs, IF_SS, false));
     }
 
+    // true if conditional directives here are passed through rather than evaluated: only in the code lzz
+    // translates (the file itself and #insert'ed files, not #include'd files, which are read for their
+    // macros only), not inside blocks (real mode) and not when only preprocessing (no output)
+    bool isPassThruContext () const
+    {
+      return output != 0 && ! real_mode && fs_stack.back ()->insert;
+    }
+
+    // true if inside a passed-through group (at any nesting level in the current file): lzz parses the
+    // code there but leaves the rest to the compiler, so an #include is not read (as when the branch was
+    // not taken) and an #error or #warning is copied through rather than acted on
+    bool inPassThruGroup () const
+    {
+      FileStat const & fs = * fs_stack.back ();
+      for (std::vector <IfStat>::const_iterator i = fs.is_stack.begin (), end = fs.is_stack.end (); i != end; ++ i)
+      {
+        if (i->pt)
+        {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // pass a conditional directive through: emit it as a token for the parser (the semantic layer copies
+    // it into the generated files around the declarations it guards, see smtc_CondContext) and apply it
+    // to the user conditional context so that #hdr/#src/... blocks inside the group are guarded too
+    void passThruDir (int number, util::Loc const & dir_loc, util::Ident const & dir_name, util::String const & rest)
+    {
+      util::String text ("#");
+      text += dir_name.c_str ();
+      text += rest;
+      macro_filter.flush ();
+      out_set.push_back (basl::Token (number, dir_loc, util::getIdent (text)));
+      output->getUserCondContext ().apply (getHashDirKind (number), text);
+    }
+
     // prep #ifdef (or #ifndef) line, dir_loc is location of directive
     void prepIfdef (util::Loc const & dir_loc, util::Ident const & dir_name, bool is_ifndef)
     {
@@ -555,11 +613,22 @@ namespace gram
       // get next read state
       int rs = OFF_RS;
       bool guard = false;
-      // lex line
+      // rest of line as written and its tokens
+      util::String line;
+      util::Loc eol_loc;
+      basl::TokenVector token_set;
+      readDirLine (fs.lexer, line, eol_loc, token_set);
       util::Ident macro_name;
-      if (lexIfdefLine (fs.lexer, dir_loc, is_ifndef ? "ifndef" : "ifdef", macro_name) && is.rs == ON_RS)
+      if (checkIfdefTokens (dir_loc, dir_name, token_set, macro_name) && is.rs == ON_RS)
       {
         bool is_macro = isMacro (macro_name);
+        // a macro lzz does not know is for the compiler: pass the whole group through
+        if (! is_macro && isPassThruContext ())
+        {
+          passThruDir (HASH_IF_TOKEN, dir_loc, dir_name, line);
+          fs.is_stack.push_back (IfStat (dir_loc, ON_RS, IF_SS, false, true));
+          return;
+        }
         if (is_ifndef)
         {
           rs = is_macro ? WAIT_RS : ON_RS;
@@ -594,12 +663,28 @@ namespace gram
       }
       // in file body
       fs.status = FILE_BODY;
+      // rest of line as written and its tokens
+      util::String line;
+      util::Loc eol_loc;
+      basl::TokenVector token_set;
+      readDirLine (fs.lexer, line, eol_loc, token_set);
+      // passed-through group: this branch is passed through too
+      if (is.pt)
+      {
+        if (token_set.empty ())
+        {
+          msg::missingHashIfTokens (dir_loc, dir_name);
+        }
+        passThruDir (HASH_ELIF_TOKEN, dir_loc, dir_name, line);
+        is.guard = false;
+        return;
+      }
       // get next read state
       int rs = OFF_RS;
       try
       {
         bool live = (is.rs == WAIT_RS);
-        if (lexIfLine (fs.lexer, dir_loc, dir_name, live))
+        if (evalIfLine (dir_loc, dir_name, live, eol_loc, token_set))
         {
           // live and #elif true
           rs = ON_RS;
@@ -625,17 +710,27 @@ namespace gram
       IfStat & is = fs.is_stack.back ();
       // in body
       fs.status = FILE_BODY;
-      // no characters should be remaining on line
-      basl::Token token;
-      if (fs.lexer.getNextToken (token))
+      // no tokens should be remaining on line
+      util::String line;
+      util::Loc eol_loc;
+      basl::TokenVector token_set;
+      readDirLine (fs.lexer, line, eol_loc, token_set);
+      if (! token_set.empty ())
       {
-        msg::extraTokensFollowingDir (token.getLoc (), dir_name);
-        discardRestOfLine (fs.lexer);
+        msg::extraTokensFollowingDir (token_set.front ().getLoc (), dir_name);
       }
       // skip line if directive is out of order
       if (is.ss != IF_SS)
       {
         msg::elseWithoutIf (dir_loc);
+        return;
+      }
+      // passed-through group: this branch is passed through too
+      if (is.pt)
+      {
+        passThruDir (HASH_ELSE_TOKEN, dir_loc, dir_name, line);
+        is.ss = ELSE_SS;
+        is.guard = false;
         return;
       }
       // if waiting then if state is live, otherwise off
@@ -650,17 +745,27 @@ namespace gram
       // get current file stat and if state
       FileStat & fs = * fs_stack.back ();
       IfStat & is = fs.is_stack.back ();
-      // no characters should be remaining on line
-      basl::Token token;
-      if (fs.lexer.getNextToken (token))
+      // no tokens should be remaining on line
+      util::String line;
+      util::Loc eol_loc;
+      basl::TokenVector token_set;
+      readDirLine (fs.lexer, line, eol_loc, token_set);
+      if (! token_set.empty ())
       {
-        msg::extraTokensFollowingDir (token.getLoc (), dir_name);
-        discardRestOfLine (fs.lexer);
+        msg::extraTokensFollowingDir (token_set.front ().getLoc (), dir_name);
       }
       // skip line if directive is out of order
       if (is.ss == NONE_SS)
       {
         msg::endifWithoutIf (dir_loc);
+        return;
+      }
+      // passed-through group: pass the #endif through and pop it
+      if (is.pt)
+      {
+        passThruDir (HASH_ENDIF_TOKEN, dir_loc, dir_name, line);
+        fs.status = FILE_BODY;
+        fs.is_stack.pop_back ();
         return;
       }
       // end of include guard?
@@ -728,7 +833,7 @@ namespace gram
     }
 
     // preprocess #error line, dir_loc is location of directive
-    void prepError (util::Loc const & dir_loc)
+    void prepError (util::Loc const & dir_loc, util::Ident const & dir_name)
     {
       // get current file stat and if state
       FileStat & fs = * fs_stack.back ();
@@ -741,10 +846,28 @@ namespace gram
       fs.lexer.getRestOfLine (str);
       if (is.rs == ON_RS)
       {
+        // in a passed-through group the error is the compiler's to raise
+        if (inPassThruGroup ())
+        {
+          passThruLine (dir_loc, dir_name, str);
+          return;
+        }
         // fatal error
         msg::hashError (dir_loc, str);
         throw util::Exception ();
       }
+    }
+
+    // pass an #error or #warning line through, str is the text after the directive name
+    void passThruLine (util::Loc const & dir_loc, util::Ident const & dir_name, util::String const & str)
+    {
+      util::String rest (" ");
+      rest += str;
+      while (! rest.empty () && isspace ((unsigned char) rest [rest.length () - 1]))
+      {
+        rest.erase (rest.length () - 1);
+      }
+      passThruDir (HASH_LINE_TOKEN, dir_loc, dir_name, rest);
     }
 
     // preprocess #pragma line, dir_loc is location of directive
@@ -832,7 +955,7 @@ namespace gram
     }
 
     // preprocess #warning line, dir_loc is location of directive
-    void prepWarning (util::Loc const & dir_loc)
+    void prepWarning (util::Loc const & dir_loc, util::Ident const & dir_name)
     {
       // get current file stat and if state
       FileStat & fs = * fs_stack.back ();
@@ -845,6 +968,12 @@ namespace gram
       fs.lexer.getRestOfLine (str);
       if (is.rs == ON_RS)
       {
+        // in a passed-through group the warning is the compiler's to raise
+        if (inPassThruGroup ())
+        {
+          passThruLine (dir_loc, dir_name, str);
+          return;
+        }
         // not a fatal error 
         msg::hashWarning (dir_loc, str);
       }
@@ -1036,14 +1165,85 @@ namespace
     return true;
   }
 
-  // lex #if line return true if live and expr is true
-  bool lexIfLine (Lexer & lexer, util::Loc const & dir_loc, util::Ident const & dir_name, bool live)
+  // read the rest of a directive line as written (trailing white space removed) and lex its tokens from
+  // that string (locations are preserved), set end of line location
+  void readDirLine (Lexer & lexer, util::String & line, util::Loc & eol_loc, basl::TokenVector & token_set)
   {
-    // read all tokens on line
+    util::Loc loc = lexer.getLoc ();
+    lexer.getRestOfLine (line);
+    while (! line.empty () && isspace ((unsigned char) line [line.length () - 1]))
+    {
+      line.erase (line.length () - 1);
+    }
+    Lexer line_lexer (line + '\n', loc);
+    lexRestOfLine (line_lexer, eol_loc, token_set);
+  }
+
+  // true if the #if expression mentions a macro lzz does not know: lzz cannot decide such a group, it is
+  // passed through to the output (a name that is not a macro evaluates to 0 in an evaluated #if, so a
+  // condition on lzz-defined macros and constants alone is still decided here as before)
+  bool hasUnknownMacro (basl::TokenVector const & token_set)
+  {
+    for (basl::TokenVectorConstIter beg = token_set.begin (), end = token_set.end (); beg != end; ++ beg)
+    {
+      if (beg->getNumber () != IDENT_TOKEN)
+      {
+        continue;
+      }
+      util::Ident const & name = beg->getLexeme ();
+      if (name == defined_ident)
+      {
+        // operand is IDENT or ( IDENT )
+        basl::TokenVectorConstIter i = beg + 1;
+        if (i != end && i->getNumber () == LPAREN_TOKEN)
+        {
+          ++ i;
+        }
+        if (i != end && i->getNumber () == IDENT_TOKEN)
+        {
+          if (! isMacro (i->getLexeme ()))
+          {
+            return true;
+          }
+          beg = i;
+        }
+      }
+      else if (! isMacro (name))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // check #ifdef (or #ifndef) line tokens, return true if syntax OK and set macro name
+  bool checkIfdefTokens (util::Loc const & dir_loc, util::Ident const & dir_name, basl::TokenVector const & token_set,
+      util::Ident & macro_name)
+  {
+    if (token_set.empty ())
+    {
+      msg::missingMacroIdent (dir_loc, dir_name);
+      return false;
+    }
+    basl::Token const & token = token_set.front ();
+    if (token.getNumber () != IDENT_TOKEN)
+    {
+      msg::invalidMacroIdent (token.getLoc (), dir_name);
+      return false;
+    }
+    macro_name = token.getLexeme ();
+    if (token_set.size () > 1)
+    {
+      msg::extraTokensFollowingDir (token_set [1].getLoc (), dir_name);
+    }
+    return true;
+  }
+
+  // evaluate #if (or #elif) expression tokens, return true if live and expr is true
+  bool evalIfLine (util::Loc const & dir_loc, util::Ident const & dir_name, bool live, util::Loc const & eol_loc,
+      basl::TokenVector & token_set)
+  {
     bool result = false;
-    util::Loc eol_loc;
-    basl::TokenVector token_set;
-    lexRestOfLine (lexer, eol_loc, token_set);
     if (token_set.empty ())
     {
       msg::missingHashIfTokens (dir_loc, dir_name);

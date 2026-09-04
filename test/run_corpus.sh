@@ -22,8 +22,9 @@ fail=0 diffn=0 total=0
 for f in "$CORPUS"/*.lzz; do
     b=$(basename "$f")
     total=$((total+1))
-    (cd "$WORK/ref"  && "$REF"  "$f" >/dev/null 2>"$b.err");  rrc=$?
-    (cd "$WORK/cand" && "$CAND" "$f" >/dev/null 2>"$b.err");  crc=$?
+    # -o: lzz writes next to its input by default, which would clobber the corpus's own generated files
+    "$REF"  -o "$WORK/ref"  "$f" >/dev/null 2>"$WORK/ref/$b.err";  rrc=$?
+    "$CAND" -o "$WORK/cand" "$f" >/dev/null 2>"$WORK/cand/$b.err"; crc=$?
     if [ $rrc -ne $crc ]; then
         echo "RC-DIFF   $b (ref=$rrc cand=$crc)"
         fail=1

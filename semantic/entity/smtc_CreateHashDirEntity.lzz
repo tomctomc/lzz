@@ -1,0 +1,27 @@
+// smtc_CreateHashDirEntity.lzz
+//
+
+$hdr
+// semantic
+#include "smtc_EntityPtr.h"
+#include "smtc_HashDirKind.h"
+
+// util
+#include "util_Loc.h"
+#include "util_String.h"
+$end
+
+$src
+// semantic
+#include "smtc_HashDirEntity.h"
+$end
+
+// semantic
+namespace smtc
+{
+  // create hash dir entity
+  EntityPtr createHashDirEntity (HashDirKind kind, util::Loc const & loc, util::String const & line)
+  {
+    return new HashDirEntity (kind, loc, line);
+  }
+}

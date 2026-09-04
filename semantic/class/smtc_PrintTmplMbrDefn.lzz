@@ -21,6 +21,7 @@ $src
 #include "smtc_EntityVisitor.h"
 #include "smtc_IsExplicitTmplSpec.h"
 #include "smtc_FormTmplName.h"
+#include "smtc_Output.h"
 #include "smtc_PrintMbrTmplFuncDefn.h"
 #include "smtc_PrintMbrTmplObjDefn.h"
 #include "smtc_TmplClassDefn.h"
@@ -30,6 +31,7 @@ $src
 // entities
 #include "smtc_ClassDefnEntity.h"
 #include "smtc_FuncDefnEntity.h"
+#include "smtc_HashDirEntity.h"
 #include "smtc_LazyClassEntity.h"
 #include "smtc_ObjEntity.h"
 #include "smtc_TmplClassDefnEntity.h"
@@ -80,6 +82,12 @@ namespace
     void visit (LazyClassEntity const & entity) const
     {
       printTmplMbrDefn (out, entity.getLazyClass (), tmpl_spec_set, ns);
+    }
+
+    // passed-through conditional directive: the sections copy it as they are written (see smtc_CondContext)
+    void visit (HashDirEntity const & entity) const
+    {
+      out.getCodeCondContext ().apply (entity.getKind (), entity.getLine ());
     }
 
     // visit entity set

@@ -9,6 +9,10 @@ $hdr
 
 // util
 #include "util_IdentSet.h"
+#include "util_Loc.h"
+
+// std lib
+#include <vector>
 $end
 
 $src
@@ -38,6 +42,10 @@ namespace smtc
 
     // qualified class name relative to enclosing ns
     NamePtr m_qual_name;
+
+    // passed-through conditional directive groups open in the class body (locations of their #if
+    // lines), every group opened in the body must be closed in it (see smtc_DeclareHashDir)
+    std::vector <util::Loc> m_open_hash_if_set;
 
   public:
     // constructor
@@ -116,6 +124,40 @@ namespace smtc
     NamePtr const & getQualName () const
     {
       return m_qual_name;
+    }
+
+    // open a conditional group at loc
+    void openHashIf (util::Loc const & loc)
+    {
+      m_open_hash_if_set.push_back (loc);
+    }
+
+    // close the innermost open conditional group, false if none
+    bool closeHashIf ()
+    {
+      if (m_open_hash_if_set.empty ())
+      {
+        return false;
+      }
+      m_open_hash_if_set.pop_back ();
+      return true;
+    }
+
+    // true if a conditional group is open
+    bool hasOpenHashIf () const
+    {
+      return ! m_open_hash_if_set.empty ();
+    }
+
+    // true if a conditional group is open, set loc to that of the innermost one
+    bool hasOpenHashIf (util::Loc & loc) const
+    {
+      if (m_open_hash_if_set.empty ())
+      {
+        return false;
+      }
+      loc = m_open_hash_if_set.back ();
+      return true;
     }
   }
 }

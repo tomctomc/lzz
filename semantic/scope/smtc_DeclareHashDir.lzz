@@ -1,0 +1,134 @@
+// smtc_DeclareHashDir.lzz
+//
+// declare a passed-through preprocessor conditional directive (see smtc_CondContext)
+//
+
+$hdr
+// semantic
+#include "smtc_HashDirKind.h"
+#include "smtc_ScopePtr.h"
+
+// util
+#include "util_Loc.h"
+#include "util_String.h"
+$end
+
+$src
+// semantic
+#include "smtc_ClassDefn.h"
+#include "smtc_ClassScope.h"
+#include "smtc_CreateHashDirEntity.h"
+#include "smtc_Message.h"
+#include "smtc_Ns.h"
+#include "smtc_NsScope.h"
+#include "smtc_ScopeVisitor.h"
+$end
+
+// private namespace
+namespace
+{
+  // using semantic
+  using namespace smtc;
+
+  // DeclareHashDir
+  struct DeclareHashDir (HashDirKind kind, util::Loc const & loc, util::String const & line)
+    : ScopeVisitor
+  {
+    // ns scope (an extern "C" block is a ns too), the entity goes in place among the declarations
+    void visit (NsScope const & scope) const
+    {
+      scope.getNs ()->addEntity (createHashDirEntity (kind, loc, line));
+    }
+
+    // class scope, groups must be balanced within the class body
+    void visit (ClassScope const & scope) const
+    {
+      ClassDefnPtr const & class_defn = scope.getClassDefn ();
+      bool ok = true;
+      switch (kind)
+      {
+        case HASH_IF_DIR:
+        {
+          class_defn->openHashIf (loc);
+          break;
+        }
+        case HASH_ELIF_DIR:
+        case HASH_ELSE_DIR:
+        {
+          ok = class_defn->hasOpenHashIf ();
+          break;
+        }
+        case HASH_ENDIF_DIR:
+        {
+          ok = class_defn->closeHashIf ();
+          break;
+        }
+        case HASH_LINE_DIR:
+        {
+          break;
+        }
+      }
+      if (ok)
+      {
+        class_defn->addEntity (createHashDirEntity (kind, loc, line));
+      }
+      else
+      {
+        msg::hashDirWithoutIfInClass (loc, line.c_str ());
+      }
+    }
+
+    // anywhere else the directive cannot be placed in the output
+    void visit (TmplSpecScope const & scope) const
+    {
+      msg::hashDirInInvalidContext (loc, line.c_str ());
+    }
+    void visit (TmplInstScope const & scope) const
+    {
+      msg::hashDirInInvalidContext (loc, line.c_str ());
+    }
+    void visit (LinkageSpecScope const & scope) const
+    {
+      msg::hashDirInInvalidContext (loc, line.c_str ());
+    }
+    void visit (VdfScope const & scope) const
+    {
+      msg::hashDirInInvalidContext (loc, line.c_str ());
+    }
+    void visit (VdfBlockDataScope const & scope) const
+    {
+      msg::hashDirInInvalidContext (loc, line.c_str ());
+    }
+  }
+
+  // CheckHashDirBalance
+  struct CheckHashDirBalance
+    : ScopeVisitor
+  {
+    // class scope
+    void visit (ClassScope const & scope) const
+    {
+      util::Loc loc;
+      if (scope.getClassDefn ()->hasOpenHashIf (loc))
+      {
+        msg::hashIfNotClosedInClass (loc);
+      }
+    }
+  }
+}
+
+// semantic
+namespace smtc
+{
+  // declare hash dir
+  void declareHashDir (ScopePtr const & scope, HashDirKind kind, util::Loc const & loc, util::String const & line)
+  {
+    scope->accept (DeclareHashDir (kind, loc, line));
+  }
+
+  // at the closing brace of a class body: every group opened in the body must have been closed in it
+  void checkHashDirBalance (ScopePtr const & scope)
+  {
+    scope->accept (CheckHashDirBalance ());
+  }
+}

@@ -81,6 +81,7 @@ namespace gram
   class BaseSpec2Node;
   class BaseSpec3Node;
   class AccessSpecNode;
+  class HashDirNode;
   class ClassDeclNode;
   class FriendClassDeclNode;
   class FuncDefNode;
@@ -494,6 +495,11 @@ namespace gram
 
     // access-spec * -> access COLON_TOKEN
     virtual void visit (gram::AccessSpecNode & node) const
+    {
+    }
+
+    // hash-dir * -> HASH_IF_TOKEN
+    virtual void visit (gram::HashDirNode & node) const
     {
     }
 

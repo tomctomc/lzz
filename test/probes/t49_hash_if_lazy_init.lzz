@@ -1,0 +1,9 @@
+// a lazy class member with an initializer cannot sit in a passed-through group
+// (the generated constructor initializer list cannot be guarded): error
+class Lazy (int a)
+{
+#ifdef ARCH_X
+  int extra = 0;
+#endif
+  int sum () const { return a; }
+};

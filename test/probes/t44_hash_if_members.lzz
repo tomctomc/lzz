@@ -1,0 +1,46 @@
+// preprocessor conditionals lzz cannot decide are passed through to the output
+// around the declarations they guard (class members, ns-scope decls, #hdr blocks)
+#hdr
+#include <vector>
+#end
+#ifdef __aarch64__
+#hdr
+#include <arm_neon.h>
+#end
+#endif
+class Repro
+{
+    int always = 1;
+#ifdef __aarch64__
+    int onlyArm = 2;
+    int armFn () const { return onlyArm; }
+    static int armStatic = 3;
+    inline int armInline () const { return 0; }
+#else
+    int notArm = 4;
+#endif
+    int fn () const
+    {
+#ifdef __aarch64__
+        return onlyArm;
+#else
+        return always;
+#endif
+    }
+#if defined (FOO_A) && ! defined (FOO_B)
+public:
+    void aNotB ();
+#elif FOO_C > 1
+    void c ();
+#endif
+};
+#ifndef _WIN32
+int posixOnly () { return 1; }
+namespace ns
+{
+    int alsoPosix ();
+#ifdef __GLIBC__
+    int glibcOnly ();
+#endif
+}
+#endif /* _WIN32 */

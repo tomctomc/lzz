@@ -1,0 +1,7 @@
+// #endif in a class body for a group opened outside: error
+#ifdef ARCH_X
+class C
+{
+    int a;
+#endif
+};

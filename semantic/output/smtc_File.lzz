@@ -7,6 +7,7 @@
 #include <cstdio>
 
 // semantic
+#include "smtc_CondContext.h"
 #include "smtc_SectionKind.h"
 #include "smtc_SectionPtrVector.h"
 #include "smtc_FileKind.h"
@@ -56,6 +57,42 @@ namespace
   void FreezeSection (; SectionPtr const & section) const
   {
     section->freeze ();
+  }
+
+  // close the conditional groups still open in section (before freezing)
+  void SyncEndSection (; SectionPtr const & section) const
+  {
+    section->syncEnd ();
+  }
+
+  // the conditional context a section of the given kind follows (see smtc_CondContext): the user
+  // context for the sections the preprocessor copies user blocks into, the code context for the
+  // sections the semantic printers write, none for lzz's own boilerplate (file comment, include
+  // guard, #include of the header, LZZ_INLINE), which must stay outside every group
+  CondContext const * getSectionCondContext (SectionKind kind, CondContext const * code_ctx, CondContext const * user_ctx)
+  {
+    CondContext const * ctx = 0;
+    switch (kind)
+    {
+      case USER_SECTION:
+      case INLINE_USER_SECTION:
+      {
+        ctx = user_ctx;
+        break;
+      }
+      case DECLARATION_SECTION:
+      case BODY_SECTION:
+      case INLINE_BODY_SECTION:
+      {
+        ctx = code_ctx;
+        break;
+      }
+      default:
+      {
+        break;
+      }
+    }
+    return ctx;
   }
 
   // compare section
@@ -118,11 +155,24 @@ namespace smtc
     // true if closed
     bool m_closed;
 
+    // conditional contexts (see smtc_CondContext): the code context followed by the sections the
+    // semantic printers write, the user context by the sections the preprocessor writes
+    CondContext * m_code_ctx;
+    CondContext const * m_user_ctx;
+
   public:
     // constructor
-    File (util::String const & fullname, util::String const & name, util::String const & ext, bool has_hash_lines, bool smart_write)
-      : m_fullname (fullname), m_name (name), m_ext (ext), m_has_hash_lines (has_hash_lines), m_smart_write (smart_write),  m_closed (false)
+    File (util::String const & fullname, util::String const & name, util::String const & ext, bool has_hash_lines, bool smart_write,
+        CondContext * code_ctx, CondContext const * user_ctx)
+      : m_fullname (fullname), m_name (name), m_ext (ext), m_has_hash_lines (has_hash_lines), m_smart_write (smart_write),  m_closed (false),
+        m_code_ctx (code_ctx), m_user_ctx (user_ctx)
     {
+    }
+
+    // get code conditional context
+    inline CondContext & getCodeCondContext () const
+    {
+      return * m_code_ctx;
     }
 
     // destructor
@@ -186,7 +236,7 @@ namespace smtc
       SectionPtr section;
       if (! hasSection (kind, section))
       {
-        section = SectionPtr (new Section (kind));
+        section = SectionPtr (new Section (kind, getSectionCondContext (kind, m_code_ctx, m_user_ctx)));
         m_sections.push_back (section);
         section = section.unref ();
       }
@@ -231,7 +281,8 @@ namespace smtc
         return;
       }
       m_closed = true;
-      // freeze all sections
+      // close any conditional groups still open, then freeze all sections
+      std::for_each (m_sections.begin (), m_sections.end (), SyncEndSection ());
       std::for_each (m_sections.begin (), m_sections.end (), FreezeSection ());
       // order the sections
       SectionPtrVector out_sections;

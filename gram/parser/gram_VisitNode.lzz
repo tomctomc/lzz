@@ -25,6 +25,7 @@ $src
 #include "gram_GetElabType.h"
 #include "gram_GetEnumtorSet.h"
 #include "gram_GetHandlerSet.h"
+#include "gram_GetHashDirKind.h"
 #include "gram_GetMbrInitSet.h"
 #include "gram_GetNodeBlockSet.h"
 #include "gram_GetNodeDcl.h"
@@ -49,6 +50,7 @@ $src
 #include "smtc_CreateTryBlock.h"
 #include "smtc_DeclareAccessSpec.h"
 #include "smtc_DeclareClass.h"
+#include "smtc_DeclareHashDir.h"
 #include "smtc_DeclareFunctor.h"
 #include "smtc_DeclareUsing.h"
 #include "smtc_DeclareUsingDir.h"
@@ -179,6 +181,7 @@ namespace
     // class-def * -> class-head LBRACE mbr-decl-seq-opt RBRACE semi-opt
     void visit (ClassDefNode & node) const
     {
+      smtc::checkHashDirBalance (cs);
       ss.pop_back ();
     }
 
@@ -277,6 +280,14 @@ namespace
       smtc::declareAccessSpec (cs, node.getAccess ().getLoc (), access);
     }
 
+    // hash-dir * -> HASH_IF_TOKEN (or HASH_ELIF_TOKEN, HASH_ELSE_TOKEN, HASH_ENDIF_TOKEN): a preprocessor
+    // conditional lzz passes through, the lexeme is the directive line as written (see gram_Prep)
+    void visit (HashDirNode & node) const
+    {
+      basl::Token const & token = node.getHASH_IF_TOKEN ();
+      smtc::declareHashDir (cs, getHashDirKind (token.getNumber ()), token.getLoc (), token.getLexeme ().c_str ());
+    }
+
     // tmpl-inst * -> tmpl-inst-begin tmpl-inst-decl
     void visit (TmplInstNode & node) const
     {
@@ -329,6 +340,7 @@ namespace
     // lazy-ctor * -> lazy-ctor-begin <* LBRACE mbr-decl-seq-opt RBRACE semi-opt
     void visit (LazyCtorNode & node) const
     {
+      smtc::checkHashDirBalance (cs);
       ss.pop_back ();
     }
 

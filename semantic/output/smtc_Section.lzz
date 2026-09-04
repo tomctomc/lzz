@@ -8,8 +8,10 @@
 #include <strstream>
 #include <cstring>
 #include <cassert>
+#include <vector>
 
 // semantic
+#include "smtc_CondContext.h"
 #include "smtc_SectionKind.h"
 #end
 
@@ -18,6 +20,16 @@
 
 namespace smtc
 {
+  // CondShadow: an open conditional group as seen by a section, see sync() below
+  struct CondShadow
+  {
+    // group id
+    int id;
+
+    // number of the group's directive lines copied into the section so far
+    int emitted;
+  }
+
   // Section
   class Section
   {
@@ -29,11 +41,18 @@ namespace smtc
 
     // current indentation
     int m_indent;
+
+    // conditional context this section follows (may be null) and the version last synced to
+    CondContext const * m_ctx;
+    int m_ctx_version;
+
+    // the context's open groups as copied into this section, outermost first
+    std::vector <CondShadow> m_shadow;
     
   public:
     // constructor
-    Section (SectionKind kind)
-      : m_kind (kind), m_indent (0)
+    Section (SectionKind kind, CondContext const * ctx = 0)
+      : m_kind (kind), m_indent (0), m_ctx (ctx), m_ctx_version (-1)
     {
     }
 
@@ -51,6 +70,7 @@ namespace smtc
     // return output stream, do not first indent
     inline std::ostream & getStream ()
     {
+      sync ();
       return m_os;
     }
 
@@ -71,6 +91,7 @@ namespace smtc
       }
       memset (buf, ' ', num);
       buf [num] = '\0';
+      sync ();
       m_os << buf;
       return m_os;
     }
@@ -86,6 +107,20 @@ namespace smtc
     {
       assert (m_indent > 0);
       -- m_indent;
+    }
+
+    // close every conditional group copied into the section (call before freezing)
+    void syncEnd ()
+    {
+      for (int i = m_shadow.size (); i > 0; -- i)
+      {
+        CondShadow const & shadow = m_shadow [i - 1];
+        if (shadow.emitted > 0)
+        {
+          m_os << (m_ctx ? m_ctx->getEndifLine (shadow.id) : util::String ("#endif")) << '\n';
+        }
+      }
+      m_shadow.clear ();
     }
 
     // freeze output, return output as string and output size
@@ -107,6 +142,58 @@ namespace smtc
     {
       size = m_os.pcount ();
       return m_os.str ();
+    }
+
+  private:
+    // bring the section up to date with its conditional context before anything is written:
+    // close the groups the context has closed since the last write (only if their opening
+    // line was copied), then copy the directive lines of the open groups not yet copied
+    inline void sync ()
+    {
+      if (m_ctx != 0 && m_ctx->getVersion () != m_ctx_version)
+      {
+        resync ();
+      }
+    }
+
+    // sync, context has changed
+    void resync ()
+    {
+      m_ctx_version = m_ctx->getVersion ();
+      int depth = m_ctx->getDepth ();
+      // groups open in both the context and the section
+      int p = 0;
+      while (p < (int) m_shadow.size () && p < depth && m_shadow [p].id == m_ctx->getGroup (p).id)
+      {
+        ++ p;
+      }
+      // close the groups the context has closed, innermost first
+      for (int i = m_shadow.size (); i > p; -- i)
+      {
+        CondShadow const & shadow = m_shadow [i - 1];
+        if (shadow.emitted > 0)
+        {
+          m_os << m_ctx->getEndifLine (shadow.id) << '\n';
+        }
+      }
+      m_shadow.resize (p);
+      // follow the groups opened since
+      for (int i = p; i < depth; ++ i)
+      {
+        CondShadow shadow;
+        shadow.id = m_ctx->getGroup (i).id;
+        shadow.emitted = 0;
+        m_shadow.push_back (shadow);
+      }
+      // copy the directive lines not yet copied, outermost group first
+      for (int i = 0; i < depth; ++ i)
+      {
+        std::vector <util::String> const & lines = m_ctx->getGroup (i).lines;
+        for (int & emitted = m_shadow [i].emitted; emitted < (int) lines.size (); ++ emitted)
+        {
+          m_os << lines [emitted] << '\n';
+        }
+      }
     }
   }
 }

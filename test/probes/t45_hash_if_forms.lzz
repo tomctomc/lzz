@@ -1,0 +1,53 @@
+// conditionals lzz CAN decide are still evaluated by lzz: constants and macros lzz defines
+#define LZZ_KNOWN 1
+#if 0
+this is not parsed at all
+#endif
+#if LZZ_KNOWN
+int known () { return 1; }
+#else
+int not_emitted () { return 0; }
+#endif
+#ifdef LZZ_KNOWN
+int known2 ();
+#endif
+#ifndef LZZ_KNOWN
+int not_emitted2 ();
+#endif
+// passed through: template class members, nested class, extern "C" block, elif chain
+template <class T>
+class Tmpl
+{
+public:
+#ifdef ARCH_X
+    T x () { return T (); }
+#endif
+    T y () { return T (); }
+};
+class Outer
+{
+public:
+    class Inner
+    {
+#ifdef ARCH_X
+        int a;
+#endif
+        int b;
+    };
+#ifdef ARCH_X
+    Inner in;
+#endif
+};
+extern "C"
+{
+#ifdef ARCH_X
+    int cfn (int);
+#endif
+}
+#if defined (ARCH_X)
+int chain () { return 1; }
+#elif defined (ARCH_Y)
+int chain () { return 2; }
+#else
+int chain () { return 3; }
+#endif

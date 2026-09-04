@@ -44,3 +44,9 @@ PASS t40_ctor_init_brace.lzz
 PASS t41_trailing_semi.lzz
 PASS t42_template_alias.lzz
 PASS t43_constexpr_forms.lzz
+PASS t44_hash_if_members.lzz
+PASS t45_hash_if_forms.lzz
+FAIL t46_hash_if_unbalanced_class.lzz
+FAIL t47_hash_if_endif_in_class.lzz
+PASS t48_hash_if_other_dirs.lzz
+FAIL t49_hash_if_lazy_init.lzz

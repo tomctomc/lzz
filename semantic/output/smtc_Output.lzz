@@ -3,6 +3,7 @@
 
 $hdr
 // semantic
+#include "smtc_CondContext.h"
 #include "smtc_FilePtr.h"
 
 // util
@@ -113,6 +114,11 @@ namespace smtc
     
     // true if lexer is finished (no more include blocks)
     bool m_lex_done;
+
+    // conditional contexts (see smtc_CondContext): the code context is driven by the semantic
+    // printers, the user context by the preprocessor as it copies #hdr/#src/... blocks
+    CondContext m_code_ctx;
+    CondContext m_user_ctx;
 
   public:
     // constructor
@@ -265,6 +271,18 @@ namespace smtc
       m_lex_done = true;
     }
 
+    // get code conditional context (driven by the semantic printers)
+    inline CondContext & getCodeCondContext ()
+    {
+      return m_code_ctx;
+    }
+
+    // get user conditional context (driven by the preprocessor)
+    inline CondContext & getUserCondContext ()
+    {
+      return m_user_ctx;
+    }
+
   private:
     // create file
     FilePtr createFile (conf::StringOption const & opt_ext, conf::BoolOption const & opt_line, conf::BoolOption const & opt_smart_write)
@@ -272,7 +290,7 @@ namespace smtc
       String fullname, name;
       String const & ext = conf::getOptionValue (opt_ext);
       getFullname (m_path, m_base, ext, fullname, name);
-      return smtc::createFile (fullname, name, ext, conf::getOptionValue (opt_line), conf::getOptionValue (opt_smart_write));
+      return smtc::createFile (fullname, name, ext, conf::getOptionValue (opt_line), conf::getOptionValue (opt_smart_write), & m_code_ctx, & m_user_ctx);
     }
 
     // delete file with extension

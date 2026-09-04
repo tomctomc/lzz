@@ -1,0 +1,34 @@
+// smtc_HashDirKind.lzz
+//
+// kinds of preprocessor conditional directive that lzz passes through to the generated files
+// (see gram_Prep and smtc_CondContext)
+//
+
+$hdr
+$end
+
+$src
+$end
+
+// semantic
+namespace smtc
+{
+  // HashDirKind
+  enum HashDirKind
+  {
+    // #if, #ifdef or #ifndef: opens a group
+    HASH_IF_DIR,
+
+    // #elif: next branch of the open group
+    HASH_ELIF_DIR,
+
+    // #else: last branch of the open group
+    HASH_ELSE_DIR,
+
+    // #endif: closes the group
+    HASH_ENDIF_DIR,
+
+    // #error or #warning inside a group: copied into the header at its position
+    HASH_LINE_DIR,
+  }
+}

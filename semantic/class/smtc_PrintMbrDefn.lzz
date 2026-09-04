@@ -17,6 +17,7 @@ $src
 #include "smtc_ClassDefn.h"
 #include "smtc_CreateQualName.h"
 #include "smtc_EntityVisitor.h"
+#include "smtc_Output.h"
 #include "smtc_PrintMbrFuncDefn.h"
 #include "smtc_PrintNavSubmitFuncDefn.h"
 #include "smtc_PrintMbrObjDefn.h"
@@ -26,6 +27,7 @@ $src
 // entities
 #include "smtc_ClassDefnEntity.h"
 #include "smtc_FuncDefnEntity.h"
+#include "smtc_HashDirEntity.h"
 #include "smtc_NavSubmitFuncDefnEntity.h"
 #include "smtc_ObjEntity.h"
 #include "smtc_TmplClassDefnEntity.h"
@@ -72,6 +74,12 @@ namespace
     {
    // printTmplMbrDefn (out, entity.getTmplClassDefn (), ns, qual_name);
       printTmplMbrDefn (out, entity.getTmplClassDefn (), ns);
+    }
+
+    // passed-through conditional directive: the sections copy it as they are written (see smtc_CondContext)
+    void visit (HashDirEntity const & entity) const
+    {
+      out.getCodeCondContext ().apply (entity.getKind (), entity.getLine ());
     }
 
     // visit entity set

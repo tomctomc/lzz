@@ -1,12 +1,22 @@
 lzz test suite
 ==============
 
-probes/          one tiny .lzz file per language feature; t01..t20
+probes/          one tiny .lzz file per language feature; t01..t49
 expected.txt     expected PASS/FAIL per probe for the current lzz
+golden/          expected .h/.cpp for the probes whose output SHAPE matters
+                 (e.g. where passed-through #if groups land); compared by
+                 run_probes.sh when present, regenerate deliberately with
+                 run_probes.sh <binary> --update-golden
 run_probes.sh    run probes against a binary, compare with expected.txt
+                 (and golden/)
 run_corpus.sh    regenerate a production corpus (default: sdt at
                  /z6pool/z/work/zmed3/sdt/src) with a candidate binary and
-                 byte-compare .h/.cpp output against a reference binary
+                 byte-compare .h/.cpp output against a reference binary.
+                 Both binaries run with -o into the script's work dirs:
+                 lzz writes next to its INPUT by default, so without -o the
+                 script would rewrite the corpus's own generated files in
+                 place and compare nothing (this bit us once; the corpus
+                 was restored by regenerating it with the installed lzz)
 
 Workflow for a feature patch:
   1. implement the feature

@@ -1,0 +1,46 @@
+// gram_GetHashDirKind.lzz
+//
+
+$hdr
+// semantic
+#include "smtc_HashDirKind.h"
+$end
+
+$src
+// gram
+#include "gram_TokenNumber.h"
+$end
+
+// gram
+namespace gram
+{
+  // get hash dir kind from token number (HASH_IF_TOKEN, HASH_ELIF_TOKEN, HASH_ELSE_TOKEN, HASH_ENDIF_TOKEN or HASH_LINE_TOKEN)
+  smtc::HashDirKind getHashDirKind (int number)
+  {
+    smtc::HashDirKind kind = smtc::HASH_IF_DIR;
+    switch (number)
+    {
+      case HASH_ELIF_TOKEN:
+      {
+        kind = smtc::HASH_ELIF_DIR;
+        break;
+      }
+      case HASH_ELSE_TOKEN:
+      {
+        kind = smtc::HASH_ELSE_DIR;
+        break;
+      }
+      case HASH_ENDIF_TOKEN:
+      {
+        kind = smtc::HASH_ENDIF_DIR;
+        break;
+      }
+      case HASH_LINE_TOKEN:
+      {
+        kind = smtc::HASH_LINE_DIR;
+        break;
+      }
+    }
+    return kind;
+  }
+}

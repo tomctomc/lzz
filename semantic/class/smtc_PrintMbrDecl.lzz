@@ -15,6 +15,8 @@ $src
 #include "smtc_AcceptEntityVisitor.h"
 #include "smtc_ClassDefn.h"
 #include "smtc_EntityVisitor.h"
+#include "smtc_File.h"
+#include "smtc_PrintCode.h"
 #include "smtc_PrintAccessSpec.h"
 #include "smtc_PrintMbrClassDecl.h"
 #include "smtc_PrintMbrClassDefn.h"
@@ -50,6 +52,7 @@ $src
 #include "smtc_FrndTmplFuncDefnEntity.h"
 #include "smtc_FuncDeclEntity.h"
 #include "smtc_FuncDefnEntity.h"
+#include "smtc_HashDirEntity.h"
 #include "smtc_LazyClassEntity.h"
 #include "smtc_ObjEntity.h"
 #include "smtc_TdefEntity.h"
@@ -202,6 +205,20 @@ namespace
     void visit (UsingDeclEntity const & entity) const
     {
       printMbrUsingDecl (file, entity.getUsingDecl ());
+    }
+
+    // passed-through conditional directive: the sections copy it as they are written (see smtc_CondContext),
+    // an #error or #warning is printed here, in the class body
+    void visit (HashDirEntity const & entity) const
+    {
+      if (entity.getKind () == HASH_LINE_DIR)
+      {
+        printDir (file, DECLARATION_SECTION, entity.getLine ());
+      }
+      else
+      {
+        file->getCodeCondContext ().apply (entity.getKind (), entity.getLine ());
+      }
     }
 
   }

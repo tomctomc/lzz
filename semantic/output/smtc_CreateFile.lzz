@@ -3,6 +3,7 @@
 
 $hdr
 // semantic
+#include "smtc_CondContext.h"
 #include "smtc_FilePtr.h"
 
 // util
@@ -18,8 +19,9 @@ $end
 namespace smtc
 {
   // create file
-  FilePtr createFile (util::String const & fullname, util::String const & name, util::String const & ext, bool has_hash_lines, bool smart_write)
+  FilePtr createFile (util::String const & fullname, util::String const & name, util::String const & ext, bool has_hash_lines, bool smart_write,
+      CondContext * code_ctx, CondContext const * user_ctx)
   {
-    return new File (fullname, name, ext, has_hash_lines, smart_write);
+    return new File (fullname, name, ext, has_hash_lines, smart_write, code_ctx, user_ctx);
   }
 }

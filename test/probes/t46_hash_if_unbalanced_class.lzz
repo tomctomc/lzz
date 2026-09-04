@@ -1,0 +1,7 @@
+// a group opened in a class body must be closed in it: error
+class C
+{
+#ifdef ARCH_X
+    int a;
+};
+#endif

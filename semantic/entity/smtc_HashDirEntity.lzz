@@ -1,0 +1,73 @@
+// smtc_HashDirEntity.lzz
+//
+// a preprocessor conditional directive passed through to the generated files, in place among the
+// declarations it guards (see smtc_CondContext)
+//
+
+$hdr
+// semantic
+#include "smtc_Entity.h"
+#include "smtc_HashDirKind.h"
+
+// util
+#include "util_Loc.h"
+#include "util_String.h"
+$end
+
+$src
+// semantic
+#include "smtc_EntityVisitor.h"
+$end
+
+// semantic
+namespace smtc
+{
+  // HashDirEntity
+  class HashDirEntity : public Entity
+  {
+    // kind
+    HashDirKind m_kind;
+
+    // location of directive
+    util::Loc m_loc;
+
+    // directive line as written
+    util::String m_line;
+
+  public:
+    // constructor
+    HashDirEntity (HashDirKind kind, util::Loc const & loc, util::String const & line)
+      : m_kind (kind), m_loc (loc), m_line (line)
+    {
+    }
+
+    // destructor
+    ~ HashDirEntity ()
+    {
+    }
+
+    // accept visitor
+    void accept (EntityVisitor const & visitor) const
+    {
+      visitor.visit (* this);
+    }
+
+    // get kind
+    inline HashDirKind getKind () const
+    {
+      return m_kind;
+    }
+
+    // get location
+    inline util::Loc const & getLoc () const
+    {
+      return m_loc;
+    }
+
+    // get line
+    inline util::String const & getLine () const
+    {
+      return m_line;
+    }
+  }
+}

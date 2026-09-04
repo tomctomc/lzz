@@ -127,6 +127,12 @@ namespace
       int flags = spec_sel.getFlags ();
       if (init.isSet () && ! util::hasFlag (flags, STATIC_SPEC))
       {
+        // the constructor initializer list cannot be guarded, so the member cannot be either
+        util::Loc hash_if_loc;
+        if (lazy_class->hasOpenHashIf (hash_if_loc))
+        {
+          msg::lazyMbrInitInHashIf (getNameLoc (name), hash_if_loc);
+        }
         lazy_class->addMbrInit (createMbrInit (name, init->toString (), init->isBrace ()));
         ObjPtr obj = createObj (linkage, flags, cv_type, name, InitPtr ());
         lazy_class->addEntity (createObjEntity (obj));

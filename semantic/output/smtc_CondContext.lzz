@@ -1,0 +1,172 @@
+// smtc_CondContext.lzz
+//
+// The stack of preprocessor conditional groups (#if ... #endif) that lzz passes through to the
+// generated files instead of evaluating (see gram_Prep: a group whose condition mentions a macro
+// lzz does not know is passed through, so that the compiler decides it).
+//
+// Output sections (smtc_Section) follow a context lazily: a section copies the directive lines of
+// an open group only when something is written into the section while the group is open, and the
+// matching #endif only if it copied the opening line.  A group that guards nothing in a section
+// therefore leaves no trace there, while every section that does receive content inside the
+// group ends up with a balanced copy of it.
+//
+// There are two contexts per output (smtc_Output): the code context, driven by the semantic
+// printers as they visit HashDir entities (declarations are printed once the whole file has been
+// parsed), and the user context, driven by the preprocessor as it copies #hdr/#src/... blocks
+// (those are printed while parsing).  Each section follows exactly one of them.
+//
+
+$hdr
+// std lib
+#include <map>
+#include <vector>
+
+// semantic
+#include "smtc_HashDirKind.h"
+
+// util
+#include "util_String.h"
+$end
+
+$src
+$end
+
+// semantic
+namespace smtc
+{
+  // CondGroup: one #if ... #endif group, lines are the directives seen so far (the #if, then any #elif/#else)
+  struct CondGroup
+  {
+    // group id, unique within a context
+    int id;
+
+    // directive lines as written
+    std::vector <util::String> lines;
+  }
+
+  // CondContext
+  class CondContext
+  {
+    // open groups, outermost first
+    std::vector <CondGroup> m_stack;
+
+    // #endif line of every closed group, by group id
+    std::map <int, util::String> m_endif_lines;
+
+    // next group id
+    int m_next_id;
+
+    // incremented on every change, sections compare it to know when to resync
+    int m_version;
+
+  public:
+    // constructor
+    CondContext ()
+      : m_next_id (1), m_version (0)
+    {
+    }
+
+    // destructor
+    ~ CondContext ()
+    {
+    }
+
+    // apply directive (a HASH_LINE_DIR is not a group operation, nothing happens), returns false if an
+    // #elif, #else or #endif has no open group
+    bool apply (HashDirKind kind, util::String const & line)
+    {
+      bool result = true;
+      switch (kind)
+      {
+        case HASH_IF_DIR:
+        {
+          open (line);
+          break;
+        }
+        case HASH_ELIF_DIR:
+        case HASH_ELSE_DIR:
+        {
+          result = branch (line);
+          break;
+        }
+        case HASH_ENDIF_DIR:
+        {
+          result = close (line);
+          break;
+        }
+        case HASH_LINE_DIR:
+        {
+          // not a group operation, printed by the declaration printers
+          break;
+        }
+      }
+      return result;
+    }
+
+    // open group with #if (or #ifdef, #ifndef) line
+    void open (util::String const & line)
+    {
+      CondGroup group;
+      group.id = m_next_id ++;
+      group.lines.push_back (line);
+      m_stack.push_back (group);
+      ++ m_version;
+    }
+
+    // add #elif or #else line to open group, false if none open
+    bool branch (util::String const & line)
+    {
+      if (m_stack.empty ())
+      {
+        return false;
+      }
+      m_stack.back ().lines.push_back (line);
+      ++ m_version;
+      return true;
+    }
+
+    // close open group with #endif line, false if none open
+    bool close (util::String const & line)
+    {
+      if (m_stack.empty ())
+      {
+        return false;
+      }
+      m_endif_lines [m_stack.back ().id] = line;
+      m_stack.pop_back ();
+      ++ m_version;
+      return true;
+    }
+
+    // get version
+    inline int getVersion () const
+    {
+      return m_version;
+    }
+
+    // number of open groups
+    inline int getDepth () const
+    {
+      return m_stack.size ();
+    }
+
+    // true if no open groups
+    inline bool isEmpty () const
+    {
+      return m_stack.empty ();
+    }
+
+    // get open group, 0 is outermost
+    inline CondGroup const & getGroup (int i) const
+    {
+      return m_stack [i];
+    }
+
+    // #endif line of a closed group, a plain #endif if the group is not closed
+    util::String getEndifLine (int id) const
+    {
+      std::map <int, util::String>::const_iterator i = m_endif_lines.find (id);
+      return i == m_endif_lines.end () ? util::String ("#endif") : i->second;
+    }
+  }
+}

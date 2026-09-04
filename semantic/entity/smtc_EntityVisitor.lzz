@@ -44,6 +44,7 @@ namespace smtc
   class TmplLazyClassEntity;
   class UsingDeclEntity;
   class UsingDirEntity;
+  class HashDirEntity;
   // prl extensions
   class NavClassEntity;
   class VdfClassEntity;
@@ -145,6 +146,11 @@ namespace smtc
 
     // access spec entity
     virtual void visit (AccessSpecEntity const & entity) const
+    {
+    }
+
+    // passed-through preprocessor conditional directive entity
+    virtual void visit (HashDirEntity const & entity) const
     {
     }
 
