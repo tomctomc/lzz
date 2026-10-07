@@ -4,10 +4,10 @@
 # the probe suite against the static binary.
 #
 # Environment overrides:
-#   LZZ        bootstrap lzz binary       (default: the frozen binary in
-#              /z6pool/z/dev/lzz/bin.OLD, so builds are deterministic and
-#              independent of whatever lzz is installed; falls back to an
-#              installed lzz for clones outside this project tree)
+#   LZZ        bootstrap lzz binary       (default: the first that exists of
+#              the lzz on PATH, /usr/local/bin/lzz, this repo's
+#              bin/lzz-`uname -m`, and the frozen pre-modernization binary
+#              /z6pool/z/dev/lzz/bin.OLD/lzz.OLD as the last resort)
 #   BUILDROOT  scratch build directory    (default: /tmp/lzz-build-$USER)
 #
 # The scratch directory must be on LOCAL disk: building inside an NFS tree

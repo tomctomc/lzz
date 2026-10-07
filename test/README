@@ -39,10 +39,10 @@ fresh-install-on-any-machine recipe; bin/ is never cleaned.  The corpus
 baseline (and bootstrap of last resort) is the frozen pre-modernization
 binary in /z6pool/z/dev/lzz/bin.OLD.  The notes below document what build.sh
 does and why:
-  - bootstrap needs an lzz binary; the frozen pre-modernization binary in
-    /z6pool/z/dev/lzz/bin.OLD is preferred (deterministic, tomc keeps it),
-    falling back to an installed lzz or a previous bin/ binary for clones
-    outside this tree (override with LZZ=...)
+  - bootstrap needs an lzz binary: the first that exists of the lzz on
+    PATH, /usr/local/bin/lzz, a previous bin/lzz-`uname -m`, and the frozen
+    pre-modernization binary in /z6pool/z/dev/lzz/bin.OLD (tomc keeps it) as
+    the last resort (override with LZZ=...)
   - BUILD ON LOCAL DISK.  Building inside an NFS-mounted tree (especially a
     soft mount) intermittently produces empty .o files: the compiler can read
     a just-generated .cpp before its data is visible.  Set CONFIGDIR (and
