@@ -2,7 +2,9 @@
 # and is driven by tools/build.sh, which sets up the bootstrap environment and
 # builds on local disk (see test/README for why).
 #
-#   make            build, run probes, put the static binary at bin/lzz-`uname -m`
+#   make            build, run probes, put the static binary at bin/lzz-`uname -m` -- only when a source, a
+#                   build tool, the bootstrap lzz or the compiler changed since the last build; otherwise it
+#                   says "up to date" and does nothing.  FORCE=1 make rebuilds anyway.
 #   make install    build, then copy bin/* verbatim to /usr/local/bin
 #   make test       build, then run probes and the sdt corpus byte-compare
 #   make gate       regenerate parser tables from rules.txt and byte-compare

@@ -29,7 +29,10 @@ Workflow for a feature patch:
      identical and the result must pass 3 and 4 again
 
 Building: just type `make` at the repo root (drives tools/build.sh; builds
-the static binary as bin/lzz-`uname -m` and runs the probes).  `make install`
+the static binary as bin/lzz-`uname -m` and runs the probes).  It only builds
+when something changed since the last successful build (a fingerprint of all
+sources, build tools, the bootstrap lzz and the compiler, kept in
+build/.inputs.sha256); `FORCE=1 make` rebuilds anyway.  `make install`
 copies bin/* verbatim to /usr/local/bin (a dispatcher script plus one static
 binary per architecture).  `make cleanall && make install` is the
 fresh-install-on-any-machine recipe; bin/ is never cleaned.  The corpus

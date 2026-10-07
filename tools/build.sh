@@ -11,9 +11,9 @@
 #   BUILDROOT  scratch build directory    (default: /tmp/lzz-build-$USER)
 #
 # The scratch directory must be on LOCAL disk: building inside an NFS tree
-# intermittently produces empty object files (see test/README).  The build is
-# always from clean, which is mandatory after parser-table regeneration and
-# cheap enough to do every time.
+# intermittently produces empty object files (see test/README).  When it builds,
+# it builds from clean, which is mandatory after parser-table regeneration and
+# cheap (~20 s); when nothing changed it does not build at all (fingerprint below).
 set -e
 
 REPO=$(cd "$(dirname "$0")/.." && pwd)
@@ -40,7 +40,30 @@ export LZZ
 # creates), and DEBUG_BUILD would skip the strip
 unset BUILD_LZZ DEBUG_BUILD
 
+# Rebuild only when something that goes into the binary changed (2026-10-07: `make` used to rebuild from scratch on
+# every run). The inputs -- every source, makefile and build tool, the bootstrap lzz, the compiler and the machine
+# architecture -- are fingerprinted; the fingerprint of the last successful build is kept in build/.inputs.sha256.
+# Same fingerprint and the outputs still there: nothing to do. Anything different: the usual full clean build
+# (still the only safe kind, see above). FORCE=1 rebuilds regardless.
+inputs_fingerprint() {
+    {
+        (cd "$REPO" && find Makefile Makefile.build basil config gram main maketools messages semantic tools util \
+            -type f ! -name '*~' -print0 | sort -z | xargs -0 sha256sum)
+        sha256sum < "$LZZ"
+        g++ --version | head -1
+        uname -m
+    } | sha256sum | cut -d' ' -f1
+}
+STAMP=$REPO/build/.inputs.sha256
+FINGERPRINT=$(inputs_fingerprint)
+if [ -z "$FORCE" ] && [ -f "$STAMP" ] && [ "$(cat "$STAMP")" = "$FINGERPRINT" ] \
+   && [ -x "$REPO/build/lzz" ] && [ -x "$REPO/build/lzz-static" ] && [ -x "$REPO/bin/lzz-$(uname -m)" ]; then
+    echo "== lzz is up to date (no source, tool, bootstrap or compiler change since the last build); FORCE=1 make rebuilds"
+    exit 0
+fi
+
 echo "== lzz build: bootstrap=$LZZ scratch=$CONFIGDIR"
+rm -f "$STAMP"
 rm -rf "$CONFIGDIR"
 mkdir -p "$CONFIGDIR/gencode" "$CONFIGDIR/objs" "$CONFIGDIR/libs"
 
@@ -62,6 +85,8 @@ echo "== probe suite (static binary)"
 # the deliverable: the static binary, named for this machine's architecture,
 # next to the bin/lzz dispatcher (bin/ is never cleaned)
 cp "$BUILDROOT/lzz-static" "$REPO/bin/lzz-$(uname -m)"
+
+echo "$FINGERPRINT" > "$STAMP"   # only reached when the build and the probes succeeded (set -e)
 
 echo "== built:"
 ls -la "$REPO/build/lzz" "$REPO/build/lzz-static" "$REPO/bin/lzz-$(uname -m)"
